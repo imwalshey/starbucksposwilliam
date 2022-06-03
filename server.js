@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
-
-
+const PORT = 8000
 const coreDrinks = {
     'brewed': {
         "coffee":{
@@ -113,4 +112,4 @@ app.get('/coredrinks/:cat/:drink',(req,res)=>{
 
 
 
-app.listen(8000)
+app.listen(process.env.PORT || PORT)
