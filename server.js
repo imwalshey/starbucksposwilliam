@@ -1,6 +1,10 @@
 const express = require('express')
 const app = express()
 const PORT = 8000
+const CORS = require('cors')
+
+app.use(CORS())
+
 const coreDrinks = {
     'brewed': {
         "coffee":{
