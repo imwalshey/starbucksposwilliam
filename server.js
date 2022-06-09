@@ -4,7 +4,7 @@ const PORT = 8000
 const CORS = require('cors')
 
 app.use(CORS())
-
+/*
 const coreDrinks = {
     'brewed': {
         "coffee":{
@@ -13,69 +13,119 @@ const coreDrinks = {
             'Charge For Alt Milk': false,
             'Description':''
         },
-        "Dark Roast":{
+        "dark roast":{
             'Simplicity':10,
             'Bitterness': 10,
             'Charge For Alt Milk': false,
             'Description':''
         },
-        "Blonde Roast":{
+        "blonde roast":{
             'Simplicity':10,
             'Bitterness': 10,
             'Charge For Alt Milk': false,
             'Description':''
         },
-        "Cafe Misto":{
+        "cafe misto":{
             'Simplicity':10,
             'Bitterness': 10,
             'Charge For Alt Milk': false,
             'Description':''
+        },
+        "iced coffee":{
+            'Simplicity':10,
+            'Bitterness': 10,
+            'Charge For Alt Milk': false,
+            'Description':''
+        },
+        "cold brew":{
+            'Simplicity':10,
+            'Bitterness': 10,
+            'Charge For Alt Milk': false,
+            'Description':''
+        },
+        "vanilla sweet cream cold brew":{
+            'Simplicity':10,
+            'Bitterness': 10,
+            'Charge For Alt Milk': false,
+            'Description':''
+        },
+        "salted caramel cream cold brew":{
+            'Simplicity':10,
+            'Bitterness': 10,
+            'Charge For Alt Milk': false,
+            'Description':''
+        },
+        "chocolate cream cold brew":{
+            'Simplicity':10,
+            'Bitterness': 10,
+            'Charge For Alt Milk': false,
+            'Description':''
+        },
+        'draft':{
+            "nitro cold brew":{
+                'Simplicity':10,
+                'Bitterness': 10,
+                'Charge For Alt Milk': false,
+                'Description':''
+            },
+            "vanilla sweet cream nitro cold brew":{
+                'Simplicity':10,
+                'Bitterness': 10,
+                'Charge For Alt Milk': false,
+                'Description':''
+            },
+            "nitro cold brew":{
+                'Simplicity':10,
+                'Bitterness': 10,
+                'Charge For Alt Milk': false,
+                'Description':''
+            },
         }
     },
     'espresso':{
-        "Latte":{
+        "latte":{
             'Simplicity':8,
             'Bitterness': 8,
             'Charge For Alt Milk': true,
             'Description':''
         },
-        "Cinnamon Dolce Latte":{
+        "cinnamon dolce latte":{
             'Simplicity':8,
             'Bitterness': 8,
             'Charge For Alt Milk': true,
             'Description':''
         },
-        "Cappuccino":{
+        "cappuccino":{
             'Simplicity':8,
             'Bitterness': 8,
             'Charge For Alt Milk': true,
             'Description':''
         },
-        "Americano":{
+        "americano":{
             'Simplicity':9,
             'Bitterness': 10,
             'Charge For Alt Milk': false,
             'Description':''
         },
-        "Espresso":{
+        "espresso":{
             'Simplicity':10,
             'Bitterness': 10,
             'Charge For Alt Milk': false,
             'Description':''
         },
-        "Espresso Con Pana":{
+        "espresso con pana":{
             'Simplicity':10,
             'Bitterness': 8,
             'Charge For Alt Milk': false,
             'Description':''
         },
-        "Espresso Macchiato":{
+        "espresso macchiato":{
             'Simplicity':7,
             'Bitterness': 9,
             'Charge For Alt Milk': true,
             'Description':''
         },
-        "Iced Shaken Espresso":{
+        "iced shaken espresso":{
             'Simplicity':7,
             'Bitterness': 9,
             'Charge For Alt Milk': true,
@@ -87,7 +137,9 @@ const coreDrinks = {
 
 
 }
+*/
 
+const coreDrinks = {'words':'words'}
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/index.html')
