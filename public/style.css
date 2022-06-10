@@ -1,0 +1,11 @@
+.blonde{
+    background: rgb(215,186,125);
+    display: flex;
+    flex-wrap: wrap;
+}
+.blonde .individualRoast{
+    text-align: center;
+    width:50%;
+    min-width: 300px;
+    border:1px solid black
+}
