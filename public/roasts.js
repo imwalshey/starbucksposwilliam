@@ -19,7 +19,7 @@ function nameShortener(name){
 async function apiRequest(){
     
     try{
-        const response = await fetch(`http://localhost:8000/api/roasts`)
+        const response = await fetch(`https://starbucks-coffee.herokuapp.com/api/roasts`)
         const data = await response.json()
 
         Object.keys(data).forEach((element)=>{
