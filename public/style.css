@@ -1,11 +1,45 @@
+*{
+    box-sizing: border-box;
+  }
+
+.roasts{
+    width:100%;
+}
 .blonde{
-    background: rgb(215,186,125);
+    
+    
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
 .blonde .individualRoast{
+    background: rgb(215,186,125);
+}
+.individualRoast{
     text-align: center;
-    width:50%;
-    min-width: 300px;
-    border:1px solid black
+    min-width: 50%;
+    max-width: 100%;
+    border:1px solid black;
+    border-radius: .6em;
+}
+.medium{
+    
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.medium .individualRoast{
+    background: rgb(110, 69, 22);
+}
+
+.dark{
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.dark .individualRoast{
+    color:rgb(246, 237, 188);
+    background: rgb(53, 32, 6);
 }
