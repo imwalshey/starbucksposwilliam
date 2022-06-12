@@ -15,11 +15,12 @@ function nameShortener(name){
     
 }
 
-
+let heroku = 'https://starbucks-coffee.herokuapp.com/api/roasts'
+let local = 'http://localhost:8000/api/roasts'
 async function apiRequest(){
     
     try{
-        const response = await fetch(`https://starbucks-coffee.herokuapp.com/api/roasts`)
+        const response = await fetch(local)
         const data = await response.json()
 
         Object.keys(data).forEach((element)=>{
@@ -29,7 +30,7 @@ async function apiRequest(){
                 newRoastDiv.classList.add(`${nameShortener(roasty.name)}`)
                 newRoastDiv.innerHTML =
                 `<h1>${roasty.name}</h1>
-                 <em>${roasty.description}</em>
+                 <em>"${roasty.description}"</em>
                  <p><b>Notes:</b> ${roasty.flavorNotes}
                  <p><b>Body:</b> ${roasty.body}
                  <p><b>Acidity:</b> ${roasty.acidity}

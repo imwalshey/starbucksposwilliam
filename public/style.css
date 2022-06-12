@@ -1,45 +1,155 @@
 *{
     box-sizing: border-box;
   }
+body{
+    
+    margin: 0;
+}
+header{
+    top:0vh;
+    position: sticky;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:10vh;
+    border-bottom: 3px solid #54724b;
+    color: #312020;
+    background: #93b684;
+    letter-spacing: 2em;
+    text-align: center;
+    text-indent:2em;
+}
+
+
+h1{
+    margin:0;
+    text-align: center;
+    
+}
+
+
+
+/*==========================================
+
+ROASTS PAGES
+
+==========================================*/
+
 
 .roasts{
     width:100%;
 }
 .blonde{
     
-    
+    background: linear-gradient(rgb(244, 241, 201),rgb(219, 200, 160),rgb(215,186,125));
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
+    
 }
-.blonde .individualRoast{
-    background: rgb(215,186,125);
-}
+
 .individualRoast{
     text-align: center;
-    min-width: 50%;
-    max-width: 100%;
+    width: 48%;
+    margin:1%;
+    padding:2% 0px;
+    border-radius: .5em;
     border:1px solid black;
-    border-radius: .6em;
 }
 .medium{
-    
+    background: linear-gradient(rgb(215,186,125), rgb(110, 69, 22));
     
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 .medium .individualRoast{
-    background: rgb(110, 69, 22);
+    /* background: rgb(110, 69, 22); */
+    
 }
 
 .dark{
-    
+    background: linear-gradient(rgb(110, 69, 22), rgb(57, 33, 5));
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 .dark .individualRoast{
-    color:rgb(246, 237, 188);
-    background: rgb(53, 32, 6);
+    
+    /* background: rgb(53, 32, 6); */
+}
+.individualRoast h2{
+    text-decoration: underline;
+}
+.individualRoast b{
+    text-decoration: underline;
+}
+
+/*==========================================
+
+COREDRINKS PAGES
+
+==========================================*/
+.coreDrinks{
+    background: rgb(40, 155, 88);
+}
+.coreDrinks .drinkType{
+    min-height: 10vh;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.coreDrinks .drink {
+    height: fit-content;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cup {
+    width: 100px;
+    height: 200px;
+    background: rgba(255, 239, 239, 0);
+    border: 2px solid black;
+    border-top: none;
+    transform: perspective(13px) rotateX(-1deg);
+    
+    
+}
+.cup *{
+    font-size: .7em;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.cup .espresso{
+    background: linear-gradient(rgb(231, 188, 96), rgb(80, 52, 20)30%,#312020);
+    color:rgb(255, 255, 255);
+}
+.cup .syrup{
+    background:rgb(255, 255, 227) ;
+}
+.cup .steamedmilk{
+    background:rgb(240, 249, 248);
+}
+.cup .foam{
+    background: white;
+    background-image: url("../public/IMG/bubbles.png")
+}
+.cup .water{
+    background: rgb(169, 222, 252);
+}
+
+.cup .whippedcream{
+    background: rgb(255, 255, 242);
+}
+.mocha .cup .syrup{
+    background: rgb(80, 52, 20)
+}
+.cup .carameldrizzle{
+    background-color: rgb(177, 129, 25);
 }
