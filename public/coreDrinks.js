@@ -40,18 +40,32 @@ async function apiRequest(){
                 let cup = document.createElement('div')
                 cup.classList.add('cup')
                 theDrink.appendChild(cup)
-                let Build = roasty.build
+                let Build = roasty.hotBuild
+                let container = document.createElement('div')
+                container.classList.add('container')
+                cup.appendChild(container)
                 Object.keys(Build).forEach((part)=>{
                     let ingred = document.createElement('div')
                     ingred.classList.add(nameShortener(part))
+                    ingred.classList.add('ingred')
                     ingred.style.height = Build[part]
                     if(part !== 'room'){
-                    ingred.innerText = part
+                    ingred.innerHTML = `<p>${part}</p>`
                     }
-                    cup.appendChild(ingred)
+                    container.appendChild(ingred)
 
                 })
+                if(roasty.iced===true){
+                    let cover = document.createElement('div')
+                    cover.classList.add('iceOverlay')
+                    cover.classList.add('hidden')
+                    document.querySelector(`.${nameShortener(roasty.name)}.drink .cup`).appendChild(cover)
+                    cup.addEventListener('click',(targ)=>{
+                        targ.target.classList.toggle('hidden')
+                    })
+                }
                 let text = document.createElement('div')
+                text.classList.add('info')
                 console.log(roasty)
                 text.innerHTML=`
                 <h2>${roasty.name.toUpperCase()}</h2>
