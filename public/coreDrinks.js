@@ -45,6 +45,7 @@ async function apiRequest(){
                 container.classList.add('container')
                 cup.appendChild(container)
                 Object.keys(Build).forEach((part)=>{
+                    
                     let ingred = document.createElement('div')
                     ingred.classList.add(nameShortener(part))
                     ingred.classList.add('ingred')
@@ -60,14 +61,37 @@ async function apiRequest(){
                     cover.classList.add('iceOverlay')
                     cover.classList.add('hidden')
                     document.querySelector(`.${nameShortener(roasty.name)}.drink .cup`).appendChild(cover)
-                    cup.addEventListener('click',(targ)=>{
-                        targ.target.classList.toggle('hidden')
+                    cup.addEventListener('click',(click)=>{
+                        let parent = click.target.parentElement.firstChild
+                        if(click.target.classList.contains('iceOverlay')){
+                            click.target.classList.toggle('hidden')
+                            while(parent.firstChild){
+                                parent.removeChild(parent.firstChild);
+                            }
+                            Object.keys(roasty.icedBuild).forEach((part)=>{
+                    
+                                let ingred = document.createElement('div')
+                                ingred.classList.add(nameShortener(part))
+                                ingred.classList.add('ingred')
+                                ingred.style.height = Build[part]
+                                if(part !== 'room'){
+                                ingred.innerHTML = `<p>${part}</p>`
+                                }
+                                container.appendChild(ingred)
+            
+                            })
+                        }
                     })
-                    cover.style.backgroundPosition = `0% ${20}%`
+                    
+
+                    if(Build['room']!= undefined){
+                        console.log(roasty.name)
+                        cover.style.backgroundPosition = `0% ${Build['room']}`
+                    }
                 }
                 let text = document.createElement('div')
                 text.classList.add('info')
-                console.log(roasty)
+                
                 text.innerHTML=`
                 <h2>${roasty.name.toUpperCase()}</h2>
                 `

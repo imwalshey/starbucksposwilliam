@@ -140,7 +140,7 @@ COREDRINKS PAGES
 }
 .cup .ingred.espresso{
     background: linear-gradient(rgb(231, 188, 96), rgb(80, 52, 20)30%,#312020);
-    color:rgb(0, 0, 0);
+    color:rgb(255, 255, 255);
     
     
 }
@@ -187,7 +187,7 @@ COREDRINKS PAGES
     background-image: url('../IMG/ice.png');
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: 0% 90%;
+    
     opacity: 1;
 
 }
@@ -195,6 +195,7 @@ COREDRINKS PAGES
 .container{
     height:100%;
     width:100%;
+    
     
 }
 .container .ingred{
