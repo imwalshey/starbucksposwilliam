@@ -20,7 +20,7 @@ let local = 'http://localhost:8000/api/coredrinks'
 async function apiRequest(){
     
     try{
-        const response = await fetch(local)
+        const response = await fetch(heroku)
         const data = await response.json()
 
         Object.keys(data).forEach((element)=>{
