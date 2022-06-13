@@ -124,7 +124,7 @@ COREDRINKS PAGES
     transform: perspective(13px) rotateX(-1deg);
     
     top:0;
-    z-index: 1;
+    z-index: 10;
 
 }
 .container .ingred{
@@ -173,9 +173,21 @@ COREDRINKS PAGES
     background-color: rgb(177, 129, 25);
     font-size: .3em;
 }
+.cup .milk{
+    background-color: white;
+}
+
+.espressoconpanna .iced .whippedcream{
+    margin-bottom:40%;
+    margin-top: 110%;
+}
+.espressoconpanna .iced .room{
+    height:5% !important;
+}
 .cinnamondolcelatte .syrup{
     background: rgb(237, 218, 125);
 }
+
 .iceOverlay{
     width: 100%;
     height: 100%;

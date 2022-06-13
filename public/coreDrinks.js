@@ -31,7 +31,7 @@ async function apiRequest(){
             document.querySelector('.coreDrinks').appendChild(div)
 
             data[element].forEach((roasty)=>{
-
+                
                 let theDrink = document.createElement('div')
                 theDrink.classList.add(nameShortener(roasty.name))
                 theDrink.classList.add('drink')
@@ -51,7 +51,7 @@ async function apiRequest(){
                     ingred.classList.add('ingred')
                     ingred.style.height = Build[part]
                     if(part !== 'room'){
-                    ingred.innerHTML = `<p>${part}</p>`
+                    ingred.innerHTML = `<p>${part.toUpperCase()}</p>`
                     }
                     container.appendChild(ingred)
 
@@ -62,32 +62,78 @@ async function apiRequest(){
                     cover.classList.add('hidden')
                     document.querySelector(`.${nameShortener(roasty.name)}.drink .cup`).appendChild(cover)
                     cup.addEventListener('click',(click)=>{
-                        let parent = click.target.parentElement.firstChild
                         if(click.target.classList.contains('iceOverlay')){
-                            click.target.classList.toggle('hidden')
-                            while(parent.firstChild){
-                                parent.removeChild(parent.firstChild);
-                            }
-                            Object.keys(roasty.icedBuild).forEach((part)=>{
-                    
-                                let ingred = document.createElement('div')
-                                ingred.classList.add(nameShortener(part))
-                                ingred.classList.add('ingred')
-                                ingred.style.height = Build[part]
-                                if(part !== 'room'){
-                                ingred.innerHTML = `<p>${part}</p>`
+                        let parent = click.target.parentElement.firstChild
+                        if(!click.target.classList.contains('hidden')){
+                            
+                             while(parent.firstChild){
+                                 parent.removeChild(parent.firstChild);
+                             }
+                             Build = roasty.hotBuild
+                             Object.keys(Build).forEach((part)=>{
+                                cup.classList.remove('iced')
+                                 let ingred = document.createElement('div')
+                                 ingred.classList.add(nameShortener(part))
+                                 ingred.classList.add('ingred')
+                                 ingred.style.height = Build[part]
+                                 if(part !== 'room'){
+                                 ingred.innerHTML = `<p>${part.toUpperCase()}</p>`
+                                 }
+                                 container.appendChild(ingred)
+                
+                              })
+                         }
+                        if(click.target.classList.contains('hidden')){
+                            
+                            
+                                while(parent.firstChild){
+                                    parent.removeChild(parent.firstChild);
                                 }
-                                container.appendChild(ingred)
-            
-                            })
+                                Build = roasty.icedBuild
+                                 Object.keys(Build).forEach((part,index)=>{
+                                    cup.classList.add('iced')
+                                    let ingred = document.createElement('div')
+                                    ingred.classList.add(nameShortener(part))
+                                    ingred.classList.add('ingred')
+                                    ingred.style.height = Build[part]
+                                    if(part !== 'room'){
+                                    ingred.innerHTML = `<p>${part.toUpperCase()}</p>`
+                                    }
+                                    container.appendChild(ingred)
+                                    
+                                    if(Build['room']!= undefined){
+                        
+                                        cover.style.backgroundPosition = `0% ${Build['room']}`
+                                    }
+                                    if(Build['whipped cream']!= undefined){
+                                        
+                                        cover.style.backgroundPosition = `0% ${Build['whipped cream']}`
+                                    }
+                                    if(Build['caramel drizzle']!= undefined){
+                                        
+                                        cover.style.backgroundPosition = `0% ${Build['caramel drizzle']}`
+                                    }
+                                    if(Build['whipped cream']!= undefined && Build['room']!= undefined){
+                                        
+                                        cover.style.backgroundPosition = `0% ${Number(Build['whipped cream'].slice(0,-1))+ Number(Build['room'].slice(0,-1))}%`
+                                    }
+                                    
+
+
+                                })
+                                
+
                         }
+                        
+                            
+                        click.target.classList.toggle('hidden')
+                    }
                     })
                     
+                    
+                    
 
-                    if(Build['room']!= undefined){
-                        console.log(roasty.name)
-                        cover.style.backgroundPosition = `0% ${Build['room']}`
-                    }
+                    
                 }
                 let text = document.createElement('div')
                 text.classList.add('info')
