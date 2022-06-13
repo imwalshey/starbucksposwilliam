@@ -3,6 +3,7 @@ const app = express()
 const PORT = 8000
 const CORS = require('cors')
 app.use(express.static('public'))
+app.use(express.static('IMG'))
 app.use(CORS())
 
 
@@ -212,7 +213,7 @@ app.get('/roasts',(req,res)=>{
     res.sendFile(__dirname+'/public/roasts.html')
 })
 app.get('/coredrinks',(req,res)=>{
-    res.sendFile(__dirname+'/coreDrinks.html')
+    res.sendFile(__dirname+'/public/coreDrinks.html')
 })
 
 

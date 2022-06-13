@@ -150,7 +150,7 @@ COREDRINKS PAGES
 }
 .cup .foam{
     background: white;
-    background-image: url("../public/IMG/bubbles.png");
+    background-image: url("../IMG/bubbles.png");
     background-size: cover;
 }
 .cup .water{
@@ -182,7 +182,7 @@ COREDRINKS PAGES
     left: 0;
     
     
-    background-image: url('../public/IMG/ice.png');
+    background-image: url('../IMG/ice.png');
     background-size: contain;
     background-repeat: no-repeat;
     
