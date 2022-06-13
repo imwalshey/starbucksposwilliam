@@ -212,13 +212,14 @@ app.get('/roasts',(req,res)=>{
     res.sendFile(__dirname+'/public/roasts.html')
 })
 app.get('/coredrinks',(req,res)=>{
-    res.sendFile(__dirname+'/public/coreDrinks.html')
+    res.sendFile(__dirname+'/coreDrinks.html')
 })
 
 
 app.get('/api/coreDrinks'.toLowerCase(),(req,res)=>{
     res.json(coreDrinks)
 })
+
 app.get('/api/roasts'.toLowerCase(),(req,res)=>{
     res.json(roasts)
 })
