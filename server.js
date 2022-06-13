@@ -6,7 +6,7 @@ app.use(express.static('public'))
 app.use(express.static('IMG'))
 app.use(CORS())
 
-
+app.use('/IMG', express.static(__dirname + '/IMG'));
 /*
 const coreDrinks = {
     'brewed': {
