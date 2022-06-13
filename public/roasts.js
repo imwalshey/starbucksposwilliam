@@ -39,7 +39,7 @@ async function apiRequest(){
                 
                 newRoastDiv.classList.add('individualRoast')
                 document.querySelector(`.${roasty.roast.toLowerCase()}`).appendChild(newRoastDiv)
-               
+                
                 console.log(roasty)
             })
         })

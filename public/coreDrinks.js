@@ -63,6 +63,7 @@ async function apiRequest(){
                     cup.addEventListener('click',(targ)=>{
                         targ.target.classList.toggle('hidden')
                     })
+                    cover.style.backgroundPosition = `0% ${20}%`
                 }
                 let text = document.createElement('div')
                 text.classList.add('info')

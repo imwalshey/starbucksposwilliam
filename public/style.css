@@ -18,7 +18,7 @@ header{
     letter-spacing: 2em;
     text-align: center;
     text-indent:2em;
-    z-index: 10000000000;
+    z-index: 10000;
 }
 
 
@@ -138,9 +138,11 @@ COREDRINKS PAGES
 .cup .room{
     border:none
 }
-.cup .espresso{
+.cup .ingred.espresso{
     background: linear-gradient(rgb(231, 188, 96), rgb(80, 52, 20)30%,#312020);
-    color:rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+    
+    
 }
 .cup .syrup{
     background:rgb(255, 255, 227) ;
@@ -185,7 +187,7 @@ COREDRINKS PAGES
     background-image: url('../IMG/ice.png');
     background-size: contain;
     background-repeat: no-repeat;
-    
+    background-position: 0% 90%;
     opacity: 1;
 
 }
@@ -198,6 +200,7 @@ COREDRINKS PAGES
 .container .ingred{
     display:flex;
     justify-content: center;
+    align-items: center;
 }
 .container .ingred p{
     position: absolute;
