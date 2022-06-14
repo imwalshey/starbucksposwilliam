@@ -54,7 +54,7 @@ async function apiRequest(){
                     ingred.innerHTML = `<p>${part.toUpperCase()}</p>`
                     }
                     container.appendChild(ingred)
-
+                    
                 })
                 if(roasty.iced===true){
                     let cover = document.createElement('div')
@@ -63,35 +63,15 @@ async function apiRequest(){
                     document.querySelector(`.${nameShortener(roasty.name)}.drink .cup`).appendChild(cover)
                     cup.addEventListener('click',(click)=>{
                         if(click.target.classList.contains('iceOverlay')){
-                        let parent = click.target.parentElement.firstChild
-                        if(!click.target.classList.contains('hidden')){
-                            
-                             while(parent.firstChild){
-                                 parent.removeChild(parent.firstChild);
-                             }
-                             Build = roasty.hotBuild
-                             Object.keys(Build).forEach((part)=>{
-                                cup.classList.remove('iced')
-                                 let ingred = document.createElement('div')
-                                 ingred.classList.add(nameShortener(part))
-                                 ingred.classList.add('ingred')
-                                 ingred.style.height = Build[part]
-                                 if(part !== 'room'){
-                                 ingred.innerHTML = `<p>${part.toUpperCase()}</p>`
-                                 }
-                                 container.appendChild(ingred)
-                
-                              })
-                         }
-                        if(click.target.classList.contains('hidden')){
-                            
-                            
+                            let parent = click.target.parentElement.firstChild
+                            if(!click.target.classList.contains('hidden')){
+                                
                                 while(parent.firstChild){
                                     parent.removeChild(parent.firstChild);
                                 }
-                                Build = roasty.icedBuild
-                                 Object.keys(Build).forEach((part,index)=>{
-                                    cup.classList.add('iced')
+                                Build = roasty.hotBuild
+                                Object.keys(Build).forEach((part)=>{
+                                    cup.classList.remove('iced')
                                     let ingred = document.createElement('div')
                                     ingred.classList.add(nameShortener(part))
                                     ingred.classList.add('ingred')
@@ -100,30 +80,50 @@ async function apiRequest(){
                                     ingred.innerHTML = `<p>${part.toUpperCase()}</p>`
                                     }
                                     container.appendChild(ingred)
-                                    
-                                    if(Build['room']!= undefined){
-                        
-                                        cover.style.backgroundPosition = `0% ${Build['room']}`
-                                    }
-                                    if(Build['whipped cream']!= undefined){
-                                        
-                                        cover.style.backgroundPosition = `0% ${Build['whipped cream']}`
-                                    }
-                                    if(Build['caramel drizzle']!= undefined){
-                                        
-                                        cover.style.backgroundPosition = `0% ${Build['caramel drizzle']}`
-                                    }
-                                    if(Build['whipped cream']!= undefined && Build['room']!= undefined){
-                                        
-                                        cover.style.backgroundPosition = `0% ${Number(Build['whipped cream'].slice(0,-1))+ Number(Build['room'].slice(0,-1))}%`
-                                    }
-                                    
-
-
+                    
                                 })
+                            }
+                            if(click.target.classList.contains('hidden')){
                                 
+                                
+                                    while(parent.firstChild){
+                                        parent.removeChild(parent.firstChild);
+                                    }
+                                    Build = roasty.icedBuild
+                                    Object.keys(Build).forEach((part,index)=>{
+                                        cup.classList.add('iced')
+                                        let ingred = document.createElement('div')
+                                        ingred.classList.add(nameShortener(part))
+                                        ingred.classList.add('ingred')
+                                        ingred.style.height = Build[part]
+                                        if(part !== 'room'){
+                                        ingred.innerHTML = `<p>${part.toUpperCase()}</p>`
+                                        }
+                                        container.appendChild(ingred)
+                                        
+                                        if(Build['room']!= undefined){
+                            
+                                            cover.style.backgroundPosition = `0% ${Build['room']}`
+                                        }
+                                        if(Build['whipped cream']!= undefined){
+                                            
+                                            cover.style.backgroundPosition = `0% ${Build['whipped cream']}`
+                                        }
+                                        if(Build['caramel drizzle']!= undefined){
+                                            
+                                            cover.style.backgroundPosition = `0% ${Build['caramel drizzle']}`
+                                        }
+                                        if(Build['whipped cream']!= undefined && Build['room']!= undefined){
+                                            
+                                            cover.style.backgroundPosition = `0% ${Number(Build['whipped cream'].slice(0,-1))+ Number(Build['room'].slice(0,-1))}%`
+                                        }
+                                        
 
-                        }
+
+                                    })
+                                    
+
+                            }
                         
                             
                         click.target.classList.toggle('hidden')
