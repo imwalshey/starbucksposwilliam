@@ -62,15 +62,25 @@ async function apiRequest(){
                     cover.classList.add('hidden')
                     document.querySelector(`.${nameShortener(roasty.name)}.drink .cup`).appendChild(cover)
                     cup.addEventListener('click',(click)=>{
-                        if(click.target.classList.contains('iceOverlay')){
-                            let parent = click.target.parentElement.firstChild
+                        
+                        if(click.target.classList.contains('iceOverlay') || click.target.parentElement.parentElement.parentElement.lastChild.classList.contains('iceOverlay')){
+                            let parent
+                            if(click.target.classList.contains('iceOverlay')){
+                                parent = click.target.parentElement.firstChild
+                            }else{
+                                parent = click.target.parentElement.parentElement
+                            }
+                            
+                            
                             if(!click.target.classList.contains('hidden')){
                                 
                                 while(parent.firstChild){
+                                    
                                     parent.removeChild(parent.firstChild);
                                 }
                                 Build = roasty.hotBuild
                                 Object.keys(Build).forEach((part)=>{
+                                    
                                     cup.classList.remove('iced')
                                     let ingred = document.createElement('div')
                                     ingred.classList.add(nameShortener(part))
@@ -82,10 +92,11 @@ async function apiRequest(){
                                     container.appendChild(ingred)
                     
                                 })
+                                
                             }
                             if(click.target.classList.contains('hidden')){
-                                
-                                
+                                console.log('true')
+
                                     while(parent.firstChild){
                                         parent.removeChild(parent.firstChild);
                                     }
@@ -125,9 +136,9 @@ async function apiRequest(){
 
                             }
                         
-                            
-                        click.target.classList.toggle('hidden')
-                    }
+                            if(click.target.tagName!='P'){
+                            click.target.classList.toggle('hidden')}
+                        }
                     })
                     
                     
