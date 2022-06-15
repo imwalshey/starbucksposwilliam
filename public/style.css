@@ -107,7 +107,7 @@ COREDRINKS PAGES
     width: 50%;
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 5%;
+    margin-bottom: 25%;
     flex-direction: column;
     align-items: center;
     
@@ -155,6 +155,10 @@ COREDRINKS PAGES
     background-image: url("../IMG/bubbles.png");
     background-size: contain;
 }
+.cappuccino .foam{
+    
+    background-size: 30%;
+}
 .cup .water{
     background: rgb(169, 222, 252);
     
@@ -176,7 +180,21 @@ COREDRINKS PAGES
 .cup .milk{
     background-color: white;
 }
-
+.cup .espressofoam{
+    background-color:rgb(114, 87, 30);
+}
+.icedshakenespresso .syrup{
+    background: rgb(209, 252, 250);
+}
+.brownsugaroatmilkshakenespresso .syrup{
+    background-color:rgb(125 99 45);
+}
+.cup .almondmilk{
+    background: #e2ddd2;
+}
+.cup .oatmilk{
+    background:#f1ece1 ;
+}
 .espressoconpanna .iced .whippedcream{
     margin-bottom:40%;
     margin-top: 110%;
@@ -186,6 +204,13 @@ COREDRINKS PAGES
 }
 .cinnamondolcelatte .syrup{
     background: rgb(237, 218, 125);
+}
+.honeyalmondmilkflatwhite .syrup{
+    background: rgb(223, 204, 106);
+}
+.cup .chocolatepowder{
+    background: #67493a;
+    font-size: .3em;
 }
 
 .iceOverlay{
@@ -222,4 +247,24 @@ COREDRINKS PAGES
 }
 .hidden{
     opacity: 0;
+}
+
+
+
+
+
+
+
+
+.frapp {
+    width: 100px;
+    height: 200px;
+    background: rgba(255, 239, 239, 0);
+    border: 2px solid black;
+    
+    transform: perspective(13px) rotateX(-1deg);
+    
+    top:0;
+    z-index: 10;
+
 }
