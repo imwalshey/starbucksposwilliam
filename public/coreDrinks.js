@@ -49,11 +49,12 @@ async function apiRequest(){
                     cup.classList.add('frapp')
                     console.log(roasty)
                     
-                    roasty.build.forEach((word)=>{
+                    roasty.build.forEach((word,index)=>{
                         console.log(nameShortener(word))
                         let ingred = document.createElement('div')
                         ingred.classList.add(nameShortener(word))
                         ingred.classList.add('ingredient')
+                        ingred.style.zIndex= 100+index
                         container.appendChild(ingred)
                     })
                     let text = document.createElement('div')

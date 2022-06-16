@@ -273,15 +273,22 @@ COREDRINKS PAGES
     height:100%;
     position: relative;
 }
-.frapproast{
-    z-index: 10000;
+
+.frapproast {
+    background-color: #795a19;
+    opacity: .30;
 }
-.frapproast .milk{
-    
+
+.frapp .milk{
+    background-color:#e2ddd2;
+    opacity: 1;
+}
+.ice{
+    background-image: url("../IMG/ice\ overlay.png");
+    opacity: .22;
 }
 .ingredient{
     height:100%;
     width:100%;
-    background: rgb(120, 0, 0);
     position: absolute;
 }

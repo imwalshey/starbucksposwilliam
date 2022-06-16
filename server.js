@@ -222,7 +222,7 @@ class Frappucino{
         this.topping = Topping
     }
 }
-coreDrinks.blended.push(new Frappucino('Caramel Frappucino',['pump coffee','pour milk','add to blender','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','frapp roast','caramel syrup'],true,'carameldrizzle'))
+coreDrinks.blended.push(new Frappucino('Caramel Frappucino',['pump coffee','pour milk','add to blender','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','frapp roast','caramel syrup','ice'],true,'carameldrizzle'))
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/index.html')
