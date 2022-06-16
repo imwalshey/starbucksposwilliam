@@ -42,14 +42,19 @@ async function apiRequest(){
                     let cup = document.createElement('div')
                     
                     theDrink.appendChild(cup)
-                    let Build = roasty.hotBuild
+                    let Build = roasty.build
                     let container = document.createElement('div')
                     container.classList.add('container')
                     cup.appendChild(container)
                     cup.classList.add('frapp')
                     console.log(roasty)
-                    Object.keys(roasty.build).forEach((words)=>{
-                        console.log(words)
+                    
+                    roasty.build.forEach((word)=>{
+                        console.log(nameShortener(word))
+                        let ingred = document.createElement('div')
+                        ingred.classList.add(nameShortener(word))
+                        ingred.classList.add('ingredient')
+                        container.appendChild(ingred)
                     })
                     let text = document.createElement('div')
                     text.classList.add('info')

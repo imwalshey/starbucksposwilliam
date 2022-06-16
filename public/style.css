@@ -268,3 +268,20 @@ COREDRINKS PAGES
     z-index: 10;
 
 }
+.frapp .container{
+    background: white;
+    height:100%;
+    position: relative;
+}
+.frapproast{
+    z-index: 10000;
+}
+.frapproast .milk{
+    
+}
+.ingredient{
+    height:100%;
+    width:100%;
+    background: rgb(120, 0, 0);
+    position: absolute;
+}
