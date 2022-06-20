@@ -64,10 +64,7 @@ ROASTS PAGES
     flex-wrap: wrap;
     justify-content: center;
 }
-.medium .individualRoast{
-    /* background: rgb(110, 69, 22); */
-    
-}
+
 
 .dark{
     background: linear-gradient(rgb(110, 69, 22), rgb(57, 33, 5));
@@ -75,10 +72,7 @@ ROASTS PAGES
     flex-wrap: wrap;
     justify-content: center;
 }
-.dark .individualRoast{
-    
-    /* background: rgb(53, 32, 6); */
-}
+
 .individualRoast h2{
     text-decoration: underline;
 }
