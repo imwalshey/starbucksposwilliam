@@ -90,7 +90,7 @@ async function apiRequest(){
                 }
 
 
-/*
+
                 if(element === 'espresso'){
                     let theDrink = document.createElement('div')
                     theDrink.classList.add(nameShortener(roasty.name))
@@ -220,7 +220,7 @@ async function apiRequest(){
 
                 
                 }
-                */
+                
                 
             })
         })
