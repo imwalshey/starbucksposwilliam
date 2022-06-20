@@ -34,13 +34,24 @@ async function apiRequest(){
                 
                 
                 if(element ==='blended'){
+                    console.log(roasty.whippedCream)
+                    let whipped = document.createElement('div')
+                    whipped.classList.add('whipped')
+                    if(roasty.whippedCream===true){
+                        
+                        whipped.innerHTML ='<img draggable=false src="../IMG/whipped.png" alt="">'
+                        if(roasty.topping=== 'caramel drizzle'){
+                            whipped.innerHTML = '<img draggable=false src="../IMG/whipped.png" alt=""> <img draggable=false src="../IMG/carameldrizzle.png" alt="">'
+                        }
+                    }
+
                     let theDrink = document.createElement('div')
                     theDrink.classList.add(nameShortener(roasty.name))
                     theDrink.classList.add('drink')
                     document.querySelector(`.${element}`).appendChild(theDrink) //created sections for each drink appended to the category
                     
                     let cup = document.createElement('div')
-                    
+                    theDrink.appendChild(whipped)
                     theDrink.appendChild(cup)
                     let Build = roasty.build
                     let container = document.createElement('div')
@@ -61,10 +72,13 @@ async function apiRequest(){
                     text.classList.add('info')
                     
                     text.innerHTML=`
-                    <h2>${roasty.name.toUpperCase()}</h2>
+                        <h2>${roasty.name.toUpperCase()}</h2>
                     `
                     theDrink.appendChild(text)
                 }
+
+
+/*
                 if(element === 'espresso'){
                     let theDrink = document.createElement('div')
                     theDrink.classList.add(nameShortener(roasty.name))
@@ -194,7 +208,7 @@ async function apiRequest(){
 
                 
                 }
-                
+                */
                 
             })
         })
