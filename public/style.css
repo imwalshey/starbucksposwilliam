@@ -275,8 +275,8 @@ COREDRINKS PAGES
 }
 
 .frapproast {
-    background-color: #795a19;
-    opacity: .30;
+    background-color: #35280c;
+    opacity: .40;
 }
 
 .frapp .milk{
@@ -285,16 +285,66 @@ COREDRINKS PAGES
 }
 .caramelsyrup{
     background: #b38626;
-    opacity: .3;
+    opacity: .15;
 }
-
+.mochasyrup{
+    background-color: #342c1a;
+    opacity: .6;
+}
+.vanillabean{
+    background-image: url('../IMG/vanillabean.png');
+    background-size: 200%;
+}
+.frapp .espresso{
+    background-color: #432e01;
+    opacity: .5;
+}
+.javachips{
+    background-size: 60%;
+    background-image: url('../IMG/javachips.png');
+}
 .whipped{
     position: relative;
+}
+.whitemochasyrup{
+    background: white;
+    opacity: .2;
+}
+.container .darkcaramel{
+    background-color: #826732;
+    opacity: .4;
 }
 .whipped img{
     transform: translateY(-110px) translateX(-63px);
     width:130px;
     z-index: 1;
+    position: absolute;
+}
+.frapp .layers {
+    margin-top: 153%;
+    height: 25%;
+    z-index: 1000;
+    position: relative;
+}
+.frapp .layers .whippedcream{
+    height:80%;
+    width:100%;
+    background-color: white;
+}
+.frapp .layers .darkcaramel{
+    height:20%;
+    width:100%;
+    background-color: rgb(125, 95, 19);
+}
+.frapp .layers .cookiecrumble{
+    height:20%;
+    width:100%;
+    background-color: rgb(39, 29, 22);
+    background-image: url('../IMG/javachips.png');
+    background-size: 20%;
+}
+.layered .container {
+    height: 100%;
     position: absolute;
 }
 .ice{

@@ -34,7 +34,6 @@ async function apiRequest(){
                 
                 
                 if(element ==='blended'){
-                    console.log(roasty.whippedCream)
                     let whipped = document.createElement('div')
                     whipped.classList.add('whipped')
                     if(roasty.whippedCream===true){
@@ -42,6 +41,9 @@ async function apiRequest(){
                         whipped.innerHTML ='<img draggable=false src="../IMG/whipped.png" alt="">'
                         if(roasty.topping=== 'caramel drizzle'){
                             whipped.innerHTML = '<img draggable=false src="../IMG/whipped.png" alt=""> <img draggable=false src="../IMG/carameldrizzle.png" alt="">'
+                        }
+                        if(roasty.topping=== 'mocha drizzle'){
+                            whipped.innerHTML = '<img draggable=false src="../IMG/whipped.png" alt=""> <img draggable=false src="../IMG/mochadrizzle.png" alt="">'
                         }
                     }
 
@@ -58,16 +60,26 @@ async function apiRequest(){
                     container.classList.add('container')
                     cup.appendChild(container)
                     cup.classList.add('frapp')
-                    console.log(roasty)
                     
                     roasty.build.forEach((word,index)=>{
-                        console.log(nameShortener(word))
                         let ingred = document.createElement('div')
                         ingred.classList.add(nameShortener(word))
                         ingred.classList.add('ingredient')
                         ingred.style.zIndex= 100+index
                         container.appendChild(ingred)
                     })
+                    if(roasty.layered !== false){
+                        let layers = document.createElement('div')
+                        cup.classList.add('layered')
+                        layers.classList.add('layers')
+                        roasty.layered.forEach((name)=>{
+                            let layer = document.createElement('div')
+                            layer.classList.add(`${nameShortener(name)}`)
+                            layers.appendChild(layer)
+                            
+                        })
+                        cup.appendChild(layers)
+                    }
                     let text = document.createElement('div')
                     text.classList.add('info')
                     
