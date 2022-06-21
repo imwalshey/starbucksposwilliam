@@ -99,6 +99,17 @@ COREDRINKS PAGES
     justify-content: center;
     position: relative;
 }
+.drinkType .title{
+    width:100%;
+    
+    height:fit-content;
+    font-size: 50px;
+    text-decoration: underline;
+    margin-bottom: 10vh;
+}
+.blended .title{
+    
+}
 .coreDrinks .drink {
     height: fit-content;
     width: 50%;
@@ -254,7 +265,9 @@ COREDRINKS PAGES
 
 
 
-
+.blended .drink{
+    margin-top: 25%;
+}
 .frapp {
     width: 100px;
     height: 200px;
@@ -290,9 +303,29 @@ COREDRINKS PAGES
     background-color: #342c1a;
     opacity: .6;
 }
+.frapp .chai{
+    background:#7d622c;
+    opacity: .6;
+}
 .vanillabean{
     background-image: url('../IMG/vanillabean.png');
     background-size: 200%;
+}
+.frapp .matcha{
+    background: rgb(90, 157, 90);
+}
+.frapp .strawberrypuree{
+    background: rgb(183, 52, 52);
+    background-image: url('../IMG/strawberrypuree.png');
+    background-size: 400%;
+    
+    opacity: .6;
+}
+.lemonade{
+    background: rgb(255, 255, 154);
+}
+.frapp .lemonade{
+    opacity: .4;
 }
 .frapp .espresso{
     background-color: #432e01;
@@ -306,7 +339,7 @@ COREDRINKS PAGES
     position: relative;
 }
 .whitemochasyrup{
-    background: white;
+    background: rgb(254, 248, 227);
     opacity: .2;
 }
 .container .darkcaramel{

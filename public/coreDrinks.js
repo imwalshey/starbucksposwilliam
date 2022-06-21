@@ -27,24 +27,38 @@ async function apiRequest(){
             
             let div = document.createElement('div')
             div.classList.add(element)
+            
             div.classList.add('drinkType') //created a div for categories
+            div.innerHTML=`<div class="title"><h1>${element.toUpperCase()}</h1></div>`
             document.querySelector('.coreDrinks').appendChild(div)
-
+            
             data[element].forEach((roasty)=>{
                 
                 
                 if(element ==='blended'){
                     let whipped = document.createElement('div')
                     whipped.classList.add('whipped')
-                    if(roasty.whippedCream===true){
+                    if(roasty.whippedCream!==false){
                         
                         whipped.innerHTML ='<img draggable=false src="../IMG/whipped.png" alt="">'
-                        if(roasty.topping=== 'caramel drizzle'){
-                            whipped.innerHTML = '<img draggable=false src="../IMG/whipped.png" alt=""> <img draggable=false src="../IMG/carameldrizzle.png" alt="">'
+                        if(roasty.topping!==''){
+                            whipped.innerHTML = `<img draggable=false src="../IMG/whipped.png" alt="">`
+                            roasty.topping.split(',').forEach((toppingName,i)=>{
+                                let top = document.createElement('img')
+                                top.draggable = false
+                                
+                                
+                                top.src=`../IMG/${nameShortener(toppingName)}.png`
+                                whipped.appendChild(top)
+                            })
+                            
                         }
-                        if(roasty.topping=== 'mocha drizzle'){
-                            whipped.innerHTML = '<img draggable=false src="../IMG/whipped.png" alt=""> <img draggable=false src="../IMG/mochadrizzle.png" alt="">'
-                        }
+                        // if(roasty.topping=== 'caramel drizzle'){
+                        //     whipped.innerHTML = '<img draggable=false src="../IMG/whipped.png" alt=""> <img draggable=false src="../IMG/carameldrizzle.png" alt="">'
+                        // }
+                        // if(roasty.topping=== 'mocha drizzle'){
+                        //     whipped.innerHTML = '<img draggable=false src="../IMG/whipped.png" alt=""> <img draggable=false src="../IMG/mochadrizzle.png" alt="">'
+                        // }
                     }
 
                     let theDrink = document.createElement('div')
