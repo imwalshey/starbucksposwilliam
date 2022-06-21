@@ -264,12 +264,12 @@ app.get('/api/roasts'.toLowerCase(),(req,res)=>{
     res.json(roasts)
 })
 
-app.get('/coredrinks/:cat',(req,res)=>{
-    const category = req.params.cat.toLowerCase()
-    if(coreDrinks[category]){
-        res.json(coreDrinks[category])
-    }else res.json(coreDrinks['brewed'])
-})
+// app.get('/coredrinks/:cat',(req,res)=>{
+//     const category = req.params.cat.toLowerCase()
+//     if(coreDrinks[category]){
+//         res.json(coreDrinks[category])
+//     }else res.json(coreDrinks['brewed'])
+// })
 
 // app.get('/coredrinks/:cat/:drink',(req,res)=>{
 //             const category = req.params.cat.toLowerCase()
