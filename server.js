@@ -252,7 +252,9 @@ app.get('/roasts',(req,res)=>{
 app.get('/coredrinks',(req,res)=>{
     res.sendFile(__dirname+'/public/coreDrinks.html')
 })
-
+app.get('/coredrinks/',(req,res)=>{
+    res.sendFile(__dirname+'/public/coreDrinks.html')
+})
 
 app.get('/api/coreDrinks'.toLowerCase(),(req,res)=>{
     res.json(coreDrinks)
