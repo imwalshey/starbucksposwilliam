@@ -7,7 +7,8 @@ body{
 }
 header{
     top:0vh;
-    position: sticky;
+    position:unset;
+    
     display:flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +19,9 @@ header{
     letter-spacing: 1em;
     text-align: center;
     text-indent:2em;
-    z-index: 100000000000000000000000000000000;
+    z-index: 100000000000 !important;
+    
+    
 }
 
 
@@ -114,11 +117,13 @@ COREDRINKS PAGES
     height: 200px;
     background: rgba(255, 239, 239, 0);
     border: 2px solid black;
-    
+    position:relative;
     transform: perspective(13px) rotateX(-1deg);
-    
+    -webkit-transform: perspective(13px) rotateX(-1deg);
+    -moz-transform: perspective(13px) rotateX(-1deg);
     top:0;
-    z-index: 10;
+    z-index: 0;
+    
 
 }
 .container .ingred{
