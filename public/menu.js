@@ -1,3 +1,8 @@
+const capitalAlphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+const alphabet = []
+capitalAlphabet.forEach((letter)=>{
+    alphabet.push(letter.toLowerCase())
+})
 
 
 function capitalizeFirstLetter(string) {
@@ -38,6 +43,7 @@ function createCat(data){
         category.innerText= capitalizeFirstLetter(element)
         document.querySelector('.drinkType').appendChild(category)
         category.addEventListener('click',(click)=>{
+            document.querySelector('.items').className=`items ${(click.target.innerText.toLowerCase())}`
             pageRender(data[click.target.innerText.toLowerCase()])
         })
     })
@@ -45,13 +51,16 @@ function createCat(data){
 
 function pageRender(click){
     removeAllChildNodes(document.querySelector('.items'))
-    click.forEach((element)=>{
-        console.log(element.name)
+    
+    click.forEach((element,i)=>{
+        
         let item = document.createElement('div')
+        item.style.gridArea = `${alphabet[i]}`
         item.innerText=`${element['name']}`
         item.classList.add(`${nameShortener(element['name'])}`)
         document.querySelector('.items').appendChild(item)
     })
+    console.log(click.length)
 }
 
 
@@ -65,6 +74,7 @@ async function apiRequest(){
         const response = await fetch(heroku)
         const data = await response.json()
         createCat(data)
+        document.querySelector('.items').className=`items espresso`
         pageRender(data.espresso)
         
     }catch(error){

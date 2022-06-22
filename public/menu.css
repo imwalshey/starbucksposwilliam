@@ -242,14 +242,39 @@
 
 
 .items{
+    
     display:grid;
     grid-template-columns: repeat(5, 18%);
-    grid-template-rows: repeat(6,15%);
+    grid-template-rows: repeat(6,14%);
     grid-row-gap: 2%;
     grid-column-gap:2%;
     justify-content: center;
-}
-.items div{
+    align-content: center;
     
+}
+.items.espresso{
+    grid-template-areas: 
+    'a b c d .'
+    'e f g h .'
+    'i j k l m'
+    '. . . . .'
+    'n . . . .'
+    'o p . . .'
+    ;
+}
+.items.blended{
+    grid-template-areas: 
+    'a b c d .'
+    'e f g h i'
+    'j k l m .'
+    'n o p q r'
+    's . . . .'
+    ;
+}
+.items div {
+    display: flex;
+    text-align: center;
     background-color: purple;
+    justify-content: center;
+    align-items: center;
 }
