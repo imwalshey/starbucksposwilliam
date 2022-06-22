@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    color:black;
 }
 
 .menu{
@@ -101,6 +102,7 @@
 }
 .screen .buttons{
     height:36%;
+    
 }
 .screen .buttons div{
     height:50%;
