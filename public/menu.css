@@ -247,6 +247,7 @@
     grid-template-rows: repeat(6,15%);
     grid-row-gap: 2%;
     grid-column-gap:2%;
+    justify-content: center;
 }
 .items div{
     
