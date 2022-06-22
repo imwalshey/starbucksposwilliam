@@ -285,6 +285,24 @@
 .items .toastedvanillaoatshakenespresso ~ div{
     background-color: rgb(223, 229, 114);
 }
+.items.espresso .cappuccino{
+    background-color: rgb(211, 207, 186);
+}
 .items .cappuccino ~ div{
     background-color: rgb(224, 250, 251);
+}
+.items.espresso .caramelmacchiatto{
+    background: rgb(151, 96, 183);;
+}
+.items.espresso .caramelmacchiatto~div{
+    background: rgb(146, 132, 115);;
+}
+.items.blended div{
+    background-color: rgb(201, 180, 153);;;
+}
+.items.blended .mochacookiecrumblefrappucino~div{
+    background: rgb(224, 250, 251);
+}
+.items.blended div.blendedstrawberrylemonade{
+    background-color: yellow;
 }
