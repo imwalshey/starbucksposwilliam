@@ -274,9 +274,14 @@
     ;
 }
 .items div {
+    border-radius: .4em;
+    border:1px solid black;
     display: flex;
     text-align: center;
-    background-color: purple;
+    background-color: rgb(151, 96, 183);
     justify-content: center;
     align-items: center;
+}
+.items .toastedvanillaoatshakenespresso ~ div{
+    background-color: rgb(223, 229, 114);
 }
