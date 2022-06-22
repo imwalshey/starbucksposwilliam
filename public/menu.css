@@ -285,3 +285,6 @@
 .items .toastedvanillaoatshakenespresso ~ div{
     background-color: rgb(223, 229, 114);
 }
+.items .cappuccino ~ div{
+    background-color: rgb(224, 250, 251);
+}
