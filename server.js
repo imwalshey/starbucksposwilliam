@@ -252,6 +252,9 @@ app.get('/roasts',(req,res)=>{
 app.get('/coredrinks',(req,res)=>{
     res.sendFile(__dirname+'/public/coreDrinks.html')
 })
+app.get('/menu',(req,res)=>{
+    res.sendFile(__dirname+'/public/menu.html')
+})
 app.get('/coredrinks/',(req,res)=>{
     res.sendFile(__dirname+'/public/coreDrinks.html')
 })
