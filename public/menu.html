@@ -27,13 +27,19 @@
                     <div></div>
                 </div>
             </sections>
-            <section class="screen">
+            <form class="screen" action="/order" method="POST">
                 <section class="namebar">
                     <div class="statusLight"></div>
                     <p>Jacob Harper</p>
                 </section>
+
+
                 <section class = "pickedDrinks">
+                    <input type="text" name="drink" value="words" class="drinkAbbr" readonly>
                 </section>
+
+
+
                 <section class = 'buttons'>
                     <div>
                         <button class = 'quantity'>Quantity</button>
@@ -45,10 +51,11 @@
                         <button class = 'discount'>Discount</button>
                         <button class = 'LOCK'><i class="fa-solid fa-lock fa-2xl"></i></button>
                         <button class = 'toGo'>To Go</button>
-                        <button class = 'findOrder'>Find Order</button>
+                        <button type="submit" class ='findOrder'>Save Order</button>
+                        
                     </div>
                 </section>
-            </section>
+            </form>
 
         </section>
         <section class = 'itemSelection'>

@@ -36,7 +36,7 @@ let theDrinks = {}
 
 function createCat(data){
     Object.keys(data).forEach((element)=>{
-        console.log(element)
+        
         let category = document.createElement('div')
         category.classList.add(`${element}`)
         category.classList.add('cats')
@@ -44,12 +44,12 @@ function createCat(data){
         document.querySelector('.drinkType').appendChild(category)
         category.addEventListener('click',(click)=>{
             document.querySelector('.items').className=`items ${(click.target.innerText.toLowerCase())}`
-            pageRender(data[click.target.innerText.toLowerCase()])
+            pageRender(data[click.target.innerText.toLowerCase()],data)
         })
     })
 }
 
-function pageRender(click){
+function pageRender(click,data){
     removeAllChildNodes(document.querySelector('.items'))
     
     click.forEach((element,i)=>{
@@ -58,20 +58,24 @@ function pageRender(click){
         item.style.gridArea = `${alphabet[i]}`
         item.innerText=`${element['name']}`
         item.classList.add(`${nameShortener(element['name'])}`)
+        
         document.querySelector('.items').appendChild(item)
+        item.addEventListener('click',()=>{
+            addToOrder(element)
+        })
     })
-    console.log(click.length)
+   
 }
 
-
-
-
-
+function addToOrder(element){
+    //document.querySelector(`.items .${nameShortener(element['name'])}`)
+    document.querySelector('.drinkAbbr').value= element['abbr']
+}
 
 async function apiRequest(){
     
     try{
-        const response = await fetch(heroku)
+        const response = await fetch(local)
         const data = await response.json()
         createCat(data)
         document.querySelector('.items').className=`items espresso`

@@ -107,7 +107,16 @@
 .screen .buttons div{
     height:50%;
 }
+
 .buttons div+div button{
+    height:40%;
+    margin: 2% 1%;
+    width:30%;
+    padding:0;
+    border:1px solid black;
+    border-radius: .5em;
+}
+.buttons div+div form{
     height:40%;
     margin: 2% 1%;
     width:30%;
@@ -271,6 +280,7 @@
     'j k l m .'
     'n o p q r'
     's . . . .'
+    '. . . . .'
     ;
 }
 .items div {
@@ -305,4 +315,17 @@
 }
 .items.blended div.blendedstrawberrylemonade{
     background-color: yellow;
+}
+
+
+.pickedDrinks input, .pickedDrinks input:active,.pickedDrinks input:focus,.pickedDrinks input:focus-visible{
+    -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   border:none;
+   outline: none;
+   background: none;
+   width:100%;
 }
