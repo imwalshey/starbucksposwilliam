@@ -69,7 +69,12 @@ function pageRender(click,data){
 
 function addToOrder(element){
     //document.querySelector(`.items .${nameShortener(element['name'])}`)
-    document.querySelector('.drinkAbbr').value= element['abbr']
+    //<input type="text" name="drink" value="words" class="drinkAbbr" readonly>
+    let drink = document.createElement('input')
+    drink.name='drink'
+    drink.value=element['abbr']
+    document.querySelector('.pickedDrinks').appendChild(drink)
+    
 }
 
 async function apiRequest(){
