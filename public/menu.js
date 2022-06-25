@@ -70,17 +70,27 @@ function pageRender(click,data){
 function addToOrder(element){
     //document.querySelector(`.items .${nameShortener(element['name'])}`)
     //<input type="text" name="drink" value="words" class="drinkAbbr" readonly>
+    let div= document.createElement('div')
+    let size = document.createElement('input')
+    size.name = 'size'
+    size.value='Gr'
+    size.readOnly=true
+    size.classList.add('sizeIdentifier')
     let drink = document.createElement('input')
     drink.name='drink'
     drink.value=element['abbr']
-    document.querySelector('.pickedDrinks').appendChild(drink)
+    drink.readOnly=true
+    
+    document.querySelector('.pickedDrinks').appendChild(div)
+    div.appendChild(size)
+    div.appendChild(drink)
     
 }
 
 async function apiRequest(){
     
     try{
-        const response = await fetch(local)
+        const response = await fetch(heroku)
         const data = await response.json()
         createCat(data)
         document.querySelector('.items').className=`items espresso`

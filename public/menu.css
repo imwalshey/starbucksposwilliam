@@ -316,7 +316,11 @@
 .items.blended div.blendedstrawberrylemonade{
     background-color: yellow;
 }
-
+.pickedDrinks div{
+    width:100%;
+    display:flex;
+    justify-content: flex-start;
+}
 
 .pickedDrinks input, .pickedDrinks input:active,.pickedDrinks input:focus,.pickedDrinks input:focus-visible{
     -moz-user-select: -moz-none;
@@ -327,5 +331,11 @@
    border:none;
    outline: none;
    background: none;
-   width:100%;
+   width:auto;
+   width:93.5%;
+   
+}
+.pickedDrinks .sizeIdentifier{
+    width:6.5%;
+    padding: 0%;
 }
