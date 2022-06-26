@@ -193,7 +193,7 @@
     height:10%;
     
 }
-.customizations .shots{
+.customizations .shotsMenu{
     height:35%;
     width:100%;
 }
@@ -335,7 +335,10 @@
    width:93.5%;
    
 }
-.pickedDrinks .sizeIdentifier{
+.pickedDrinks .sizeIdentifier, .pickedDrinks .sizeIdentifier:active,.pickedDrinks .sizeIdentifier:focus,.pickedDrinks .sizeIdentifier:focus-visible{
     width:6.5%;
     padding: 0%;
+}
+.selected{
+    background: #95d2e9;
 }

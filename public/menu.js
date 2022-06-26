@@ -3,7 +3,13 @@ const alphabet = []
 capitalAlphabet.forEach((letter)=>{
     alphabet.push(letter.toLowerCase())
 })
-
+function removeAllSelected(){
+    document.querySelectorAll('.pickedDrinks div').forEach((element)=>{
+        while(element.classList.contains('selected')){
+            element.classList.remove('selected')
+        }
+    })
+}
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -67,6 +73,20 @@ function pageRender(click,data){
    
 }
 
+document.querySelector('.LOCK').addEventListener('click',()=>{
+    removeAllChildNodes(document.querySelector('.pickedDrinks'))
+})
+
+document.querySelector('.void').addEventListener('click',async function awomdawd(){
+    try{
+        document.querySelector('.pickedDrinks .selected').remove()
+    }catch(error){
+        alert('Select an item to void')
+    }
+
+})
+
+
 function addToOrder(element){
     //document.querySelector(`.items .${nameShortener(element['name'])}`)
     //<input type="text" name="drink" value="words" class="drinkAbbr" readonly>
@@ -85,12 +105,29 @@ function addToOrder(element){
     div.appendChild(size)
     div.appendChild(drink)
     
+    div.addEventListener('click',(click)=>{
+        selectDrink(click.target.parentElement)
+    })
+    removeAllSelected()
+    selectDrink(div)
 }
+
+function selectDrink(drink){
+    removeAllSelected()
+    drink.classList.add('selected')
+}
+
+
+
+
+
+
+
 
 async function apiRequest(){
     
     try{
-        const response = await fetch(heroku)
+        const response = await fetch(local)
         const data = await response.json()
         createCat(data)
         document.querySelector('.items').className=`items espresso`
