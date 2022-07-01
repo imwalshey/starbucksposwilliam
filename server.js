@@ -22,7 +22,7 @@ const modifiers={
     milk:[],
     custom:[]
 }
-
+modifiers.shotsMenu={'Iced':'iced','Blonde':'coffeeType','Decaf':'coffeeType','1/2 Decaf':'coffeeType','2/3 Decaf':'coffeeType','1/3 Decaf':'coffeeType','Single':'shotNumber','Single':'shotNumber','Double':'shotNumber','Triple':'shotNumber','Quad':'shotNumber','More shots':'shotNumber'}
 
 
 
@@ -63,7 +63,7 @@ const coreDrinks = {
     other : [],
 }
 class Espresso{
-    constructor(Name,Steps,hotContents,HotBoolean,IcedBoolean,IcedBuild,ABBR){
+    constructor(Name,Steps,hotContents,HotBoolean,IcedBoolean,IcedBuild,ABBR,MenuBuildHot,MenuBuildIced){
         this.name = Name
         this.instructions = Steps
         this.hotBuild = hotContents
@@ -71,9 +71,23 @@ class Espresso{
         this.iced = IcedBoolean
         this.icedBuild = IcedBuild
         this.abbr =ABBR
+        this.menuBuildHot=MenuBuildHot
+        this.menuBuildIced =MenuBuildIced
     }
 }
-coreDrinks.espresso.push(new Espresso('Americano',['que','add water','pour'],{'room':'1%','water':'72%','espresso':'27%'},true,true,{'room':'1%','water':'72%','espresso':'27%'},'Americano'))
+class DrinkBuild{
+    constructor(IcedBool,DecafAmount,Shots,Pumps,Syrup,Milk,Custom,ABBR){
+        this.iced=IcedBool
+        this.decaf=DecafAmount
+        this.shots=Shots
+        this.pumps=Pumps
+        this.syrup=Syrup
+        this.milk=Milk
+        this.custom=Custom
+        this.abbr=ABBR
+    }
+}
+coreDrinks.espresso.push(new Espresso('Americano',['que','add water','pour'],{'room':'1%','water':'72%','espresso':'27%'},true,true,{'room':'1%','water':'72%','espresso':'27%'},'Americano',new DrinkBuild('','',[1,2,3,4],[2,3,4,5],'','','H2O','A'),new DrinkBuild('','',[1,2,3,4],[2,3,4,5],'','','H2O','A')))
 coreDrinks.espresso.push(new Espresso('Espresso',['que','pour'],{'room':'87%','espresso':'13%'},true,true,{'room':'87%','espresso':'13%'},'Espresso'))
 coreDrinks.espresso.push(new Espresso('Espresso Macchiatto',['que','pour'],{'room':'57%','foam':'30%','espresso':'13%'},true,true,{'room':'57%','espresso':'13%','milk':'30%'},'Espresso Machiatto'))
 coreDrinks.espresso.push(new Espresso('Espresso Con Panna',['que','pour'],{'room':'77%','whipped cream':'10%','espresso':'13%'},true,true,{'whipped cream':'10%','room':'74%','espresso':'13%'},'Espresso Con Panna'))
@@ -98,6 +112,7 @@ class Frappucino{
         this.topping = Topping
         this.layered = Layered
         this.abbr =ABBR
+        
     }
 }
 
@@ -124,10 +139,10 @@ coreDrinks.blended.push(new Frappucino('Blended Strawberry Lemonade',['pour milk
 
 
 
-
 app.post('/order',(req,res)=>{
     console.log(req.body)
 })
+
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/index.html')
 })

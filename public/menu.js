@@ -3,6 +3,8 @@ const alphabet = []
 capitalAlphabet.forEach((letter)=>{
     alphabet.push(letter.toLowerCase())
 })
+//Defines an alphabet(lowercase) to assign grid area positions
+
 function removeAllSelected(){
     document.querySelectorAll('.pickedDrinks div').forEach((element)=>{
         while(element.classList.contains('selected')){
@@ -10,7 +12,7 @@ function removeAllSelected(){
         }
     })
 }
-
+//
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -33,8 +35,7 @@ function nameShortener(name){
     
 }
 
-let heroku = 'https://starbucks-coffee.herokuapp.com/api/coredrinks'
-let local = 'http://localhost:8000/api/coredrinks'
+
 let theDrinks = {}
 
 
@@ -86,19 +87,20 @@ document.querySelector('.void').addEventListener('click',async function awomdawd
 
 })
 
+numberOfDrinksAdded=0;
 
 function addToOrder(element){
     //document.querySelector(`.items .${nameShortener(element['name'])}`)
     //<input type="text" name="drink" value="words" class="drinkAbbr" readonly>
     let div= document.createElement('div')
-    let size = document.createElement('input')
-    size.name = 'size'
-    size.value='Gr'
+    div.classList.add(`drink${numberOfDrinksAdded}`)
+    let size = document.createElement('div')
+    size.innerHTML='Gr'
     size.readOnly=true
     size.classList.add('sizeIdentifier')
-    let drink = document.createElement('input')
-    drink.name='drink'
-    drink.value=element['abbr']
+    let drink = document.createElement('div')
+    console.log(element.name)
+    drink.innerHTML=element['abbr']
     drink.readOnly=true
     
     document.querySelector('.pickedDrinks').appendChild(div)
@@ -113,8 +115,23 @@ function addToOrder(element){
 }
 
 function selectDrink(drink){
-    removeAllSelected()
+    removeAllSelected() 
     drink.classList.add('selected')
+}
+
+function renderMenu(menu){
+    removeAllChildNodes(document.querySelector('.items'))
+    Object.keys(menuData[menu]).forEach((element,i)=>{
+        console.log(menuData[menu][element])
+        let item = document.createElement('div')
+        item.style.gridArea = `${alphabet[i]}`
+        item.innerText=`${element}`
+        item.classList.add(`${nameShortener(element)}`)
+        
+        document.querySelector('.items').appendChild(item)
+        
+    })
+    document.querySelector('.items').className=`items ${menu}`
 }
 
 
@@ -122,12 +139,11 @@ function selectDrink(drink){
 
 
 
-
-
 async function apiRequest(){
-    
+    let heroku = 'https://starbucks-coffee.herokuapp.com/api/coredrinks'
+    let local = 'http://localhost:8000/api/coredrinks'
     try{
-        const response = await fetch(local)
+        const response = await fetch(heroku)
         const data = await response.json()
         createCat(data)
         document.querySelector('.items').className=`items espresso`
@@ -138,10 +154,33 @@ async function apiRequest(){
     }
 }
 
+let menuData
+async function apiRequestForCustomizations(){
+    let heroku = 'https://starbucks-coffee.herokuapp.com/api/customizations'
+    let local = 'http://localhost:8000/api/customizations'
+    try{
+        const response = await fetch(heroku)
+        const data = await response.json()
+        
+        menuData=data
+    }catch(error){
+        console.log(error)
+    }
+}
+
+
+document.querySelector('.shotsMenu').addEventListener('click', ()=>{
+    renderMenu('shotsMenu')
+})
 
 
 
 
+
+
+
+
+apiRequestForCustomizations()
 apiRequest()
 
 

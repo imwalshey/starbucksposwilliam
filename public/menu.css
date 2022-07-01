@@ -1,12 +1,32 @@
 *{
     box-sizing: border-box;
     color:black;
+    font-size: 1.40vw;
 }
+
+body>div{
+    background-color: green;
+    position: relative;
+    width: 100%;
+    padding-top: 89%; /* 16:9 Aspect Ratio */
+}
+div .menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    
+    color: white;
+}
+
+
 
 .menu{
     background-color: rgb(112, 112, 112);
-    height:800px;
-    width:900px;
+     max-height:800px;
+    max-width:900px; 
     padding: 10px;
 }
 .orders{
@@ -49,9 +69,9 @@
     width:0%;
     border-radius: 0px;
     background: none;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 10px solid rgb(255, 255, 255);
+    border-left: 1vw solid transparent;
+    border-right: 1vw solid transparent;
+    border-top: 1.1vw solid rgb(255, 255, 255);
     opacity:1;
     
 }
@@ -60,9 +80,9 @@
     width:0%;
     border-radius: 0px;
     background: none;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 10px solid rgb(255, 255, 255);
+    border-left: 1vw solid transparent;
+    border-right: 1vw solid transparent;
+    border-top: 1.1vw solid rgb(255, 255, 255);
     opacity: 0;
 }
 .orders .screen{
@@ -72,8 +92,8 @@
     background-color: rgb(65, 65, 65);
 }
 .statusLight{
-    height:20px;
-    width:20px;
+    height:1.5vw;
+    width:1.5vw;
     background-image: linear-gradient(161deg,rgb(0, 0, 0),rgb(0, 255, 51));
     border-radius: 50%;
 }
@@ -94,17 +114,19 @@
     height:60%;
 }
 .quantity{
-    margin-top:5px;
-    padding: 10px;
     background:linear-gradient(-45deg,rgb(254, 227, 140),white 90%);
     border:none;
     border-radius: 50%;
+    height:40%;
+    font-size: 1.4vw;
 }
 .screen .buttons{
     height:36%;
     
 }
-.screen .buttons div{
+.screen .buttons>div{
+    display:flex;
+    flex-wrap: wrap;
     height:50%;
 }
 
@@ -113,17 +135,10 @@
     margin: 2% 1%;
     width:30%;
     padding:0;
-    border:1px solid black;
+    border:.1vw solid rgb(0, 0, 0);
     border-radius: .5em;
 }
-.buttons div+div form{
-    height:40%;
-    margin: 2% 1%;
-    width:30%;
-    padding:0;
-    border:1px solid black;
-    border-radius: .5em;
-}
+
 .void{
     background: rgb(196, 46, 46);
     color:white;
@@ -132,8 +147,8 @@
     background: beige;
 }
 .screen .buttons .LOCK{
-    height:34%;
-    width:20%;
+    height:5vw;
+    width:5vw;
     margin:2% 6%;
     border-radius: 50%;
     background: rgb(171, 37, 0);
@@ -213,23 +228,43 @@
     justify-content: center;
     height:10%;
 }
-.iceCheck div{
-    
+.iceCheck input, .iceCheck input:active,
+.iceCheck input:focus,
+.iceCheck input:focus-visible{
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border:none;
+    outline: none;
+    background: none;
+    width:auto;
     height:1em;
     width:1em;
-    
     margin-right:10%;
-    border:1px solid black;
+    border:.1vw solid black;
 }
 .regular{
     display:flex;
     flex-direction: column;
     align-items: center;
 }
-.regular div{
-    border:1px solid black;
-    width:60%;
-    height:1.8em;
+.regular input, .regular input:active,
+.regular input:focus,
+.regular input:focus-visible.regular input{
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border:none;
+    outline: none;
+    background: none;
+    width:auto;
+    border:.1vw solid black;
+    width:50%;
+    height:2.5vw;
 }
 .drinkType{
     display: flex;
@@ -242,7 +277,7 @@
     width:19%;
     background: rgb(192, 180, 138);
     height:80%;
-    transform: perspective(14px) rotateX(-1deg);
+    transform: perspective(1vw) rotateX(-1deg);
 
     -moz-user-select: -moz-none;
    -khtml-user-select: none;
@@ -250,7 +285,10 @@
    -ms-user-select: none;
    user-select: none;
 }
-
+.drinkName{
+    border-radius: .7em;
+    margin-top: 220% !important;
+}
 
 .items{
     
@@ -283,9 +321,16 @@
     '. . . . .'
     ;
 }
+.items.shotsMenu{
+    grid-template-areas: 
+    'a . b c d'
+    '. . . e f'
+    'g h i j k'
+    ;
+}
 .items div {
     border-radius: .4em;
-    border:1px solid black;
+    border:.2vw solid black;
     display: flex;
     text-align: center;
     background-color: rgb(151, 96, 183);
@@ -322,7 +367,7 @@
     justify-content: flex-start;
 }
 
-.pickedDrinks input, .pickedDrinks input:active,.pickedDrinks input:focus,.pickedDrinks input:focus-visible{
+.pickedDrinks div div{
     -moz-user-select: -moz-none;
    -khtml-user-select: none;
    -webkit-user-select: none;
@@ -335,9 +380,9 @@
    width:93.5%;
    
 }
-.pickedDrinks .sizeIdentifier, .pickedDrinks .sizeIdentifier:active,.pickedDrinks .sizeIdentifier:focus,.pickedDrinks .sizeIdentifier:focus-visible{
+.pickedDrinks .sizeIdentifier{
     width:6.5%;
-    padding: 0%;
+    padding-right: 1.37em;
 }
 .selected{
     background: #95d2e9;
