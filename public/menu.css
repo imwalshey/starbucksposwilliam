@@ -6,6 +6,7 @@
 
 body>div{
     background-color: green;
+    display:flex;
     position: relative;
     width: 100%;
     padding-top: 89%; /* 16:9 Aspect Ratio */
@@ -387,3 +388,28 @@ div .menu{
 .selected{
     background: #95d2e9;
 }
+
+
+
+
+
+@media only screen and (min-width: 800px) {
+    *{
+        font-size: initial;
+        border-width: 1px;
+    }
+    .screen .buttons .LOCK {
+        margin:1% 4%;
+        height:45%;
+        width:24%;
+    }
+    .items div{
+        border-width: 1px;
+    }
+    .regular input{
+        height: 26px;
+    }
+    .quantity{
+        font-size: 1em;
+    }
+  }

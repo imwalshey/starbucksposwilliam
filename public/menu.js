@@ -143,7 +143,7 @@ async function apiRequest(){
     let heroku = 'https://starbucks-coffee.herokuapp.com/api/coredrinks'
     let local = 'http://localhost:8000/api/coredrinks'
     try{
-        const response = await fetch(heroku)
+        const response = await fetch(local)
         const data = await response.json()
         createCat(data)
         document.querySelector('.items').className=`items espresso`
@@ -159,7 +159,7 @@ async function apiRequestForCustomizations(){
     let heroku = 'https://starbucks-coffee.herokuapp.com/api/customizations'
     let local = 'http://localhost:8000/api/customizations'
     try{
-        const response = await fetch(heroku)
+        const response = await fetch(local)
         const data = await response.json()
         
         menuData=data
