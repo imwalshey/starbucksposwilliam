@@ -18,9 +18,11 @@ function capitalizeFirstLetter(string) {
 }
 
 function removeAllChildNodes(parent) {
+    if(parent){
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
+}
 }
 
 
@@ -139,34 +141,43 @@ function renderMenu(menu){
 
 
 
-async function apiRequest(){
-    let heroku = 'https://starbucks-coffee.herokuapp.com/api/coredrinks'
-    let local = 'http://localhost:8000/api/coredrinks'
+let heroku = 'https://starbucks-coffee.herokuapp.com/api/coredrinks'
+let local = 'http://localhost:8000/api/coredrinks'
+
+const statusLight = document.querySelector('.statusLight')
+async function apiRequest(url){
+    
     try{
-        const response = await fetch(local)
+        const response = await fetch(url)
         const data = await response.json()
+       statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(0, 255, 51))'
+        
         createCat(data)
         document.querySelector('.items').className=`items espresso`
         pageRender(data.espresso)
         
     }catch(error){
         console.log(error)
+        statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(255, 0, 0))'
     }
 }
 
 let menuData
-async function apiRequestForCustomizations(){
-    let heroku = 'https://starbucks-coffee.herokuapp.com/api/customizations'
-    let local = 'http://localhost:8000/api/customizations'
+async function apiRequestForCustomizations(url){
     try{
-        const response = await fetch(local)
+        const response = await fetch(url)
         const data = await response.json()
         
         menuData=data
+        console.log(data)
     }catch(error){
         console.log(error)
     }
 }
+
+
+
+
 
 
 document.querySelector('.shotsMenu').addEventListener('click', ()=>{
@@ -180,7 +191,26 @@ document.querySelector('.shotsMenu').addEventListener('click', ()=>{
 
 
 
-apiRequestForCustomizations()
-apiRequest()
 
 
+if(localStorage.getItem('LastClicked')){
+    apiRequestForCustomizations(localStorage.getItem('LastClicked').split(',')[0])
+    apiRequest(localStorage.getItem('LastClicked').split(',')[1])
+}
+
+document.querySelector('.local').addEventListener('click', ()=>{
+    localStorage.setItem('LastClicked',["http://localhost:8000/api/customizations",local])
+    removeAllChildNodes(document.querySelector('.items'))
+    removeAllChildNodes(document.querySelector('.drinkType'))
+    apiRequestForCustomizations("http://localhost:8000/api/customizations")
+    apiRequest(local)
+})
+
+
+document.querySelector('.heroku').addEventListener('click', ()=>{
+    localStorage.setItem('LastClicked',["https://starbucks-coffee.herokuapp.com/api/customizations",heroku])
+    removeAllChildNodes(document.querySelector('.items'))
+    removeAllChildNodes(document.querySelector('.drinkType'))
+    apiRequestForCustomizations("https://starbucks-coffee.herokuapp.com/api/customizations")
+    apiRequest(heroku)
+})

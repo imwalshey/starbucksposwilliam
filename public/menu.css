@@ -95,7 +95,7 @@ div .menu{
 .statusLight{
     height:1.5vw;
     width:1.5vw;
-    background-image: linear-gradient(161deg,rgb(0, 0, 0),rgb(0, 255, 51));
+    background-image: linear-gradient(161deg,rgb(0, 0, 0),rgb(255, 0, 0));
     border-radius: 50%;
 }
 .orders .screen p {
@@ -411,5 +411,42 @@ div .menu{
     }
     .quantity{
         font-size: 1em;
+    }
+    body>div{
+            height: 800px;
+            background-color: green;
+            display: flex;
+            position: relative;
+            width: 900px;
+            padding-top: 0;
+        
+    }
+    body{
+        display:flex;
+        justify-content: center;
+    }
+    .sections>div div+div.selected {
+        height: 0%;
+        width: 0%;
+        border-radius: 0px;
+        background: none;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 12px solid rgb(255, 255, 255);
+        opacity: 1;
+    }
+    .sections>div div+div {
+        height: 0%;
+        width: 0%;
+        border-radius: 0px;
+        background: none;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 12px solid rgb(255, 255, 255);
+        opacity: 0;
+    }
+    .statusLight{
+        width: 1.2em;
+        height:1.2em;
     }
   }
