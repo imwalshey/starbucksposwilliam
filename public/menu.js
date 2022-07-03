@@ -38,7 +38,7 @@ function nameShortener(name){
 }
 
 
-let theDrinks = {}
+let theDrinks = []
 
 
 
@@ -146,11 +146,11 @@ let local = 'http://localhost:8000/api/coredrinks'
 
 const statusLight = document.querySelector('.statusLight')
 async function apiRequest(url){
-    
+    statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(255, 0, 0))'
     try{
         const response = await fetch(url)
         const data = await response.json()
-       statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(0, 255, 51))'
+        statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(0, 255, 51))'
         
         createCat(data)
         document.querySelector('.items').className=`items espresso`
