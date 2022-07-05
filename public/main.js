@@ -27,8 +27,6 @@ changeTheLinks(window.location.href.toString())
 
 
 
-
-
 async function apiRequest(){
     
     try{
