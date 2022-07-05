@@ -5,7 +5,7 @@
 async function apiRequest(){
     
     try{
-        const response = await fetch(`http://localhost:8000/api/coredrinks`)
+        const response = await fetch(`https://starbucks-coffee.herokuapp.com/api/coredrinks`)
         const data = await response.json()
 
         Object.keys(data).forEach(key => {
