@@ -4,18 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
     <title>Api-Projects</title>
 </head>
 <body>
-    <h1>The Barista Trainer</h1> 
-    <p><a class="drinkVis" href="http://localhost:8000/coreDrinks">Drink Visualizer</a></p>
-    <p><a class="menu" href="http://localhost:8000/menu">Menu</a></p>
-    <p><a class="roasts" href="http://localhost:8000/roasts">Roasts</a></p>
-    <ul>API Links:
-        <li><a class="apiDrinks" href="http://localhost:8000/api/coreDrinks">Drinks</a></li>
-        <li><a class="apiRoasts" href="http://localhost:8000/api/roasts">Roasts</a></li>
-        <li><a class="apiCust" href="http://localhost:8000/api/customizations">Customizations</a></li>
-    </ul>
+    <header>
+        <h1>The Barista Trainer</h1> 
+    </header>
+    <section class="renders">
+        <section>
+            <h2><a class="drinkVis" href="http://localhost:8000/coreDrinks">Drink Visualizer</a></h2>
+            <div class="renderimages"><img src="#"></div>
+            <div>
+                <p>The Drink Visualizer is an intuitive way to show drinks with their
+                    core ingredients. By interpreting the information sent by the sbuxAPI,
+                    the visualizer can generate a picture that shows exactly what percentage
+                    of the drink is sugary syrup and what part is coffee. This will help 
+                    both partners and customers get a better understanding of what is going to
+                    cups.
+                </p>
+                <p>When making these drinks, don't forget to add the love and care by hand from the heart!</p>
+            </div>
+        </section>
+        <section>
+            <h2><a class="menu" href="http://localhost:8000/menu">Menu</a></h2>
+            <div class="renderimages"><img src="#"></div>
+            <div><p>The 'Menu' is a POS simulator. Using the API, partners can effectively: learn how to take actual customer
+                orders, become familiar with the layout of the POS system, and become more comfortable asking questions to customers
+                so they can make the moment right with every order. This project takes in many parameters to wholly simulate
+                on-the-job scenarios, so partners feel comfortable before their first day on the floor.
+            </p></div>
+        </section>
+        <section>
+            <h2><a class="roasts" href="http://localhost:8000/roasts">Roasts</a></h2>
+            <div class="renderimages"><img src="#"></div>
+            <div><p> The roasts section is a collection of all the Starbucks™ core and seasonal
+                roasts. Complete with notes, flavors, and growing regions, the roasts page has 
+                all the informational building blocks to start your journey as a coffee master or to
+                "bring your best" to your next coffee tasting.
+            </p></div>
+        </section>
+    </section>
+
+    <section class="api">
+        <ul>API Links:
+            <li><a class="apiDrinks" href="http://localhost:8000/api/coreDrinks">Drinks</a></li>
+            <li><a class="apiRoasts" href="http://localhost:8000/api/roasts">Roasts</a></li>
+            <li><a class="apiCust" href="http://localhost:8000/api/customizations">Customizations</a></li>
+        </ul>
+    </section>
     <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

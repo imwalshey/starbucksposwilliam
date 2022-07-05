@@ -1,0 +1,55 @@
+body{
+    margin:0;
+}
+header{
+    top:0vh;
+    position:unset;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:10vh;
+    border-bottom: 3px solid #54724b;
+    color: #312020;
+    background: #93b684;
+    letter-spacing: 1em;
+    text-align: center;
+    text-indent:2em;
+    z-index: 100000000000 !important;
+    
+}
+body>section{
+    padding:0px 10px;
+}
+.renders h2{
+    width:100%;
+    text-align: center;
+}
+.renders{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.renders section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width:100%;
+}
+
+.renders .renderimages{
+    border:2px solid rgb(0, 0, 0);
+    
+    width:50%;
+}
+.renders div{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%
+    
+}
+.renders div p{
+    width:60%
+    
+}
