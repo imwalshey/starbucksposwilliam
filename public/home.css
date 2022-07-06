@@ -41,6 +41,9 @@ body>section{
     
     width:50%;
 }
+.renderimages img{
+    width: 100%;
+}
 .renders div{
     display:flex;
     flex-direction: column;

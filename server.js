@@ -62,6 +62,16 @@ const coreDrinks = {
     tea : [],
     other : [],
 }
+
+class Brewed{
+    constructor(){
+        this.Name
+    }
+}
+
+
+
+
 class Espresso{
     constructor(Name,Steps,hotContents,HotBoolean,IcedBoolean,IcedBuild,ABBR,MenuBuildHot,MenuBuildIced){
         this.name = Name
