@@ -9,6 +9,11 @@ function changeTheLinks(url){
     document.querySelector('.apiDrinks').href = url+'api/coreDrinks'
     document.querySelector('.apiRoasts').href = url+'api/Roasts'
     document.querySelector('.apiCust').href = url+'api/customizations'
+
+    
+    document.querySelector('.apiDrinks').innerText = url+'api/coreDrinks'
+    document.querySelector('.apiRoasts').innerText = url+'api/Roasts'
+    document.querySelector('.apiCust').innerText = url+'api/customizations'
 }
 
 

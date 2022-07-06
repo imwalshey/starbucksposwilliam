@@ -3,22 +3,21 @@ body{
 }
 header{
     top:0vh;
-    position:unset;
+    position:sticky;
     display:flex;
     justify-content: center;
     align-items: center;
     height:10vh;
-    border-bottom: 3px solid #54724b;
+    border-bottom: 3px solid #405839;
     color: #312020;
     background: #93b684;
-    letter-spacing: 1em;
+    letter-spacing: 1vw;
     text-align: center;
-    text-indent:2em;
-    z-index: 100000000000 !important;
+    z-index: 10000;
     
 }
 body>section{
-    padding:0px 10px;
+    padding:0px
 }
 .renders h2{
     width:100%;
@@ -33,7 +32,7 @@ body>section{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width:100%;
+    background-color: rgb(83, 128, 81);
 }
 
 .renders .renderimages{
@@ -53,6 +52,47 @@ body>section{
     
 }
 .renders div p{
-    width:60%
+    width:60%;
+    text-align: center;
+}
+.renders h2 a{
+    color: #12160e;
+}
+.renders h2 a:hover{
+    color: #a7be9d;
     
+}
+
+.api{
+    top:0vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:10vh;
+    border-bottom: 3px solid #405839;
+    color: #312020;
+    background: #93b684;
+    text-align: center;
+    z-index: 10000;
+    
+}
+
+.api a{
+    color: #12160e;
+}
+.api a:hover{
+    color: #a7be9d;
+    text-decoration: none;
+    
+}
+.api{
+    border-top: 3px solid #405839;
+    border-bottom: 3px solid #405839;
+}
+.api ul{
+    list-style: none;
+    font-size: larger;
+}
+.api ul li{
+    display:block;
 }
