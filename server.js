@@ -97,15 +97,32 @@ class DrinkBuild{
         this.abbr=ABBR
     }
 }
-coreDrinks.espresso.push(new Espresso('Americano',['que','add water','pour'],{'room':'1%','water':'72%','espresso':'27%'},true,true,{'room':'1%','water':'72%','espresso':'27%'},'Americano',new DrinkBuild('','',[1,2,3,4],[2,3,4,5],'','','H2O','A'),new DrinkBuild('','',[1,2,3,4],[2,3,4,6],'','','H2O','A')))
+coreDrinks.espresso.push(new Espresso('Americano',['que','add water','pour'],{'room':'1%','water':'72%','espresso':'27%'},true,true,
+                                    {'room':'1%','water':'72%','espresso':'27%'},'Americano',
+                                    new DrinkBuild(false,'',[1,2,3,4],[2,3,4,5],'','','H2O','A'),
+                                    new DrinkBuild(true,'',[null,2,3,4],[null,3,4,6],'','','H2O','A')))
 coreDrinks.espresso.push(new Espresso('Espresso',['que','pour'],{'room':'87%','espresso':'13%'},true,true,{'room':'87%','espresso':'13%'},'Espresso'))
 coreDrinks.espresso.push(new Espresso('Espresso Macchiatto',['que','pour'],{'room':'57%','foam':'30%','espresso':'13%'},true,true,{'room':'57%','espresso':'13%','milk':'30%'},'Espresso Machiatto'))
 coreDrinks.espresso.push(new Espresso('Espresso Con Panna',['que','pour'],{'room':'77%','whipped cream':'10%','espresso':'13%'},true,true,{'whipped cream':'10%','room':'74%','espresso':'13%'},'Espresso Con Panna'))
-coreDrinks.espresso.push(new Espresso('Iced Shaken Espresso',['que shots','pump syrup into shaker','add ice to shaker','pour shots into shakes','shake ten times','pour into cup','pour milk to 1/4" below top'],{'milk':'13%','espresso foam':'22%','espresso':'58%','syrup':'7%'},false,true,{},'Iced Shaken Esp'))
-coreDrinks.espresso.push(new Espresso('Brown Sugar Oat Shaken Espresso',['que shots','pump syrup into shaker','add ice to shaker','pour shots into shakes','shake ten times','pour into cup','pour milk to 1/4" below top'],{'oatmilk':'13%','espresso foam':'22%','espresso':'58%','syrup':'7%'},false,true,{},'Brwn Sug Oat Shkn Espr'))
-coreDrinks.espresso.push(new Espresso('Chocolate Almondmilk Shaken Espresso',['que shots','scoop powder into shaker','add ice to shaker','pour shots into shakes','shake ten times','pour into cup','pour milk to 1/4" below top'],{'almondmilk':'13%','espresso foam':'22%','espresso':'58%','chocolate powder':'7%'},false,true,{},'Choc Alm Shkn Espr'))
-coreDrinks.espresso.push(new Espresso('Toasted Vanilla Oat Shaken Espresso',['que shots','pump syrup into shaker','add ice to shaker','pour shots into shakes','shake ten times','pour into cup','pour milk to 1/4" below top'],{'oatmilk':'13%','espresso foam':'22%','espresso':'58%','syrup':'7%'},false,true,{},'Tstd Oat Shkn Espr'))
-coreDrinks.espresso.push(new Espresso('Latte',['steam','que','pump syrup','pour'],{'room':'1%','foam':'15%','steamed milk':'71%','espresso':'13%'},true,true,{'room':'1%','milk':'86%','espresso':'13%'},'Latte'))
+coreDrinks.espresso.push(new Espresso('Iced Shaken Espresso',['que shots','pump syrup into shaker',
+                                    'add ice to shaker','pour shots into shakes','shake ten times','pour into cup','pour milk to 1/4" below top'],
+                                    {'milk':'13%','espresso foam':'22%','espresso':'58%','syrup':'7%'},false,true,{},'Iced Shaken Esp',
+                                    null,
+                                    new DrinkBuild(true,'',[null,2,3,4],[null,3,4,6],'C','%','','A')))
+coreDrinks.espresso.push(new Espresso('Brown Sugar Oat Shaken Espresso',['que shots','pump syrup into shaker','add ice to shaker','pour shots into shakes','shake ten times','pour into cup','pour milk to 1/4" below top'],
+                                    {'oatmilk':'13%','espresso foam':'22%','espresso':'58%','syrup':'7%'},false,true,{},'Brwn Sug Oat Shkn Espr',
+                                    null,
+                                    new DrinkBuild(true,'B',[null,2,3,4],[null,3,4,6],'BS','O','CNP','BOSE')))
+coreDrinks.espresso.push(new Espresso('Chocolate Almondmilk Shaken Espresso',['que shots','scoop powder into shaker','add ice to shaker','pour shots into shakes','shake ten times','pour into cup','pour milk to 1/4" below top'],
+                                    {'almondmilk':'13%','espresso foam':'22%','espresso':'58%','chocolate powder':'7%'},false,true,{},'Choc Alm Shkn Espr',
+                                    null,
+                                    new DrinkBuild(true,'B',[null,2,3,4],[null,3,4,6],'BS','O','MP','CASE')))
+coreDrinks.espresso.push(new Espresso('Toasted Vanilla Oat Shaken Espresso',['que shots','pump syrup into shaker','add ice to shaker','pour shots into shakes','shake ten times','pour into cup','pour milk to 1/4" below top'],{'oatmilk':'13%','espresso foam':'22%','espresso':'58%','syrup':'7%'},false,true,{},'Tstd Oat Shkn Espr',
+                                    null,
+                                    new DrinkBuild(true,'B',[null,2,3,4],[null,3,4,6],'TV','O','','TOSE')))
+coreDrinks.espresso.push(new Espresso('Latte',['steam','que','pump syrup','pour'],{'room':'1%','foam':'15%','steamed milk':'71%','espresso':'13%'},true,true,{'room':'1%','milk':'86%','espresso':'13%'},'Latte',
+                                    new DrinkBuild(false,'',[1,1,2,2],[2,3,4,5],'','','H2O','A'),
+                                    new DrinkBuild(true,'',[null,1,2,3],[null,3,4,6],'','','H2O','A')))
 coreDrinks.espresso.push(new Espresso('Cinnamon Dolce Latte',['steam','que','pump syrup','pour'],{'whipped cream':'6%','foam':'11%','steamed milk':'63%','espresso':'13%','syrup':'7%'},true,true,{'whipped cream':'6%','milk':'74%','espresso':'13%','syrup':'7%'},'Cinnamon Dolce Latte'))
 coreDrinks.espresso.push(new Espresso('Cappuccino',['steam','que','pump syrup','pour'],{'room':'1%','foam':'71%','steamed milk':'15%','espresso':'13%'},true,false,{},'Cappuccino'))
 coreDrinks.espresso.push(new Espresso('Flat White',['steam','que','pump syrup','pour'],{'room':'1%','foam':'15%','steamed milk':'74%','espresso':'10%'},true,true,{'milk':'90%','espresso':'10%'},'Flat White'))

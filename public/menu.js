@@ -101,7 +101,7 @@ function addToOrder(element){
     size.readOnly=true
     size.classList.add('sizeIdentifier')
     let drink = document.createElement('div')
-    console.log(element.name)
+    console.log(element.menuBuildHot)
     drink.innerHTML=element['abbr']
     drink.readOnly=true
     
@@ -169,7 +169,7 @@ async function apiRequestForCustomizations(url){
         const data = await response.json()
         
         menuData=data
-        console.log(data)
+        
     }catch(error){
         console.log(error)
     }
