@@ -141,7 +141,7 @@ function renderMenu(menu){
 
 
 
-let heroku = 'https://starbucks-coffee.herokuapp.com/api/coredrinks'
+let heroku = 'https://coffee-trainer.herokuapp.com/api/coredrinks'
 let local = 'http://localhost:8000/api/coredrinks'
 
 const statusLight = document.querySelector('.statusLight')
@@ -208,9 +208,9 @@ document.querySelector('.local').addEventListener('click', ()=>{
 
 
 document.querySelector('.heroku').addEventListener('click', ()=>{
-    localStorage.setItem('LastClicked',["https://starbucks-coffee.herokuapp.com/api/customizations",heroku])
+    localStorage.setItem('LastClicked',["https://coffee-trainer.herokuapp.com/api/customizations",heroku])
     removeAllChildNodes(document.querySelector('.items'))
     removeAllChildNodes(document.querySelector('.drinkType'))
-    apiRequestForCustomizations("https://starbucks-coffee.herokuapp.com/api/customizations")
+    apiRequestForCustomizations("https://coffee-trainer.herokuapp.com/api/customizations")
     apiRequest(heroku)
 })
