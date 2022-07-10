@@ -22,7 +22,10 @@ const modifiers={
     milk:[],
     custom:[]
 }
-modifiers.shotsMenu={'Iced':'iced','Blonde':'coffeeType','Decaf':'coffeeType','1/2 Decaf':'coffeeType','2/3 Decaf':'coffeeType','1/3 Decaf':'coffeeType','Single':'shotNumber','Single':'shotNumber','Double':'shotNumber','Triple':'shotNumber','Quad':'shotNumber','More shots':'shotNumber'}
+modifiers.shotsMenu={'Iced':'iced','Blonde':'coffeeType','Decaf':'coffeeType','1/2 Decaf':'coffeeType','2/3 Decaf':'coffeeType',
+                    '1/3 Decaf':'coffeeType','Single':'shotNumber','Single':'shotNumber','Double':'shotNumber','Triple':'shotNumber',
+                    'Quad':'shotNumber','More shots':'shotNumber','Affogato Shot':'shotNumber','Frappucino Roast':'pumps','Kids':"size",'Updosed':'shotType',
+                    'Long Shot':'shotType','Ristretto':'shot type','Short':'size','Tall':'size','Grande':'size','Venti':'size','Trenta':'size'}
 
 
 
@@ -95,6 +98,7 @@ class DrinkBuild{
         this.milk=Milk
         this.custom=Custom
         this.abbr=ABBR
+        this.size = 'Gr'
     }
 }
 coreDrinks.espresso.push(new Espresso('Americano',['que','add water','pour'],{'room':'1%','water':'72%','espresso':'27%'},true,true,
@@ -127,17 +131,17 @@ coreDrinks.espresso.push(new Espresso('Cinnamon Dolce Latte',['steam','que','pum
                                     new DrinkBuild(false,'',[1,1,2,2],[2,3,4,5],'CD','%','F','CDL'),
                                     new DrinkBuild(true,'',[null,1,2,3],[null,3,4,6],'CD','%','','CDL')))
 coreDrinks.espresso.push(new Espresso('Cappuccino',['steam','que','pump syrup','pour'],{'room':'1%','foam':'71%','steamed milk':'15%','espresso':'13%'},true,false,{},'Cappuccino',
-                                    new DrinkBuild(false,'',[1,1,2,2],[2,3,4,5],'','%','F','L'),
+                                    new DrinkBuild(false,'',[1,1,2,2],[2,3,4,5],'','%','F','C'),
                                     null))
 coreDrinks.espresso.push(new Espresso('Flat White',['steam','que','pump syrup','pour'],{'room':'1%','foam':'15%','steamed milk':'74%','espresso':'10%'},true,true,{'milk':'90%','espresso':'10%'},'Flat White',
-                                    new DrinkBuild(false,'R',[2,2,3,4],[2,3,4,5],'','W','F','L'),
-                                    new DrinkBuild(true,'R',[null,2,3,4],[null,3,4,6],'','W','','L')))
+                                    new DrinkBuild(false,'R',[2,2,3,4],[2,3,4,5],'','W','F','FW'),
+                                    new DrinkBuild(true,'R',[null,2,3,4],[null,3,4,6],'','W','','FW')))
 coreDrinks.espresso.push(new Espresso('Honey Almondmilk Flat White',['steam','que','pump syrup','pour'],{'room':'1%','foam':'15%','almond milk':'67%','espresso':'10%','syrup':'7%'},true,true,{'almond milk':'83%','espresso':'10%','syrup':'7%'},'Hny Alm Flat White',
-                                    new DrinkBuild(false,['R', 'B'],[2,2,3,4],[2,3,4,5],'','W','F','L'),
-                                    new DrinkBuild(true,['R','B'],[null,2,3,4],[null,3,4,6],'','W','','L')))
+                                    new DrinkBuild(false,['R', 'B'],[2,2,3,4],[2,3,4,5],'HB','A','F','HAFW'),
+                                    new DrinkBuild(true,['R','B'],[null,2,3,4],[null,3,4,6],'HB','A','','HAFW')))
 coreDrinks.espresso.push(new Espresso('Caramel Macchiatto',['steam milk','que shots','pump syrup','pour milk'],{'caramel drizzle':'3%','foam':'10%','espresso':'13%','steamed milk':'67%','syrup':'7%'},true,true,{'caramel drizzle':'3%','espresso':'13%','milk':'77%','syrup':'7%'},'Caramel Macchiato',
-                                    new DrinkBuild(false,'',[1,1,2,2],[1,2,3,4],'','%',['F','CD'],'CM'),
-                                    new DrinkBuild(true,'',[null,1,2,3],[null,2,3,5],'','%','CD','CM')))
+                                    new DrinkBuild(false,'',[1,1,2,2],[1,2,3,4],'V','%',['F','CD'],'CM'),
+                                    new DrinkBuild(true,'',[null,1,2,3],[null,2,3,5],'V','%','CD','CM')))
 coreDrinks.espresso.push(new Espresso('White Mocha',['steam milk','que shots','pump syrup','pour milk','add whip'],{'whipped cream':'6%','foam':'11%','steamed milk':'63%','espresso':'13%','syrup':'7%'},true,true,{'whipped cream':'6%','milk':'74%','espresso':'13%','syrup':'7%'},'White Mocha',
                                     new DrinkBuild(false,'',[1,1,2,2],[2,3,4,5],'WM','%',['F','WC'],'WCM'),
                                     new DrinkBuild(true,'',[null,1,2,3],[null,3,4,6],'WM','%','WC','WCM')))

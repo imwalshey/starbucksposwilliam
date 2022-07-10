@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="menu.css"> 
     <script src="https://kit.fontawesome.com/082f4a75c7.js" crossorigin="anonymous"></script>
 
     <title>Starbucks Menu</title>
@@ -31,7 +31,7 @@
                         <div></div>
                     </div>
                 </sections>
-                <form class="screen" action="/order" method="POST">
+                <div class="screen">
                     <section class="namebar">
                         <div class="statusLight"></div>
                         <p>Jacob Harper</p>
@@ -55,11 +55,11 @@
                             <button type="button" class = 'discount'>Discount</button>
                             <button type="button" class = 'LOCK'><i class="fa-solid fa-lock fa-2xl"></i></button>
                             <button type="button" class = 'toGo'>To Go</button>
-                            <button type="submit" class ='findOrder'>Save Order</button>
+                            <button form='drinkObj'type="submit" class ='findOrder'>Save Order</button>
                             
                         </div>
                     </section>
-                </form>
+                </div>
 
             </section>
             <section class = 'itemSelection'>
@@ -74,50 +74,50 @@
                     <section class="items">
 
                     </section>
-                    <section class="customizations">
+                    <form id='drinkObj' method="POST" action="/order" class="customizations">
                         <section class="shotsMenu">
                             <div class="iceCheck">
-                                <input name="" readonly>
+                                <input name="Iced" readonly>
                                 Iced
                             </div>
                             <div class="decafCheck regular">
                                 Decaf
-                                <input name="" readonly>
+                                <input name="Decaf" readonly>
                             </div>
                             <div class="shotsCheck regular">
                                 Shots
-                                <input name="" readonly>
+                                <input name="Shots" readonly>
                             </div>
                             <div class="sizeCheck regular">
                                 Size
-                                <input name="" readonly>
+                                <input name="Size" readonly>
                             </div>
                         </section>
                         <section class="syrupMenu">
                             <div class="syrupCheck regular">
                                 Syrup
-                                <input name="" readonly>
+                                <input name="Syrup" readonly>
                             </div>
                         </section>
                         <section class="milkMenu">
                             <div class="milkCheck regular">
                                 Milk
-                                <input name="" readonly>
+                                <input name="Milk" readonly>
                             </div>
                         </section>
                         <section class="customMenu">
                             <div class="customCheck regular">
                                 Custom
-                                <input name="" readonly>
+                                <input name="Custom" readonly>
                             </div>
                         </section>
                         <section class="drinkName">
                             <div class="drinkCheck regular">
                                 Drink
-                                <input name="" readonly>
+                                <input name="Abbr" readonly>
                             </div>
                         </section>
-                    </section>
+                    </form>
                     <section class="drinkType">
                         
                     </section>

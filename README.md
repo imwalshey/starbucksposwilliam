@@ -12,4 +12,4 @@ POS.
 
 ## Optimizations
 -Using Javascript to render the drink divs on the menu, I was able to stop hard-coding as many drinks into the front-end, and just let the front-end generate the layout of the divs.
--The drink visualizer was 
+-

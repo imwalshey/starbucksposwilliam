@@ -209,6 +209,10 @@ div .menu{
     height:10%;
     
 }
+.customizations input{
+    font-size: small;
+    text-align: center;
+}
 .customizations .shotsMenu{
     height:35%;
     width:100%;
@@ -265,7 +269,7 @@ div .menu{
     width:auto;
     border:.1vw solid black;
     width:50%;
-    height:2.5vw;
+    
 }
 .drinkType{
     display: flex;
@@ -327,7 +331,35 @@ div .menu{
     'a . b c d'
     '. . . e f'
     'g h i j k'
+    'l . . . m'
+    'n . o p q'
+    'r s t u v'
     ;
+}
+.items.shotsMenu div{
+    background-color: #95d2e9;
+}
+.items.shotsMenu .blonde{
+    background-color: #eac784;
+}
+.items.shotsMenu .blonde~div{
+    background-color: rgb(169 150 110);
+}
+.drinkPicker .items.shotsMenu .single, .items.shotsMenu .single~div{
+    background-color: rgb(178, 116, 199);
+}
+.drinkPicker .items.shotsMenu .affogatoshot{
+    background: rgb(225 177 126);
+}
+.drinkPicker .items.shotsMenu .frappucinoroast{
+    background: #a98977;;
+}
+
+.drinkPicker .items.shotsMenu .kids~div{
+    background: #95dea9;;
+}
+.drinkPicker .items.shotsMenu .kids,.drinkPicker .items.shotsMenu .ristretto~div{
+    background: #d7c54f;;
 }
 .items div {
     border-radius: .4em;
