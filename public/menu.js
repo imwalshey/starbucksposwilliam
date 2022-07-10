@@ -355,6 +355,7 @@ function processCustom(element,value){
             // if(element ==='Kids'){
             //     document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText='Kids'
             // }
+            
         }
     }
 }
