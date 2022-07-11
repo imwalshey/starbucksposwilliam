@@ -249,6 +249,7 @@ div .menu{
     width:1em;
     margin-right:10%;
     border:.1vw solid black;
+    font-size: 1em;
 }
 .regular{
     display:flex;
@@ -269,7 +270,8 @@ div .menu{
     width:auto;
     border:.1vw solid black;
     width:50%;
-    
+    font-size: 1em;
+    height:3vw
 }
 .drinkType{
     display: flex;
@@ -481,4 +483,5 @@ div .menu{
         width: 1.2em;
         height:1.2em;
     }
+    
   }
