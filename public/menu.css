@@ -184,7 +184,17 @@ div .menu{
     color:rgb(9, 102, 9);
     background: rgb(255, 255, 255);
     border:2px solid rgb(11, 89, 4);
-    
+}
+.drinkBuilder {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.drinkBuilder em{
+    color:rgb(9, 102, 9);
+    font-size: .8rem;
 }
 .itemSelection .drinkPicker{
     height: 84%;
@@ -270,7 +280,7 @@ div .menu{
     width:auto;
     border:.1vw solid black;
     width:50%;
-    font-size: 1em;
+    font-size: .7em;
     height:3vw
 }
 .drinkType{
@@ -292,9 +302,16 @@ div .menu{
    -ms-user-select: none;
    user-select: none;
 }
-.drinkName{
-    border-radius: .7em;
-    margin-top: 220% !important;
+.customizations .drinkName{
+    color: white;
+    background: transparent;
+    margin-top: 100% !important;
+}
+.customizations .drinkName .drinkCheck{
+    color:white;
+}
+.customizations .drinkName .drinkCheck input{
+    background: rgb(192, 180, 138);
 }
 
 .items{
@@ -308,6 +325,7 @@ div .menu{
     align-content: center;
     
 }
+
 .items.espresso{
     grid-template-areas: 
     'a b c d .'
@@ -385,7 +403,7 @@ div .menu{
     background: rgb(151, 96, 183);;
 }
 .items.espresso .caramelmacchiatto~div{
-    background: rgb(146, 132, 115);;
+    background: rgb(199, 159, 109);;
 }
 .items.blended div{
     background-color: rgb(201, 180, 153);;;
@@ -396,6 +414,36 @@ div .menu{
 .items.blended div.blendedstrawberrylemonade{
     background-color: yellow;
 }
+.items.brewed{
+    grid-template-areas: 
+    'a b c d .'
+    'e f g h i'
+    'j k l m .'
+    'n o p . .'
+    '. . . . q'
+    'r s t u v'
+    ;
+}
+.items.brewed div,.drinkPicker .items.brewed div.pikeplaceroast{
+    background-color: #a58e81;
+}
+.items.brewed div.pouroverdarkroast, .drinkPicker .items.brewed div.darkroast{
+    background-color: rgb(188, 154, 188);
+}
+.items.brewed div.pouroverblonderoast,.drinkPicker .items.brewed div.blonderoast{
+    background-color: #eac784;
+}
+.items.brewed div.pouroverblonderoast~div,.drinkPicker .items.brewed div.decafpikeplaceroast{
+    background: #6cb8d4;
+}
+.items.brewed div.icedcoffeerefill~div{
+    background: #a1d5e8;
+}
+.items.brewed div.chocolatecreamcoldbrew~div{
+    background-color: #baad9d;
+}
+
+
 .pickedDrinks div{
     width:100%;
     display:flex;
@@ -423,9 +471,34 @@ div .menu{
     background: #95d2e9;
 }
 
-
-
-
+.extras{
+    display:flex;
+    justify-content: space-evenly;
+    
+    height:10.5%;
+    width:100%;
+    margin-left: 2%;
+    align-items: flex-start;
+}
+.extras div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-size: 1em;
+    
+    background-image: linear-gradient(rgb(118, 118, 118),rgb(56, 48, 48)40%);
+    width:15.666%;
+    border: 1px solid black;
+    border-radius: 10%;
+    height:90%;
+}
+.extras div.hidden{
+    opacity: 0;
+}
+.extras .nextDrink.active{
+    background-image: linear-gradient(rgb(158, 185, 136),green 40%);
+}
 
 @media only screen and (min-width: 800px) {
     *{
@@ -440,7 +513,9 @@ div .menu{
     .items div{
         border-width: 1px;
     }
-    .regular input{
+    .regular input, .regular input:active,
+    .regular input:focus,
+    .regular input:focus-visible.regular input{
         height: 26px;
     }
     .quantity{
@@ -485,3 +560,4 @@ div .menu{
     }
     
   }
+
