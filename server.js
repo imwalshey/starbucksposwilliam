@@ -206,6 +206,7 @@ coreDrinks.blended.push(new Frappucino('Blended Strawberry Lemonade',['pour milk
 
 app.post('/order',(req,res)=>{
     console.log(req.body)
+    res.json(req.body)
 })
 
 app.get('/',(req,res)=>{

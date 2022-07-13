@@ -101,7 +101,7 @@ document.querySelector('.void').addEventListener('click',async function awomdawd
         
     }catch(error){
         console.log(error)
-        alert('Select an item to void')
+        errorMessage('Select an item to void')
     }
 
 })
@@ -121,7 +121,7 @@ class Drink{
         this.size = 'Gr'
     }
 }
-
+let drinkIncomplete = false
 function addToOrder(element){
     
     let hots = element.menuBuildHot 
@@ -129,7 +129,7 @@ function addToOrder(element){
     
 
 
-    if(!document.querySelector('.pickedDrinks .selected div+div') || document.querySelector('.pickedDrinks .selected div+div').innerText !== '[Drink]'){
+    if(!document.querySelector('.pickedDrinks .selected div+div') || document.querySelector('.pickedDrinks .selected div+div').innerText !== '[Drink]' && drinkIncomplete===false){
         
         //document.querySelector(`.items .${nameShortener(element['name'])}`)
         //<input type="text" name="drink" value="words" class="drinkAbbr" readonly>
@@ -179,7 +179,8 @@ function addToOrder(element){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         renderHotDrinkContents(drinksArray[drinkNum],'none')
     }
-    if(document.querySelector('.pickedDrinks .selected div+div') && document.querySelector('.pickedDrinks .selected div+div').innerText === '[Drink]'){
+    if(document.querySelector('.pickedDrinks .selected div+div') && document.querySelector('.pickedDrinks .selected div+div').innerText === '[Drink]' && drinkIncomplete===true){
+        console.log('word')
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         
         if(hots != null && colds != null){
@@ -346,6 +347,7 @@ function processCustom(element,value){
     if(document.querySelector('.pickedDrinks .selected')){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         let drink = drinksArray[drinkNum]
+        
         if(value === 'size'){
             if(element ==='Trenta'){
                 sizeSelected='Tr'
@@ -376,6 +378,10 @@ function processCustom(element,value){
         }
         renderHotDrinkContents(drink)
     }else{
+        if(value==='iced'){
+            drinkIncomplete=true
+            createTemplate(element)
+        }
         if(value === 'size'){
             if(element ==='Trenta'){
                 sizeSelected='Tr'
@@ -402,6 +408,7 @@ function processCustom(element,value){
             
             createTemplate(sizeSelected)
         }
+        
     }
 }
 function createTemplate(modifier){
@@ -415,8 +422,17 @@ function createTemplate(modifier){
     numberOfDrinksAdded+=1
     const sizeArea = document.createElement('div')
     sizeArea.classList.add('sizeIdentifier')
-    sizeArea.innerText=modifier
+    
+    
     drinkArea.appendChild(sizeArea)
+    if(modifier==='Iced'){
+        sizeSelected='Gr'
+        const icedArea = document.createElement('section')
+        icedArea.classList.add('icedArea')
+        drinkArea.appendChild(icedArea)
+        icedArea.innerText=modifier
+    }
+    sizeArea.innerText=sizeSelected
     const drinkName = document.createElement('div')
     drinkName.innerText='[Drink]'
     drinkArea.appendChild(drinkName)
@@ -455,7 +471,16 @@ function nextDrink(){
 
 
 
-
+function errorMessage(message){
+    document.querySelector('.errorMessage').classList.add('active')
+    document.querySelector('.errorMessage .errorBox p').innerText=`${message}`
+    document.querySelector('.clearError').addEventListener('click',()=>{
+        document.querySelector('.errorMessage').classList.remove('active')
+    })
+    document.querySelector('.cancelError').addEventListener('click',()=>{
+        document.querySelector('.errorMessage').classList.remove('active')
+    })
+}
 
 
 if(localStorage.getItem('LastClicked')){
@@ -479,3 +504,23 @@ document.querySelector('.heroku').addEventListener('click', ()=>{
     apiRequestForCustomizations("https://coffee-trainer.herokuapp.com/api/customizations")
     apiRequest(heroku)
 })
+
+document.querySelector('.findOrder').addEventListener('click',()=>{
+    sendit()
+})
+    async function sendit() {
+        const rawResponse = await fetch(postUrl, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(drinksArray)
+        });
+        const content = await rawResponse.json();
+      
+        console.log(content);
+      }
+
+const postUrl ='http://localhost:8000/order'
+

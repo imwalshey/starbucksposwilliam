@@ -24,6 +24,66 @@ div .menu{
 
 
 
+
+
+.menu .errorMessage.active {
+    display: flex;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.234);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+}
+.menu .errorMessage{
+    display:none;
+}
+.errorBox{
+    border:4px solid blue;
+    border-radius: .7em;
+    background-color: white;
+    height:20%;
+    width:50%;
+}
+.clearButtons{
+    display:flex;
+    justify-content: space-evenly;
+    height:50%;
+    align-items: center;
+}
+.clearButtons div{
+    width:25%;
+    text-align: center;
+    border:1px solid grey;
+    border-radius: .4em;
+    background-color: rgb(178, 178, 178);
+    height:50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.errorBox p{
+    display:flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    height:40%;
+    width:100%;
+    margin:0;
+    padding: 20px;
+}
+.errorBox .clearError{
+
+}
+
+
+
+
+
 .menu{
     background-color: rgb(112, 112, 112);
      max-height:800px;
