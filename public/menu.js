@@ -205,6 +205,8 @@ function addToOrder(element){
         })
         document.querySelector('.pickedDrinks .selected div+div').innerText=element['abbr']
         renderHotDrinkContents(drinksArray[drinkNum],'size')
+
+        
     }    
 }
 
