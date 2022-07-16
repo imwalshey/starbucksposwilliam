@@ -39,7 +39,7 @@ function nameShortener(name){
 
 
 let theDrinks = []
-
+let drinkIsIced=[]
 
 
 
@@ -121,7 +121,7 @@ class Drink{
         this.size = 'Gr'
     }
 }
-let drinkIncomplete = false
+
 function addToOrder(element){
     
     let hots = element.menuBuildHot 
@@ -129,7 +129,7 @@ function addToOrder(element){
     
 
 
-    if(!document.querySelector('.pickedDrinks .selected div+div') || document.querySelector('.pickedDrinks .selected div+div').innerText !== '[Drink]' && drinkIncomplete===false){
+    if(!document.querySelector('.pickedDrinks .selected div+div') || document.querySelector('.pickedDrinks .selected div+div').innerText !== '[Drink]'){
         
         //document.querySelector(`.items .${nameShortener(element['name'])}`)
         //<input type="text" name="drink" value="words" class="drinkAbbr" readonly>
@@ -151,18 +151,21 @@ function addToOrder(element){
                 iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
                 
             })
+            drinkIsIced.push(false)
             size.innerText=element.menuBuildHot.size
         }
         if(hots != null && colds === null){
             drinksArray.push({
                 hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size)
             })
+            drinkIsIced.push(false)
             size.innerText=element.menuBuildHot.size
         }
         if(hots === null && colds != null){
             drinksArray.push({
                 iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
             })
+            drinkIsIced.push(true)
             size.innerText=element.menuBuildIced.size
         }
         
@@ -178,9 +181,10 @@ function addToOrder(element){
         selectDrink(div)
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         renderHotDrinkContents(drinksArray[drinkNum],'none')
+        console.log(drinkIsIced[drinkNum])
     }
-    if(document.querySelector('.pickedDrinks .selected div+div') && document.querySelector('.pickedDrinks .selected div+div').innerText === '[Drink]' && drinkIncomplete===true){
-        console.log('word')
+    if(document.querySelector('.pickedDrinks .selected div+div') && document.querySelector('.pickedDrinks .selected div+div').innerText === '[Drink]'){
+        
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         
         if(hots != null && colds != null){
@@ -188,43 +192,53 @@ function addToOrder(element){
                 hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size),
                 iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
             }
+            drinkIsIced.push(false)
         }
         if(hots != null && colds === null){
             drinksArray[drinkNum]={
                 hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size)
             }
+            drinkIsIced.push(false)
         }
         if(hots === null && colds != null){
             drinksArray[drinkNum]={
                 iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
             }
+            drinkIsIced.push(true)
         }
+        console.log(drinkIsIced[drinkNum])
         changeHotAndIced(drinksArray[drinkNum],'size',sizeSelected)
+        
         document.querySelector(`.drink${drinkNum}`).addEventListener('click',(click)=>{
             selectDrink(click.target.parentElement, element)
         })
         document.querySelector('.pickedDrinks .selected div+div').innerText=element['abbr']
         renderHotDrinkContents(drinksArray[drinkNum],'size')
 
-        
+
     }    
 }
 
 
 let sizeSelected
 function renderHotDrinkContents(value,modify){
-    if(value.hot && !value.cold){
-    sizeSelected = value.hot.size
-    bool = value.hot
-    }
-    if(!value.hot && value.cold){
+    
+    if(value.hot && value.iced){
+        sizeSelected = value.hot.size
+        bool = value.hot
+    }else
+    if(value.iced && !value.hot){
+        
         sizeSelected = value.iced.size
         bool=value.iced
     }
-
+    let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+    
+    if(drinkIsIced[drinkNum]){
+        bool=value.iced
+    }else bool = value.hot
     
     
-    //if(value.hot !== null || value[hot]!==undefined){
         
         document.querySelector('.decafCheck input').value=bool.decaf
         if(sizeSelected === 'Sh'){
@@ -263,7 +277,8 @@ function renderHotDrinkContents(value,modify){
         document.querySelector('.sizeCheck input').value=sizeSelected
         document.querySelector('.drinkCheck input').value=bool.abbr
         document.querySelector('.milkCheck input').value=bool.milk
-    //}
+        document.querySelector('.customCheck input').value=bool.custom.toString().replace(',', ' ')
+    
 } // ADDS VALUE TO THE INSIDE OF THE DRINK CONTENTS BOXES, NOT THE ARRAY ITSELF
 
 
@@ -280,7 +295,7 @@ function selectDrink(drink,element){
     document.querySelectorAll('.customizations input').forEach((input)=>{
         input.innerText=''
     })
-    console.log(drink)
+    
     renderHotDrinkContents(drinksArray[Number(drink.classList[0].replace('drink',''))])
     checkForSelection()
 }
@@ -370,18 +385,25 @@ function processCustom(element,value){
                 sizeSelected='Sh'
             }
             changeHotAndIced(drink,'size',sizeSelected)
+            
             //drinksArray[drinkNum].hot.size = sizeSelected
-            console.log(drinkNum)
-            console.log(drinksArray[0].hot.size)
-            document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText=drink.hot.size
+            
+            drink.hot!==undefined? document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText=drink.hot.size : document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText=drink.iced.size
             if(element ==='Kids'){
                 document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText='Kids'
+            }
+        }
+        if(value === 'iced'){
+            if(drinkIsIced[drinkNum]===false){
+                drinkIsIced[drinkNum]=true
+            }else
+            if(drinkIsIced[drinkNum]===true){
+                drinkIsIced[drinkNum]=false
             }
         }
         renderHotDrinkContents(drink)
     }else{
         if(value==='iced'){
-            drinkIncomplete=true
             createTemplate(element)
         }
         if(value === 'size'){
@@ -420,23 +442,21 @@ function createTemplate(modifier){
     removeAllSelected()
     drinkArea.classList.add(`selected`)
     itemsArea.appendChild(drinkArea)
+    
     drinksArray.push({})
     numberOfDrinksAdded+=1
     const sizeArea = document.createElement('div')
     sizeArea.classList.add('sizeIdentifier')
     
-    
-    drinkArea.appendChild(sizeArea)
-    if(modifier==='Iced'){
-        sizeSelected='Gr'
-        const icedArea = document.createElement('section')
-        icedArea.classList.add('icedArea')
-        drinkArea.appendChild(icedArea)
-        icedArea.innerText=modifier
-    }
     sizeArea.innerText=sizeSelected
     const drinkName = document.createElement('div')
     drinkName.innerText='[Drink]'
+
+
+
+    drinkArea.appendChild(sizeArea)
+    
+    
     drinkArea.appendChild(drinkName)
     checkForSelection()
 }
@@ -521,7 +541,7 @@ document.querySelector('.findOrder').addEventListener('click',()=>{
         });
         const content = await rawResponse.json();
       
-        console.log(content);
+        ;
       }
 
 const postUrl ='http://localhost:8000/order'
