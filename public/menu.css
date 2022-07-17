@@ -593,6 +593,7 @@ div .menu{
     body{
         display:flex;
         justify-content: center;
+        flex-direction: column;
     }
     .sections>div div+div.selected {
         height: 0%;
@@ -617,7 +618,7 @@ div .menu{
     .statusLight{
         width: 1.2em;
         height:1.2em;
-        
+
     }
     
   }

@@ -168,10 +168,10 @@ function addToOrder(element){
             drinkIsIced.push(true)
             size.innerText=element.menuBuildIced.size
         }
-        
+        drink.innerHTML=element['abbr']
 
         
-        drink.innerHTML=element['abbr']
+        
         drink.readOnly=true
         div.addEventListener('click',(click)=>{
             selectDrink(click.target.parentElement, element)
@@ -180,6 +180,7 @@ function addToOrder(element){
         removeAllSelected()
         selectDrink(div)
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+        if(drinkIsIced[drinkNum]===true) {drink.innerText='Iced '+element['abbr']}
         renderHotDrinkContents(drinksArray[drinkNum],'none')
         console.log(drinkIsIced[drinkNum])
     }
@@ -400,11 +401,20 @@ function processCustom(element,value){
             if(drinkIsIced[drinkNum]===true){
                 drinkIsIced[drinkNum]=false
             }
+            console.log(drinkIsIced[drinkNum])
         }
         renderHotDrinkContents(drink)
     }else{
         if(value==='iced'){
             createTemplate(element)
+            let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+            if(drinkIsIced[drinkNum]===false){
+                drinkIsIced[drinkNum]=true
+            }else
+            if(drinkIsIced[drinkNum]===true){
+                drinkIsIced[drinkNum]=false
+            }
+            
         }
         if(value === 'size'){
             if(element ==='Trenta'){
@@ -447,13 +457,15 @@ function createTemplate(modifier){
     numberOfDrinksAdded+=1
     const sizeArea = document.createElement('div')
     sizeArea.classList.add('sizeIdentifier')
-    
+    const icedArea=document.createElement('section')
+    icedArea.innerText="Iced"
+
+    if(sizeSelected === undefined){
+        sizeSelected='Gr'
+    }
     sizeArea.innerText=sizeSelected
     const drinkName = document.createElement('div')
     drinkName.innerText='[Drink]'
-
-
-
     drinkArea.appendChild(sizeArea)
     
     
