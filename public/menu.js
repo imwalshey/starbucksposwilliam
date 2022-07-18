@@ -169,7 +169,7 @@ function addToOrder(element){
             size.innerText=element.menuBuildIced.size
         }
         drink.innerHTML=element['abbr']
-
+        drink.classList.add('drinkName')
         
         
         drink.readOnly=true
@@ -184,7 +184,7 @@ function addToOrder(element){
         renderHotDrinkContents(drinksArray[drinkNum],'none')
         console.log(drinkIsIced[drinkNum])
     }
-    if(document.querySelector('.pickedDrinks .selected div+div') && document.querySelector('.pickedDrinks .selected div+div').innerText === '[Drink]'){
+    if(document.querySelector('.pickedDrinks .selected .drinkName') && document.querySelector('.pickedDrinks .selected .drinkName').innerText === '[Drink]'){
         
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         
@@ -236,6 +236,7 @@ function renderHotDrinkContents(value,modify){
     let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
     
     if(drinkIsIced[drinkNum]){
+        
         bool=value.iced
     }else bool = value.hot
     
@@ -301,7 +302,22 @@ function selectDrink(drink,element){
     checkForSelection()
 }
 
-
+function addTheIcedWord(){
+    let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+    if(drinkIsIced[drinkNum]===true){
+        let elementContainer = document.querySelector('.selected div+div').parentElement
+        let element = document.querySelector('.selected div+div')
+        const icedArea = document.createElement('section')
+        icedArea.innerText = 'Iced '
+        icedArea.classList.add('icedArea')
+        elementContainer.insertBefore(icedArea,element)
+        console.log(element)
+    }
+    if(drinkIsIced[drinkNum]===false){
+        let element = document.querySelector('.icedArea')
+        element.remove()
+    }
+}
 
 
 
@@ -362,6 +378,7 @@ function renderCustomsMenu(menu){
 }
 
 function processCustom(element,value){
+    console.log('word')
     if(document.querySelector('.pickedDrinks .selected')){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         let drink = drinksArray[drinkNum]
@@ -395,15 +412,22 @@ function processCustom(element,value){
             }
         }
         if(value === 'iced'){
+            if(drinkIsIced[drinkNum]===undefined){
+                drinkIsIced[drinkNum]=false
+            }
             if(drinkIsIced[drinkNum]===false){
                 drinkIsIced[drinkNum]=true
+                addTheIcedWord()
             }else
             if(drinkIsIced[drinkNum]===true){
                 drinkIsIced[drinkNum]=false
+                addTheIcedWord()
             }
             console.log(drinkIsIced[drinkNum])
         }
-        renderHotDrinkContents(drink)
+        if(value==='iced' && document.querySelector('.pickedDrinks .selected .drinkName').innerText==='[Drink]'){
+            console.log('words')
+        }else renderHotDrinkContents(drink)
     }else{
         if(value==='iced'){
             createTemplate(element)
@@ -466,6 +490,7 @@ function createTemplate(modifier){
     sizeArea.innerText=sizeSelected
     const drinkName = document.createElement('div')
     drinkName.innerText='[Drink]'
+    drinkName.classList.add('drinkName')
     drinkArea.appendChild(sizeArea)
     
     
