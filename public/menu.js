@@ -182,7 +182,7 @@ function addToOrder(element){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         if(drinkIsIced[drinkNum]===true) {drink.innerText='Iced '+element['abbr']}
         renderHotDrinkContents(drinksArray[drinkNum],'none')
-        console.log(drinkIsIced[drinkNum])
+        
     }
     if(document.querySelector('.pickedDrinks .selected .drinkName') && document.querySelector('.pickedDrinks .selected .drinkName').innerText === '[Drink]'){
         
@@ -207,7 +207,7 @@ function addToOrder(element){
             }
             drinkIsIced.push(true)
         }
-        console.log(drinkIsIced[drinkNum])
+       
         changeHotAndIced(drinksArray[drinkNum],'size',sizeSelected)
         
         document.querySelector(`.drink${drinkNum}`).addEventListener('click',(click)=>{
@@ -311,8 +311,8 @@ function addTheIcedWord(){
         icedArea.innerText = 'Iced '
         icedArea.classList.add('icedArea')
         elementContainer.insertBefore(icedArea,element)
-        console.log(element)
-    }
+        
+    }else
     if(drinkIsIced[drinkNum]===false){
         let element = document.querySelector('.icedArea')
         element.remove()
@@ -378,7 +378,7 @@ function renderCustomsMenu(menu){
 }
 
 function processCustom(element,value){
-    console.log('word')
+    
     if(document.querySelector('.pickedDrinks .selected')){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         let drink = drinksArray[drinkNum]
@@ -423,10 +423,10 @@ function processCustom(element,value){
                 drinkIsIced[drinkNum]=false
                 addTheIcedWord()
             }
-            console.log(drinkIsIced[drinkNum])
+            
         }
         if(value==='iced' && document.querySelector('.pickedDrinks .selected .drinkName').innerText==='[Drink]'){
-            console.log('words')
+            
         }else renderHotDrinkContents(drink)
     }else{
         if(value==='iced'){
@@ -476,7 +476,9 @@ function createTemplate(modifier){
     removeAllSelected()
     drinkArea.classList.add(`selected`)
     itemsArea.appendChild(drinkArea)
-    
+    document.querySelector(`.drink${numberOfDrinksAdded}`).addEventListener('click',(click)=>{
+        selectDrink(click.target.parentElement)
+    })
     drinksArray.push({})
     numberOfDrinksAdded+=1
     const sizeArea = document.createElement('div')
