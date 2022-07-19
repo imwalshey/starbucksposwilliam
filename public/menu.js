@@ -486,6 +486,7 @@ function createTemplate(modifier){
     const icedArea=document.createElement('section')
     icedArea.innerText="Iced"
 
+    
     if(sizeSelected === undefined){
         sizeSelected='Gr'
     }
