@@ -81,8 +81,8 @@ function pageRender(click,data){
 
 document.querySelector('.LOCK').addEventListener('click',()=>{
     removeAllChildNodes(document.querySelector('.pickedDrinks'))
-    document.querySelectorAll('.customizations input').forEach((input)=>{
-        input.value=''
+    document.querySelectorAll('.customizations div div').forEach((div)=>{
+        div.innerText=''
     })
     drinksArray=[]
     
@@ -95,8 +95,8 @@ document.querySelector('.void').addEventListener('click',async function awomdawd
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         drinksArray[drinkNum]= null
         document.querySelector('.pickedDrinks .selected').remove()
-        document.querySelectorAll('.customizations input').forEach((input)=>{
-            input.value=''
+        document.querySelectorAll('.customizations div div').forEach((div)=>{
+            div.div=''
         })
         
     }catch(error){
@@ -132,7 +132,7 @@ function addToOrder(element){
     if(!document.querySelector('.pickedDrinks .selected div+div') || document.querySelector('.pickedDrinks .selected div+div').innerText !== '[Drink]'){
         
         //document.querySelector(`.items .${nameShortener(element['name'])}`)
-        //<input type="text" name="drink" value="words" class="drinkAbbr" readonly>
+        //<div type="text" name="drink" value="words" class="drinkAbbr" readonly>
         
         
         //drinksArray[numberOfDrinksAdded-1] = {hot:element.menuBuildHot,iced:element.menuBuildIced}
@@ -242,44 +242,44 @@ function renderHotDrinkContents(value,modify){
     
     
         
-        document.querySelector('.decafCheck input').value=bool.decaf
+        document.querySelector('.decafCheck div').innerText=bool.decaf
         if(sizeSelected === 'Sh'){
-            document.querySelector('.shotsCheck input').value=bool.shots[0]
+            document.querySelector('.shotsCheck div').innerText=bool.shots[0]
             if(bool.syrup !== ''){
-                document.querySelector('.syrupCheck input').value=`${bool.pumps[0]}${bool.syrup}`
+                document.querySelector('.syrupCheck div').innerText=`${bool.pumps[0]}${bool.syrup}`
             }else{
-                document.querySelector('.syrupCheck input').value=`${bool.syrup}`
+                document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
             }
         }else
         if(sizeSelected === 'Tl'){
-            document.querySelector('.shotsCheck input').value=bool.shots[1]
+            document.querySelector('.shotsCheck div').innerText=bool.shots[1]
             if(bool.syrup !== ''){
-                document.querySelector('.syrupCheck input').value=`${bool.pumps[1]}${bool.syrup}`
+                document.querySelector('.syrupCheck div').innerText=`${bool.pumps[1]}${bool.syrup}`
             }else{
-                document.querySelector('.syrupCheck input').value=`${bool.syrup}`
+                document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
             }
         }else
         if(sizeSelected === 'Gr'){
-            document.querySelector('.shotsCheck input').value=bool.shots[2]
+            document.querySelector('.shotsCheck div').innerText=bool.shots[2]
             if(bool.syrup !== ''){
-                document.querySelector('.syrupCheck input').value=`${bool.pumps[2]}${bool.syrup}`
+                document.querySelector('.syrupCheck div').innerText=`${bool.pumps[2]}${bool.syrup}`
             }else{
-                document.querySelector('.syrupCheck input').value=`${bool.syrup}`
+                document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
             }
         }else
         if(sizeSelected === 'Vt'){
-            document.querySelector('.shotsCheck input').value=bool.shots[3]
+            document.querySelector('.shotsCheck div').innerText=bool.shots[3]
             if(bool.syrup !== ''){
-                document.querySelector('.syrupCheck input').value=`${bool.pumps[3]}${bool.syrup}`
+                document.querySelector('.syrupCheck div').innerText=`${bool.pumps[3]}${bool.syrup}`
             }else{
-                document.querySelector('.syrupCheck input').value=`${bool.syrup}`
+                document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
             }
         }
         
-        document.querySelector('.sizeCheck input').value=sizeSelected
-        document.querySelector('.drinkCheck input').value=bool.abbr
-        document.querySelector('.milkCheck input').value=bool.milk
-        document.querySelector('.customCheck input').value=bool.custom.toString().replace(',', ' ')
+        document.querySelector('.sizeCheck div').innerText=sizeSelected
+        document.querySelector('.drinkCheck div').innerText=bool.abbr
+        document.querySelector('.milkCheck div').innerText=bool.milk
+        document.querySelector('.customCheck div').innerText=bool.custom.toString().replace(',', ' ')
     
 } // ADDS VALUE TO THE INSIDE OF THE DRINK CONTENTS BOXES, NOT THE ARRAY ITSELF
 
@@ -288,14 +288,14 @@ function renderHotDrinkContents(value,modify){
 
 
 function renderColdDrinkContents(value){
-    document.querySelector('.icedCheck input').value= '✓'
+    document.querySelector('.icedCheck div').value= '✓'
 }
 
 function selectDrink(drink,element){
     removeAllSelected() 
     drink.classList.add('selected')
-    document.querySelectorAll('.customizations input').forEach((input)=>{
-        input.innerText=''
+    document.querySelectorAll('.customizations div div').forEach((div)=>{
+        div.innerText=''
     })
     if(element !== undefined){
         renderHotDrinkContents(drinksArray[Number(drink.classList[0].replace('drink',''))])

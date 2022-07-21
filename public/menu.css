@@ -4,12 +4,14 @@
     font-size: 1.40vw;
 }
 
-body>div{
+body .menuWrapper{
     background-color: green;
     display:flex;
     position: relative;
     width: 100%;
     padding-top: 89%; /* 16:9 Aspect Ratio */
+    border-top: 10px solid black;
+    border-bottom: 10px solid black;
 }
 div .menu{
     position: absolute;
@@ -20,10 +22,16 @@ div .menu{
     text-align: center;
     
     color: white;
+    
 }
 
 
-
+body{
+    margin:0;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 
 .menu .errorMessage.active {
@@ -303,9 +311,7 @@ div .menu{
     justify-content: center;
     height:10%;
 }
-.iceCheck input, .iceCheck input:active,
-.iceCheck input:focus,
-.iceCheck input:focus-visible{
+.iceCheck div{
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -319,16 +325,14 @@ div .menu{
     width:1em;
     margin-right:10%;
     border:.1vw solid black;
-    font-size: 1em;
+    font-size: 1.1em;
 }
 .regular{
     display:flex;
     flex-direction: column;
     align-items: center;
 }
-.regular input, .regular input:active,
-.regular input:focus,
-.regular input:focus-visible.regular input{
+.regular div{
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -337,11 +341,17 @@ div .menu{
     border:none;
     outline: none;
     background: none;
+    
     width:auto;
     border:.1vw solid black;
     width:50%;
-    font-size: .7em;
+    font-size: 1.1em;
     height:3vw
+}
+.customizations div div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .drinkType{
     display: flex;
@@ -581,16 +591,18 @@ div .menu{
     .quantity{
         font-size: 1em;
     }
-    body>div{
+    body .menuWrapper{
             height: 800px;
             background-color: green;
             display: flex;
             position: relative;
             width: 900px;
             padding-top: 0;
+            border: 10px solid black;
         
     }
     body{
+        margin:0;
         display:flex;
         justify-content: center;
         flex-direction: column;
