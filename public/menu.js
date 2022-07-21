@@ -297,8 +297,9 @@ function selectDrink(drink,element){
     document.querySelectorAll('.customizations input').forEach((input)=>{
         input.innerText=''
     })
-    
-    renderHotDrinkContents(drinksArray[Number(drink.classList[0].replace('drink',''))])
+    if(element !== undefined){
+        renderHotDrinkContents(drinksArray[Number(drink.classList[0].replace('drink',''))])
+    }
     checkForSelection()
 }
 

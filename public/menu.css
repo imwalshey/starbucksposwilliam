@@ -594,6 +594,7 @@ div .menu{
         display:flex;
         justify-content: center;
         flex-direction: column;
+        align-items: center;
     }
     .sections>div div+div.selected {
         height: 0%;
