@@ -67,45 +67,13 @@ const coreDrinks = {
 }
 
 class Brewed{
-    constructor(Name){
+    constructor(Name,Build,IcedBuild, ABBR,Hot,Iced){
         this.name = Name
-        
-    }
-}
-coreDrinks.brewed.push(new Brewed("Pour Over Pike Place Roast"))
-coreDrinks.brewed.push(new Brewed("Pour Over Dark Roast"))
-coreDrinks.brewed.push(new Brewed("Pour Over Blonde Roast"))
-coreDrinks.brewed.push(new Brewed("Pour Over Decaf Pike Place Reserve"))
-coreDrinks.brewed.push(new Brewed("Iced Coffee"))
-coreDrinks.brewed.push(new Brewed("Iced Coffee w/Milk"))
-coreDrinks.brewed.push(new Brewed("Decaf Iced Coffee"))
-coreDrinks.brewed.push(new Brewed("Decaf Iced Coffee w/Milk"))
-coreDrinks.brewed.push(new Brewed("Iced Coffee Refill"))
-coreDrinks.brewed.push(new Brewed("Cold Brew"))
-coreDrinks.brewed.push(new Brewed("Cold Brew w/Milk"))
-coreDrinks.brewed.push(new Brewed("Cold Brew w/Cold Foam"))
-coreDrinks.brewed.push(new Brewed("Cold Brew Refill"))
-coreDrinks.brewed.push(new Brewed("Vanilla Sweet Cream Cold Brew"))
-coreDrinks.brewed.push(new Brewed("Salted Caramel Cream Cold Brew"))
-coreDrinks.brewed.push(new Brewed("Chocolate Cream Cold Brew"))
-coreDrinks.brewed.push(new Brewed("Cafe Misto"))
-coreDrinks.brewed.push(new Brewed("Pike Place Roast"))
-coreDrinks.brewed.push(new Brewed("Dark Roast"))
-coreDrinks.brewed.push(new Brewed("Blonde Roast"))
-coreDrinks.brewed.push(new Brewed("Decaf Pike Place Roast"))
-coreDrinks.brewed.push(new Brewed("Hot Coffee Refill"))
-
-class Espresso{
-    constructor(Name,Steps,hotContents,HotBoolean,IcedBoolean,IcedBuild,ABBR,MenuBuildHot,MenuBuildIced){
-        this.name = Name
-        this.instructions = Steps
-        this.hotBuild = hotContents
-        this.hot= HotBoolean
-        this.iced = IcedBoolean
-        this.icedBuild = IcedBuild
-        this.abbr =ABBR
-        this.menuBuildHot=MenuBuildHot
-        this.menuBuildIced =MenuBuildIced
+        this.menuBuildHot =Build
+        this.menuBuildIced = IcedBuild
+        this.abbr = ABBR
+        this.hot = Hot
+        this.iced =Iced
     }
 }
 class DrinkBuild{
@@ -121,6 +89,46 @@ class DrinkBuild{
         this.size = 'Gr'
     }
 }
+
+
+
+coreDrinks.brewed.push(new Brewed("Pour Over Pike Place Roast",new DrinkBuild(false,'','','','','','','POPP'),null,'Pour Over Pike'))
+coreDrinks.brewed.push(new Brewed("Pour Over Dark Roast",new DrinkBuild(false,'','','','','','','PODR'),null,'Pour Over Dark'))
+coreDrinks.brewed.push(new Brewed("Pour Over Blonde Roast",new DrinkBuild(false,'','','','','','','POBR'),null,'Pour Over Blonde'))
+coreDrinks.brewed.push(new Brewed("Pour Over Decaf Pike Place Reserve",new DrinkBuild(false,'','','','','','','PODPP'),null,'Decaf Pour Over'))
+coreDrinks.brewed.push(new Brewed("Iced Coffee",null,new DrinkBuild(true,'','','','','','','IC'),'Iced Coffee',false,true))
+coreDrinks.brewed.push(new Brewed("Iced Coffee w/Milk",null,new DrinkBuild(true,'','','','','%','','IC/M'),'Iced Coffee w/ Milk'))
+coreDrinks.brewed.push(new Brewed("Decaf Iced Coffee",null,new DrinkBuild(true,'D','','','','','','DIC')))
+coreDrinks.brewed.push(new Brewed("Decaf Iced Coffee w/Milk",null,new DrinkBuild(true,'D','','','','%','','DIC/M')))
+coreDrinks.brewed.push(new Brewed("Iced Coffee Refill",null,new DrinkBuild(true,'','','','','','','ICR')))
+coreDrinks.brewed.push(new Brewed("Cold Brew",null,new DrinkBuild(true,'','','','','','','CB')))
+coreDrinks.brewed.push(new Brewed("Cold Brew w/Milk",null,new DrinkBuild(true,'','','','','%','','CB')))
+coreDrinks.brewed.push(new Brewed("Cold Brew w/Cold Foam",null,new DrinkBuild(true,'','','','','','CF','CB')))
+coreDrinks.brewed.push(new Brewed("Cold Brew Refill",null,new DrinkBuild(true,'','','','','','','CBR')))
+coreDrinks.brewed.push(new Brewed("Vanilla Sweet Cream Cold Brew",null,new DrinkBuild(true,'','',[1,2,3,4],'V','','VSCF','VSCB')))
+coreDrinks.brewed.push(new Brewed("Salted Caramel Cream Cold Brew",null,new DrinkBuild(true,'','',[1,2,3,4],'V','','SCCF','SCCB')))
+coreDrinks.brewed.push(new Brewed("Chocolate Cream Cold Brew",null,new DrinkBuild(true,'','',[1,2,3,4],'V','','CCCF','CCCB')))
+coreDrinks.brewed.push(new Brewed("Cafe Misto",new DrinkBuild(false,'','','','','%','F','CFM'),null))
+coreDrinks.brewed.push(new Brewed("Pike Place Roast",new DrinkBuild(false,'','','','','','','PPR'),null))
+coreDrinks.brewed.push(new Brewed("Dark Roast",new DrinkBuild(false,'','','','','','','DRC'),null))
+coreDrinks.brewed.push(new Brewed("Blonde Roast",new DrinkBuild(false,'','','','','','','BRC'),null))
+coreDrinks.brewed.push(new Brewed("Decaf Pike Place Roast",new DrinkBuild(false,'D','','','','','','DPPR'),null))
+coreDrinks.brewed.push(new Brewed("Hot Coffee Refill",new DrinkBuild(false,'','','','','','','PPRR'),null))
+
+class Espresso{
+    constructor(Name,Steps,hotContents,HotBoolean,IcedBoolean,IcedBuild,ABBR,MenuBuildHot,MenuBuildIced){
+        this.name = Name
+        this.instructions = Steps
+        this.hotBuild = hotContents
+        this.hot= HotBoolean
+        this.iced = IcedBoolean
+        this.icedBuild = IcedBuild
+        this.abbr =ABBR
+        this.menuBuildHot=MenuBuildHot
+        this.menuBuildIced =MenuBuildIced
+    }
+}
+
 coreDrinks.espresso.push(new Espresso('Americano',['que','add water','pour'],{'room':'1%','water':'72%','espresso':'27%'},true,true,
                                     {'room':'1%','water':'72%','espresso':'27%'},'Americano',
                                     new DrinkBuild(false,'',[1,2,3,4],[2,3,4,5],'','','H2O','A'),

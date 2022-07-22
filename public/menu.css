@@ -535,7 +535,7 @@ body{
 }
 .pickedDrinks .sizeIdentifier{
     width:6.5%;
-    padding-right: 1.37em;
+    padding-right: 1.2em;
 }
 .selected{
     background: #95d2e9;
@@ -569,7 +569,9 @@ body{
 .extras .nextDrink.active{
     background-image: linear-gradient(rgb(158, 185, 136),green 40%);
 }
-
+.icedArea{
+    padding-right:.2em;
+}
 @media only screen and (min-width: 800px) {
     *{
         font-size: initial;
@@ -583,10 +585,9 @@ body{
     .items div{
         border-width: 1px;
     }
-    .regular input, .regular input:active,
-    .regular input:focus,
-    .regular input:focus-visible.regular input{
-        height: 26px;
+    .regular div{
+        height: 28px;
+        font-size: .7em;
     }
     .quantity{
         font-size: 1em;
