@@ -102,7 +102,7 @@ document.querySelector('.void').addEventListener('click',async function awomdawd
         
     }catch(error){
         console.log(error)
-        errorMessage('Select an item to void')
+        errorMessage('Select an item to void','blue')
     }
 
 })
@@ -127,7 +127,9 @@ function addToOrder(element){
     
     let hots = element.menuBuildHot 
     let colds= element.menuBuildIced
-    
+    if(drinksArray.length>30){
+        errorMessage("Stop. You're gonna break it.",'Red')
+    }
 
 
     if(!document.querySelector('.pickedDrinks .selected .drinkName') || document.querySelector('.pickedDrinks .selected .drinkName').innerText !== '[Drink]'){
@@ -218,8 +220,8 @@ function addToOrder(element){
 
 let sizeSelected
 function renderHotDrinkContents(value,modify){
-    
-    if((value.hot!==undefined || value.hot===null)&& value.iced){
+    console.log('1')
+    if(value.hot && !value.iced){
         sizeSelected = value.hot.size
         bool = value.hot
     }else
@@ -252,7 +254,7 @@ function renderHotDrinkContents(value,modify){
         document.querySelector('.iceCheck div').innerText=''
         drinkIsIced[drinkNum]=true
         addTheIcedWord()
-        errorMessage('Entry not available on active levels')
+        errorMessage('Entry not available on active levels','red')
     }
     showDrinkContentsInDivs(bool)
        
@@ -295,6 +297,16 @@ function showDrinkContentsInDivs(bool){
             document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
         }
     }
+    if(sizeSelected === 'Tr'){
+        document.querySelector('.shotsCheck div').innerText=bool.shots[4]
+        if(bool.syrup !== ''){
+            document.querySelector('.syrupCheck div').innerText=`${bool.pumps[4]}${bool.syrup}`
+        }else{
+            document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
+        }
+        sizeNotAvailable(bool.shots[4])
+    }
+    console.log('2')
     if(bool.shots===''){
         document.querySelector('.shotsCheck div').innerText=''
     }
@@ -310,8 +322,18 @@ function showDrinkContentsInDivs(bool){
 }
 
 
-function renderColdDrinkContents(value){
-    
+function sizeNotAvailable(value){
+    if(value===null){
+        errorMessage('Product not active on current levels','REd')
+        document.querySelector('.pickedDrinks .selected').remove()
+        clearContentDivs()
+    }
+}
+
+function clearContentDivs(){
+    document.querySelectorAll('.customizations div div').forEach((elem)=>{
+        elem.innerText=''
+    })
 }
 
 function selectDrink(drink,element){
@@ -338,7 +360,7 @@ function addTheIcedWord(){
         icedArea.innerText = 'Iced '
         icedArea.classList.add('icedArea')
         elementContainer.insertBefore(icedArea,element)
-        renderColdDrinkContents()
+        
         
     }else
     if(drinkIsIced[drinkNum]===false){
@@ -435,6 +457,7 @@ function processCustom(element,value){
             //drinksArray[drinkNum].hot.size = sizeSelected
             
             drink.hot!==undefined? document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText=drink.hot.size : document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText=drink.iced.size
+
             if(element ==='Kids'){
                 document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText='Kids'
             }
@@ -564,15 +587,17 @@ function nextDrink(){
 
 
 
-function errorMessage(message){
+function errorMessage(message,color){
     document.querySelector('.errorMessage').classList.add('active')
     document.querySelector('.errorMessage .errorBox p').innerText=`${message}`
+    document.querySelector('.errorBox').style.border=`8px solid ${color}`
     document.querySelector('.clearError').addEventListener('click',()=>{
         document.querySelector('.errorMessage').classList.remove('active')
     })
     document.querySelector('.cancelError').addEventListener('click',()=>{
         document.querySelector('.errorMessage').classList.remove('active')
     })
+    
 }
 
 
