@@ -220,7 +220,7 @@ function addToOrder(element){
 
 let sizeSelected
 function renderHotDrinkContents(value,modify){
-    console.log('1')
+    
     if(value.hot && !value.iced){
         sizeSelected = value.hot.size
         bool = value.hot
@@ -239,9 +239,9 @@ function renderHotDrinkContents(value,modify){
     }else
     if(drinkIsIced[drinkNum]===false && value.hot){
         bool=value.hot
-    }else
-    if(drinkIsIced[drinkNum]===true && value.iced===null){
-        
+    }
+    console.log(value.iced)
+    if(drinkIsIced[drinkNum]===true && (value.iced===null)){
         bool=value.hot
         document.querySelector('.pickedDrinks .selected .icedArea').remove()
         document.querySelector('.iceCheck div').innerText=''
@@ -249,7 +249,6 @@ function renderHotDrinkContents(value,modify){
         errorMessage('Entry not available on active levels')
     }
     if(drinkIsIced[drinkNum]===false && (value.hot===null || value.hot===undefined)){
-        console.log('yeet')
         bool=value.iced
         document.querySelector('.iceCheck div').innerText=''
         drinkIsIced[drinkNum]=true
@@ -306,7 +305,6 @@ function showDrinkContentsInDivs(bool){
         }
         sizeNotAvailable(bool.shots[4])
     }
-    console.log('2')
     if(bool.shots===''){
         document.querySelector('.shotsCheck div').innerText=''
     }
