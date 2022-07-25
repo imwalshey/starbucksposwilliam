@@ -167,9 +167,6 @@ function addToOrder(element){
         }
         drink.innerHTML=element['abbr']
         drink.classList.add('drinkName')
-        
-        
-        drink.readOnly=true
         div.addEventListener('click',(click)=>{
             selectDrink(click.target.parentElement, element)
         })
@@ -178,7 +175,7 @@ function addToOrder(element){
         selectDrink(div)
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         if(drinkIsIced[drinkNum]===true) {addTheIcedWord()}
-        renderHotDrinkContents(drinksArray[drinkNum],'none')
+        renderHotDrinkContents(drinksArray[drinkNum])
         
     }
     if(document.querySelector('.pickedDrinks .selected .drinkName') && document.querySelector('.pickedDrinks .selected .drinkName').innerText === '[Drink]'){
@@ -204,14 +201,14 @@ function addToOrder(element){
             }
             drinkIsIced.push(true)
         }
-       
+       console.log('works')
         changeHotAndIced(drinksArray[drinkNum],'size',sizeSelected)
         
         document.querySelector(`.drink${drinkNum}`).addEventListener('click',(click)=>{
             selectDrink(click.target.parentElement, element)
         })
         document.querySelector('.pickedDrinks .selected .drinkName').innerText=element['abbr']
-        renderHotDrinkContents(drinksArray[drinkNum],'size')
+        renderHotDrinkContents(drinksArray[drinkNum])
 
 
     }    
@@ -240,7 +237,7 @@ function renderHotDrinkContents(value,modify){
     if(drinkIsIced[drinkNum]===false && value.hot){
         bool=value.hot
     }
-    console.log(value.iced)
+    
     if(drinkIsIced[drinkNum]===true && (value.iced===null)){
         bool=value.hot
         document.querySelector('.pickedDrinks .selected .icedArea').remove()
@@ -255,6 +252,7 @@ function renderHotDrinkContents(value,modify){
         addTheIcedWord()
         errorMessage('Entry not available on active levels','red')
     }
+    console.log(bool)
     showDrinkContentsInDivs(bool)
        
     
@@ -264,7 +262,7 @@ function renderHotDrinkContents(value,modify){
 function showDrinkContentsInDivs(bool){
     let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
     document.querySelector('.decafCheck div').innerText=bool.decaf
-    if(sizeSelected === 'Sh'){
+    if(bool.size === 'Sh'){
         document.querySelector('.shotsCheck div').innerText=bool.shots[0]
         if(bool.syrup !== ''){
             document.querySelector('.syrupCheck div').innerText=`${bool.pumps[0]}${bool.syrup}`
@@ -272,7 +270,7 @@ function showDrinkContentsInDivs(bool){
             document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
         }
     }else
-    if(sizeSelected === 'Tl'){
+    if(bool.size === 'Tl'){
         document.querySelector('.shotsCheck div').innerText=bool.shots[1]
         if(bool.syrup !== ''){
             document.querySelector('.syrupCheck div').innerText=`${bool.pumps[1]}${bool.syrup}`
@@ -280,7 +278,7 @@ function showDrinkContentsInDivs(bool){
             document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
         }
     }else
-    if(sizeSelected === 'Gr'){
+    if(bool.size === 'Gr'){
         document.querySelector('.shotsCheck div').innerText=bool.shots[2]
         if(bool.syrup !== ''){
             document.querySelector('.syrupCheck div').innerText=`${bool.pumps[2]}${bool.syrup}`
@@ -288,15 +286,15 @@ function showDrinkContentsInDivs(bool){
             document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
         }
     }else
-    if(sizeSelected === 'Vt'){
+    if(bool.size === 'Vt'){
         document.querySelector('.shotsCheck div').innerText=bool.shots[3]
         if(bool.syrup !== ''){
             document.querySelector('.syrupCheck div').innerText=`${bool.pumps[3]}${bool.syrup}`
         }else{
             document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
         }
-    }
-    if(sizeSelected === 'Tr'){
+    }else
+    if(bool.size === 'Tr'){
         document.querySelector('.shotsCheck div').innerText=bool.shots[4]
         if(bool.syrup !== ''){
             document.querySelector('.syrupCheck div').innerText=`${bool.pumps[4]}${bool.syrup}`
