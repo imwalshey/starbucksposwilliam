@@ -201,7 +201,7 @@ function addToOrder(element){
             }
             drinkIsIced.push(true)
         }
-       console.log('works')
+       
         changeHotAndIced(drinksArray[drinkNum],'size',sizeSelected)
         
         document.querySelector(`.drink${drinkNum}`).addEventListener('click',(click)=>{
@@ -252,7 +252,7 @@ function renderHotDrinkContents(value,modify){
         addTheIcedWord()
         errorMessage('Entry not available on active levels','red')
     }
-    console.log(bool)
+    
     showDrinkContentsInDivs(bool)
        
     
@@ -458,6 +458,7 @@ function processCustom(element,value){
                 document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText='Kids'
             }
         }
+        
         if(value === 'iced'){
             if(drinkIsIced[drinkNum]===undefined){
                 drinkIsIced[drinkNum]=false
@@ -471,6 +472,9 @@ function processCustom(element,value){
                 addTheIcedWord()
             }
             
+        }
+        if(value==='shotNumber'){
+            console.log('true')
         }
         if(value==='iced' && document.querySelector('.pickedDrinks .selected .drinkName').innerText==='[Drink]'){
             
