@@ -458,6 +458,7 @@ function processCustom(element,value){
                 document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText='Kids'
             }
         }
+
         
         if(value === 'iced'){
             if(drinkIsIced[drinkNum]===undefined){
