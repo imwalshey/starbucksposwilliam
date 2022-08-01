@@ -232,8 +232,34 @@ new DrinkBuild(true,'','',[null,2,3,4,null],'M','W',['WC','MDR','JC'],'CCRF'),nu
 coreDrinks.blended.push(new Frappucino('Blended Strawberry Lemonade',['pour milk','add to blender','add ice','add base','blend','pour into cup'],['lemonade','strawberry puree','ice'],false,'',false,'Str Crm Frapp',false,true, 
 new DrinkBuild(true,'','',[null,2,3,4,null],'','',['LE','SP'],'CRMF'),null))
 
-
-
+class Tea{
+    constructor(Name,Build,IcedBuild, ABBR,Hot,Iced){
+        this.name = Name
+        this.menuBuildHot =Build
+        this.menuBuildIced = IcedBuild
+        this.abbr = ABBR
+        this.hot = Hot
+        this.iced =Iced
+    }
+}
+coreDrinks.tea.push(new Tea("Classic Chai Tea Latte",new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'','%','F','CTL'),
+                                                    new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'','%','','CTL'),
+                                                    'Chai Tea Latte',true,true))
+coreDrinks.tea.push(new Tea("Matcha Green Tea Latte",new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'','%',['M','F'],'MTL'),
+                                                    new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'','%','M','MTL'),
+                                                    'Matcha Tea Latte',true,true))
+coreDrinks.tea.push(new Tea("Royal English Breakfast Tea Latte",new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'LC','%',['TB','F'],'MTL'),
+                                                    new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'LC','%','TB','MTL'),
+                                                    'Royal EB Latte',true,true))
+coreDrinks.tea.push(new Tea("London Fog Tea Latte",new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'V','%',['TB','F'],'LFL'),
+                                                    new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'V','%','TB','LFL'),
+                                                    'London Fog',true,true))        
+coreDrinks.tea.push(new Tea("Custom Tea Latte",new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'V','%',['TB','F'],'LFL'),
+                                                    new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'V','%','TB','LFL'),
+                                                    'London Fog',true,true))                                                                                                     
+coreDrinks.tea.push(new Tea("Black Iced Tea",undefined,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['BT',"H2O"],'BT'),
+                                            'Black Tea',true,true))
 
 app.post('/order',(req,res)=>{
     console.log(req.body)

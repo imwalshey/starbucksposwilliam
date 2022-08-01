@@ -238,7 +238,8 @@ function renderHotDrinkContents(value,modify){
         bool=value.hot
     }
     
-    if(drinkIsIced[drinkNum]===true && (value.iced===null)){
+    if(drinkIsIced[drinkNum]===true && value.iced===undefined){
+        
         bool=value.hot
         document.querySelector('.pickedDrinks .selected .icedArea').remove()
         document.querySelector('.iceCheck div').innerText=''
@@ -459,7 +460,7 @@ function processCustom(element,value){
             }
         }
 
-        
+
         if(value === 'iced'){
             if(drinkIsIced[drinkNum]===undefined){
                 drinkIsIced[drinkNum]=false
@@ -482,14 +483,18 @@ function processCustom(element,value){
         }else renderHotDrinkContents(drink)
     }else{
         if(value==='iced'){
+            console.log("words")
             createTemplate(element)
             let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
             if(drinkIsIced[drinkNum]===false){
                 drinkIsIced[drinkNum]=true
+                addTheIcedWord()
             }else
             if(drinkIsIced[drinkNum]===true){
                 drinkIsIced[drinkNum]=false
+                addTheIcedWord()
             }
+            
             
         }
         if(value === 'size'){

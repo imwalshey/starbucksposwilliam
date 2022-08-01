@@ -418,6 +418,12 @@ body{
     '. . . . .'
     ;
 }
+.items.tea{
+    grid-template-areas: 
+    'a b c d e'
+    'f '
+    ;
+}
 .items.shotsMenu{
     grid-template-areas: 
     'a . b c d'
