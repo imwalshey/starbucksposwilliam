@@ -254,13 +254,57 @@ coreDrinks.tea.push(new Tea("Royal English Breakfast Tea Latte",new DrinkBuild(f
 coreDrinks.tea.push(new Tea("London Fog Tea Latte",new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'V','%',['TB','F'],'LFL'),
                                                     new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'V','%','TB','LFL'),
                                                     'London Fog',true,true))        
-coreDrinks.tea.push(new Tea("Custom Tea Latte",new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'V','%',['TB','F'],'LFL'),
-                                                    new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'V','%','TB','LFL'),
-                                                    'London Fog',true,true))                                                                                                     
-coreDrinks.tea.push(new Tea("Black Iced Tea",undefined,
+coreDrinks.tea.push(new Tea("Custom Tea Latte",new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'','%',['TB','F'],'CTL'),
+                                                    new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'','%','TB','CTL'),
+                                                    'Custom Tea',true,true))                                                                                                     
+coreDrinks.tea.push(new Tea("Black Iced Tea",null,
                                             new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['BT',"H2O"],'BT'),
-                                            'Black Tea',true,true))
+                                            'Black Tea',false,true))
+coreDrinks.tea.push(new Tea("Green Iced Tea",null,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['GT',"H2O"],'GT'),
+                                            'Green Tea',false,true))
+coreDrinks.tea.push(new Tea("Peach Green Iced Tea",null,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['PB','GT',"H2O"],'PGT'),
+                                            'Peach Green Tea',false,true))                                            
+coreDrinks.tea.push(new Tea("Passion Tango Iced Tea",null,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['PTT',"H2O"],'PTT'),
+                                            'Passion Tea',false,true))
+coreDrinks.tea.push(new Tea("Custom Iced Tea",null,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['',"H2O"],'CIT'),
+                                            'Custom Tea',false,true))    
 
+coreDrinks.tea.push(new Tea("Black Tea Lemonade",null,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['BT',"L"],'BTL'),
+                                            'Black Tea Lemonade',false,true))
+coreDrinks.tea.push(new Tea("Green Tea Lemonade",null,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['GT',"L"],'GTL'),
+                                            'Green Tea Lemonade',false,true))
+coreDrinks.tea.push(new Tea("Passion Tango Tea Lemonade",null,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['PTT',"L"],'PTL'),
+                                            'Passion Tea Lemonade',false,true))
+coreDrinks.tea.push(new Tea("Peach Green Tea Lemonade",null,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['PB','GT',"L"],'PGTL'),
+                                            'Peach Green Tea Lem',false,true))                                              
+coreDrinks.tea.push(new Tea("Custom Tea Lemonade",null,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['',"L"],'CTL'),
+                                            'Custom Tea Lemonade',false,true))    
+coreDrinks.tea.push(new Tea("Royal English Breakfast Tea",new DrinkBuild(false,'',[null,'','','',''],[null,3,4,6,7],'','',['TB'],'REB'),null,
+                                            'Royal EB Tea',true,false))      
+coreDrinks.tea.push(new Tea("Earl Grey Tea",new DrinkBuild(false,'',[null,'','','',''],[null,3,4,6,7],'','',['TB'],'EG'),null,
+                                            'Earl Grey',true,false))             
+coreDrinks.tea.push(new Tea("Chai Tea",new DrinkBuild(false,'',[null,'','','',''],[null,3,4,6,7],'','',['TB'],'ChT'),null,
+                                            'Chai',true,false))    
+
+coreDrinks.tea.push(new Tea("Emperor's Cloud Tea",new DrinkBuild(false,'',[null,'','','',''],[null,3,4,6,7],'','',['TB'],'ECT'),null,
+                                            'Emp Cld Tea',true,false))      
+coreDrinks.tea.push(new Tea("Jade Citrus Mint Tea",new DrinkBuild(false,'',[null,'','','',''],[null,3,4,6,7],'','',['TB'],'JCMT'),null,
+                                            'Jade Citrus',true,false))             
+coreDrinks.tea.push(new Tea("Mint Majesty Tea",new DrinkBuild(false,'',[null,'','','',''],[null,3,4,6,7],'','',['TB'],'MMT'),null,
+                                            'Mint Majesty',true,false))        
+coreDrinks.tea.push(new Tea("Peach Tranquility Tea",new DrinkBuild(false,'',[null,'','','',''],[null,3,4,6,7],'','',['TB'],'PTT'),null,
+                                            'Peach Tranquility',true,false))  
+coreDrinks.tea.push(new Tea("Honey Citrus Mint Tea",new DrinkBuild(false,'',[null,'','','',''],[null,3,4,6,7],'HB','',['TB','L'],'HCMT'),null,
+                                            'Hny Citrus Mnt',true,false))                                                                                                                                                                                                                                                                                  
 app.post('/order',(req,res)=>{
     console.log(req.body)
     res.json(req.body)

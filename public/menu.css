@@ -418,12 +418,6 @@ body{
     '. . . . .'
     ;
 }
-.items.tea{
-    grid-template-areas: 
-    'a b c d e'
-    'f '
-    ;
-}
 .items.shotsMenu{
     grid-template-areas: 
     'a . b c d'
@@ -521,6 +515,59 @@ body{
     background-color: #baad9d;
 }
 
+/*###################################### */
+/* Tea Design Properties :*/
+/*###################################### */
+.items.tea{
+    
+    display:grid;
+    grid-template-columns: repeat(5, 18%);
+    grid-template-rows: repeat(6,14%);
+    grid-row-gap: 2%;
+    grid-column-gap:2%;
+    justify-content: center;
+    align-content: center;
+    
+}
+.items.tea{
+    grid-template-areas: 
+    'a b c d e'
+    'f g h i j'
+    'k l m n o'
+    '. . . . .'
+    'p q r . .'
+    's t u v w'
+    ;
+}
+
+
+.items.tea div {
+    background-color:#ebe1a2;
+}
+.items.tea div+div {
+    background-color:#aedd88;
+}
+.items.tea div+div+div {
+    background-color:#bbae8a
+}
+.items.tea div+div+div+div+div {
+    background-color:#d0d16d
+}
+.items.tea .customtealatte~div {
+    background-color:#6cb8d4;
+}
+.items.tea .customicedtea~div {
+    background-color:#ece93b;
+}
+.items.tea .customtealemonade~div {
+    background-color:#bbae8a;
+}
+.items.tea .chaitea~div {
+    background-color:#aae6ba;
+}
+.items.tea div.honeycitrusminttea  {
+    background-color:#efed93;
+}
 
 .pickedDrinks div{
     width:100%;
