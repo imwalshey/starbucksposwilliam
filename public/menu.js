@@ -125,8 +125,8 @@ class Drink{
 
 function addToOrder(element){
     
-    let hots = element.menuBuildHot 
-    let colds= element.menuBuildIced
+    let hots = JSON.parse(JSON.stringify(element.menuBuildHot )); 
+    let colds= JSON.parse(JSON.stringify(element.menuBuildIced));
     if(drinksArray.length>30){
         errorMessage("Stop. You're gonna break it.",'Red')
     }
@@ -142,6 +142,7 @@ function addToOrder(element){
         document.querySelector('.pickedDrinks').appendChild(div)
         div.appendChild(size)
         div.appendChild(drink)
+        console.log(hots)
         if(hots != null && colds != null){
             drinksArray.push({
                 hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size),
@@ -375,7 +376,7 @@ let heroku = 'https://coffee-trainer.herokuapp.com/api/coredrinks'
 let local = 'http://localhost:8000/api/coredrinks'
 
 const statusLight = document.querySelector('.statusLight')
-async function apiRequest(url){
+async function apiRequest(url){  //Calls the API and brings drink data to the 
     statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(255, 0, 0))'
     try{
         const response = await fetch(url)
@@ -459,8 +460,11 @@ function processCustom(element,value){
                 document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText='Kids'
             }
         }
-
-
+        if(value==='shotNumber'){
+            //changeHotAndIced(drink,['shots'][3],3)
+            changeHotAndIced(drink,'shotNumber',3)
+            console.log(drink.hot.shots[0])
+        }
         if(value === 'iced'){
             if(drinkIsIced[drinkNum]===undefined){
                 drinkIsIced[drinkNum]=false
@@ -474,9 +478,6 @@ function processCustom(element,value){
                 addTheIcedWord()
             }
             
-        }
-        if(value==='shotNumber'){
-            console.log('true')
         }
         if(value==='iced' && document.querySelector('.pickedDrinks .selected .drinkName').innerText==='[Drink]'){
             
@@ -557,14 +558,21 @@ function createTemplate(modifier){
     drinkArea.appendChild(drinkName)
     checkForSelection()
 }
+let drinkIsModified = []
+
 
 
 function changeHotAndIced(drink,element,value){
-    if(drink.hot){
-        drink.hot[element]=value
+    if(element==='size'){
+        if(drink.hot){
+            drink.hot[element]=value
+        }
+        if(drink.iced){
+            drink.iced[element]=value
+        }
     }
-    if(drink.iced){
-        drink.iced[element]=value
+    if(element==='shotNumber'){
+        drink.hot.shots[0] = 3
     }
 }
 
