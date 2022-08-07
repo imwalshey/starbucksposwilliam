@@ -45,6 +45,7 @@ body{
     justify-content: center;
     align-items: center;
 }
+
 .menu .errorMessage{
     display:none;
 }
@@ -89,7 +90,66 @@ body{
 }
 
 
-
+.menu .quantityForShots{
+    display:none;
+}
+.menu .quantityForShots.active{
+    display: flex;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.234);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+}
+.quantityBox{
+    width:30%;
+    height: 50%;
+    background-color: white;
+    border:1em solid blue;
+    border-radius: 1.2em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.quantityNums{
+    
+    width:100%;
+    height:60%;
+    display:grid;
+    grid-template-columns: repeat(3, 25%);
+    grid-template-rows: repeat(4,15%);
+    grid-row-gap: 5%;
+    grid-column-gap:3%;
+    justify-content: center;
+    
+}
+.quantityNums div{
+    display: flex;
+    justify-content: center;
+    border:1px solid black;
+    align-items: center;
+    border-radius: .2em;
+    background: grey;
+    
+}
+.displayAmount{
+    height:40%;
+    width:100%;
+    padding-bottom: 16%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.displayAmount p {
+    width:70%;
+    height:3em;
+    padding: 5% 0%;
+    background-color: rgb(206, 206, 206);
+    border:.5px solid black;
+}
 
 
 .menu{
@@ -573,6 +633,7 @@ body{
     width:100%;
     display:flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .pickedDrinks div div{
@@ -585,7 +646,7 @@ body{
    outline: none;
    background: none;
    width:auto;
-   width:93.5%;
+   width:77.5%;
    
 }
 .pickedDrinks .sizeIdentifier{
@@ -595,7 +656,10 @@ body{
 .selected{
     background: #95d2e9;
 }
-
+.pickedDrinks .modifier{
+    width:100%;
+    padding-left: 10%;
+}
 .extras{
     display:flex;
     justify-content: space-evenly;

@@ -45,7 +45,7 @@ let drinkIsIced=[]
 
 function createCat(data){
     Object.keys(data).forEach((element)=>{
-        
+
         let category = document.createElement('div')
         category.classList.add(`${element}`)
         category.classList.add('cats')
@@ -142,7 +142,7 @@ function addToOrder(element){
         document.querySelector('.pickedDrinks').appendChild(div)
         div.appendChild(size)
         div.appendChild(drink)
-        console.log(hots)
+        
         if(hots != null && colds != null){
             drinksArray.push({
                 hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size),
@@ -426,7 +426,6 @@ function renderCustomsMenu(menu){
 }
 
 function processCustom(element,value){
-    
     if(document.querySelector('.pickedDrinks .selected')){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         let drink = drinksArray[drinkNum]
@@ -460,10 +459,62 @@ function processCustom(element,value){
                 document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText='Kids'
             }
         }
+        
         if(value==='shotNumber'){
-            //changeHotAndIced(drink,['shots'][3],3)
-            changeHotAndIced(drink,'shotNumber',3)
-            console.log(drink.hot.shots[0])
+            let bool 
+            if(drinkIsIced[drinkNum]){
+                bool = drink.iced
+            }else{
+                bool=drink.hot
+            }
+            if(element ==='Single'){
+                changeHotAndIced(drink,'shotNumber',1)
+                createModifier('Single','')
+            }
+            if(element ==='Double'){
+                changeHotAndIced(drink,'shotNumber',2)
+                createModifier('Double','')
+            }
+            if(element ==='Triple'){
+                changeHotAndIced(drink,'shotNumber',3)
+                createModifier('Triple','')
+            }
+            if(element ==='Quad'){
+                changeHotAndIced(drink,'shotNumber',4)
+                createModifier('Quad','')
+            }
+            if(element === 'More shots'){
+                let wholeNum = []
+                document.querySelector('.displayAmount p').innerText=''
+                //removeAllChildNodes(document.querySelector('.items'))
+                document.querySelector('.quantityForShots').classList.add('active')
+                document.querySelectorAll('.quantityNums div').forEach((elem)=>{
+                    elem.addEventListener('click',(click)=>{
+                        if(click.target.classList.contains('number')){
+                            
+                            wholeNum.push(click.target.innerText)
+                            console.log(wholeNum.join(''))
+                            
+                            document.querySelector('.displayAmount p').innerText=wholeNum.join('')
+                            
+                        }
+                        if(click.target.classList.contains('clearError')){
+                            console.log(wholeNum.join(''))
+                            if(Number(wholeNum.join(''))<=99 && Number(wholeNum.join(''))>0 ){
+                                changeHotAndIced(drink,'shotNumber',Number(wholeNum.join('')))
+                                console.log(wholeNum.join(''))
+                                document.querySelector('.quantityForShots').classList.remove('active')
+                                renderHotDrinkContents(drink)
+                            }
+                        }
+                        if(click.target.classList.contains('cancelError')){
+                            document.querySelector('.quantityForShots').classList.remove('active')
+                        }
+                    })
+                })
+                
+            }
+            
         }
         if(value === 'iced'){
             if(drinkIsIced[drinkNum]===undefined){
@@ -558,6 +609,12 @@ function createTemplate(modifier){
     drinkArea.appendChild(drinkName)
     checkForSelection()
 }
+function createModifier(first,second){
+    let div = document.createElement('div')
+    div.classList.add('modifier')
+    document.querySelector('.pickedDrinks .selected').appendChild(div)
+    div.innerText=`${first} ${second}`
+}
 let drinkIsModified = []
 
 
@@ -572,7 +629,10 @@ function changeHotAndIced(drink,element,value){
         }
     }
     if(element==='shotNumber'){
-        drink.hot.shots[0] = 3
+        drink.hot.shots.forEach((e,i)=>{
+            console.log(value)
+            drink.hot.shots[i]=value
+        })
     }
 }
 
