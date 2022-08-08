@@ -698,6 +698,7 @@ document.querySelector('.heroku').addEventListener('click', ()=>{
     removeAllChildNodes(document.querySelector('.items'))
     removeAllChildNodes(document.querySelector('.drinkType'))
     apiRequestForCustomizations("https://coffee-trainer.herokuapp.com/api/customizations")
+    apiRequestCustomer('https://coffee-trainer.herokuapp.com/api/customers')
     apiRequest(heroku)
 })
 
