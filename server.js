@@ -23,7 +23,7 @@ const modifiers={
     custom:[]
 }
 modifiers.shotsMenu={'Iced':'iced','Blonde':'coffeeType','Decaf':'coffeeType','1/2 Decaf':'coffeeType','2/3 Decaf':'coffeeType',
-                    '1/3 Decaf':'coffeeType','Single':'shotNumber','Single':'shotNumber','Double':'shotNumber','Triple':'shotNumber',
+                    '1/3 Decaf':'coffeeType','Single':'shotNumber','Double':'shotNumber','Triple':'shotNumber',
                     'Quad':'shotNumber','More shots':'shotNumber','Affogato Shot':'shotNumber','Frappucino Roast':'pumps','Kids':"size",'Updosed':'shotType',
                     'Long Shot':'shotType','Ristretto':'shot type','Short':'size','Tall':'size','Grande':'size','Venti':'size','Trenta':'size'}
 

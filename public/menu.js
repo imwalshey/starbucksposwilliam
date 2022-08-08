@@ -676,24 +676,34 @@ function errorMessage(message,color){
     
 }
 
-let postUrl =(localStorage.getItem('LastClicked').split(',')[3])
-if(localStorage.getItem('LastClicked')){
-    apiRequestForCustomizations(localStorage.getItem('LastClicked').split(',')[0])
-    apiRequest(localStorage.getItem('LastClicked').split(',')[1])
-    apiRequestCustomer(localStorage.getItem('LastClicked').split(',')[2])
+let postUrl
+let production = 'dev'
+let uhhh = "https://coffee-trainer.herokuapp.com/menu"
+function dynamicURL(word){
+    let loc = window.location.href.includes('coffee')
+    if(loc){
+        production='live'
+    }else{
+        production='dev'
+    }
+    
 }
-
-document.querySelector('.local').addEventListener('click', ()=>{
+dynamicURL()
+// if(localStorage.getItem('LastClicked')){
+//     apiRequestForCustomizations(localStorage.getItem('LastClicked').split(',')[0])
+//     apiRequest(localStorage.getItem('LastClicked').split(',')[1])
+//     apiRequestCustomer(localStorage.getItem('LastClicked').split(',')[2])
+// }else
+if(production === 'dev'){
     localStorage.setItem('LastClicked',["http://localhost:8000/api/customizations",local,'http://localhost:8000/api/customers','https://localhost:8000/order'])
     removeAllChildNodes(document.querySelector('.items'))
     removeAllChildNodes(document.querySelector('.drinkType'))
     apiRequestForCustomizations("http://localhost:8000/api/customizations")
     apiRequest(local)
     apiRequestCustomer('http://localhost:8000/api/customers')
-})
-
-
-document.querySelector('.heroku').addEventListener('click', ()=>{
+    postUrl ='http://localhost:8000/order'
+}else
+if(production=== 'live'){
     localStorage.setItem('LastClicked',["https://coffee-trainer.herokuapp.com/api/customizations",heroku,"https://coffee-trainer.herokuapp.com/api/customers,'https://coffee-trainer.herokuapp.com/order'"])
     removeAllChildNodes(document.querySelector('.items'))
     removeAllChildNodes(document.querySelector('.drinkType'))
@@ -701,7 +711,7 @@ document.querySelector('.heroku').addEventListener('click', ()=>{
     apiRequestCustomer('https://coffee-trainer.herokuapp.com/api/customers')
     apiRequest(heroku)
     postUrl ='https://coffee-trainer.herokuapp.com/order'
-})
+}
 
 
 
@@ -800,7 +810,6 @@ async function postAnswer(){
         console.log(error)
     }
 }
-
 
 
     // async function sendit() {
