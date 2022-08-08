@@ -25,7 +25,9 @@ div .menu{
     
 }
 
-
+header h1{
+    font-size: 20px;
+}
 body{
     margin:0;
     display:flex;
@@ -677,6 +679,10 @@ body{
 }
 .customerArea{
     text-align: center;
+    
+}
+.customerArea h1,.customerArea span{
+    font-size: 30px;
 }
 .pickedDrinks div div{
     -moz-user-select: -moz-none;
