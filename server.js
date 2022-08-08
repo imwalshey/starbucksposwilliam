@@ -383,7 +383,7 @@ function translateSize(input){
 customers.push(new CustomerMaker('0','Lucille','large black coffee'))
 customerCorrectAnswers.push(new DrinkBuild(false,'','','','','','','PPR','Vt'))
 customers.push(new CustomerMaker('1','Deborah','large bold roast'))
-customerCorrectAnswers.push(new DrinkBuild(false,'','','','','','','BRC','Vt'))
+customerCorrectAnswers.push(new DrinkBuild(false,'','','','','','','DRC','Vt'))
 customers.push(new CustomerMaker('2','James','venti iced coffee'))
 customerCorrectAnswers.push(new DrinkBuild(true,'','','','','','','IC','Vt'))
 customers.push(new CustomerMaker('3','Carl','venti cold brew, black'))
@@ -407,7 +407,34 @@ coreDrinks.espresso.forEach((element,i)=>{
     
     }
 })
-
+coreDrinks.brewed.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.iced===true && elem.menuBuildIced!==undefined){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name}`))
+    elem.menuBuildIced.size = translateSize(sizes[i])
+    customerCorrectAnswers.push(elem.menuBuildIced)
+    
+    }
+})
+coreDrinks.blended.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.iced===true && elem.menuBuildIced!==undefined){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name}`))
+    elem.menuBuildIced.size = translateSize(sizes[i])
+    customerCorrectAnswers.push(elem.menuBuildIced)
+    
+    }
+})
+coreDrinks.brewed.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i]}`,`${sizes[i]} hot ${elem.name}`))
+    elem.menuBuildHot.size = translateSize(sizes[i])
+    //console.log(translateSize(sizes[i]))
+    customerCorrectAnswers.push(elem.menuBuildHot)
+    
+}
+})
 customerCorrectAnswers.forEach((elem)=>{
     //console.log(JSON.parse(JSON.stringify(elem)).size)
 })
