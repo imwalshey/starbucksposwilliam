@@ -762,7 +762,7 @@ async function postAnswer(){
             document.querySelector('#winOrLose .winCont').classList.remove('hidden')
             document.querySelector('#winOrLose h1').innerText='CORRECT!'
             document.querySelector('.loseTry').classList.add('hidden')
-            document.querySelector('.drinkType').classList.add('hidden')
+            document.querySelector('.drinkTypeg').classList.add('hidden')
             document.querySelector('.loseSkip').classList.add('hidden')
             document.querySelector('#winOrLose .winCont').addEventListener('click',(targ)=>{
                 document.querySelector('.drinkType').classList.remove('hidden')
