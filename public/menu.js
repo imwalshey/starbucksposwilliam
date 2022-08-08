@@ -762,8 +762,10 @@ async function postAnswer(){
             document.querySelector('#winOrLose .winCont').classList.remove('hidden')
             document.querySelector('#winOrLose h1').innerText='CORRECT!'
             document.querySelector('.loseTry').classList.add('hidden')
+            document.querySelector('.drinkType .cats').classList.add('hidden')
             document.querySelector('.loseSkip').classList.add('hidden')
             document.querySelector('#winOrLose .winCont').addEventListener('click',(targ)=>{
+                document.querySelector('.drinkType .cats').classList.remove('hidden')
                 document.getElementById('winOrLose').classList='hidden'
                 removeAllChildNodes(document.querySelector('.pickedDrinks'))
                 document.querySelectorAll('.customizations div div').forEach((div)=>{
@@ -782,18 +784,21 @@ async function postAnswer(){
             document.querySelector('#winOrLose h1').innerText='NOT QUITE!'
             document.querySelector('.loseTry').classList.remove('hidden')
             document.querySelector('.loseSkip').classList.remove('hidden')
+            document.querySelector('.drinkType .cats').classList.add('hidden')
             document.querySelector('#winOrLose .loseSkip').addEventListener('click',(targ)=>{
                 document.getElementById('winOrLose').classList='hidden'
                 removeAllChildNodes(document.querySelector('.pickedDrinks'))
                 document.querySelectorAll('.customizations div div').forEach((div)=>{
                     div.innerText=''
                 })
+                document.querySelector('.drinkType .cats').classList.remove('hidden')
                 drinksArray=[]
                 drinkIsIced=[]
                 numberOfDrinksAdded=0
                 apiRequestCustomer(localStorage.getItem('LastClicked').split(',')[2])
             })
             document.querySelector('#winOrLose .loseTry').addEventListener('click',(targ)=>{
+                document.querySelector('.drinkType .cats').classList.remove('hidden')
                 document.getElementById('winOrLose').classList='hidden'
                 removeAllChildNodes(document.querySelector('.pickedDrinks'))
                 document.querySelectorAll('.customizations div div').forEach((div)=>{

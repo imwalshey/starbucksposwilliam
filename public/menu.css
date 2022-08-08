@@ -801,3 +801,6 @@ body{
 footer.hidden{
     display:none;
 }
+.drinkType .cats.hidden{
+    display:none
+}
