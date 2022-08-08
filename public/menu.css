@@ -807,6 +807,6 @@ body{
 footer.hidden{
     display:none;
 }
-.drinkType .cats.hidden{
+.drinkType.hidden{
     display:none
 }
