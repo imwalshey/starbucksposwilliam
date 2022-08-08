@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(CORS())
 
 app.use('/IMG', express.static(__dirname + '/IMG'));
-
+app.use(express.json())
 
 
 
@@ -77,7 +77,7 @@ class Brewed{
     }
 }
 class DrinkBuild{
-    constructor(IcedBool,DecafAmount,Shots,Pumps,Syrup,Milk,Custom,ABBR){
+    constructor(IcedBool,DecafAmount,Shots,Pumps,Syrup,Milk,Custom,ABBR,SIZE){
         this.iced=IcedBool
         this.decaf=DecafAmount
         this.shots=Shots
@@ -86,7 +86,9 @@ class DrinkBuild{
         this.milk=Milk
         this.custom=Custom
         this.abbr=ABBR
-        this.size = 'Gr'
+        if(SIZE){
+            this.size=SIZE
+        }else this.size = 'Gr'
     }
 }
 
@@ -114,7 +116,6 @@ coreDrinks.brewed.push(new Brewed("Dark Roast",new DrinkBuild(false,'','','','',
 coreDrinks.brewed.push(new Brewed("Blonde Roast",new DrinkBuild(false,'','','','','','','BRC'),null,'Blonde Roast',true,false))
 coreDrinks.brewed.push(new Brewed("Decaf Pike Place Roast",new DrinkBuild(false,'D','','','','','','DPPR'),null,'Decaf Pike',true,false))
 coreDrinks.brewed.push(new Brewed("Hot Coffee Refill",new DrinkBuild(false,'','','','','','','PPRR'),null,'Hot Coffee Refill',true,false))
-
 class Espresso{
     constructor(Name,Steps,hotContents,HotBoolean,IcedBoolean,IcedBuild,ABBR,MenuBuildHot,MenuBuildIced){
         this.name = Name
@@ -304,10 +305,142 @@ coreDrinks.tea.push(new Tea("Mint Majesty Tea",new DrinkBuild(false,'',[null,'',
 coreDrinks.tea.push(new Tea("Peach Tranquility Tea",new DrinkBuild(false,'',[null,'','','',''],[null,3,4,6,7],'','',['TB'],'PTT'),null,
                                             'Peach Tranquility',true,false))  
 coreDrinks.tea.push(new Tea("Honey Citrus Mint Tea",new DrinkBuild(false,'',[null,'','','',''],[null,3,4,6,7],'HB','',['TB','L'],'HCMT'),null,
-                                            'Hny Citrus Mnt',true,false))                                                                                                                                                                                                                                                                                  
+                                            'Hny Citrus Mnt',true,false))
+
+const customers = []
+const customerCorrectAnswers = []
+class CustomerMaker{
+    constructor(ID,Name,Phrase){
+        this.id=ID
+        this.name=Name
+        this.phrase = Phrase
+    }
+}
+
+
+let names = ['Leia', 'Sadie', 'Jose', 'Liberty', 'Bella', 'Caitlin', 'Sara', 'Sinead', 'Priya', 'Ray', 'Matilda',
+'Rosie', 'Claudia', 'Sophie', 'Theresa', 'Lara', 'Khadijah', 'Felicity', 'Agnes', 'Anita', 'Gloria', 'Stephanie',
+'Jemima', 'Abby', 'Charlie', 'Casey', 'Lowri', 'Anna', 'Rosa', 'Zaynab', 'Isabelle', 'Annie', 'Callie', 'Jennifer',
+'Rosemary', 'Jodie', 'Monica', 'Eden', 'Kimberley', 'Nora', 'Maddie', 'Aisha', 'Diana', 'Stacey', 'Imogen', 'Elle', 'Tara', 
+'Alina', 'Kelly', 'Rachel', 'Darcie', 'Kayla', 'Kathryn', 'India', 'Anisa', 'Adrian', 'Gracie', 'Cerys', 'Isla', 'Mabel', 
+'Yasmin', 'Melody', 'Ayla', 'Kyra', 'Jasmin', 'Ana', 'Ellie-Mae', 'Crystal', 'Marie', 'Ciaran', 'Christina', 'Samantha', 'Violet', 
+'Robin', 'Salma', 'Joanne', 'Esther', 'Molly', 'Melanie', 'Jenna', 'Emilie', 'Mariam', 'Sharon', 'Lucia',
+'Milly', 'Anika', 'Julie', 'Tamara', 'Lola', 'Constance', 'Jesse', 'Edith', 'Caroline', 'Hattie', 'Joel', 'Amy', 'Alexa (Alexi)',
+'Hafsah', 'Anastasia', 'Margaret','Jemima', 'Kayleigh ', 'Lisa', 'Thea', 'Nannie', 'Chelsea', 'Isabella',
+'Orla', 'Beatrice', 'Jessie', 'Autumn', 'Ellen', 'Joyce', 'Alyssa', 'Syeda', 'Scarlett', 'Heather', 'Bailey',
+'Demi', 'Carla', 'Elsa', 'Lillian', 'Katelyn ', 'Kiara', 'Georgia', 'Amelia', 'Milly', 'Georgie', 'Paige',
+'Kye', 'Jean', 'Harris', 'Ray', 'Yasmine', 'Leona', 'Cerys', 'Louisa', 'Annabel', 'Zainab', 'Maya', 'Neve',
+'Crystal', 'Rosie', 'Anne', 'Madeleine', 'Madeline', 'Gemma', 'Dorothy (Thema)', 'Mason', 'Ebony', 'Lois', 
+'Alex', 'Betty', 'Natasha', 'Genevieve', 'Arabella', 'Kayla', 'Florence', 'Laila', 'Edie', 'Elizabeth', 
+'Halima', 'Michaela', 'Jennifer', 'Isla', 'Lottie', 'Felix', 'Sarah', 'Abbie', 'Sapphire', 'Rose', 'Aimee',
+'Gertrude', 'Lacey', 'Anisa', 'Brianna (Bree)', 'Frances (Fanny)', 'Kitty', 'Tia', 'Charlotte', 'Christine',
+'Harmony', 'Fern', 'Stella', 'Karen', 'Maryam', 'Annabelle', 'Fannie', 'Salma', 'Shane', 'Tallulah', 'Kate',
+'Catherine', 'Kiera', 'Evelyn', 'Olivia', 'Hafsah', 'Violet', 'Ruth', 'Kyla']
+
+let sizes = [
+    'tall',   'tall',   'venti',  'large',  'venti',  'venti',
+    'venti',  'tall',   'medium', 'tall',   'tall',   'large',
+    'large',  'small',  'medium', 'grande', 'large',  'grande',
+    'venti',  'venti',  'grande', 'medium', 'grande', 'venti',
+    'grande', 'medium', 'medium', 'venti',  'large',  'tall',
+    'medium', 'venti',  'tall',   'grande', 'small',  'medium',
+    'venti',  'grande', 'grande', 'large',  'medium', 'grande',
+    'grande', 'small',  'medium', 'short',  'large',  'grande',
+    'large',  'venti',  'tall',   'short',  'venti',  'large',
+    'large',  'small',  'grande', 'large',  'medium', 'grande',
+    'grande', 'large',  'small',  'large',  'tall',   'tall',
+    'small',  'small',  'grande', 'grande', 'grande', 'tall',
+    'grande', 'small',  'tall',   'large',  'large',  'medium',
+    'medium', 'venti',  'large',  'large',  'small',  'grande',
+    'medium', 'small',  'large',  'large',  'venti',  'tall',
+    'medium', 'tall',   'small',  'medium', 'medium', 'venti',
+    'small',  'medium', 'medium', 'venti'
+  ]
+// let temparray=[]
+// function sizeGenerator(length){
+//     let tempsize = ['small','tall','small','tall','small','tall','grande','medium','grande','medium','grande','medium','grande','medium','grande','medium','grande','medium','venti','large','venti','large','venti','large','venti','large','venti','large','short']
+    
+//     for(i=0;i<length;i++){
+//         let randomNum = Math.floor(Math.random() * tempsize.length)
+//         temparray.push(tempsize[randomNum])
+//     }
+// }
+// sizeGenerator(100)
+
+function translateSize(input){
+    let string = input.toLowerCase()
+    if(string === 'large'|| string === 'venti'){
+        return 'Vt'
+    }
+    if(string === 'medium'|| string === 'grande'){
+        return 'Gr'
+    }
+    if(string === 'tall'|| string === 'small'){
+        return 'Tl'
+    }
+}
+
+customers.push(new CustomerMaker('0','Lucille','large black coffee'))
+customerCorrectAnswers.push(new DrinkBuild(false,'','','','','','','PPR','Vt'))
+customers.push(new CustomerMaker('1','Deborah','large bold roast'))
+customerCorrectAnswers.push(new DrinkBuild(false,'','','','','','','BRC','Vt'))
+customers.push(new CustomerMaker('2','James','venti iced coffee'))
+customerCorrectAnswers.push(new DrinkBuild(true,'','','','','','','IC','Vt'))
+customers.push(new CustomerMaker('3','Carl','venti cold brew, black'))
+customerCorrectAnswers.push(new DrinkBuild(true,'','','','','','','CB','Vt'))
+coreDrinks.espresso.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i]}`,`${sizes[i]} hot ${elem.name}`))
+    elem.menuBuildHot.size = translateSize(sizes[i])
+    //console.log(translateSize(sizes[i]))
+    customerCorrectAnswers.push(elem.menuBuildHot)
+    
+}
+})
+coreDrinks.espresso.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.iced===true && elem.menuBuildIced!==undefined){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i + Number(customers[customers.length-1].id)]}`,`${sizes[i]} iced ${elem.name}`))
+    elem.menuBuildIced.size = translateSize(sizes[i])
+    customerCorrectAnswers.push(elem.menuBuildIced)
+    
+    }
+})
+
+customerCorrectAnswers.forEach((elem)=>{
+    //console.log(JSON.parse(JSON.stringify(elem)).size)
+})
 app.post('/order',(req,res)=>{
-    console.log(req.body)
-    res.json(req.body)
+    let points = 0
+    req.body.drinksArray.forEach((drink,i)=>{
+        let answer
+        if(req.body.drinkIsIced[i]===true){
+            answer = req.body.drinksArray[i].iced
+        }
+        if(req.body.drinkIsIced[i]===false){
+            answer = req.body.drinksArray[i].hot
+        }
+        if(JSON.stringify(answer) ===JSON.stringify(customerCorrectAnswers[Number(req.body.customerID)])){
+            points+=1
+        }
+    })
+    if(points>=1){
+            res.json('win')
+    }else{
+            res.json('lose')
+    }
+    
+})
+
+
+
+
+
+
+
+app.get('/api/customers',(req,res)=>{
+    res.json(customers)
 })
 
 app.get('/',(req,res)=>{
@@ -334,5 +467,7 @@ app.get('/api/customizations'.toLowerCase(),(req,res)=>{
 app.get('/api/roasts'.toLowerCase(),(req,res)=>{
     res.json(roasts)
 })
-
+app.get('/api/customer'.toLowerCase(),(req,res)=>{
+    res.json(customer.phrase)
+})
 app.listen(process.env.PORT || PORT)

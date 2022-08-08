@@ -392,6 +392,8 @@ async function apiRequest(url){  //Calls the API and brings drink data to the
         statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(255, 0, 0))'
     }
 }
+let customerID
+
 
 let menuData
 async function apiRequestForCustomizations(url){
@@ -678,41 +680,143 @@ function errorMessage(message,color){
 if(localStorage.getItem('LastClicked')){
     apiRequestForCustomizations(localStorage.getItem('LastClicked').split(',')[0])
     apiRequest(localStorage.getItem('LastClicked').split(',')[1])
+    apiRequestCustomer(localStorage.getItem('LastClicked').split(',')[2])
 }
 
 document.querySelector('.local').addEventListener('click', ()=>{
-    localStorage.setItem('LastClicked',["http://localhost:8000/api/customizations",local])
+    localStorage.setItem('LastClicked',["http://localhost:8000/api/customizations",local,'http://localhost:8000/api/customers'])
     removeAllChildNodes(document.querySelector('.items'))
     removeAllChildNodes(document.querySelector('.drinkType'))
     apiRequestForCustomizations("http://localhost:8000/api/customizations")
     apiRequest(local)
+    apiRequestCustomer('http://localhost:8000/api/customers')
 })
 
 
 document.querySelector('.heroku').addEventListener('click', ()=>{
-    localStorage.setItem('LastClicked',["https://coffee-trainer.herokuapp.com/api/customizations",heroku])
+    localStorage.setItem('LastClicked',["https://coffee-trainer.herokuapp.com/api/customizations",heroku,"https://coffee-trainer.herokuapp.com/api/customers"])
     removeAllChildNodes(document.querySelector('.items'))
     removeAllChildNodes(document.querySelector('.drinkType'))
     apiRequestForCustomizations("https://coffee-trainer.herokuapp.com/api/customizations")
     apiRequest(heroku)
 })
 
-document.querySelector('.findOrder').addEventListener('click',()=>{
-    sendit()
-})
-    async function sendit() {
-        const rawResponse = await fetch(postUrl, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(drinksArray)
-        });
-        const content = await rawResponse.json();
-      
-        ;
-      }
+
+
 
 const postUrl ='http://localhost:8000/order'
+// document.querySelector('.findOrder').addEventListener('click',()=>{
+//     let body = JSON.stringify({drinksArray,drinkIsIced,customerID})
+//     fetch(postUrl, {
+//         method: 'POST',
+//         headers:{
+//             'Content-Type':'application/json'
+//         },
+//         body: body
+//        }).then(res=>{
+//         console.log(res.json())
+//        })
+//        console.log(body)
+    
+// })
+document.querySelector('.findOrder').addEventListener('click',postAnswer)
+async function apiRequestCustomer(url){
+    try{
+        const response = await fetch(url)
+        const data = await response.json()
+        console.log(data.length-1)
+        const randomNum = Math.floor(Math.random() * (data.length))
+        document.querySelector('.customerName').innerText=data[randomNum].name
+        document.querySelector('.customerAsk').innerText=data[randomNum].phrase
+        customerID=data[randomNum].id
+    }catch(error){
+        console.log(error)
+    }
+}
+async function postAnswer(){
+    let body = JSON.stringify({drinksArray,drinkIsIced,customerID})
+    try{
+        const response = await fetch(postUrl, {
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: body
+           })
+        const data = await response.json()
+        
+        if(data==='win'){
+            document.getElementById('winOrLose').classList='win'
+            document.querySelector('#winOrLose .winCont').classList.remove('hidden')
+            document.querySelector('#winOrLose h1').innerText='CORRECT!'
+            document.querySelector('.loseTry').classList.add('hidden')
+            document.querySelector('.loseSkip').classList.add('hidden')
+            document.querySelector('#winOrLose .winCont').addEventListener('click',(targ)=>{
+                document.getElementById('winOrLose').classList='hidden'
+                removeAllChildNodes(document.querySelector('.pickedDrinks'))
+                document.querySelectorAll('.customizations div div').forEach((div)=>{
+                    div.innerText=''
+                })
+                drinksArray=[]
+                drinkIsIced=[]
+                numberOfDrinksAdded=0
+                apiRequestCustomer(localStorage.getItem('LastClicked').split(',')[2])
+            })
+
+        }
+        if(data==='lose'){
+            document.getElementById('winOrLose').classList='lose'
+            document.querySelector('#winOrLose .winCont').classList.add('hidden')
+            document.querySelector('#winOrLose h1').innerText='NOT QUITE!'
+            document.querySelector('.loseTry').classList.remove('hidden')
+            document.querySelector('.loseSkip').classList.remove('hidden')
+            document.querySelector('#winOrLose .loseSkip').addEventListener('click',(targ)=>{
+                document.getElementById('winOrLose').classList='hidden'
+                removeAllChildNodes(document.querySelector('.pickedDrinks'))
+                document.querySelectorAll('.customizations div div').forEach((div)=>{
+                    div.innerText=''
+                })
+                drinksArray=[]
+                drinkIsIced=[]
+                numberOfDrinksAdded=0
+                apiRequestCustomer(localStorage.getItem('LastClicked').split(',')[2])
+            })
+            document.querySelector('#winOrLose .loseTry').addEventListener('click',(targ)=>{
+                document.getElementById('winOrLose').classList='hidden'
+                removeAllChildNodes(document.querySelector('.pickedDrinks'))
+                document.querySelectorAll('.customizations div div').forEach((div)=>{
+                    div.innerText=''
+                })
+                drinksArray=[]
+                drinkIsIced=[]
+                numberOfDrinksAdded=0
+            })
+
+        }
+        
+    }catch(error){
+        console.log(error)
+    }
+}
+
+
+
+    // async function sendit() {
+    //     let answer = JSON.stringify(drinksArray)
+    //     const rawResponse = await fetch(postUrl, {
+    //       method: 'POST',
+    //       headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //       },
+    //       body: answer
+          
+    //     });
+    //     const content = await rawResponse.json();
+        
+      
+    //     ;
+    //   }
+
+
 

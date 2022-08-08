@@ -14,10 +14,23 @@
     <header>
         
     </header>
+    <div>
+        <h1>Starbucks™ Point Of Sale Simulator</h1>
 
+    </div>
+    <div class = 'customerArea'>
+        <h1>Name:<span class="customerName">Can't connect</span></h1>
+        <h1>"Hi, I'd like a <span class="customerAsk"></span>."</h1>
+    </div>
     <div class="menuWrapper">
         
         <section class="menu">
+            <div id="winOrLose" class = "hidden">
+                <h1>CORRECT!</h1>
+                <div class="winCont hidden">Continue</div>
+                <div class="loseSkip hidden">Skip</div>
+                <div class="loseTry hidden">Try Again</div>
+            </div>
             <div class="errorMessage">
                 <div class="errorBox">
                     <p></p>
