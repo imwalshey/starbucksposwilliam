@@ -676,7 +676,7 @@ function errorMessage(message,color){
     
 }
 
-
+let postUrl =(localStorage.getItem('LastClicked').split(',')[3])
 if(localStorage.getItem('LastClicked')){
     apiRequestForCustomizations(localStorage.getItem('LastClicked').split(',')[0])
     apiRequest(localStorage.getItem('LastClicked').split(',')[1])
@@ -684,7 +684,7 @@ if(localStorage.getItem('LastClicked')){
 }
 
 document.querySelector('.local').addEventListener('click', ()=>{
-    localStorage.setItem('LastClicked',["http://localhost:8000/api/customizations",local,'http://localhost:8000/api/customers'])
+    localStorage.setItem('LastClicked',["http://localhost:8000/api/customizations",local,'http://localhost:8000/api/customers','https://localhost:8000/order'])
     removeAllChildNodes(document.querySelector('.items'))
     removeAllChildNodes(document.querySelector('.drinkType'))
     apiRequestForCustomizations("http://localhost:8000/api/customizations")
@@ -694,18 +694,19 @@ document.querySelector('.local').addEventListener('click', ()=>{
 
 
 document.querySelector('.heroku').addEventListener('click', ()=>{
-    localStorage.setItem('LastClicked',["https://coffee-trainer.herokuapp.com/api/customizations",heroku,"https://coffee-trainer.herokuapp.com/api/customers"])
+    localStorage.setItem('LastClicked',["https://coffee-trainer.herokuapp.com/api/customizations",heroku,"https://coffee-trainer.herokuapp.com/api/customers,'https://coffee-trainer.herokuapp.com/order'"])
     removeAllChildNodes(document.querySelector('.items'))
     removeAllChildNodes(document.querySelector('.drinkType'))
     apiRequestForCustomizations("https://coffee-trainer.herokuapp.com/api/customizations")
     apiRequestCustomer('https://coffee-trainer.herokuapp.com/api/customers')
     apiRequest(heroku)
+    postUrl ='https://coffee-trainer.herokuapp.com/order'
 })
 
 
 
 
-const postUrl ='http://localhost:8000/order'
+
 // document.querySelector('.findOrder').addEventListener('click',()=>{
 //     let body = JSON.stringify({drinksArray,drinkIsIced,customerID})
 //     fetch(postUrl, {
