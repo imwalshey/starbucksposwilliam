@@ -1,5 +1,6 @@
 @font-face {
-    font-family: SodoSans;
+    font-family: SodoSansBold;
+    font-weight: bold;
     src: url("../public/fonts/SoDoSans-Bold.otf") format("opentype");
 }
 @font-face {
@@ -58,7 +59,7 @@ header{
 }
 header h1{
     font-size: 20px;
-    font-family: SodoSans;
+    font-family: SodoSansBold;
     color:white;
 }
 body{
