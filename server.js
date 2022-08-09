@@ -187,52 +187,52 @@ class Frappucino{
         this.layered = Layered
         this.abbr =ABBR
         this.hot=Hot
-        this.iced=Iced
+        //this.iced=Iced
         this.menuBuildHot=MBH
         this.menuBuildIced=MBI
     }
 }
 
-coreDrinks.blended.push(new Frappucino('Coffee Frappucino',['pump coffee','pour milk','add to blender','add ice','add base','blend','pour into cup'],['milk','frapp roast','ice'],false,'',false,"Coffee Frapp",false,true, new DrinkBuild(true,'','',[null,2,3,4,null],'','W','FR','CF'),null))
-coreDrinks.blended.push(new Frappucino('Mocha Frappucino',['pump coffee','pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','frapp roast','mocha syrup','ice'],true,'',false,"Mocha Frapp",false,true, new DrinkBuild(true,'','',[null,2,3,4,null],'M','W',['FR','WC'],'MF'),null))
-coreDrinks.blended.push(new Frappucino('Caramel Frappucino',['pump coffee','pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','frapp roast','caramel syrup','ice'],true,'caramel drizzle',false,"Caramel Frapp",false,true, new DrinkBuild(true,'','',[null,2,3,4,null],'C','W',['FR','CD','WC'],'CRF'),null))
-coreDrinks.blended.push(new Frappucino('Java Chip Frappucino',['pump coffee','pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','frapp roast','mocha syrup','java chips','ice'],true,'mocha drizzle',false,"Java Chip Frapp",false,true, new DrinkBuild(true,'','',[null,2,3,4,null],'M','W',['JC','FR','MDR','WC'],'JCF'),null))
-coreDrinks.blended.push(new Frappucino('Cafè Vanilla Frappucino',['pump coffee','pour milk','add to blender','add ice','add base','blend','pour into cup'],['milk','frapp roast','vanilla bean','ice'],true,'',false,"Cafè Vanilla Frapp",false,true, new DrinkBuild(true,'','',[null,2,3,4,null],'','W',['FR','WC','VB'],'VBF'),null))
-coreDrinks.blended.push(new Frappucino('Espresso Frappucino',['pump coffee','pour milk','add to blender','add ice','add base','blend','pour into cup'],['milk','frapp roast','espresso','ice'],false,'',false,"Espresso Frapp",false,true, new DrinkBuild(true,'',[1,1,1,1],[null,2,3,4,null],'','W','FR','EF'),null))
-coreDrinks.blended.push(new Frappucino('White Mocha Frappucino',['pump coffee','pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','frapp roast','white mocha syrup','ice'],true,'',false,"White Mocha Frapp",false,true, new DrinkBuild(true,'','',[null,2,3,4,null],'WCM','W',['FR','WC'],'WCMF'),null))
+coreDrinks.blended.push(new Frappucino('Coffee Frappucino',['pump coffee','pour milk','add to blender','add ice','add base','blend','pour into cup'],['milk','frapp roast','ice'],false,'',false,"Coffee Frapp",false,true, new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'','W','FR','CF'),null))
+coreDrinks.blended.push(new Frappucino('Mocha Frappucino',['pump coffee','pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','frapp roast','mocha syrup','ice'],true,'',false,"Mocha Frapp",false,true, new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'M','W',['FR','WC'],'MF'),null))
+coreDrinks.blended.push(new Frappucino('Caramel Frappucino',['pump coffee','pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','frapp roast','caramel syrup','ice'],true,'caramel drizzle',false,"Caramel Frapp",false,true, new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'C','W',['FR','CD','WC'],'CRF'),null))
+coreDrinks.blended.push(new Frappucino('Java Chip Frappucino',['pump coffee','pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','frapp roast','mocha syrup','java chips','ice'],true,'mocha drizzle',false,"Java Chip Frapp",false,true, new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'M','W',['JC','FR','MDR','WC'],'JCF'),null))
+coreDrinks.blended.push(new Frappucino('Cafè Vanilla Frappucino',['pump coffee','pour milk','add to blender','add ice','add base','blend','pour into cup'],['milk','frapp roast','vanilla bean','ice'],true,'',false,"Cafè Vanilla Frapp",false,true, new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'','W',['FR','WC','VB'],'VBF'),null))
+coreDrinks.blended.push(new Frappucino('Espresso Frappucino',['pump coffee','pour milk','add to blender','add ice','add base','blend','pour into cup'],['milk','frapp roast','espresso','ice'],false,'',false,"Espresso Frapp",false,true, new DrinkBuild(true,'',[null,1,1,1,null],[null,2,3,4,null],'','W','FR','EF'),null))
+coreDrinks.blended.push(new Frappucino('White Mocha Frappucino',['pump coffee','pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','frapp roast','white mocha syrup','ice'],true,'',false,"White Mocha Frapp",false,true, new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'WCM','W',['FR','WC'],'WCMF'),null))
 coreDrinks.blended.push(new Frappucino('Caramel Ribbon Crunch Frappucino',['pump coffee','pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],
     ['milk','frapp roast','dark caramel','ice'],true,'caramel drizzle,caramel crunch',['dark caramel','whipped cream'],"Caramel Crunch Frapp",false,true,
-    new DrinkBuild(true,'','',[null,2,3,4,null],'DC','W',['FR','WC','CRT'],'CRCF'),null))
+    new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'DC','W',['FR','WC','CRT'],'CRCF'),null))
 coreDrinks.blended.push(new Frappucino('Mocha Cookie Crumble Frappucino',['pump coffee','pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],
     ['milk','frapp roast','mocha syrup','java chips','ice'],true,'mocha drizzle,cookie crumble',['cookie crumble','whipped cream'],
-    "Mocha Cookie Crmbl Frapp",false,true, new DrinkBuild(true,'','',[null,2,3,4,null],'M','W',['FR','JC','WC','CCT'],'MCCF'),null))
+    "Mocha Cookie Crmbl Frapp",false,true, new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'M','W',['FR','JC','WC','CCT'],'MCCF'),null))
 coreDrinks.blended.push(new Frappucino('Chai Crème Frappucino',
     ['pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],
     ['chai','milk','ice'],true,'cinnamon',false,"Chai Crm Frapp",false,true, 
-    new DrinkBuild(true,'','',[null,2,3,4,null],'CH','W',['CP'],'CF'),null))
+    new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'CH','W',['CP'],'CF'),null))
 coreDrinks.blended.push(new Frappucino('Double Chocolatey Chip Crème Frappucino',
     ['pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],
     ['milk','mocha syrup','java chips','ice'],
     true,'mocha drizzle',false,"Dbl Choc Crm Frapp",false,true, 
-    new DrinkBuild(true,'','',[null,2,3,4,null],'M','W',['WC','MDR'],'DCCF'),null))
+    new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'M','W',['WC','MDR'],'DCCF'),null))
 coreDrinks.blended.push(new Frappucino('Vanilla Bean Crème Frappucino',['pour milk','add to blender','add ice','add base','blend','pour into cup'],['milk','vanilla bean','ice'],true,'',false,"Vanilla Bean Crm Frapp",false,true,
-     new DrinkBuild(true,'','',[null,2,3,4,null],'','W',['VB','WC'],'VBCF'),null))
+     new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'','W',['VB','WC'],'VBCF'),null))
 coreDrinks.blended.push(new Frappucino('White Mocha Crème Frappucino',['pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],
     ['milk','white mocha syrup','ice'],true,'',false,"White Mocha Crm Frapp",false,true,
-     new DrinkBuild(true,'','',[null,2,3,4,null],'','W',['WC'],'WMCF'),null))
+     new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'','W',['WC'],'WMCF'),null))
 coreDrinks.blended.push(new Frappucino('Matcha Crème Frappucino',['pour milk','add to blender','add flavor','add ice','add base','blend','pour into cup'],['milk','matcha','ice'],
     true,'',false,"Matcha Creme Frapp",false,true, 
-    new DrinkBuild(true,'','',[null,2,3,4,null],'','W',['WC','M'],'MTCF'),null))
+    new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'','W',['WC','M'],'MTCF'),null))
 coreDrinks.blended.push(new Frappucino('Syrup Crème Frappucino',['pour milk','add to blender','add ice','add base','blend','pour into cup'],['milk','ice'],true,'',false,"Syrup Crm Frapp",false,true, 
-new DrinkBuild(true,'','',[null,2,3,4,null],'','W',['WC'],'CRMF'),null))
+new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'','W',['WC'],'CRMF'),null))
 coreDrinks.blended.push(new Frappucino('Strawberry Crème Frappucino',['pour strawberry puree to bottom ridge','pour milk','add to blender','add ice','add base','blend','pour into cup'],['milk','strawberry puree','ice'],true,'',false,"Strawberry Crm Frapp",false,true, 
-new DrinkBuild(true,'','',[null,2,3,4,null],'','W',['WC','SP'],'SCF'),null))
+new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'','W',['WC','SP'],'SCF'),null))
 coreDrinks.blended.push(new Frappucino('Caramel Ribbon Crunch Crème Frappucino',['pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','dark caramel','ice'],true,'caramel drizzle,caramel crunch',['dark caramel','whipped cream'],"Crml Ribbon Crm Frapp",false,true, 
-new DrinkBuild(true,'','',[null,2,3,4,null],'DC','W',['WC','CCT'],'CRCF'),null))
+new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'DC','W',['WC','CCT'],'CRCF'),null))
 coreDrinks.blended.push(new Frappucino('Chocolate Cookie Crumble Crème Frappucino',['pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','mocha syrup','java chips','ice'],true,'mocha drizzle,cookie crumble',['cookie crumble','whipped cream'],"Choc Cookie Crm Frapp",false,true, 
-new DrinkBuild(true,'','',[null,2,3,4,null],'M','W',['WC','MDR','JC'],'CCRF'),null))
+new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'M','W',['WC','MDR','JC'],'CCRF'),null))
 coreDrinks.blended.push(new Frappucino('Blended Strawberry Lemonade',['pour milk','add to blender','add ice','add base','blend','pour into cup'],['lemonade','strawberry puree','ice'],false,'',false,'Str Crm Frapp',false,true, 
-new DrinkBuild(true,'','',[null,2,3,4,null],'','',['LE','SP'],'CRMF'),null))
+new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'','',['LE','SP'],'CRMF'),null))
 
 class Tea{
     constructor(Name,Build,IcedBuild, ABBR,Hot,Iced){
@@ -318,7 +318,7 @@ class CustomerMaker{
     }
 }
 
-
+//document.querySelectorAll('.name_heading').forEach((elem)=>{array.push(elem.innerText)})
 let names = ['Leia', 'Sadie', 'Jose', 'Liberty', 'Bella', 'Caitlin', 'Sara', 'Sinead', 'Priya', 'Ray', 'Matilda',
 'Rosie', 'Claudia', 'Sophie', 'Theresa', 'Lara', 'Khadijah', 'Felicity', 'Agnes', 'Anita', 'Gloria', 'Stephanie',
 'Jemima', 'Abby', 'Charlie', 'Casey', 'Lowri', 'Anna', 'Rosa', 'Zaynab', 'Isabelle', 'Annie', 'Callie', 'Jennifer',
@@ -336,9 +336,180 @@ let names = ['Leia', 'Sadie', 'Jose', 'Liberty', 'Bella', 'Caitlin', 'Sara', 'Si
 'Halima', 'Michaela', 'Jennifer', 'Isla', 'Lottie', 'Felix', 'Sarah', 'Abbie', 'Sapphire', 'Rose', 'Aimee',
 'Gertrude', 'Lacey', 'Anisa', 'Brianna (Bree)', 'Frances (Fanny)', 'Kitty', 'Tia', 'Charlotte', 'Christine',
 'Harmony', 'Fern', 'Stella', 'Karen', 'Maryam', 'Annabelle', 'Fannie', 'Salma', 'Shane', 'Tallulah', 'Kate',
-'Catherine', 'Kiera', 'Evelyn', 'Olivia', 'Hafsah', 'Violet', 'Ruth', 'Kyla']
+'Catherine', 'Kiera', 'Evelyn', 'Olivia', 'Hafsah', 'Violet', 'Ruth', 'Kyla','Dale', 'Teresa (Terri)', 'Beatrice', 
+'Darcie', 'Emilia', 'Cora', 'Kye', 'Cleo', 'Bethan', 'Robbie', 'Frances (Franki)', 'Sofia (Saffi)', 'Violet', 'Annie', 
+'Terry (Tess)', 'Amira', 'Claudia', 'Edie', 'Hafsa', 'Joanne (Joann)', 'Heather', 'Lisa', 'Ana', 'Erica', 'Bethany', 
+'Mariam (Mitzi)', 'Jodie', 'Alana', 'Madeline', 'Keira', 'Fatima', 'Annabelle', 'Alfie', 'Melanie', 'Zoe', 'Marie', 'Jay', 
+'Jasmine', 'Iqra', 'Ellis', 'Morgan', 'Karen (Karie)', 'Barbara', 'Robin', 'Lillian (Lili)', 'Martha', 'Ellen (Ellia)', 
+'Georgie', 'Heidi (Addie)', 'Rowan', 'Katie (Katya)', 'Elise', 'Alexa', 'Harley', 'Grace', 'Sandra (Shura)',
+'Maryam (Mitzi)', 'Holly', 'Molly', 'Serena', 'Natasha (Tassa)', 'Kathleen (Kathy)', 'Veronica', 'Elsie', 'Maisie (Maja)', 
+'Nora', 'Hanna', 'Roxanne', 'Emmie', 'Orla', 'Zaynab', 'Erika', 'Carys', 'Florence', 'Tyler', 'Nancy', 'Khadijah',
+'Daniella (Dannelle)', 'Abbie', 'Aliyah', 'Isabelle', 'Alexia (Alex)', 'Nannie', 'India', 'Isobel', 'Evelyn (Eila)', 'Elizabeth (Liz)', 
+'Neve', 'Nettie', 'Naomi', 'Lucy (Lulu)', 'Christine (Chrissy)', 'Danielle (Danylynn)', 'Alina', 'Genevieve', 'Theresa', 'Stella',
+'Tabitha', 'Felix', 'Jerry','Rebecca (Becca)', 'Mariam (Mitzi)', 'Kimberly', 'Samantha', 'Taylor', 'Annie', 
+'Evie', 'Ayesha', 'Lola', 'Tiffany', 'Flora', 'Mia', 'Yasmin', 'Erica', 'Amina', 'Leona (Loni)', 'Nia', 'Miriam (Mitzi)', 
+'Jay', 'Hayley (Halle)', 'Michelle (Mia)', 'Daisy', 'Megan (Meg)', 'Eva', 'Iqra', 'Jerry', 'Alfie', 'Bailey', 'Kelly', 'Mabel', 
+'Nellie (Nella)', 'Kyra', 'Katy', 'Kira', 'Deborah', 'Zahra', 'Rowan', 'Rachel', 'Ebony', 'Michaela (Michal)', 'Thea', 'Gracie', 
+'Willie', 'Melanie', 'Hattie (Etta)', 'Rita', 'Sofia (Sofi)', 'Cory', 'Paula', 'Nancy', 'Evangeline', 'Anisa', 'Lana', 'Savannah', 
+'Tilly', 'Jacqueline', 'Susan (Sue)', 'Lachlan', 'Monica', 'Amy', 'Aminah', 'Mason', 'Hazel', 'Rosa', 'Claudia', 'Vanessa', 
+'Melissa (Lyssa)', 'Isobel', 'Anita', 'Jennifer (Jennah)', 'Ellis', 'Eliza (Telsa)', 'Spencer', 'Haleema', 'Jamie', 'Alisha', 
+'Darcie', 'Tanisha', 'Maryam (Mitzi)', 'Isla', 'Connie', 'Phoebe', 'Sophie (Sofi)', 'Kiera', 'Katie (Catia)', 'Cara', 'Sarah',
+'Harley', 'Laura (Lori)', 'Kaitlyn (Cait)', 'Tina', 'Teresa (Terrie)', 'Faith', 'Alesha', 'Lara', 'Sadie', 'Anne', 'Tamara', 'Tia', 'Lucie']
 
 let sizes = [
+    'tall',   'tall',   'venti',  'large',  'venti',  'venti',
+    'venti',  'tall',   'medium', 'tall',   'tall',   'large',
+    'large',  'small',  'medium', 'grande', 'large',  'grande',
+    'venti',  'venti',  'grande', 'medium', 'grande', 'venti',
+    'grande', 'medium', 'medium', 'venti',  'large',  'tall',
+    'medium', 'venti',  'tall',   'grande', 'small',  'medium',
+    'venti',  'grande', 'grande', 'large',  'medium', 'grande',
+    'grande', 'small',  'medium', 'short',  'large',  'grande',
+    'large',  'venti',  'tall',   'short',  'venti',  'large',
+    'large',  'small',  'grande', 'large',  'medium', 'grande',
+    'grande', 'large',  'small',  'large',  'tall',   'tall',
+    'small',  'small',  'grande', 'grande', 'grande', 'tall',
+    'grande', 'small',  'tall',   'large',  'large',  'medium',
+    'medium', 'venti',  'large',  'large',  'small',  'grande',
+    'medium', 'small',  'large',  'large',  'venti',  'tall',
+    'medium', 'tall',   'small',  'medium', 'medium', 'venti',
+    'small',  'medium', 'medium', 'venti',
+    'tall',   'tall',   'venti',  'large',  'venti',  'venti',
+    'venti',  'tall',   'medium', 'tall',   'tall',   'large',
+    'large',  'small',  'medium', 'grande', 'large',  'grande',
+    'venti',  'venti',  'grande', 'medium', 'grande', 'venti',
+    'grande', 'medium', 'medium', 'venti',  'large',  'tall',
+    'medium', 'venti',  'tall',   'grande', 'small',  'medium',
+    'venti',  'grande', 'grande', 'large',  'medium', 'grande',
+    'grande', 'small',  'medium', 'short',  'large',  'grande',
+    'large',  'venti',  'tall',   'short',  'venti',  'large',
+    'large',  'small',  'grande', 'large',  'medium', 'grande',
+    'grande', 'large',  'small',  'large',  'tall',   'tall',
+    'small',  'small',  'grande', 'grande', 'grande', 'tall',
+    'grande', 'small',  'tall',   'large',  'large',  'medium',
+    'medium', 'venti',  'large',  'large',  'small',  'grande',
+    'medium', 'small',  'large',  'large',  'venti',  'tall',
+    'medium', 'tall',   'small',  'medium', 'medium', 'venti',
+    'small',  'medium', 'medium', 'venti',
+    'tall',   'tall',   'venti',  'large',  'venti',  'venti',
+    'venti',  'tall',   'medium', 'tall',   'tall',   'large',
+    'large',  'small',  'medium', 'grande', 'large',  'grande',
+    'venti',  'venti',  'grande', 'medium', 'grande', 'venti',
+    'grande', 'medium', 'medium', 'venti',  'large',  'tall',
+    'medium', 'venti',  'tall',   'grande', 'small',  'medium',
+    'venti',  'grande', 'grande', 'large',  'medium', 'grande',
+    'grande', 'small',  'medium', 'short',  'large',  'grande',
+    'large',  'venti',  'tall',   'short',  'venti',  'large',
+    'large',  'small',  'grande', 'large',  'medium', 'grande',
+    'grande', 'large',  'small',  'large',  'tall',   'tall',
+    'small',  'small',  'grande', 'grande', 'grande', 'tall',
+    'grande', 'small',  'tall',   'large',  'large',  'medium',
+    'medium', 'venti',  'large',  'large',  'small',  'grande',
+    'medium', 'small',  'large',  'large',  'venti',  'tall',
+    'medium', 'tall',   'small',  'medium', 'medium', 'venti',
+    'small',  'medium', 'medium', 'venti',
+    'tall',   'tall',   'venti',  'large',  'venti',  'venti',
+    'venti',  'tall',   'medium', 'tall',   'tall',   'large',
+    'large',  'small',  'medium', 'grande', 'large',  'grande',
+    'venti',  'venti',  'grande', 'medium', 'grande', 'venti',
+    'grande', 'medium', 'medium', 'venti',  'large',  'tall',
+    'medium', 'venti',  'tall',   'grande', 'small',  'medium',
+    'venti',  'grande', 'grande', 'large',  'medium', 'grande',
+    'grande', 'small',  'medium', 'short',  'large',  'grande',
+    'large',  'venti',  'tall',   'short',  'venti',  'large',
+    'large',  'small',  'grande', 'large',  'medium', 'grande',
+    'grande', 'large',  'small',  'large',  'tall',   'tall',
+    'small',  'small',  'grande', 'grande', 'grande', 'tall',
+    'grande', 'small',  'tall',   'large',  'large',  'medium',
+    'medium', 'venti',  'large',  'large',  'small',  'grande',
+    'medium', 'small',  'large',  'large',  'venti',  'tall',
+    'medium', 'tall',   'small',  'medium', 'medium', 'venti',
+    'small',  'medium', 'medium', 'venti',
+    'tall',   'tall',   'venti',  'large',  'venti',  'venti',
+    'venti',  'tall',   'medium', 'tall',   'tall',   'large',
+    'large',  'small',  'medium', 'grande', 'large',  'grande',
+    'venti',  'venti',  'grande', 'medium', 'grande', 'venti',
+    'grande', 'medium', 'medium', 'venti',  'large',  'tall',
+    'medium', 'venti',  'tall',   'grande', 'small',  'medium',
+    'venti',  'grande', 'grande', 'large',  'medium', 'grande',
+    'grande', 'small',  'medium', 'short',  'large',  'grande',
+    'large',  'venti',  'tall',   'short',  'venti',  'large',
+    'large',  'small',  'grande', 'large',  'medium', 'grande',
+    'grande', 'large',  'small',  'large',  'tall',   'tall',
+    'small',  'small',  'grande', 'grande', 'grande', 'tall',
+    'grande', 'small',  'tall',   'large',  'large',  'medium',
+    'medium', 'venti',  'large',  'large',  'small',  'grande',
+    'medium', 'small',  'large',  'large',  'venti',  'tall',
+    'medium', 'tall',   'small',  'medium', 'medium', 'venti',
+    'small',  'medium', 'medium', 'venti',
+    'tall',   'tall',   'venti',  'large',  'venti',  'venti',
+    'venti',  'tall',   'medium', 'tall',   'tall',   'large',
+    'large',  'small',  'medium', 'grande', 'large',  'grande',
+    'venti',  'venti',  'grande', 'medium', 'grande', 'venti',
+    'grande', 'medium', 'medium', 'venti',  'large',  'tall',
+    'medium', 'venti',  'tall',   'grande', 'small',  'medium',
+    'venti',  'grande', 'grande', 'large',  'medium', 'grande',
+    'grande', 'small',  'medium', 'short',  'large',  'grande',
+    'large',  'venti',  'tall',   'short',  'venti',  'large',
+    'large',  'small',  'grande', 'large',  'medium', 'grande',
+    'grande', 'large',  'small',  'large',  'tall',   'tall',
+    'small',  'small',  'grande', 'grande', 'grande', 'tall',
+    'grande', 'small',  'tall',   'large',  'large',  'medium',
+    'medium', 'venti',  'large',  'large',  'small',  'grande',
+    'medium', 'small',  'large',  'large',  'venti',  'tall',
+    'medium', 'tall',   'small',  'medium', 'medium', 'venti',
+    'small',  'medium', 'medium', 'venti',
+    'tall',   'tall',   'venti',  'large',  'venti',  'venti',
+    'venti',  'tall',   'medium', 'tall',   'tall',   'large',
+    'large',  'small',  'medium', 'grande', 'large',  'grande',
+    'venti',  'venti',  'grande', 'medium', 'grande', 'venti',
+    'grande', 'medium', 'medium', 'venti',  'large',  'tall',
+    'medium', 'venti',  'tall',   'grande', 'small',  'medium',
+    'venti',  'grande', 'grande', 'large',  'medium', 'grande',
+    'grande', 'small',  'medium', 'short',  'large',  'grande',
+    'large',  'venti',  'tall',   'short',  'venti',  'large',
+    'large',  'small',  'grande', 'large',  'medium', 'grande',
+    'grande', 'large',  'small',  'large',  'tall',   'tall',
+    'small',  'small',  'grande', 'grande', 'grande', 'tall',
+    'grande', 'small',  'tall',   'large',  'large',  'medium',
+    'medium', 'venti',  'large',  'large',  'small',  'grande',
+    'medium', 'small',  'large',  'large',  'venti',  'tall',
+    'medium', 'tall',   'small',  'medium', 'medium', 'venti',
+    'small',  'medium', 'medium', 'venti',
+    'tall',   'tall',   'venti',  'large',  'venti',  'venti',
+    'venti',  'tall',   'medium', 'tall',   'tall',   'large',
+    'large',  'small',  'medium', 'grande', 'large',  'grande',
+    'venti',  'venti',  'grande', 'medium', 'grande', 'venti',
+    'grande', 'medium', 'medium', 'venti',  'large',  'tall',
+    'medium', 'venti',  'tall',   'grande', 'small',  'medium',
+    'venti',  'grande', 'grande', 'large',  'medium', 'grande',
+    'grande', 'small',  'medium', 'short',  'large',  'grande',
+    'large',  'venti',  'tall',   'short',  'venti',  'large',
+    'large',  'small',  'grande', 'large',  'medium', 'grande',
+    'grande', 'large',  'small',  'large',  'tall',   'tall',
+    'small',  'small',  'grande', 'grande', 'grande', 'tall',
+    'grande', 'small',  'tall',   'large',  'large',  'medium',
+    'medium', 'venti',  'large',  'large',  'small',  'grande',
+    'medium', 'small',  'large',  'large',  'venti',  'tall',
+    'medium', 'tall',   'small',  'medium', 'medium', 'venti',
+    'small',  'medium', 'medium', 'venti',
+    'tall',   'tall',   'venti',  'large',  'venti',  'venti',
+    'venti',  'tall',   'medium', 'tall',   'tall',   'large',
+    'large',  'small',  'medium', 'grande', 'large',  'grande',
+    'venti',  'venti',  'grande', 'medium', 'grande', 'venti',
+    'grande', 'medium', 'medium', 'venti',  'large',  'tall',
+    'medium', 'venti',  'tall',   'grande', 'small',  'medium',
+    'venti',  'grande', 'grande', 'large',  'medium', 'grande',
+    'grande', 'small',  'medium', 'short',  'large',  'grande',
+    'large',  'venti',  'tall',   'short',  'venti',  'large',
+    'large',  'small',  'grande', 'large',  'medium', 'grande',
+    'grande', 'large',  'small',  'large',  'tall',   'tall',
+    'small',  'small',  'grande', 'grande', 'grande', 'tall',
+    'grande', 'small',  'tall',   'large',  'large',  'medium',
+    'medium', 'venti',  'large',  'large',  'small',  'grande',
+    'medium', 'small',  'large',  'large',  'venti',  'tall',
+    'medium', 'tall',   'small',  'medium', 'medium', 'venti',
+    'small',  'medium', 'medium', 'venti',
     'tall',   'tall',   'venti',  'large',  'venti',  'venti',
     'venti',  'tall',   'medium', 'tall',   'tall',   'large',
     'large',  'small',  'medium', 'grande', 'large',  'grande',
@@ -408,6 +579,16 @@ coreDrinks.espresso.forEach((element,i)=>{
     
     }
 })
+coreDrinks.espresso.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.iced===true && elem.menuBuildIced!==undefined){
+        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i + Number(customers[customers.length-1].id)]}`,`${sizes[i]} triple iced ${elem.name}`))
+        elem.menuBuildIced.size = translateSize(sizes[i])
+        elem.menuBuildIced.shots= [null,3,3,3,null]
+        customerCorrectAnswers.push(elem.menuBuildIced)
+        //console.log(elem.menuBuildIced.shots)
+    }
+})
 coreDrinks.brewed.forEach((element,i)=>{
     elem = JSON.parse(JSON.stringify(element))
     if(elem.iced===true && elem.menuBuildIced!==undefined){
@@ -420,7 +601,7 @@ coreDrinks.brewed.forEach((element,i)=>{
 coreDrinks.blended.forEach((element,i)=>{
     
     elem = JSON.parse(JSON.stringify(element))
-    if(elem.iced===true && elem.menuBuildIced!==undefined){
+    if(elem.hot===false && elem.menuBuildIced!==undefined){
     customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name}`))
     elem.menuBuildIced.size = translateSize(sizes[i])
     customerCorrectAnswers.push(elem.menuBuildIced)
@@ -435,6 +616,35 @@ coreDrinks.brewed.forEach((element,i)=>{
     //console.log(translateSize(sizes[i]))
     customerCorrectAnswers.push(elem.menuBuildHot)
 }
+})
+coreDrinks.tea.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i]}`,`${sizes[i]} hot ${elem.name}`))
+    elem.menuBuildHot.size = translateSize(sizes[i])
+    //console.log(translateSize(sizes[i]))
+    customerCorrectAnswers.push(elem.menuBuildHot)
+}
+})
+coreDrinks.tea.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.iced===true && elem.menuBuildIced!==undefined){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name}`))
+    elem.menuBuildIced.size = translateSize(sizes[i])
+    customerCorrectAnswers.push(elem.menuBuildIced)
+    
+    }
+})
+coreDrinks.blended.forEach((element,i)=>{
+    
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.hot===false && elem.menuBuildIced!==undefined){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name} with a shot`))
+    elem.menuBuildIced.size = translateSize(sizes[i])
+    elem.menuBuildIced.shots =[null,1,1,1,null]
+    customerCorrectAnswers.push(elem.menuBuildIced)
+    
+    }
 })
 console.log(customers.length)
 customerCorrectAnswers.forEach((elem)=>{
@@ -463,15 +673,16 @@ app.post('/order',(req,res)=>{
     
 })
 
-
-
-
-
-
-
 app.get('/api/customers',(req,res)=>{
-    res.json(customers)
+    //console.log(req.body.randomNum)
+    const randomNum = Math.floor(Math.random() * (customers.length))
+    res.json(customers[randomNum])
 })
+
+
+
+
+
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/index.html')
@@ -500,4 +711,5 @@ app.get('/api/roasts'.toLowerCase(),(req,res)=>{
 app.get('/api/customer'.toLowerCase(),(req,res)=>{
     res.json(customer.phrase)
 })
+
 app.listen(process.env.PORT || PORT)

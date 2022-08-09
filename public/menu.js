@@ -642,10 +642,18 @@ function changeHotAndIced(drink,element,value){
         }
     }
     if(element==='shotNumber'){
-        drink.hot.shots.forEach((e,i)=>{
-            console.log(value)
-            drink.hot.shots[i]=value
-        })
+        if(drink.hot){
+            drink.hot.shots.forEach((e,i)=>{
+                console.log(value)
+                drink.hot.shots[i]=value
+            })
+        }
+        if(drink.iced){
+            drink.iced.shots.forEach((e,i)=>{
+                console.log(value)
+                if(e!==null)drink.iced.shots[i]=value
+            })
+        }
     }
 }
 
@@ -750,15 +758,14 @@ async function apiRequestCustomer(url){
         
         const response = await fetch(url)
         document.querySelector('.menuWrapper').classList.add('loading')
-    document.querySelector('.customerArea').classList.add('hidden')
+        document.querySelector('.customerArea').classList.add('hidden')
         const data = await response.json()
         document.querySelector('.menuWrapper').classList.remove('loading')
         document.querySelector('.customerArea').classList.remove('hidden')
-        console.log(data.length-1)
-        const randomNum = Math.floor(Math.random() * (data.length))
-        document.querySelector('.customerName').innerText=data[randomNum].name
-        document.querySelector('.customerAsk').innerText=data[randomNum].phrase
-        customerID=data[randomNum].id
+        document.querySelector('.customerName').innerText=data.name
+        document.querySelector('.customerAsk').innerText=data.phrase
+        customerID=data.id
+        console.log(data)
     }catch(error){
         console.log(error)
     }
