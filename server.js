@@ -187,6 +187,7 @@ class Frappucino{
         this.layered = Layered
         this.abbr =ABBR
         this.hot=Hot
+        this.iced=Iced
         this.menuBuildHot=MBH
         this.menuBuildIced=MBI
     }
@@ -417,6 +418,7 @@ coreDrinks.brewed.forEach((element,i)=>{
     }
 })
 coreDrinks.blended.forEach((element,i)=>{
+    
     elem = JSON.parse(JSON.stringify(element))
     if(elem.iced===true && elem.menuBuildIced!==undefined){
     customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name}`))
@@ -432,12 +434,13 @@ coreDrinks.brewed.forEach((element,i)=>{
     elem.menuBuildHot.size = translateSize(sizes[i])
     //console.log(translateSize(sizes[i]))
     customerCorrectAnswers.push(elem.menuBuildHot)
-    
 }
 })
+console.log(customers.length)
 customerCorrectAnswers.forEach((elem)=>{
     //console.log(JSON.parse(JSON.stringify(elem)).size)
 })
+//console.log(customerCorrectAnswers)
 app.post('/order',(req,res)=>{
     let points = 0
     req.body.drinksArray.forEach((drink,i)=>{

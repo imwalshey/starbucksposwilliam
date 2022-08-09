@@ -1,9 +1,34 @@
+@font-face {
+    font-family: SodoSans;
+    src: url("../public/fonts/SoDoSans-Bold.otf") format("opentype");
+}
+@font-face {
+    font-family: SodoSans-light;
+    font-weight: light;
+    src: url("../public/fonts/SoDoSans-Light.otf") format("opentype");
+}
+@font-face {
+    font-family: SodoSansNarrow;
+    font-weight: light;
+    src: url("../public/fonts/SoDoSansNarrow-Light.otf") format("opentype");
+}
+@font-face {
+    font-family: SodoSansRegular;
+    src: url("../public/fonts/SoDoSans-Regular.otf") format("opentype");
+}
 *{
     box-sizing: border-box;
     color:black;
     font-size: 1.40vw;
+    font-family: SodoSans-light;
 }
 
+.pickedDrinks *{
+    font-family: sodosansregular;
+}
+body{
+    background-color:#00754a;
+}
 body .menuWrapper{
     background-color: green;
     display:flex;
@@ -13,6 +38,7 @@ body .menuWrapper{
     border-top: 10px solid black;
     border-bottom: 10px solid black;
 }
+
 div .menu{
     position: absolute;
     top: 0;
@@ -24,9 +50,16 @@ div .menu{
     color: white;
     
 }
-
+header{
+    width:100%;
+    text-align: center;
+    background-color: rgb(39, 33, 27);
+    color:white
+}
 header h1{
     font-size: 20px;
+    font-family: SodoSans;
+    color:white;
 }
 body{
     margin:0;
@@ -41,7 +74,7 @@ body{
         display: flex;
         top: 0;
         left: 0;
-        background-color: rgb(112, 174, 68);
+            background-color: #015a30;
         width: 100%;
         height: 100%;
         position: absolute;
@@ -75,6 +108,7 @@ body{
 }
 #winOrLose h1{
     font-size: 72px;
+    font-family: SodoSans;
 }
 .menu .errorMessage.active {
     display: flex;
@@ -679,10 +713,13 @@ body{
 }
 .customerArea{
     text-align: center;
-    
+    width:100%;
+    background: #00754a
 }
 .customerArea h1,.customerArea span{
-    font-size: 30px;
+    font-size: 22px;
+    font-family: SodoSans-light;
+    color:white
 }
 .pickedDrinks div div{
     -moz-user-select: -moz-none;
@@ -739,74 +776,184 @@ body{
 .icedArea{
     padding-right:.2em;
 }
-@media only screen and (min-width: 900px) {
-    *{
-        font-size: initial;
-        border-width: 1px;
-    }
-    .screen .buttons .LOCK {
-        margin:1% 4%;
-        height:45%;
-        width:24%;
-    }
-    .items div{
-        border-width: 1px;
-    }
-    .regular div{
-        height: 28px;
-        font-size: .7em;
-    }
-    .quantity{
-        font-size: 1em;
-    }
-    body .menuWrapper{
-            height: 800px;
-            background-color: green;
-            display: flex;
-            position: relative;
-            width: 900px;
-            padding-top: 0;
-            border: 10px solid black;
-        
-    }
-    body{
-        margin:0;
-        display:flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-    .sections>div div+div.selected {
-        height: 0%;
-        width: 0%;
-        border-radius: 0px;
-        background: none;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 12px solid rgb(255, 255, 255);
-        opacity: 1;
-    }
-    .sections>div div+div {
-        height: 0%;
-        width: 0%;
-        border-radius: 0px;
-        background: none;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 12px solid rgb(255, 255, 255);
-        opacity: 0;
-    }
-    .statusLight{
-        width: 1.2em;
-        height:1.2em;
 
-    }
-    
-  }
 
 footer.hidden{
     display:none;
 }
 .drinkType.hidden{
     display:none
+}
+
+
+
+
+
+
+
+
+
+.loadCon{
+    display:none;
+}
+.menuWrapper.loading{
+    border:none;
+    background-color: rgb(66, 66, 66);
+}
+.menuWrapper.loading .loadCon{
+    display: flex;
+    top: 0;
+    left: 0;
+    background-color:#00754a;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+}
+.menuWrapper.loading .drinkType{
+    display:none
+}
+
+
+.loader {
+    width: 6vw;
+    height: 5vw;
+    margin-top: 30px;
+    display: inline-block;
+    position: relative;
+    background: #51e336;
+    border-radius: 15% 15% 35% 35%;
+  }
+  .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 5.3vw;
+    top: 1vw;
+    border: .5vw solid #51e336;;
+    width: 2vw;
+    height: 2vw;
+    border-radius: 0 0.5vw 0.7vw 0;
+  }
+  .loader::before {
+    content: '';  
+    position: absolute;
+    width: .2vw;
+    height: 1.2vw;
+    color: rgba(255, 255, 255, 0);
+    opacity: 0;
+    top: -33%;
+    left: 25%;
+    box-sizing: border-box;
+    animation: animloader 1s ease infinite;
+  }
+  
+  @keyframes animloader {
+      0% {
+    box-shadow: 2px 0px rgb(81, 255, 0), 12px 0px rgba(0, 255, 38, 0.3), 20px 0px rgba(49, 225, 9, 0);
+  }
+      50% {
+    box-shadow: 2px -5px rgba(120, 252, 87, 0.5), 12px -3px rgba(118, 245, 68, 0.5), 20px -2px rgba(177, 255, 151, 0.6);
+  }
+      100% {
+    box-shadow: 2px -8px rgba(255, 255, 255, 0), 12px -5px rgba(255, 255, 255, 0), 20px -5px rgba(255, 255, 255, 0);
+  }
+    }
+
+
+
+
+
+    .loader2 {
+        margin-top: 30px;
+        width: 15vw;
+        height: 15vw;
+        border: 5px solid rgb(26, 255, 0);
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        background-color: rgb(0, 0, 0);
+        display: inline-block;
+        box-sizing: border-box;
+        position: absolute;
+        animation: rotation 1s linear infinite;
+        }
+    
+        @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+        } 
+@media only screen and (min-width: 900px) {
+  *{
+      font-size: 1.1vw;
+      border-width: 1px;
+  }
+  .screen .buttons .LOCK {
+      margin:1% 4%;
+      height:45%;
+      width:24%;
+  }
+  .items div{
+      border-width: 1px;
+  }
+  .regular div{
+      height: 28px;
+      font-size: .7em;
+  }
+  .quantity{
+      font-size: 1em;
+  }
+  body .menuWrapper{
+          height: 800px;
+          background-color: green;
+          display: flex;
+          position: relative;
+          width: 900px;
+          padding-top: 0;
+          border: 10px solid black;
+      
+  }
+  body{
+      margin:0;
+      display:flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+  }
+  .sections>div div+div.selected {
+      height: 0%;
+      width: 0%;
+      border-radius: 0px;
+      background: none;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 12px solid rgb(255, 255, 255);
+      opacity: 1;
+  }
+  .sections>div div+div {
+      height: 0%;
+      width: 0%;
+      border-radius: 0px;
+      background: none;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 12px solid rgb(255, 255, 255);
+      opacity: 0;
+  }
+  .statusLight{
+      width: 1.2em;
+      height:1.2em;
+  }
+  .loader::before{
+    opacity: 1;
+  }
+  
+}
+
+.customerArea.hidden{
+    opacity:0;
 }

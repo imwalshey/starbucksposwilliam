@@ -377,10 +377,16 @@ let local = 'http://localhost:8000/api/coredrinks'
 
 const statusLight = document.querySelector('.statusLight')
 async function apiRequest(url){  //Calls the API and brings drink data to the 
+    document.querySelector('.menuWrapper').classList.add('loading')
+    document.querySelector('.customerArea').classList.add('hidden')
     statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(255, 0, 0))'
     try{
         const response = await fetch(url)
+        document.querySelector('.menuWrapper').classList.add('loading')
+    document.querySelector('.customerArea').classList.add('hidden')
         const data = await response.json()
+        document.querySelector('.menuWrapper').classList.remove('loading')
+        document.querySelector('.customerArea').classList.remove('hidden')
         statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(0, 255, 51))'
         
         createCat(data)
@@ -397,10 +403,15 @@ let customerID
 
 let menuData
 async function apiRequestForCustomizations(url){
+    document.querySelector('.menuWrapper').classList.add('loading')
+    document.querySelector('.customerArea').classList.add('hidden')
     try{
         const response = await fetch(url)
+        document.querySelector('.menuWrapper').classList.add('loading')
+        document.querySelector('.customerArea').classList.add('hidden')
         const data = await response.json()
-        
+        document.querySelector('.menuWrapper').classList.remove('loading')
+        document.querySelector('.customerArea').classList.remove('hidden')
         menuData=data
         
     }catch(error){
@@ -733,9 +744,16 @@ if(production=== 'live'){
 // })
 document.querySelector('.findOrder').addEventListener('click',postAnswer)
 async function apiRequestCustomer(url){
+    document.querySelector('.menuWrapper').classList.add('loading')
+    document.querySelector('.customerArea').classList.add('hidden')
     try{
+        
         const response = await fetch(url)
+        document.querySelector('.menuWrapper').classList.add('loading')
+    document.querySelector('.customerArea').classList.add('hidden')
         const data = await response.json()
+        document.querySelector('.menuWrapper').classList.remove('loading')
+        document.querySelector('.customerArea').classList.remove('hidden')
         console.log(data.length-1)
         const randomNum = Math.floor(Math.random() * (data.length))
         document.querySelector('.customerName').innerText=data[randomNum].name
@@ -746,6 +764,8 @@ async function apiRequestCustomer(url){
     }
 }
 async function postAnswer(){
+    document.querySelector('.menuWrapper').classList.add('loading')
+    document.querySelector('.customerArea').classList.add('hidden')
     let body = JSON.stringify({drinksArray,drinkIsIced,customerID})
     try{
         const response = await fetch(postUrl, {
@@ -755,8 +775,11 @@ async function postAnswer(){
             },
             body: body
            })
+        document.querySelector('.menuWrapper').classList.add('loading')
+        document.querySelector('.customerArea').classList.add('hidden')
         const data = await response.json()
-        
+        document.querySelector('.menuWrapper').classList.remove('loading')
+        document.querySelector('.customerArea').classList.remove('hidden')
         if(data==='win'){
             document.getElementById('winOrLose').classList='win'
             document.querySelector('#winOrLose .winCont').classList.remove('hidden')
