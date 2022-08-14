@@ -1,16 +1,16 @@
 @font-face {
-    font-family: SodoSansBold;
+    font-family: SodoSans;
     font-weight: bold;
     src: url("../public/fonts/SoDoSans-Bold.otf") format("opentype");
 }
 @font-face {
-    font-family: SodoSans-light;
+    font-family: SodoSans;
     font-weight: light;
     src: url("../public/fonts/SoDoSans-Light.otf") format("opentype");
 }
 @font-face {
-    font-family: SodoSansNarrow;
-    font-weight: light;
+    font-family: SodoSans;
+    font-weight: narrow;
     src: url("../public/fonts/SoDoSansNarrow-Light.otf") format("opentype");
 }
 @font-face {
@@ -535,6 +535,10 @@ body{
     
 }
 
+.items div{
+    box-shadow: inset 0px -2px 8px 0px rgb(0 0 0 / 35%), inset 1px 6px 8px 0px rgb(255 255 255 / 35%);
+}
+
 .items.espresso{
     grid-template-areas: 
     'a b c d .'
@@ -595,7 +599,7 @@ body{
     border:.2vw solid black;
     display: flex;
     text-align: center;
-    background-color: rgb(151, 96, 183);
+    background-color: rgb(207 146 207);
     justify-content: center;
     align-items: center;
 }
@@ -609,7 +613,7 @@ body{
     background-color: rgb(224, 250, 251);
 }
 .items.espresso .caramelmacchiatto{
-    background: rgb(151, 96, 183);;
+    background: rgb(207 146 207);
 }
 .items.espresso .caramelmacchiatto~div{
     background: rgb(199, 159, 109);;
@@ -705,7 +709,43 @@ body{
 .items.tea div.honeycitrusminttea  {
     background-color:#efed93;
 }
-
+.items.other{
+    grid-template-areas: 
+    'a b c d .'
+    'e f g h i'
+    'j k l . .'
+    'm n o . p'
+    'q r s . t'
+    'u v w . x'
+    ;
+}
+.other div{
+    background-color: rgb(211, 207, 186);
+}
+.other .whitehotchocolate~div{
+    background: rgb(224, 250, 251);
+}
+.other .steamedmilk~div{
+    background-color: #aedd88;
+}
+.other .cinnamondolcecrme~div{
+    background-color: #ece93b;
+}
+.other .matchalemonade~div{
+    background-color: rgb(223, 229, 114);
+}
+.other .caramelapplespice~div{
+    background-color: rgb(207 146 207);
+}
+.items.other .cupofwater{
+    background-color: #6cb8d4;
+}
+.items.other .cupofice{
+    background: #a1d5e8;
+}
+.items.other .pupcup{
+    background: #a1d5e8;
+}
 .pickedDrinks div{
     width:100%;
     display:flex;
@@ -888,6 +928,7 @@ footer.hidden{
             transform: rotate(360deg);
         }
         } 
+
 @media only screen and (min-width: 900px) {
   *{
       font-size: 1.1vw;
@@ -957,4 +998,14 @@ footer.hidden{
 
 .customerArea.hidden{
     opacity:0;
+}
+@media only screen and (min-width: 1370px) {
+    *{
+        font-size: 1.0vw;
+    }
+}
+@media only screen and (min-width: 1470px) {
+    *{
+        font-size: .8vw;
+    }
 }

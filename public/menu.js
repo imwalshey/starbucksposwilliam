@@ -130,7 +130,7 @@ function addToOrder(element){
     if(drinksArray.length>30){
         errorMessage("Stop. You're gonna break it.",'Red')
     }
-
+    
 
     if(!document.querySelector('.pickedDrinks .selected .drinkName') || document.querySelector('.pickedDrinks .selected .drinkName').innerText !== '[Drink]'){
         let div= document.createElement('div')
@@ -229,7 +229,9 @@ function renderHotDrinkContents(value,modify){
         bool=value.iced
     }
     let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-    
+    // if(bool.decaf==='B'){
+
+    // }
 
 
     if(drinkIsIced[drinkNum]===true && value.iced){
@@ -263,7 +265,14 @@ function renderHotDrinkContents(value,modify){
 
 function showDrinkContentsInDivs(bool){
     let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-    document.querySelector('.decafCheck div').innerText=bool.decaf
+    document.querySelector('.decafCheck div').innerText=bool.decaf.toString().replace(',', ' ')
+    
+    
+    if(! bool.decaf.includes('B')){
+        if(document.querySelector('.modifier.shotType')){
+            document.querySelector('.modifier.shotType').remove()
+        }
+    }
     if(bool.size === 'Sh'){
         document.querySelector('.shotsCheck div').innerText=bool.shots[0]
         if(bool.syrup !== ''){
@@ -442,7 +451,7 @@ function processCustom(element,value){
     if(document.querySelector('.pickedDrinks .selected')){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         let drink = drinksArray[drinkNum]
-        
+        console.log(value)
         if(value === 'size'){
             if(element ==='Trenta'){
                 sizeSelected='Tr'
@@ -475,6 +484,7 @@ function processCustom(element,value){
         
         if(value==='shotNumber'){
             let bool 
+            
             if(drinkIsIced[drinkNum]){
                 bool = drink.iced
             }else{
@@ -482,19 +492,19 @@ function processCustom(element,value){
             }
             if(element ==='Single'){
                 changeHotAndIced(drink,'shotNumber',1)
-                createModifier('Single','')
+                createModifier('Single','',value)
             }
             if(element ==='Double'){
                 changeHotAndIced(drink,'shotNumber',2)
-                createModifier('Double','')
+                createModifier('Double','',value)
             }
             if(element ==='Triple'){
                 changeHotAndIced(drink,'shotNumber',3)
-                createModifier('Triple','')
+                createModifier('Triple','',value)
             }
             if(element ==='Quad'){
                 changeHotAndIced(drink,'shotNumber',4)
-                createModifier('Quad','')
+                createModifier('Quad','',value)
             }
             if(element === 'More shots'){
                 let wholeNum = []
@@ -504,20 +514,15 @@ function processCustom(element,value){
                 document.querySelectorAll('.quantityNums div').forEach((elem)=>{
                     elem.addEventListener('click',(click)=>{
                         if(click.target.classList.contains('number')){
-                            
                             wholeNum.push(click.target.innerText)
-                            console.log(wholeNum.join(''))
-                            
                             document.querySelector('.displayAmount p').innerText=wholeNum.join('')
-                            
                         }
                         if(click.target.classList.contains('clearError')){
-                            console.log(wholeNum.join(''))
                             if(Number(wholeNum.join(''))<=99 && Number(wholeNum.join(''))>0 ){
                                 changeHotAndIced(drink,'shotNumber',Number(wholeNum.join('')))
-                                console.log(wholeNum.join(''))
                                 document.querySelector('.quantityForShots').classList.remove('active')
                                 renderHotDrinkContents(drink)
+                                createModifier(Number(wholeNum.join('')),'shots',value)
                             }
                         }
                         if(click.target.classList.contains('cancelError')){
@@ -528,6 +533,16 @@ function processCustom(element,value){
                 
             }
             
+        }
+        
+        if(value === 'coffeeType'){
+            
+            changeHotAndIced(drink,value,element)
+            if(document.querySelector(`.${nameShortener(element)}${value}`)){
+                document.querySelector(`.${nameShortener(element)}${value}`).remove()
+            }
+            createModifier(element,'',`${nameShortener(element)}${value}`)
+            renderHotDrinkContents(drink)
         }
         if(value === 'iced'){
             if(drinkIsIced[drinkNum]===undefined){
@@ -548,7 +563,7 @@ function processCustom(element,value){
         }else renderHotDrinkContents(drink)
     }else{
         if(value==='iced'){
-            console.log("words")
+            
             createTemplate(element)
             let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
             if(drinkIsIced[drinkNum]===false){
@@ -622,9 +637,13 @@ function createTemplate(modifier){
     drinkArea.appendChild(drinkName)
     checkForSelection()
 }
-function createModifier(first,second){
+function createModifier(first,second,type){
+    if(document.querySelector(`.selected .modifier.${type}`)){
+        document.querySelector(`.selected .modifier.${type}`).remove()
+    }
     let div = document.createElement('div')
     div.classList.add('modifier')
+    div.classList.add(type)
     document.querySelector('.pickedDrinks .selected').appendChild(div)
     div.innerText=`${first} ${second}`
 }
@@ -644,15 +663,41 @@ function changeHotAndIced(drink,element,value){
     if(element==='shotNumber'){
         if(drink.hot){
             drink.hot.shots.forEach((e,i)=>{
-                console.log(value)
+                
                 drink.hot.shots[i]=value
             })
         }
         if(drink.iced){
             drink.iced.shots.forEach((e,i)=>{
-                console.log(value)
+                
                 if(e!==null)drink.iced.shots[i]=value
             })
+        }
+    }
+    if(element==='coffeeType'){
+        
+        if(value==='Blonde'){
+            if(drink.iced.decaf.includes('B')){
+                let myindex = drink.iced.decaf.indexOf('B')
+                drink.iced.decaf.splice(myindex,1)
+                
+            }else drink.iced.decaf.push('B')
+
+            if(drink.hot.decaf.includes('B')){
+                let myindex = drink.hot.decaf.indexOf('B')
+                drink.hot.decaf.splice(myindex,1)
+                
+            }else drink.hot.decaf.push('B')
+        }else
+        if(value.includes('Decaf')){
+            if(Array.isArray(drink.hot.decaf)){
+                drink.hot.decaf.forEach((elem,i)=>{
+                    if(drink.hot.decaf[i].toString().includes('D')){
+                        drink.hot.decaf.splice(i,1)
+                    }
+                })
+            }
+            drink.hot.decaf.push(value.split('ecaf')[0])
         }
     }
 }
