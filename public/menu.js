@@ -133,7 +133,7 @@ class Drink{
         this.custom=Custom
         this.abbr=ABBR
         this.size = 'Gr'
-        this.ogPumps=Pumps
+        this.ogPumps=JSON.parse(JSON.stringify(Pumps))
         this.ogShots=JSON.parse(JSON.stringify(Shots))
     }
 }
@@ -360,17 +360,25 @@ function removeDrinkContentsFromDivs(element){
             simultaneouslyRemove(element.innerText.split('')[0],'decaf','iced')
         }
     }
+    
     if(element.classList.contains('shotNumber')){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-        drinksArray[drinkNum].hot.shots= JSON.parse(JSON.stringify(drinksArray[drinkNum].hot.ogShots))
-    }
+        if(drinksArray[drinkNum].iced){
+            drinksArray[drinkNum].iced.shots= JSON.parse(JSON.stringify(drinksArray[drinkNum].iced.ogShots))
+        }
+        if(drinksArray[drinkNum].hot){
+            drinksArray[drinkNum].hot.shots= JSON.parse(JSON.stringify(drinksArray[drinkNum].hot.ogShots))
+        }
+}
 }
 function simultaneouslyRemove(itemToRemove,itemType,bool){
     let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
     if(itemType==='decaf'){
-        var index = drinksArray[drinkNum][bool][itemType].indexOf(itemToRemove);
-        if (index !== -1) {
-            drinksArray[drinkNum][bool][itemType].splice(index, 1);
+        if(drinksArray[drinkNum][bool]){
+            var index = drinksArray[drinkNum][bool][itemType].indexOf(itemToRemove);
+            if (index !== -1) {
+                drinksArray[drinkNum][bool][itemType].splice(index, 1);
+            }
         }
     }
     if(itemType==='syrup'){
@@ -751,8 +759,10 @@ function changeHotAndIced(drink,element,value){
     if(element==='shotNumber'){
         if(drink.hot){
             drink.hot.shots.forEach((e,i)=>{
+                if(drink.hot.shots[i]!== null){
+                    drink.hot.shots[i]=value
+                }
                 
-                drink.hot.shots[i]=value
             })
         }
         if(drink.iced){
@@ -765,17 +775,25 @@ function changeHotAndIced(drink,element,value){
     if(element==='coffeeType'){
         
         if(value==='Blonde'){
-            if(drink.iced.decaf.includes('B')){
+            if(drink.iced && drink.iced.decaf.includes('B')){
                 let myindex = drink.iced.decaf.indexOf('B')
                 drink.iced.decaf.splice(myindex,1)
                 
-            }else drink.iced.decaf.push('B')
+            }else{
+                if(drink.iced){
+                    drink.iced.decaf.push('B')
+                }
+            } 
 
-            if(drink.hot.decaf.includes('B')){
+            if(drink.hot && drink.hot.decaf.includes('B')){
                 let myindex = drink.hot.decaf.indexOf('B')
                 drink.hot.decaf.splice(myindex,1)
                 
-            }else drink.hot.decaf.push('B')
+            }else{
+                if(drink.hot){
+                    drink.hot.decaf.push('B')
+                }
+            } 
         }else
         if(value.includes('Decaf')){
             if(Array.isArray(drink.hot.decaf)){
@@ -872,11 +890,6 @@ function dynamicURL(word){
     
 }
 dynamicURL()
-// if(localStorage.getItem('LastClicked')){
-//     apiRequestForCustomizations(localStorage.getItem('LastClicked').split(',')[0])
-//     apiRequest(localStorage.getItem('LastClicked').split(',')[1])
-//     apiRequestCustomer(localStorage.getItem('LastClicked').split(',')[2])
-// }else
 if(production === 'dev'){
     localStorage.setItem('LastClicked',["http://localhost:8000/api/customizations",local,'http://localhost:8000/api/customers','https://localhost:8000/order'])
     removeAllChildNodes(document.querySelector('.items'))
@@ -991,24 +1004,4 @@ async function postAnswer(){
         console.log(error)
     }
 }
-
-
-    // async function sendit() {
-    //     let answer = JSON.stringify(drinksArray)
-    //     const rawResponse = await fetch(postUrl, {
-    //       method: 'POST',
-    //       headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //       },
-    //       body: answer
-          
-    //     });
-    //     const content = await rawResponse.json();
-        
-      
-    //     ;
-    //   }
-
-
 

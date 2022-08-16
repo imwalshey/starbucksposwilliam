@@ -634,6 +634,65 @@ coreDrinks.espresso.forEach((element,i)=>{
 })
 coreDrinks.espresso.forEach((element,i)=>{
     elem = JSON.parse(JSON.stringify(element))
+    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i]}`,`${sizes[i]} triple hot ${elem.name}`))
+    elem.menuBuildHot.size = translateSize(sizes[i])
+    //console.log(translateSize(sizes[i]))
+    elem.menuBuildHot.shots= [3,3,3,3,null]
+    customerCorrectAnswers.push(elem.menuBuildHot)
+    
+}
+})
+coreDrinks.espresso.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i]}`,`${sizes[i]} triple hot blonde ${elem.name}`))
+    elem.menuBuildHot.size = translateSize(sizes[i])
+    //console.log(translateSize(sizes[i]))
+    elem.menuBuildHot.decaf.push('B')
+    elem.menuBuildHot.shots= [3,3,3,3,null]
+    customerCorrectAnswers.push(elem.menuBuildHot)
+    
+}
+})
+coreDrinks.espresso.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i]}`,`${sizes[i]} quad hot blonde ${elem.name}`))
+    elem.menuBuildHot.size = translateSize(sizes[i])
+    //console.log(translateSize(sizes[i]))
+    elem.menuBuildHot.decaf.push('B')
+    elem.menuBuildHot.shots= [4,4,4,4,null]
+    customerCorrectAnswers.push(elem.menuBuildHot)
+    
+}
+})
+coreDrinks.espresso.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i]}`,`${sizes[i]} quad hot decaf ${elem.name}`))
+    elem.menuBuildHot.size = translateSize(sizes[i])
+    //console.log(translateSize(sizes[i]))
+    elem.menuBuildHot.decaf.push('D')
+    elem.menuBuildHot.shots= [4,4,4,4,null]
+    customerCorrectAnswers.push(elem.menuBuildHot)
+    
+}
+})
+coreDrinks.espresso.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
+    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i]}`,`${sizes[i]} hot half-decaf ${elem.name}`))
+    elem.menuBuildHot.size = translateSize(sizes[i])
+    //console.log(translateSize(sizes[i]))
+    elem.menuBuildHot.decaf.push('1/2 D')
+    customerCorrectAnswers.push(elem.menuBuildHot)
+    
+}
+})
+
+coreDrinks.espresso.forEach((element,i)=>{
+    elem = JSON.parse(JSON.stringify(element))
     if(elem.iced===true && elem.menuBuildIced!==undefined){
     customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i + Number(customers[customers.length-1].id)]}`,`${sizes[i]} iced ${elem.name}`))
     elem.menuBuildIced.size = translateSize(sizes[i])
@@ -648,9 +707,10 @@ coreDrinks.espresso.forEach((element,i)=>{
         elem.menuBuildIced.size = translateSize(sizes[i])
         elem.menuBuildIced.shots= [null,3,3,3,null]
         customerCorrectAnswers.push(elem.menuBuildIced)
-        //console.log(elem.menuBuildIced.shots)
     }
 })
+
+
 coreDrinks.brewed.forEach((element,i)=>{
     elem = JSON.parse(JSON.stringify(element))
     if(elem.iced===true && elem.menuBuildIced!==undefined){
@@ -708,6 +768,7 @@ coreDrinks.blended.forEach((element,i)=>{
     
     }
 })
+
 console.log(customers.length)
 customerCorrectAnswers.forEach((elem)=>{
     //console.log(JSON.parse(JSON.stringify(elem)).size)
@@ -722,9 +783,11 @@ app.post('/order',(req,res)=>{
         if(req.body.drinkIsIced[i]===true){
             answer = req.body.drinksArray[i].iced
             delete req.body.drinksArray[i].iced.ogPumps
+            delete req.body.drinksArray[i].iced.ogShots
         }
         if(req.body.drinkIsIced[i]===false){
             answer = req.body.drinksArray[i].hot
+            delete req.body.drinksArray[i].hot.ogShots
             delete req.body.drinksArray[i].hot.ogPumps
         }
         console.log(JSON.stringify(answer))
