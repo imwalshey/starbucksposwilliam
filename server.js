@@ -22,11 +22,24 @@ const modifiers={
     milk:[],
     custom:[]
 }
+class Syrup{
+    constructor(ABB,TYPE){
+        this.type=TYPE
+        this.abbr=ABB
+    }
+}
 modifiers.shotsMenu={'Iced':'iced','Blonde':'coffeeType','Decaf':'coffeeType','1/2 Decaf':'coffeeType','2/3 Decaf':'coffeeType',
                     '1/3 Decaf':'coffeeType','Single':'shotNumber','Double':'shotNumber','Triple':'shotNumber',
-                    'Quad':'shotNumber','More shots':'shotNumber','Affogato Shot':'shotNumber','Frappucino Roast':'pumps','Kids':"size",'Updosed':'shotType',
-                    'Long Shot':'shotType','Ristretto':'shot type','Short':'size','Tall':'size','Grande':'size','Venti':'size','Trenta':'size'}
-
+                    'Quad':'shotNumber','More shots':'shotNumber','Affogato Shot':'shotNumber','Frappucino Roast':'pumps','Kids':"size",'Updosed':'coffeeType',
+                    'Long Shot':'coffeeType','Ristretto':'coffeeType','Short':'size','Tall':'size','Grande':'size','Venti':'size','Trenta':'size'}
+modifiers.syrup={
+    'No':new Syrup('No','button'),'Sub':new Syrup('sub','button'),'Pumps':new Syrup('Pumps','button'),'Extra':new Syrup('XTR','button'),'Light':new Syrup('Lt','button'),
+    'Caramel Syrup':new Syrup('CR','syrup'),'Cinnamon Dolce Syrup':new Syrup('CD','syrup'),
+    'Hazelnut Syrup':new Syrup('H','syrup'),'Toffee Nut Syrup':new Syrup('TN','syrup'),'Vanilla Syrup':new Syrup('V','syrup'),'Classic Syrup':new Syrup('C','syrup'),'Peppermint Syrup':new Syrup('P','syrup'),
+    'Raspberry Syrup':new Syrup('R','syrup'),'Toasted Vanilla Syrup':new Syrup('TV','syrup'),'Brown Sugar Syrup':new Syrup('BS','syrup'),'Chai':new Syrup('CH','syrup'),'Honey Blend':new Syrup('HB','syrup'),
+    'Liquid Cane Sugar':new Syrup('LC','syrup'), 'Sugar Free Vanilla Syrup':new Syrup('SFV','syrup'),'Mocha Sauce':new Syrup('M','syrup'),'White Mocha Sauce':new Syrup('WC','syrup'), 'Caramel Sauce':new Syrup('CS','syrup'),
+    'Dark Caramel Sauce Sauce':new Syrup('DC','syrup')
+}
 
 
 const roasts ={
@@ -81,11 +94,12 @@ class DrinkBuild{
         this.iced=IcedBool
         this.decaf=DecafAmount
         this.shots=Shots
-        this.pumps=Pumps
-        this.syrup=Syrup
+        this.pumps= [Pumps]
+        this.syrup=[Syrup]
         this.milk=Milk
         this.custom=Custom
         this.abbr=ABBR
+        
         if(SIZE){
             this.size=SIZE
         }else this.size = 'Gr'
@@ -607,7 +621,7 @@ customerCorrectAnswers.push(new DrinkBuild(false,'','','','','','','DRC','Vt'))
 customers.push(new CustomerMaker('2','James','venti iced coffee'))
 customerCorrectAnswers.push(new DrinkBuild(true,'','','','','','','IC','Vt'))
 customers.push(new CustomerMaker('3','Carl','venti cold brew, black'))
-customerCorrectAnswers.push(new DrinkBuild(true,'','','','','','','CB','Vt'))
+customerCorrectAnswers.push(new DrinkBuild(true,'',[''],'','','','','CB','Vt'))
 coreDrinks.espresso.forEach((element,i)=>{
     elem = JSON.parse(JSON.stringify(element))
     if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
@@ -701,16 +715,23 @@ customerCorrectAnswers.forEach((elem)=>{
 //console.log(customerCorrectAnswers)
 app.post('/order',(req,res)=>{
     let points = 0
+    
     req.body.drinksArray.forEach((drink,i)=>{
         let answer
+        
         if(req.body.drinkIsIced[i]===true){
             answer = req.body.drinksArray[i].iced
+            delete req.body.drinksArray[i].iced.ogPumps
         }
         if(req.body.drinkIsIced[i]===false){
             answer = req.body.drinksArray[i].hot
+            delete req.body.drinksArray[i].hot.ogPumps
         }
+        console.log(JSON.stringify(answer))
+        console.log(JSON.stringify(customerCorrectAnswers[Number(req.body.customerID)]))
         if(JSON.stringify(answer) ===JSON.stringify(customerCorrectAnswers[Number(req.body.customerID)])){
             points+=1
+            
         }
     })
     if(points>=1){

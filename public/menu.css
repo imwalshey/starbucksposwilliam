@@ -569,6 +569,43 @@ body{
     'r s t u v'
     ;
 }
+.items.syrup{
+    grid-template-areas: 
+    'a b c d e'
+    'f g h i j'
+    'k l m n o'
+    'p q r . .'
+    's . . . .'
+    't u v w .'
+    ;
+}
+.items.syrup div{
+    background:rgb(54 54 54);
+    color:white;
+    box-shadow:  inset 1px 6px 8px 0px rgb(0 0 0 / 35%),inset 0px -2px 8px 0px rgb(255 255 255 / 35%) ;
+}
+
+.items.syrup .pumps{
+    background:rgb(223, 229, 114);
+    color:black;
+    box-shadow: inset 0px -2px 8px 0px rgb(0 0 0 / 35%), inset 1px 6px 8px 0px rgb(255 255 255 / 35%);
+
+}
+.items.syrup .light~div{
+    color:black;
+    background:rgb(211, 207, 186);
+    box-shadow: inset 0px -2px 8px 0px rgb(0 0 0 / 35%), inset 1px 6px 8px 0px rgb(255 255 255 / 35%);
+}
+.items.syrup div.chai{
+    background: #aedd88;
+}
+.items.syrup div.sugarfreevanillasyrup{
+    background: rgb(224, 250, 251);
+}
+.items.syrup div.sugarfreevanillasyrup~div{
+    background: rgb(207 146 207)
+}
+
 .items.shotsMenu div{
     background-color: #95d2e9;
 }
@@ -772,7 +809,11 @@ body{
    outline: none;
    background: none;
    width:auto;
-   width:77.5%;
+   width:92.5%;
+   
+}
+.pickedDrinks div div.isIced{
+   width:79%;
    
 }
 .pickedDrinks .sizeIdentifier{
@@ -781,6 +822,9 @@ body{
 }
 .selected{
     background: #95d2e9;
+}
+.selected .selectedSpecific{
+    background: #71a7ba;
 }
 .pickedDrinks .modifier{
     width:100%;

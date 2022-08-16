@@ -90,16 +90,29 @@ document.querySelector('.LOCK').addEventListener('click',()=>{
     
 })
 
-document.querySelector('.void').addEventListener('click',async function awomdawd(){
+document.querySelector('.void').addEventListener('click',async function awomdawd(click){
     try{
-        let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-        drinksArray[drinkNum]= null
-        drinkIsIced[drinkNum]=undefined
-        document.querySelector('.pickedDrinks .selected').remove()
-        document.querySelectorAll('.customizations div div').forEach((div)=>{
-            div.div=''
-        })
-        
+        if(! document.querySelector('.pickedDrinks .selected .modifier.selectedSpecific')){
+            let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+            drinksArray[drinkNum]= null
+            drinkIsIced[drinkNum]=undefined
+            document.querySelector('.pickedDrinks .selected').remove()
+            document.querySelectorAll('.customizations div div').forEach((div)=>{
+                div.innerText=''
+            })
+        }else{
+            let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+            removeDrinkContentsFromDivs(document.querySelector('.pickedDrinks .selected .modifier.selectedSpecific'))
+            document.querySelector('.pickedDrinks .selected .modifier.selectedSpecific').remove()
+            let bool
+            if(drinkIsIced[drinkNum]){
+                bool=drinksArray[drinkNum].iced
+            }else{
+                bool=drinksArray[drinkNum].hot
+            }
+            addSpecificSelectToNameBar()
+            showDrinkContentsInDivs(bool)
+        }
     }catch(error){
         console.log(error)
         errorMessage('Select an item to void','blue')
@@ -120,6 +133,8 @@ class Drink{
         this.custom=Custom
         this.abbr=ABBR
         this.size = 'Gr'
+        this.ogPumps=Pumps
+        this.ogShots=JSON.parse(JSON.stringify(Shots))
     }
 }
 
@@ -138,6 +153,7 @@ function addToOrder(element){
         let size = document.createElement('div')
         size.readOnly=true
         size.classList.add('sizeIdentifier')
+        size.classList.add('selectedSpecific')
         let drink = document.createElement('div')
         document.querySelector('.pickedDrinks').appendChild(div)
         div.appendChild(size)
@@ -168,6 +184,10 @@ function addToOrder(element){
         }
         drink.innerHTML=element['abbr']
         drink.classList.add('drinkName')
+        drink.addEventListener('click',()=>{
+            addSpecificSelectToNameBar()
+        })
+        drink.classList.add('selectedSpecific')
         div.addEventListener('click',(click)=>{
             selectDrink(click.target.parentElement, element)
         })
@@ -214,7 +234,17 @@ function addToOrder(element){
 
     }    
 }
-
+function addSpecificSelectToNameBar(){
+    document.querySelectorAll('.selectedSpecific').forEach((elem,i)=>{
+        elem.classList.remove('selectedSpecific')
+    })
+    document.querySelector('.selected .drinkName').classList.add('selectedSpecific')
+    if(document.querySelector('.selected .icedArea')){
+        document.querySelector('.selected .icedArea').classList.add('selectedSpecific')
+    }
+    
+    document.querySelector('.selected .sizeIdentifier').classList.add('selectedSpecific')
+}
 
 let sizeSelected
 function renderHotDrinkContents(value,modify){
@@ -245,6 +275,7 @@ function renderHotDrinkContents(value,modify){
         
         bool=value.hot
         document.querySelector('.pickedDrinks .selected .icedArea').remove()
+        document.querySelector('.isIced').classList.remove('isIced')
         document.querySelector('.iceCheck div').innerText=''
         drinkIsIced[drinkNum]=false
         errorMessage('Entry not available on active levels')
@@ -274,46 +305,37 @@ function showDrinkContentsInDivs(bool){
         }
     }
     if(bool.size === 'Sh'){
-        document.querySelector('.shotsCheck div').innerText=bool.shots[0]
-        if(bool.syrup !== ''){
-            document.querySelector('.syrupCheck div').innerText=`${bool.pumps[0]}${bool.syrup}`
-        }else{
-            document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
-        }
+        sizeChangesPumps(0)
     }else
     if(bool.size === 'Tl'){
-        document.querySelector('.shotsCheck div').innerText=bool.shots[1]
-        if(bool.syrup !== ''){
-            document.querySelector('.syrupCheck div').innerText=`${bool.pumps[1]}${bool.syrup}`
-        }else{
-            document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
-        }
+        sizeChangesPumps(1)
     }else
     if(bool.size === 'Gr'){
-        document.querySelector('.shotsCheck div').innerText=bool.shots[2]
-        if(bool.syrup !== ''){
-            document.querySelector('.syrupCheck div').innerText=`${bool.pumps[2]}${bool.syrup}`
-        }else{
-            document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
-        }
+        sizeChangesPumps(2)
     }else
     if(bool.size === 'Vt'){
-        document.querySelector('.shotsCheck div').innerText=bool.shots[3]
-        if(bool.syrup !== ''){
-            document.querySelector('.syrupCheck div').innerText=`${bool.pumps[3]}${bool.syrup}`
-        }else{
-            document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
-        }
+        sizeChangesPumps(3)
     }else
     if(bool.size === 'Tr'){
-        document.querySelector('.shotsCheck div').innerText=bool.shots[4]
-        if(bool.syrup !== ''){
-            document.querySelector('.syrupCheck div').innerText=`${bool.pumps[4]}${bool.syrup}`
-        }else{
-            document.querySelector('.syrupCheck div').innerText=`${bool.syrup}`
-        }
-        sizeNotAvailable(bool.shots[4])
+        sizeChangesPumps(4)
     }
+    function sizeChangesPumps(amount){
+        document.querySelector('.shotsCheck div').innerText=bool.shots[amount]
+        let full = ''
+        bool.syrup.forEach((elem,i)=>{
+            if(bool.syrup[i] !== ''){
+                full = full + ` ${bool.pumps[i][amount]}${bool.syrup[i]}`
+                document.querySelector('.syrupCheck div').innerText=full
+            }else{
+                document.querySelector('.syrupCheck div').innerText=`${bool.syrup[i]}`
+            }
+        sizeNotAvailable(bool.shots[amount])
+        })    
+    }
+        
+    
+    
+    
     if(bool.shots===''){
         document.querySelector('.shotsCheck div').innerText=''
     }
@@ -326,6 +348,39 @@ function showDrinkContentsInDivs(bool){
         document.querySelector('.iceCheck div').innerText= ''
     }
     document.querySelector('.customCheck div').innerText=bool.custom.toString().replace(',', ' ')
+
+}
+function removeDrinkContentsFromDivs(element){
+    if(element.classList.toString().includes('coffeeType')){
+        if(element.innerText.includes('Decaf')){
+            simultaneouslyRemove(element.innerText.split('ecaf')[0],'decaf','hot')
+            simultaneouslyRemove(element.innerText.split('ecaf')[0],'decaf','iced')
+        }else{
+            simultaneouslyRemove(element.innerText.split('')[0],'decaf','hot')
+            simultaneouslyRemove(element.innerText.split('')[0],'decaf','iced')
+        }
+    }
+    if(element.classList.contains('shotNumber')){
+        let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+        drinksArray[drinkNum].hot.shots= JSON.parse(JSON.stringify(drinksArray[drinkNum].hot.ogShots))
+    }
+}
+function simultaneouslyRemove(itemToRemove,itemType,bool){
+    let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+    if(itemType==='decaf'){
+        var index = drinksArray[drinkNum][bool][itemType].indexOf(itemToRemove);
+        if (index !== -1) {
+            drinksArray[drinkNum][bool][itemType].splice(index, 1);
+        }
+    }
+    if(itemType==='syrup'){
+        var index = drinksArray[drinkNum][bool][itemType].indexOf(itemToRemove);
+        if (index !== -1) {
+            drinksArray[drinkNum][bool][itemType].splice(index, 1);
+        }
+    }
+    
+
 }
 
 
@@ -349,6 +404,7 @@ function selectDrink(drink,element){
     document.querySelectorAll('.customizations div div').forEach((div)=>{
         div.innerText=''
     })
+    
     if(element !== undefined){
         renderHotDrinkContents(drinksArray[Number(drink.classList[0].replace('drink',''))])
     }
@@ -366,13 +422,17 @@ function addTheIcedWord(){
         const icedArea = document.createElement('section')
         icedArea.innerText = 'Iced '
         icedArea.classList.add('icedArea')
+        icedArea.addEventListener('click',addSpecificSelectToNameBar)
+        icedArea.classList.add('selectedSpecific')
+        element.classList.add('isIced')
         elementContainer.insertBefore(icedArea,element)
-        
+        addSpecificSelectToNameBar()
         
     }else
     if(drinkIsIced[drinkNum]===false){
         let element = document.querySelector('.selected .icedArea')
         element.remove()
+        document.querySelector('.isIced').classList.remove('isIced')
     }
 }
 
@@ -451,7 +511,7 @@ function processCustom(element,value){
     if(document.querySelector('.pickedDrinks .selected')){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         let drink = drinksArray[drinkNum]
-        console.log(value)
+        
         if(value === 'size'){
             if(element ==='Trenta'){
                 sizeSelected='Tr'
@@ -532,6 +592,9 @@ function processCustom(element,value){
                 })
                 
             }
+            if(element==='Affogato Shot'){
+                
+            }
             
         }
         
@@ -558,9 +621,17 @@ function processCustom(element,value){
             }
             
         }
-        if(value==='iced' && document.querySelector('.pickedDrinks .selected .drinkName').innerText==='[Drink]'){
+        if(value.type==='syrup'){
+            if(! drink.hot.syrup.includes(value.abbr)){
+                createModifier(`${element}`,'',`${nameShortener(element)}${value.type}`)
+                changeHotAndIced(drink,value.type,value.abbr)
+            }
             
-        }else renderHotDrinkContents(drink)
+            
+            
+        }
+
+        renderHotDrinkContents(drink)
     }else{
         if(value==='iced'){
             
@@ -620,6 +691,7 @@ function createTemplate(modifier){
     numberOfDrinksAdded+=1
     const sizeArea = document.createElement('div')
     sizeArea.classList.add('sizeIdentifier')
+    sizeArea.addEventListener('click',addSpecificSelectToNameBar)
     const icedArea=document.createElement('section')
     icedArea.innerText="Iced"
 
@@ -631,22 +703,38 @@ function createTemplate(modifier){
     const drinkName = document.createElement('div')
     drinkName.innerText='[Drink]'
     drinkName.classList.add('drinkName')
+    drinkName.addEventListener('click',()=>{
+        addSpecificSelectToNameBar()
+    })
     drinkArea.appendChild(sizeArea)
     
     
     drinkArea.appendChild(drinkName)
     checkForSelection()
 }
+
 function createModifier(first,second,type){
-    if(document.querySelector(`.selected .modifier.${type}`)){
+    if(document.querySelector(`.selected .modifier.${type}`)!==null){
+        
         document.querySelector(`.selected .modifier.${type}`).remove()
     }
+    document.querySelectorAll('.selectedSpecific').forEach((elem)=>{
+        elem.classList.remove('selectedSpecific')
+    })
     let div = document.createElement('div')
     div.classList.add('modifier')
+    div.classList.add('selectedSpecific')
     div.classList.add(type)
     document.querySelector('.pickedDrinks .selected').appendChild(div)
     div.innerText=`${first} ${second}`
+    div.addEventListener('click',(click)=>{
+        document.querySelectorAll('.selectedSpecific').forEach((elem)=>{
+            elem.classList.remove('selectedSpecific')
+        })
+        click.target.classList.add('selectedSpecific')
+    })
 }
+
 let drinkIsModified = []
 
 
@@ -698,14 +786,45 @@ function changeHotAndIced(drink,element,value){
                 })
             }
             drink.hot.decaf.push(value.split('ecaf')[0])
+            if(Array.isArray(drink.iced.decaf)){
+                drink.iced.decaf.forEach((elem,i)=>{
+                    if(drink.iced.decaf[i].toString().includes('D')){
+                        drink.iced.decaf.splice(i,1)
+                    }
+                })
+            }
+            drink.iced.decaf.push(value.split('ecaf')[0])
+        }else{
+            if(drink.iced.decaf.includes(value.split('')[0])){
+                let myindex = drink.iced.decaf.indexOf(value.split('')[0])
+                drink.iced.decaf.splice(myindex,1)
+                
+            }else drink.iced.decaf.push(value.split('')[0])
+
+            if(drink.hot.decaf.includes(value.split('')[0])){
+                let myindex = drink.hot.decaf.indexOf(value.split('')[0])
+                drink.hot.decaf.splice(myindex,1)
+                
+            }else drink.hot.decaf.push(value.split('')[0])
         }
+
+    }
+    if(element==='syrup'){
+        drink.hot.syrup.push(value)
+        drink.hot.pumps.push(JSON.parse(JSON.stringify(drink.hot.ogPumps[0])))
+        drink.iced.syrup.push(value)
+        drink.iced.pumps.push(JSON.parse(JSON.stringify(drink.hot.ogPumps[0])))
     }
 }
+
+
 
 document.querySelector('.shotsMenu').addEventListener('click', ()=>{
     renderCustomsMenu('shotsMenu')
 })
-
+document.querySelector('.syrupMenu').addEventListener('click', ()=>{
+    renderCustomsMenu('syrup')
+})
 
 function checkForSelection(){
     if(document.querySelector('.pickedDrinks .selected')){
@@ -777,24 +896,6 @@ if(production=== 'live'){
     postUrl ='https://coffee-trainer.herokuapp.com/order'
 }
 
-
-
-
-
-// document.querySelector('.findOrder').addEventListener('click',()=>{
-//     let body = JSON.stringify({drinksArray,drinkIsIced,customerID})
-//     fetch(postUrl, {
-//         method: 'POST',
-//         headers:{
-//             'Content-Type':'application/json'
-//         },
-//         body: body
-//        }).then(res=>{
-//         console.log(res.json())
-//        })
-//        console.log(body)
-    
-// })
 document.querySelector('.findOrder').addEventListener('click',postAnswer)
 async function apiRequestCustomer(url){
     document.querySelector('.menuWrapper').classList.add('loading')
@@ -866,7 +967,7 @@ async function postAnswer(){
                 document.querySelectorAll('.customizations div div').forEach((div)=>{
                     div.innerText=''
                 })
-                document.querySelectorAll('.drinkType').classList.remove('hidden')
+                document.querySelector('.drinkType').classList.remove('hidden')
                 drinksArray=[]
                 drinkIsIced=[]
                 numberOfDrinksAdded=0
