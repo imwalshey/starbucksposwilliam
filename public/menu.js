@@ -831,7 +831,7 @@ function changeHotAndIced(drink,element,value){
         drink.hot.syrup.push(value)
         drink.hot.pumps.push(JSON.parse(JSON.stringify(drink.hot.ogPumps[0])))
         drink.iced.syrup.push(value)
-        drink.iced.pumps.push(JSON.parse(JSON.stringify(drink.hot.ogPumps[0])))
+        drink.iced.pumps.push(JSON.parse(JSON.stringify(drink.iced.ogPumps[0])))
     }
 }
 
