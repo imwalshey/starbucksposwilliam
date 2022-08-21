@@ -15,7 +15,8 @@
 }
 @font-face {
     font-family: SodoSansRegular;
-    src: url("../public/fonts/SoDoSans-Regular.otf") format("opentype");
+    src: url("../public/fonts/regular/SoDoSans-Regular.ttf") format("trueType")
+    ;
 }
 *{
     box-sizing: border-box;
@@ -25,7 +26,7 @@
 }
 
 .pickedDrinks *{
-    font-family: sodosansregular;
+    font-family: SoDoSansregular;
 }
 body{
     background-color:#00754a;
@@ -809,7 +810,7 @@ body{
    outline: none;
    background: none;
    width:auto;
-   width:92.5%;
+   width:93.5%;
    
 }
 .pickedDrinks div div.isIced{
@@ -818,7 +819,7 @@ body{
 }
 .pickedDrinks .sizeIdentifier{
     width:6.5%;
-    padding-right: 1.2em;
+    padding-right: 1.2%;
 }
 .selected{
     background: #95d2e9;
