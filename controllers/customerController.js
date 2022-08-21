@@ -423,5 +423,7 @@ module.exports={
     },
     sendAllCustomers :(req,res)=>{
         res.json(customers)
-    }
+    },
+    customerCorrectAnswers : customerCorrectAnswers
+    
 }

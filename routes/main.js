@@ -5,4 +5,5 @@ router.get('/', mainController.index)
 router.get('/roasts', mainController.roasts) 
 router.get('/menu', mainController.menu) 
 router.get('/coredrinks', mainController.coredrinks) 
+router.post('/order', mainController.order) 
 module.exports = router
