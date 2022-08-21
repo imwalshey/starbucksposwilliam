@@ -14,6 +14,7 @@ app.use(express.json())
 
 const APIRoutes = require('./routes/API')
 const mainRoutes = require('./routes/main')
+
 app.use('/api',APIRoutes)
 app.use('/',mainRoutes)
 
