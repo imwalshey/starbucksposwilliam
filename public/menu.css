@@ -1051,6 +1051,18 @@ footer.hidden{
 }
 @media only screen and (min-width: 1470px) {
     *{
-        font-size: .8vw;
+        font-size: 14px;
+    }
+    .regular div{
+        border-width:1px;
+    }
+    .iceCheck div{
+        border-width: 1px;
+    }
+    .pickedDrinks .sizeIdentifier{
+        padding-right: 1.3em;
+    }
+    .pickedDrinks div div{
+        width: 91.5%;
     }
 }

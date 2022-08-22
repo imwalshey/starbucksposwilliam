@@ -21,11 +21,17 @@ class DrinkBuild{
     constructor(IcedBool,DecafAmount,Shots,Pumps,Syrup,Milk,Custom,ABBR,SIZE){
         this.iced=IcedBool
         this.decaf=DecafAmount
+        if(!Array.isArray(this.decaf)){
+            this.decaf=[DecafAmount]
+        }
         this.shots=Shots
         this.pumps= [Pumps]
         this.syrup=[Syrup]
         this.milk=Milk
-        this.custom=Custom
+        this.custom = Custom
+        if(!Array.isArray(this.custom)){
+            this.custom=[Custom]
+        }
         this.abbr=ABBR
         
         if(SIZE){
@@ -118,7 +124,7 @@ coreDrinks.espresso.push(new Espresso('White Mocha',['steam milk','que shots','p
                                     new DrinkBuild(true,[''],[null,1,2,3,null],[null,3,4,6,null],'WM','%','WC','WCM')))
 coreDrinks.espresso.push(new Espresso('Mocha',['steam milk','que shots','pump syrup','pour milk','add whip'],{'whipped cream':'6%','foam':'11%','steamed milk':'63%','espresso':'13%','syrup':'7%'},true,true,{'whipped cream':'6%','milk':'74%','espresso':'13%','syrup':'7%'},'Mocha',
                                     new DrinkBuild(false,[''],[1,1,2,2,null],[2,3,4,5,null],'M','%',['F','WC'],'M'),
-                                    new DrinkBuild(true,[''],[null,1,2,3,null],[null,3,4,6,null],'M','%','WC','M')))
+                                    new DrinkBuild(true,[''],[null,1,2,3,null],[null,3,4,6,null],'M','%',['WC','F'],'M')))
 class Frappucino{
     constructor(Name,Steps,Build,Bool,Topping,Layered,ABBR,Hot,Iced,MBI,MBH){
         this.name = Name
@@ -223,12 +229,13 @@ coreDrinks.tea.push(new Tea("Black Tea Lemonade",null,
 coreDrinks.tea.push(new Tea("Green Tea Lemonade",null,
                                             new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['GT',"L"],'GTL'),
                                             'Green Tea Lemonade',false,true))
+coreDrinks.tea.push(new Tea("Peach Green Tea Lemonade",null,
+                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['PB','GT',"L"],'PGTL'),
+                                            'Peach Green Tea Lem',false,true))                                          
 coreDrinks.tea.push(new Tea("Passion Tango Tea Lemonade",null,
                                             new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['PTT',"L"],'PTL'),
                                             'Passion Tea Lemonade',false,true))
-coreDrinks.tea.push(new Tea("Peach Green Tea Lemonade",null,
-                                            new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['PB','GT',"L"],'PGTL'),
-                                            'Peach Green Tea Lem',false,true))                                              
+                                            
 coreDrinks.tea.push(new Tea("Custom Tea Lemonade",null,
                                             new DrinkBuild(true,'',[null,'','','',''],[null,3,4,6,7],'','',['',"L"],'CTL'),
                                             'Custom Tea Lemonade',false,true))    

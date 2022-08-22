@@ -203,28 +203,101 @@ function addToOrder(element){
         
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         
-        if(hots != null && colds != null){
-            drinksArray[drinkNum]={
-                hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size),
-                iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
-            }
-            drinkIsIced.push(false)
-        }
-        if(hots != null && colds === null){
-            drinksArray[drinkNum]={
-                hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size)
-            }
-            drinkIsIced.push(false)
-        }
-        if(hots === null && colds != null){
-            drinksArray[drinkNum]={
-                iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
-            }
-            drinkIsIced.push(true)
-        }
-       
-        changeHotAndIced(drinksArray[drinkNum],'size',sizeSelected)
+        // if(hots != null && colds != null){
+        //     drinksArray[drinkNum]={
+        //         hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size),
+        //         iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
+        //     }
+        //     drinkIsIced.push(false)
+        // }
+        // if(hots != null && colds === null){
+        //     drinksArray[drinkNum]={
+        //         hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size)
+        //     }
+        //     drinkIsIced.push(false)
+        // }
+        // if(hots === null && colds != null){
+        //     drinksArray[drinkNum]={
+        //         iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
+        //     }
+        //     drinkIsIced.push(true)
+        // }
         
+        // changeHotAndIced(drinksArray[drinkNum],'size',sizeSelected)
+        const drinkToBeAdded ={
+            hot: hots,
+            iced: colds
+        }
+        //console.log(drinkToBeAdded)
+        Object.keys(drinksArray[drinkNum]).forEach((cool)=>{
+            if(drinkToBeAdded[`${cool}`]!==null){
+            Object.keys(drinksArray[drinkNum][`${cool}`]).forEach((bool)=>{
+                if(drinksArray[drinkNum][`${cool}`][bool]=== ''){
+                    drinksArray[drinkNum][`${cool}`][bool]= drinkToBeAdded[`${cool}`][bool]
+                }
+                if(bool==='ogShots'){
+                    drinksArray[drinkNum][`${cool}`][bool]=drinkToBeAdded[`${cool}`]['shots']
+                    //console.log(drinksArray[drinkNum][`${cool}`][bool])
+                }
+                if(bool==='shots'){
+                    drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{
+                        if(num==null){
+                            drinksArray[drinkNum][`${cool}`][bool][i] = null
+                            //console.log(drinksArray[drinkNum][`${cool}`][bool][i])
+                        }
+                        if(num!==null && drinksArray[drinkNum][`${cool}`][bool][i]=== ''){
+                            drinksArray[drinkNum][`${cool}`][bool][i] = drinkToBeAdded[`${cool}`][bool][i]
+                            //console.log(drinksArray[drinkNum][`${cool}`][bool][i])
+                        }
+                    })
+                }
+                if(bool = 'decaf'){
+                    drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{
+                        if(num=='' && drinksArray[drinkNum][`${cool}`][bool][i]!== ''){
+                            drinksArray[drinkNum][`${cool}`][bool][i] = null
+                        }
+                        if(num!=='' && drinksArray[drinkNum][`${cool}`][bool][i]=== ''){
+                            drinksArray[drinkNum][`${cool}`][bool][i] = drinkToBeAdded[`${cool}`][bool][i]
+                        }
+                    })
+                }
+                if(bool = 'pumps'){
+                    drinkToBeAdded[`${cool}`][bool][0].forEach((num,i)=>{
+                        if(num===null){
+                            drinksArray[drinkNum][cool][bool][0][i]=null
+                            console.log(drinksArray[drinkNum][cool][bool][0][i])
+                        }
+                        if(num!==null){
+                            drinksArray[drinkNum][cool][bool][0][i]= drinkToBeAdded[`${cool}`][bool][0][i]
+                        }
+                    })
+                }
+                if(bool = 'syrup'){
+                    drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{
+                        if(num=='' && drinksArray[drinkNum][`${cool}`][bool][i]!== ''){
+                            drinksArray[drinkNum][`${cool}`][bool][i] = null
+                        }
+                        if(num!=='' && drinksArray[drinkNum][`${cool}`][bool][i]=== ''){
+                            drinksArray[drinkNum][`${cool}`][bool][i] = drinkToBeAdded[`${cool}`][bool][i]
+                        }
+                    })
+                }
+                
+                if(bool = 'custom'){
+                    drinksArray[drinkNum][`${cool}`][bool] = drinkToBeAdded[`${cool}`][bool]
+                    // drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{
+                    //     if(num==='' && drinksArray[drinkNum][`${cool}`][bool][i]!== ''){
+                    //         drinksArray[drinkNum][`${cool}`][bool][i] = null
+                    //     }
+                    //     if(num!=='' && drinksArray[drinkNum][`${cool}`][bool][i]=== ''){
+                    //         drinksArray[drinkNum][`${cool}`][bool][i] = drinkToBeAdded[`${cool}`][bool][i]
+                    //     }
+                    // })
+                }
+                
+            })
+        }
+        })
         document.querySelector(`.drink${drinkNum}`).addEventListener('click',(click)=>{
             selectDrink(click.target.parentElement, element)
         })
@@ -248,7 +321,6 @@ function addSpecificSelectToNameBar(){
 
 let sizeSelected
 function renderHotDrinkContents(value,modify){
-    
     if(value.hot && !value.iced){
         sizeSelected = value.hot.size
         bool = value.hot
@@ -262,7 +334,7 @@ function renderHotDrinkContents(value,modify){
     // if(bool.decaf==='B'){
 
     // }
-
+    
 
     if(drinkIsIced[drinkNum]===true && value.iced){
         bool=value.iced
@@ -287,7 +359,6 @@ function renderHotDrinkContents(value,modify){
         addTheIcedWord()
         errorMessage('Entry not available on active levels','red')
     }
-    
     showDrinkContentsInDivs(bool)
        
     
@@ -332,10 +403,7 @@ function showDrinkContentsInDivs(bool){
         sizeNotAvailable(bool.shots[amount])
         })    
     }
-        
-    
-    
-    
+
     if(bool.shots===''){
         document.querySelector('.shotsCheck div').innerText=''
     }
@@ -412,7 +480,6 @@ function selectDrink(drink,element){
     document.querySelectorAll('.customizations div div').forEach((div)=>{
         div.innerText=''
     })
-    
     if(element !== undefined){
         renderHotDrinkContents(drinksArray[Number(drink.classList[0].replace('drink',''))])
     }
@@ -514,176 +581,140 @@ function renderCustomsMenu(menu){
     })
     document.querySelector('.items').className=`items ${menu}`
 }
-
+let tempDrink = {
+    hot: new Drink(false,[''],['','','','',''],[['','','','','']],[''],'',[''],''),
+    iced: new Drink(true,[''],['','','','',''],[['','','','','']],[''],'',[''],''),
+}
 function processCustom(element,value){
-    if(document.querySelector('.pickedDrinks .selected')){
-        let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-        let drink = drinksArray[drinkNum]
-        
-        if(value === 'size'){
-            if(element ==='Trenta'){
-                sizeSelected='Tr'
-            }
-            if(element ==='Venti'){
-                sizeSelected='Vt'
-            }
-            if(element ==='Grande'){
-                sizeSelected='Gr'
-            }
-            if(element ==='Tall'){
-                sizeSelected='Tl'
-            }
-            if(element ==='Short'){
-                sizeSelected='Sh'
-            }
-            if(element ==='Kids'){
-                sizeSelected='Sh'
-            }
-            changeHotAndIced(drink,'size',sizeSelected)
-            
-            //drinksArray[drinkNum].hot.size = sizeSelected
-            
-            drink.hot!==undefined? document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText=drink.hot.size : document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText=drink.iced.size
-
-            if(element ==='Kids'){
-                document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText='Kids'
-            }
-        }
-        
-        if(value==='shotNumber'){
-            let bool 
-            
-            if(drinkIsIced[drinkNum]){
-                bool = drink.iced
-            }else{
-                bool=drink.hot
-            }
-            if(element ==='Single'){
-                changeHotAndIced(drink,'shotNumber',1)
-                createModifier('Single','',value)
-            }
-            if(element ==='Double'){
-                changeHotAndIced(drink,'shotNumber',2)
-                createModifier('Double','',value)
-            }
-            if(element ==='Triple'){
-                changeHotAndIced(drink,'shotNumber',3)
-                createModifier('Triple','',value)
-            }
-            if(element ==='Quad'){
-                changeHotAndIced(drink,'shotNumber',4)
-                createModifier('Quad','',value)
-            }
-            if(element === 'More shots'){
-                let wholeNum = []
-                document.querySelector('.displayAmount p').innerText=''
-                //removeAllChildNodes(document.querySelector('.items'))
-                document.querySelector('.quantityForShots').classList.add('active')
-                document.querySelectorAll('.quantityNums div').forEach((elem)=>{
-                    elem.addEventListener('click',(click)=>{
-                        if(click.target.classList.contains('number')){
-                            wholeNum.push(click.target.innerText)
-                            document.querySelector('.displayAmount p').innerText=wholeNum.join('')
-                        }
-                        if(click.target.classList.contains('clearError')){
-                            if(Number(wholeNum.join(''))<=99 && Number(wholeNum.join(''))>0 ){
-                                changeHotAndIced(drink,'shotNumber',Number(wholeNum.join('')))
-                                document.querySelector('.quantityForShots').classList.remove('active')
-                                renderHotDrinkContents(drink)
-                                createModifier(Number(wholeNum.join('')),'shots',value)
-                            }
-                        }
-                        if(click.target.classList.contains('cancelError')){
-                            document.querySelector('.quantityForShots').classList.remove('active')
-                        }
-                    })
-                })
-                
-            }
-            if(element==='Affogato Shot'){
-                
-            }
-            
-        }
-        
-        if(value === 'coffeeType'){
-            
-            changeHotAndIced(drink,value,element)
-            if(document.querySelector(`.${nameShortener(element)}${value}`)){
-                document.querySelector(`.${nameShortener(element)}${value}`).remove()
-            }
-            createModifier(element,'',`${nameShortener(element)}${value}`)
-            renderHotDrinkContents(drink)
-        }
-        if(value === 'iced'){
-            if(drinkIsIced[drinkNum]===undefined){
-                drinkIsIced[drinkNum]=false
-            }
-            if(drinkIsIced[drinkNum]===false){
-                drinkIsIced[drinkNum]=true
-                addTheIcedWord()
-            }else
-            if(drinkIsIced[drinkNum]===true){
-                drinkIsIced[drinkNum]=false
-                addTheIcedWord()
-            }
-            
-        }
-        if(value.type==='syrup'){
-            if(! drink.hot.syrup.includes(value.abbr)){
-                createModifier(`${element}`,'',`${nameShortener(element)}${value.type}`)
-                changeHotAndIced(drink,value.type,value.abbr)
-            }
-            
-            
-            
-        }
-
-        renderHotDrinkContents(drink)
+    let drink
+    let drinkNum
+    if(document.querySelector('.pickedDrinks .selected') && document.querySelector('.selected .drinkName')){
+        drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+        drink = drinksArray[drinkNum]
     }else{
-        if(value==='iced'){
-            
-            createTemplate(element)
-            let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-            if(drinkIsIced[drinkNum]===false){
-                drinkIsIced[drinkNum]=true
-                addTheIcedWord()
-            }else
-            if(drinkIsIced[drinkNum]===true){
-                drinkIsIced[drinkNum]=false
-                addTheIcedWord()
-            }
-            
+        createTemplate()
+        drinksArray.push(JSON.parse(JSON.stringify(tempDrink)))
+        drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+        drink = drinksArray[drinkNum]
+        addSpecificSelectToNameBar()
+    }
+    
+    if(value === 'size'){
+        
+        if(element ==='Trenta'){
+            sizeSelected='Tr'
+        }
+        if(element ==='Venti'){
+            sizeSelected='Vt'
+        }
+        if(element ==='Grande'){
+            sizeSelected='Gr'
+        }
+        if(element ==='Tall'){
+            sizeSelected='Tl'
+        }
+        if(element ==='Short'){
+            sizeSelected='Sh'
+        }
+        if(element ==='Kids'){
+            sizeSelected='Sh'
+        }
+        changeHotAndIced(drink,'size',sizeSelected)
+        
+        //drinksArray[drinkNum].hot.size = sizeSelected
+        drink.hot!==undefined? document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText=drink.hot.size : document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText=drink.iced.size
+        if(element ==='Kids'){
+            document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText='Kids'
+        }
+    }
+    
+    if(value==='shotNumber'){
+        let bool 
+        
+        if(drinkIsIced[drinkNum]){
+            bool = drink.iced
+        }else{
+            bool=drink.hot
+        }
+        if(element ==='Single'){
+            changeHotAndIced(drink,'shotNumber',1)
+            createModifier('Single','',value)
+        }
+        if(element ==='Double'){
+            changeHotAndIced(drink,'shotNumber',2)
+            createModifier('Double','',value)
+        }
+        if(element ==='Triple'){
+            changeHotAndIced(drink,'shotNumber',3)
+            createModifier('Triple','',value)
+        }
+        if(element ==='Quad'){
+            changeHotAndIced(drink,'shotNumber',4)
+            createModifier('Quad','',value)
+        }
+        if(element === 'More shots'){
+            let wholeNum = []
+            document.querySelector('.displayAmount p').innerText=''
+            //removeAllChildNodes(document.querySelector('.items'))
+            document.querySelector('.quantityForShots').classList.add('active')
+            document.querySelectorAll('.quantityNums div').forEach((elem)=>{
+                elem.addEventListener('click',(click)=>{
+                    if(click.target.classList.contains('number')){
+                        wholeNum.push(click.target.innerText)
+                        document.querySelector('.displayAmount p').innerText=wholeNum.join('')
+                    }
+                    if(click.target.classList.contains('clearError')){
+                        if(Number(wholeNum.join(''))<=99 && Number(wholeNum.join(''))>0 ){
+                            changeHotAndIced(drink,'shotNumber',Number(wholeNum.join('')))
+                            document.querySelector('.quantityForShots').classList.remove('active')
+                            renderHotDrinkContents(drink)
+                            createModifier(Number(wholeNum.join('')),'shots',value)
+                        }
+                    }
+                    if(click.target.classList.contains('cancelError')){
+                        document.querySelector('.quantityForShots').classList.remove('active')
+                    }
+                })
+            })
             
         }
-        if(value === 'size'){
-            if(element ==='Trenta'){
-                sizeSelected='Tr'
-            }
-            if(element ==='Venti'){
-                sizeSelected='Vt'
-            }
-            if(element ==='Grande'){
-                sizeSelected='Gr'
-            }
-            if(element ==='Tall'){
-                sizeSelected='Tl'
-            }
-            if(element ==='Short'){
-                sizeSelected='Sh'
-            }
-            if(element ==='Kids'){
-                sizeSelected='Sh'
-            }
-            // changeHotAndIced(drink,'size',sizeSelected)
-            // if(element ==='Kids'){
-            //     document.querySelector('.pickedDrinks .selected .sizeIdentifier').innerText='Kids'
-            // }
+        if(element==='Affogato Shot'){
             
-            createTemplate(sizeSelected)
         }
         
     }
+    
+    if(value === 'coffeeType'){
+        
+        changeHotAndIced(drink,value,element)
+        if(document.querySelector(`.${nameShortener(element)}${value}`)){
+            document.querySelector(`.${nameShortener(element)}${value}`).remove()
+        }
+        createModifier(element,'',`${nameShortener(element)}${value}`)
+        renderHotDrinkContents(drink)
+    }
+    if(value === 'iced'){
+        if(drinkIsIced[drinkNum]===undefined){
+            drinkIsIced[drinkNum]=false
+        }
+        if(drinkIsIced[drinkNum]===false){
+            drinkIsIced[drinkNum]=true
+            addTheIcedWord()
+        }else
+        if(drinkIsIced[drinkNum]===true){
+            drinkIsIced[drinkNum]=false
+            addTheIcedWord()
+        }
+        
+    }
+    if(value.type==='syrup'){
+        if(! drink.hot.syrup.includes(value.abbr)){
+            createModifier(`${element}`,'',`${nameShortener(element)}${value.type}`)
+            changeHotAndIced(drink,value.type,value.abbr)
+        }
+    }
+    
+    renderHotDrinkContents(drink)
 }
 function createTemplate(modifier){
     const itemsArea = document.querySelector('.pickedDrinks')
@@ -695,7 +726,7 @@ function createTemplate(modifier){
     document.querySelector(`.drink${numberOfDrinksAdded}`).addEventListener('click',(click)=>{
         selectDrink(click.target.parentElement)
     })
-    drinksArray.push({})
+    drinkIsIced.push(false)
     numberOfDrinksAdded+=1
     const sizeArea = document.createElement('div')
     sizeArea.classList.add('sizeIdentifier')

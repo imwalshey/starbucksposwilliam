@@ -6,7 +6,8 @@ const router = express.Router()
 const customerModel = require('../models/customers')
 module.exports={
     sendCustomer :(req,res)=>{
-        const randomNum = Math.floor(Math.random() * (customerModel.customer.length))
+        //const randomNum = Math.floor(Math.random() * (customerModel.customer.length))
+        const randomNum = 36
         res.json(customerModel.customer[randomNum])
     },
     sendAllCustomers :(req,res)=>{

@@ -4,6 +4,7 @@ const drinkController = require('../controllers/drinkController')
 const customerController = require('../controllers/customerController')
 const customizeController = require('../controllers/customizeController')
 const roastsController = require('../controllers/roastsController')
+
 router.get('/coreDrinks', drinkController.allDrinks) 
 router.get('/customers', customerController.sendCustomer) 
 router.get('/allcustomers', customerController.sendAllCustomers) 

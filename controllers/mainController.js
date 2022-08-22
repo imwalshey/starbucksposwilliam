@@ -36,6 +36,8 @@ module.exports={
                     points+=1
                     
                 }
+                console.log(answer)
+                console.log(customerController.customerCorrectAnswers[Number(req.body.customerID)])
             })
             if(points>=1){
                     res.json('win')

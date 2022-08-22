@@ -290,7 +290,9 @@ coreDrinks.espresso.forEach((element,i)=>{
     customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i]}`,`${sizes[i]} triple hot blonde ${elem.name}`))
     elem.menuBuildHot.size = translateSize(sizes[i])
     //console.log(translateSize(sizes[i]))
-    elem.menuBuildHot.decaf.push('B')
+    if(!elem.menuBuildHot.decaf.includes('B')){
+        elem.menuBuildHot.decaf.push('B')
+    }
     elem.menuBuildHot.shots= [3,3,3,3,null]
     customerCorrectAnswers.push(elem.menuBuildHot)
     
@@ -302,7 +304,9 @@ coreDrinks.espresso.forEach((element,i)=>{
     customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[i]}`,`${sizes[i]} quad hot blonde ${elem.name}`))
     elem.menuBuildHot.size = translateSize(sizes[i])
     //console.log(translateSize(sizes[i]))
-    elem.menuBuildHot.decaf.push('B')
+    if(!elem.menuBuildHot.decaf.includes('B')){
+        elem.menuBuildHot.decaf.push('B')
+    }
     elem.menuBuildHot.shots= [4,4,4,4,null]
     customerCorrectAnswers.push(elem.menuBuildHot)
     
