@@ -184,8 +184,8 @@ coreDrinks.blended.push(new Frappucino('Caramel Ribbon Crunch Crème Frappucino'
 new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'DC','W',['WC','CCT'],'CRCF'),null))
 coreDrinks.blended.push(new Frappucino('Chocolate Cookie Crumble Crème Frappucino',['pour milk','add to blender','pump flavor','add ice','add base','blend','pour into cup','top with whipped cream'],['milk','mocha syrup','java chips','ice'],true,'mocha drizzle,cookie crumble',['cookie crumble','whipped cream'],"Choc Cookie Crm Frapp",false,true, 
 new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'M','W',['WC','MDR','JC'],'CCRF'),null))
-coreDrinks.blended.push(new Frappucino('Blended Strawberry Lemonade',['pour milk','add to blender','add ice','add base','blend','pour into cup'],['lemonade','strawberry puree','ice'],false,'',false,'Str Crm Frapp',false,true, 
-new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'','',['LE','SP'],'CRMF'),null))
+coreDrinks.blended.push(new Frappucino('Blended Strawberry Lemonade',['pour milk','add to blender','add ice','add base','blend','pour into cup'],['lemonade','strawberry puree','ice'],false,'',false,'Blnded Str Lem',false,true, 
+new DrinkBuild(true,'',[null,'','','',null],[null,2,3,4,null],'','',['LE','SP'],'BSL'),null))
 
 class Tea{
     constructor(Name,Build,IcedBuild, ABBR,Hot,Iced){
@@ -204,7 +204,7 @@ coreDrinks.tea.push(new Tea("Matcha Green Tea Latte",new DrinkBuild(false,'',[''
                                                     new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'','%','M','MTL'),
                                                     'Matcha Tea Latte',true,true))
 coreDrinks.tea.push(new Tea("Royal English Breakfast Tea Latte",new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'LC','%',['TB','F'],'MTL'),
-                                                    new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'LC','%','TB','MTL'),
+                                                    new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'LC','%','TB','EBTL'),
                                                     'Royal EB Latte',true,true))
 coreDrinks.tea.push(new Tea("London Fog Tea Latte",new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'V','%',['TB','F'],'LFL'),
                                                     new DrinkBuild(true,'',[null,'','','',null],[null,3,4,6,null],'V','%','TB','LFL'),
