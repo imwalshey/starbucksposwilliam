@@ -15,7 +15,7 @@ module.exports={
         res.sendFile(path+'/menu.html')
     },
     coredrinks: (req,res)=>{
-        res.sendFile(path+'/coredrinks.html')
+        res.sendFile(path+'/coreDrinks.html')
     },
     order: (req,res)=>{
             let points = 0
