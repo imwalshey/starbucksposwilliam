@@ -1,3 +1,19 @@
+/*
+
+
+
+
+
+Known Bugs: fun AddtoOrder() errorMessage Currently: line 162
+
+
+Definitions: Partial Drink- When adding a drink to the menu and starting with size first, the drink is simply defined as "[drink]"
+
+
+*/
+
+
+
 const capitalAlphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 const alphabet = []
 capitalAlphabet.forEach((letter)=>{
@@ -5,6 +21,8 @@ capitalAlphabet.forEach((letter)=>{
 })
 //Defines an alphabet(lowercase) to assign grid area positions
 
+
+//Searches document for "selected" classlist and remove the "selected" classlist from the element
 function removeAllSelected(){
     document.querySelectorAll('.pickedDrinks div').forEach((element)=>{
         while(element.classList.contains('selected')){
@@ -12,11 +30,11 @@ function removeAllSelected(){
         }
     })
 }
-//
+//Just a ease of access function to reduce repetition of code. 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
+// Removes all the children of a given parent element
 function removeAllChildNodes(parent) {
     if(parent){
     while (parent.firstChild) {
@@ -25,7 +43,7 @@ function removeAllChildNodes(parent) {
 }
 }
 
-
+//Gets rid of spaces and special characters of string and returns a lowercase condensed output
 function nameShortener(name){
     
     let bob= name.toLowerCase().split('').filter((elem)=>{
@@ -38,11 +56,34 @@ function nameShortener(name){
 }
 
 
-let theDrinks = []
+// Defines a "iced array" for identifying which key of the drinksArray Object to use
 let drinkIsIced=[]
 
+//a counter for adding 'drinkX' to each classlist for the drinks
+let numberOfDrinksAdded=0;
+
+//defines an array of drinks for storing the currently used drinks
+let drinksArray = []
+
+//a constructor for having continuity across the front-end and back-end for drinks
+class Drink{
+    constructor(IcedBool,DecafAmount,Shots,Pumps,Syrup,Milk,Custom,ABBR){
+        this.iced=IcedBool
+        this.decaf=DecafAmount
+        this.shots=Shots
+        this.pumps=Pumps
+        this.syrup=Syrup
+        this.milk=Milk
+        this.custom=Custom
+        this.abbr=ABBR
+        this.size = 'Gr'
+        this.ogPumps=JSON.parse(JSON.stringify(Pumps))
+        this.ogShots=JSON.parse(JSON.stringify(Shots))
+    }
+}
 
 
+//adds menu categories for the each drinks category
 function createCat(data){
     Object.keys(data).forEach((element)=>{
 
@@ -58,7 +99,9 @@ function createCat(data){
     })
 }
 
+//Generates the menu items and adds event listeners to each element in the "items" section.
 function pageRender(click,data){
+    
     removeAllChildNodes(document.querySelector('.items'))
     
     click.forEach((element,i)=>{
@@ -78,7 +121,8 @@ function pageRender(click,data){
 
 
 
-
+// adds an event listener to the "LOCK" button which functions as the "clear all button" 
+// removes all the elements from the "drinks content divs", removes the 'drinks que section', and resets values of the containing elements
 document.querySelector('.LOCK').addEventListener('click',()=>{
     removeAllChildNodes(document.querySelector('.pickedDrinks'))
     document.querySelectorAll('.customizations div div').forEach((div)=>{
@@ -90,11 +134,15 @@ document.querySelector('.LOCK').addEventListener('click',()=>{
     
 })
 
-document.querySelector('.void').addEventListener('click',async function awomdawd(click){
+
+//Adds functionality to the 'void item' button
+//uses an async await function for easier readability when throwing errors to the client side
+//
+document.querySelector('.void').addEventListener('click',async function voidItems(click){
     try{
-        if(! document.querySelector('.pickedDrinks .selected .modifier.selectedSpecific')){
-            let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-            drinksArray[drinkNum]= null
+        if(! document.querySelector('.pickedDrinks .selected .modifier.selectedSpecific')){ //if a specific drink modifier is not selected...
+            let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink','')) 
+            drinksArray[drinkNum]= null 
             drinkIsIced[drinkNum]=undefined
             document.querySelector('.pickedDrinks .selected').remove()
             document.querySelectorAll('.customizations div div').forEach((div)=>{
@@ -120,37 +168,21 @@ document.querySelector('.void').addEventListener('click',async function awomdawd
 
 })
 
-let numberOfDrinksAdded=0;
-let drinksArray = []
-class Drink{
-    constructor(IcedBool,DecafAmount,Shots,Pumps,Syrup,Milk,Custom,ABBR){
-        this.iced=IcedBool
-        this.decaf=DecafAmount
-        this.shots=Shots
-        this.pumps=Pumps
-        this.syrup=Syrup
-        this.milk=Milk
-        this.custom=Custom
-        this.abbr=ABBR
-        this.size = 'Gr'
-        this.ogPumps=JSON.parse(JSON.stringify(Pumps))
-        this.ogShots=JSON.parse(JSON.stringify(Shots))
-    }
-}
 
+//adds drinks to the order
 function addToOrder(element){
     
-    let hots = JSON.parse(JSON.stringify(element.menuBuildHot )); 
-    let colds= JSON.parse(JSON.stringify(element.menuBuildIced));
-    if(drinksArray.length>30){
-        errorMessage("Stop. You're gonna break it.",'Red')
+    let hots = JSON.parse(JSON.stringify(element.menuBuildHot )); //Deep copies the element from the API
+    let colds= JSON.parse(JSON.stringify(element.menuBuildIced)); // ^^
+    if(drinksArray.length>30){ 
+        errorMessage("Stop. You're gonna break it.",'Red')  //I haven't fixed this bug yet and it feels less important DEFINITELY A BUG
     }
     
-
+    //checks to make sure the drink isn't partial*... 
     if(!document.querySelector('.pickedDrinks .selected .drinkName') || document.querySelector('.pickedDrinks .selected .drinkName').innerText !== '[Drink]'){
-        let div= document.createElement('div')
-        div.classList.add(`drink${numberOfDrinksAdded}`)
-        let size = document.createElement('div')
+        let div= document.createElement('div') // creates a new div
+        div.classList.add(`drink${numberOfDrinksAdded}`) //dive the div a classlist of drinkX
+        let size = document.createElement('div') //creates a div to contain the size Modifier that comes before every drink
         size.readOnly=true
         size.classList.add('sizeIdentifier')
         size.classList.add('selectedSpecific')
@@ -230,10 +262,20 @@ function addToOrder(element){
         }
         //console.log(drinkToBeAdded)
         Object.keys(drinksArray[drinkNum]).forEach((cool)=>{
-            if(drinkToBeAdded[`${cool}`]!==null){
+            if(drinkToBeAdded.hot === null || drinkToBeAdded.hot === undefined){
+                drinkIsIced[drinkNum] = true
+                drinksArray[drinkNum].hot = undefined
+            }
+            if(drinkToBeAdded[`${cool}`]!==null && drinkToBeAdded[`${cool}`]!==undefined){
             Object.keys(drinksArray[drinkNum][`${cool}`]).forEach((bool)=>{
                 if(drinksArray[drinkNum][`${cool}`][bool]=== ''){
                     drinksArray[drinkNum][`${cool}`][bool]= drinkToBeAdded[`${cool}`][bool]
+                }
+                if(bool === 'abbr'){
+                }
+                if(bool==='ogPumps'){
+                    drinksArray[drinkNum][`${cool}`][bool]=drinkToBeAdded[`${cool}`]['pumps']
+                    //console.log(drinksArray[drinkNum][`${cool}`][bool])
                 }
                 if(bool==='ogShots'){
                     drinksArray[drinkNum][`${cool}`][bool]=drinkToBeAdded[`${cool}`]['shots']
@@ -254,10 +296,17 @@ function addToOrder(element){
                 if(bool = 'decaf'){
                     drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{
                         if(num=='' && drinksArray[drinkNum][`${cool}`][bool][i]!== ''){
-                            drinksArray[drinkNum][`${cool}`][bool][i] = null
+                            drinksArray[drinkNum][`${cool}`][bool][i] = ''
                         }
-                        if(num!=='' && drinksArray[drinkNum][`${cool}`][bool][i]=== ''){
-                            drinksArray[drinkNum][`${cool}`][bool][i] = drinkToBeAdded[`${cool}`][bool][i]
+                        if(num!==''){
+                            
+                            if(! drinksArray[drinkNum][`${cool}`][bool].includes(drinkToBeAdded[`${cool}`][bool][i])){
+                                if(drinksArray[drinkNum][`${cool}`][bool][i] ===('')){
+                                    drinksArray[drinkNum][`${cool}`][bool].splice(i,1)
+                                }
+                                drinksArray[drinkNum][`${cool}`][bool].push(drinkToBeAdded[`${cool}`][bool][i])
+                            }
+                            
                         }
                     })
                 }
@@ -265,7 +314,7 @@ function addToOrder(element){
                     drinkToBeAdded[`${cool}`][bool][0].forEach((num,i)=>{
                         if(num===null){
                             drinksArray[drinkNum][cool][bool][0][i]=null
-                            console.log(drinksArray[drinkNum][cool][bool][0][i])
+                            //console.log(drinksArray[drinkNum][cool][bool][0][i])
                         }
                         if(num!==null){
                             drinksArray[drinkNum][cool][bool][0][i]= drinkToBeAdded[`${cool}`][bool][0][i]

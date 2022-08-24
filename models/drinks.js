@@ -25,6 +25,9 @@ class DrinkBuild{
             this.decaf=[DecafAmount]
         }
         this.shots=Shots
+        if(!Array.isArray(this.shots)){
+            this.shots=[Shots]
+        }
         this.pumps= [Pumps]
         this.syrup=[Syrup]
         this.milk=Milk
@@ -42,28 +45,30 @@ class DrinkBuild{
 
 
 
-coreDrinks.brewed.push(new Brewed("Pour Over Pike Place Roast",new DrinkBuild(false,[''],'','','','','','POPP'),null,'Pour Over Pike',true,false))
-coreDrinks.brewed.push(new Brewed("Pour Over Dark Roast",new DrinkBuild(false,[''],'','','','','','PODR'),null,'Pour Over Dark',true,false))
-coreDrinks.brewed.push(new Brewed("Pour Over Blonde Roast",new DrinkBuild(false,[''],'','','','','','POBR'),null,'Pour Over Blonde',true,false))
-coreDrinks.brewed.push(new Brewed("Pour Over Decaf Pike Place Reserve",new DrinkBuild(false,[''],'','','','','','PODPP'),null,'Decaf Pour Over',true,false))
-coreDrinks.brewed.push(new Brewed("Iced Coffee",null,new DrinkBuild(true,[''],'','','','','','IC'),'Iced Coffee',false,true))
-coreDrinks.brewed.push(new Brewed("Iced Coffee w/Milk",null,new DrinkBuild(true,[''],'','','','%','','IC/M'),'Iced Coffee w/ Milk',false,true))
-coreDrinks.brewed.push(new Brewed("Decaf Iced Coffee",null,new DrinkBuild(true,['D'],'','','','','','DIC'),'Decaf Iced Coffee',false,true))
-coreDrinks.brewed.push(new Brewed("Decaf Iced Coffee w/Milk",null,new DrinkBuild(true,['D'],'','','','%','','DIC/M'),'Decaf Iced Coffee w/Milk',false,true))
-coreDrinks.brewed.push(new Brewed("Iced Coffee Refill",null,new DrinkBuild(true,[''],'','','','','','ICR'),'Iced Coffee Refill',false,true))
-coreDrinks.brewed.push(new Brewed("Cold Brew",null,new DrinkBuild(true,[''],'','','','','','CB'),'Cold Brew',false,true))
-coreDrinks.brewed.push(new Brewed("Cold Brew w/Milk",null,new DrinkBuild(true,[''],'','','','%','','CB/M'),'Cold Brew w/Milk',false,true))
-coreDrinks.brewed.push(new Brewed("Cold Brew w/Cold Foam",null,new DrinkBuild(true,[''],'','','','','CF','CB'),'Cold Foam Cold Brew',false,true))
-coreDrinks.brewed.push(new Brewed("Cold Brew Refill",null,new DrinkBuild(true,[''],'','','','','','CBR'),'Cold Brew Refill',false,true))
-coreDrinks.brewed.push(new Brewed("Vanilla Sweet Cream Cold Brew",null,new DrinkBuild(true,[''],'',[1,2,3,4],'V','','VSCF','VSCB'),'Van Sweet Crm Cold Brew',false,true))
-coreDrinks.brewed.push(new Brewed("Salted Caramel Cream Cold Brew",null,new DrinkBuild(true,[''],'',[1,2,3,4],'V','','SCCF','SCCB'),'Slted Crml Cold Brew',false,true))
-coreDrinks.brewed.push(new Brewed("Chocolate Cream Cold Brew",null,new DrinkBuild(true,[''],'',[1,2,3,4],'V','','CCCF','CCCB'),'Choc Crm Cold Brew',false,true))
-coreDrinks.brewed.push(new Brewed("Cafe Misto",new DrinkBuild(false,[''],'','','','%','F','CFM'),null,'Cafè Misto',true,false))
-coreDrinks.brewed.push(new Brewed("Pike Place Roast",new DrinkBuild(false,[''],'','','','','','PPR'),null,'Pike Place',true,false))
-coreDrinks.brewed.push(new Brewed("Dark Roast",new DrinkBuild(false,[''],'','','','','','DRC'),null,'Dark Roast',true,false))
-coreDrinks.brewed.push(new Brewed("Blonde Roast",new DrinkBuild(false,[''],'','','','','','BRC'),null,'Blonde Roast',true,false))
-coreDrinks.brewed.push(new Brewed("Decaf Pike Place Roast",new DrinkBuild(false,['D'],'','','','','','DPPR'),null,'Decaf Pike',true,false))
-coreDrinks.brewed.push(new Brewed("Hot Coffee Refill",new DrinkBuild(false,[''],'','','','','','PPRR'),null,'Hot Coffee Refill',true,false))
+coreDrinks.brewed.push(new Brewed("Pour Over Pike Place Roast",new DrinkBuild(false,[''],['','','','',null],['','','','',null],'','','','POPP'),null,'Pour Over Pike',true,false))
+coreDrinks.brewed.push(new Brewed("Pour Over Dark Roast",new DrinkBuild(false,[''],['','','','',null],['','','','',null],'','','','PODR'),null,'Pour Over Dark',true,false))
+coreDrinks.brewed.push(new Brewed("Pour Over Blonde Roast",new DrinkBuild(false,[''],['','','','',null],['','','','',null],'','','','POBR'),null,'Pour Over Blonde',true,false))
+coreDrinks.brewed.push(new Brewed("Pour Over Decaf Pike Place Reserve",new DrinkBuild(false,[''],['','','','',null],['','','','',null],'','','','PODPP'),null,'Decaf Pour Over',true,false))
+
+coreDrinks.brewed.push(new Brewed("Iced Coffee",null,new DrinkBuild(true,[''],[null,'','','',''],[null,3,4,6,7],'C','','','IC'),'Iced Coffee',false,true))
+coreDrinks.brewed.push(new Brewed("Iced Coffee w/Milk",null,new DrinkBuild(true,[''],[null,'','','',''],[null,3,4,6,7],'C','%','','IC/M'),'Iced Coffee w/ Milk',false,true))
+coreDrinks.brewed.push(new Brewed("Decaf Iced Coffee",null,new DrinkBuild(true,['D'],[null,'','','',''],[null,3,4,6,7],'C','','','DIC'),'Decaf Iced Coffee',false,true))
+coreDrinks.brewed.push(new Brewed("Decaf Iced Coffee w/Milk",null,new DrinkBuild(true,['D'],[null,'','','',''],[null,3,4,6,7],'C','%','','DIC/M'),'Decaf Iced Coffee w/Milk',false,true))
+coreDrinks.brewed.push(new Brewed("Iced Coffee Refill",null,new DrinkBuild(true,[''],[null,'','','',''],[null,3,4,6,7],'C','','','ICR'),'Iced Coffee Refill',false,true))
+coreDrinks.brewed.push(new Brewed("Cold Brew",null,new DrinkBuild(true,[''],[null,'','','',''],[null,3,4,6,7],'','','','CB'),'Cold Brew',false,true))
+coreDrinks.brewed.push(new Brewed("Cold Brew w/Milk",null,new DrinkBuild(true,[''],[null,'','','',''],[null,3,4,6,7],'','%','','CB/M'),'Cold Brew w/Milk',false,true))
+coreDrinks.brewed.push(new Brewed("Cold Brew w/Cold Foam",null,new DrinkBuild(true,[''],[null,'','','',''],[null,3,4,6,7],'','','CF','CB'),'Cold Foam Cold Brew',false,true))
+coreDrinks.brewed.push(new Brewed("Cold Brew Refill",null,new DrinkBuild(true,[''],[null,'','','',''],[null,3,4,6,7],'','','','CBR'),'Cold Brew Refill',false,true))
+coreDrinks.brewed.push(new Brewed("Vanilla Sweet Cream Cold Brew",null,new DrinkBuild(true,[''],[null,'','','',''],[1,2,3,4],'V','','VSCF','VSCB'),'Van Sweet Crm Cold Brew',false,true))
+coreDrinks.brewed.push(new Brewed("Salted Caramel Cream Cold Brew",null,new DrinkBuild(true,[''],[null,'','','',''],[1,2,3,4],'V','','SCCF','SCCB'),'Slted Crml Cold Brew',false,true))
+coreDrinks.brewed.push(new Brewed("Chocolate Cream Cold Brew",null,new DrinkBuild(true,[''],[null,'','','',''],[1,2,3,4],'V','','CCCF','CCCB'),'Choc Crm Cold Brew',false,true))
+
+coreDrinks.brewed.push(new Brewed("Cafe Misto",new DrinkBuild(false,[''],['','','','',null],['','','','',null],'','%','F','CFM'),null,'Cafè Misto',true,false))
+coreDrinks.brewed.push(new Brewed("Pike Place Roast",new DrinkBuild(false,[''],['','','','',null],['','','','',null],'','','','PPR'),null,'Pike Place',true,false))
+coreDrinks.brewed.push(new Brewed("Dark Roast",new DrinkBuild(false,[''],['','','','',null],['','','','',null],'','','','DRC'),null,'Dark Roast',true,false))
+coreDrinks.brewed.push(new Brewed("Blonde Roast",new DrinkBuild(false,[''],['','','','',null],['','','','',null],'','','','BRC'),null,'Blonde Roast',true,false))
+coreDrinks.brewed.push(new Brewed("Decaf Pike Place Roast",new DrinkBuild(false,['D'],['','','','',null],['','','','',null],'','','','DPPR'),null,'Decaf Pike',true,false))
+coreDrinks.brewed.push(new Brewed("Hot Coffee Refill",new DrinkBuild(false,[''],['','','','',null],['','','','',null],'','','','PPRR'),null,'Hot Coffee Refill',true,false))
 class Espresso{
     constructor(Name,Steps,hotContents,HotBoolean,IcedBoolean,IcedBuild,ABBR,MenuBuildHot,MenuBuildIced){
         this.name = Name
