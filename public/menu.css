@@ -535,10 +535,37 @@ body{
     align-content: center;
     
 }
-
-.items div{
-    box-shadow: inset 0px -2px 8px 0px rgb(0 0 0 / 35%), inset 1px 6px 8px 0px rgb(255 255 255 / 35%);
+.items.custom {
+    display: grid;
+    grid-template-columns: repeat(6, 15.6%);
+    grid-template-rows: repeat(8,11.4%);
+    grid-row-gap: 1%;
+    grid-column-gap: 1%;
+    justify-content: center;
+    align-content: center;
+    grid-template-areas:
+        'a b . . c d'
+        'e f g h . .'
+        'i j k l m n'
+        'o p q r s .'
+        't u v w x y'
+        'z aa bb . cc dd'
+        'ee ff gg hh . .'
+        'ii jj . . . .';
 }
+
+.items div {
+    box-shadow: inset 0px -2px 8px 0px rgb(0 0 0 / 35%), inset 1px 6px 8px 0px rgb(255 255 255 / 35%);
+    border-radius: .4em;
+    border:.2vw solid black;
+    display: flex;
+    text-align: center;
+    background-color: rgb(207 146 207);
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 .items.espresso{
     grid-template-areas: 
@@ -580,6 +607,37 @@ body{
     't u v w .'
     ;
 }
+.items.milk{
+    grid-template-areas:
+    '. . . a b'
+    'c d . e f'
+    'g h . i j'
+    'k l . m n'
+    'o p . q r'
+    's t . u v'
+    ;
+}
+.drinkPicker .items.custom .rawsugar~div{
+    background-color: rgb(207 146 207);
+}
+.items.milk .extra, .items.milk .light,.items .light,.items .extra,.items .sub,.items .no{
+    background:rgb(54 54 54);
+    color:white;
+    box-shadow:  inset 1px 6px 8px 0px rgb(0 0 0 / 35%),inset 0px -2px 8px 0px rgb(255 255 255 / 35%) ;
+}
+.items.milk div, .items.custom .ice,.items.custom .water,.drinkPicker .items.custom div.whippedcream,
+.itemSelection .drinkPicker .items.custom div.mochadrizzle,.itemSelection .drinkPicker .items.custom div.carameldrizzle,
+.itemSelection .drinkPicker .items.custom div.linethecupwmocha,.itemSelection .drinkPicker .items.custom div.linethecupwcaramel{
+    background-color: #95d2e9;
+}
+
+.items.milk .withwholemilk~div{
+    background-color: rgb(223, 229, 114);
+}
+.items.milk .withalmondmilk~div{
+    background-color: rgb(207 146 207);
+}
+
 .items.syrup div{
     background:rgb(54 54 54);
     color:white;
@@ -600,9 +658,12 @@ body{
 .items.syrup div.chai{
     background: #aedd88;
 }
-.items.syrup div.sugarfreevanillasyrup{
+.items.syrup div.sugarfreevanillasyrup,.items.custom .vanillasweetcream,
+.drinkPicker .items.custom div.linethecupwcaramel~div
+{
     background: rgb(224, 250, 251);
 }
+
 .items.syrup div.sugarfreevanillasyrup~div{
     background: rgb(207 146 207)
 }
@@ -619,28 +680,22 @@ body{
 .drinkPicker .items.shotsMenu .single, .items.shotsMenu .single~div{
     background-color: rgb(178, 116, 199);
 }
-.drinkPicker .items.shotsMenu .affogatoshot{
+.drinkPicker .items.shotsMenu .affogatoshot,.itemSelection .drinkPicker .items.custom div.strawberryacairefresherbase,
+.itemSelection .drinkPicker .items.custom div.dragonfruitrefresherbase,
+.itemSelection .drinkPicker .items.custom div.pineapplerefresherbase{
     background: rgb(225 177 126);
 }
 .drinkPicker .items.shotsMenu .frappucinoroast{
     background: #a98977;;
 }
 
-.drinkPicker .items.shotsMenu .kids~div{
+.drinkPicker .items.shotsMenu .kids~div,.drinkPicker .items.custom .addblueberries~div{
     background: #95dea9;;
 }
 .drinkPicker .items.shotsMenu .kids,.drinkPicker .items.shotsMenu .ristretto~div{
     background: #d7c54f;;
 }
-.items div {
-    border-radius: .4em;
-    border:.2vw solid black;
-    display: flex;
-    text-align: center;
-    background-color: rgb(207 146 207);
-    justify-content: center;
-    align-items: center;
-}
+
 .items .toastedvanillaoatshakenespresso ~ div{
     background-color: rgb(223, 229, 114);
 }
@@ -650,13 +705,13 @@ body{
 .items .cappuccino ~ div{
     background-color: rgb(224, 250, 251);
 }
-.items.espresso .caramelmacchiatto{
+.items.espresso .caramelmacchiatto {
     background: rgb(207 146 207);
 }
 .items.espresso .caramelmacchiatto~div{
     background: rgb(199, 159, 109);;
 }
-.items.blended div{
+.items.blended div, .items.custom .vanillasweetcream~div{
     background-color: rgb(201, 180, 153);;;
 }
 .items.blended .mochacookiecrumblefrappucino~div{
@@ -735,7 +790,8 @@ body{
 .items.tea .customtealatte~div {
     background-color:#6cb8d4;
 }
-.items.tea .customicedtea~div {
+.items.tea .customicedtea~div, .drinkPicker .items.custom div.lemonade,
+.itemSelection .drinkPicker .items.custom div.extrahot{
     background-color:#ece93b;
 }
 .items.tea .customtealemonade~div {

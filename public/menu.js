@@ -14,7 +14,7 @@ Definitions: Partial Drink- When adding a drink to the menu and starting with si
 
 
 
-const capitalAlphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+const capitalAlphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","BB",'CC','DD','EE','FF','GG','HH','II','JJ','KK'];
 const alphabet = []
 capitalAlphabet.forEach((letter)=>{
     alphabet.push(letter.toLowerCase())
@@ -923,7 +923,12 @@ document.querySelector('.shotsMenu').addEventListener('click', ()=>{
 document.querySelector('.syrupMenu').addEventListener('click', ()=>{
     renderCustomsMenu('syrup')
 })
-
+document.querySelector('.milkMenu').addEventListener('click', ()=>{
+    renderCustomsMenu('milk')
+})
+document.querySelector('.customMenu').addEventListener('click', ()=>{
+    renderCustomsMenu('custom')
+})
 function checkForSelection(){
     if(document.querySelector('.pickedDrinks .selected')){
         document.querySelector('.nextDrink').classList.add('active')
