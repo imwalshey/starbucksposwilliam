@@ -23,6 +23,7 @@
     color:black;
     font-size: 1.40vw;
     font-family: SodoSans-light;
+    user-select: none !important;
 }
 
 .pickedDrinks *{
@@ -415,6 +416,7 @@ body{
     height:90%;
     width:85%;
     background: rgb(255, 246, 204);
+    border-bottom:none;
 }
 .itemSelection .customizations{
     width:13%;
@@ -511,6 +513,13 @@ body{
    -webkit-user-select: none;
    -ms-user-select: none;
    user-select: none;
+   
+}
+.menu .itemSelection .highlight{
+    background:rgb(255, 246, 204);
+}
+.drinkCheck div{
+    background:rgb(255, 246, 204);
 }
 .customizations .drinkName{
     color: white;
@@ -563,6 +572,7 @@ body{
     background-color: rgb(207 146 207);
     justify-content: center;
     align-items: center;
+    overflow: clip;
 }
 
 
@@ -616,6 +626,9 @@ body{
     'o p . q r'
     's t . u v'
     ;
+}
+.items.custom div{
+    font-size: 1.0vw;
 }
 .drinkPicker .items.custom .rawsugar~div{
     background-color: rgb(207 146 207);

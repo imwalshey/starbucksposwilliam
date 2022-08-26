@@ -95,6 +95,10 @@ function createCat(data){
         category.addEventListener('click',(click)=>{
             document.querySelector('.items').className=`items ${(click.target.innerText.toLowerCase())}`
             pageRender(data[click.target.innerText.toLowerCase()],data)
+            document.querySelectorAll('.highlight').forEach((div)=>{
+                div.classList.remove('highlight')
+            })
+            click.target.classList.add('highlight')
         })
     })
 }
@@ -591,6 +595,16 @@ async function apiRequest(url){  //Calls the API and brings drink data to the
         statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(255, 0, 0))'
     }
 }
+async function allcustom(){
+    try{
+        const response = await fetch('http://localhost:8000/api/allcustomers')
+        const data = await response.json()
+        console.log(data)
+    }
+    catch{
+
+    }
+}
 let customerID
 
 
@@ -917,16 +931,32 @@ function changeHotAndIced(drink,element,value){
 
 
 
-document.querySelector('.shotsMenu').addEventListener('click', ()=>{
+document.querySelector('.shotsMenu').addEventListener('click', (click)=>{
+    document.querySelectorAll('.highlight').forEach((div)=>{
+        div.classList.remove('highlight')
+    })
+    document.querySelector('.customizations .shotsMenu').classList.add('highlight')
     renderCustomsMenu('shotsMenu')
 })
 document.querySelector('.syrupMenu').addEventListener('click', ()=>{
+    document.querySelectorAll('.highlight').forEach((div)=>{
+        div.classList.remove('highlight')
+    })
+    document.querySelector('.syrupMenu').classList.add('highlight')
     renderCustomsMenu('syrup')
 })
 document.querySelector('.milkMenu').addEventListener('click', ()=>{
+    document.querySelectorAll('.highlight').forEach((div)=>{
+        div.classList.remove('highlight')
+    })
+    document.querySelector('.milkMenu').classList.add('highlight')
     renderCustomsMenu('milk')
 })
 document.querySelector('.customMenu').addEventListener('click', ()=>{
+    document.querySelectorAll('.highlight').forEach((div)=>{
+        div.classList.remove('highlight')
+    })
+    document.querySelector('.customMenu').classList.add('highlight')
     renderCustomsMenu('custom')
 })
 function checkForSelection(){
@@ -942,6 +972,10 @@ function checkForSelection(){
 function nextDrink(){
     removeAllSelected()
     renderCustomsMenu('shotsMenu')
+    document.querySelectorAll('.highlight').forEach((div)=>{
+        div.classList.remove('highlight')
+    })
+    document.querySelector('.customizations .shotsMenu').classList.add('highlight')
     document.querySelectorAll('.customizations div div').forEach((div)=>{
         div.innerText=''
     })
@@ -1014,6 +1048,9 @@ async function apiRequestCustomer(url){
         console.log(error)
     }
 }
+if(! localStorage.getItem('totalCorrect')){
+    localStorage.setItem('totalCorrect',0)
+}
 async function postAnswer(){
     document.querySelector('.menuWrapper').classList.add('loading')
     document.querySelector('.customerArea').classList.add('hidden')
@@ -1045,11 +1082,18 @@ async function postAnswer(){
                 document.querySelectorAll('.customizations div div').forEach((div)=>{
                     div.innerText=''
                 })
+                renderCustomsMenu('shotsMenu')
+                document.querySelectorAll('.highlight').forEach((div)=>{
+                    div.classList.remove('highlight')
+                })
+                document.querySelector('.customizations .shotsMenu').classList.add('highlight')
                 drinksArray=[]
                 drinkIsIced=[]
                 numberOfDrinksAdded=0
                 apiRequestCustomer(localStorage.getItem('LastClicked').split(',')[2])
             })
+            localStorage.setItem('totalCorrect',(Number(localStorage.getItem('totalCorrect'))+1))
+            console.log(localStorage.getItem('totalCorrect'))
 
         }
         if(data==='lose'){

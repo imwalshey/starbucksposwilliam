@@ -18,10 +18,12 @@ module.exports={
         res.sendFile(path+'/coreDrinks.html')
     },
     order: (req,res)=>{
+            let checker = (arr, target) => target.every(v => arr.includes(v));
             let points = 0
             req.body.drinksArray.forEach((drink,i)=>{
+                if(req.body.drinksArray[i]!==undefined){
                 let answer
-                
+                let correctAnswer = JSON.parse(JSON.stringify(customerController.customerCorrectAnswers[Number(req.body.customerID)]))
                 if(req.body.drinkIsIced[i]===true){
                     answer = req.body.drinksArray[i].iced
                     delete req.body.drinksArray[i].iced.ogPumps
@@ -32,18 +34,25 @@ module.exports={
                     delete req.body.drinksArray[i].hot.ogShots
                     delete req.body.drinksArray[i].hot.ogPumps
                 }
-                if(JSON.stringify(answer) ===JSON.stringify(customerController.customerCorrectAnswers[Number(req.body.customerID)])){
-                    points+=1
-                    
-                }
+                console.log('answer')
                 console.log(answer)
-                console.log(customerController.customerCorrectAnswers[Number(req.body.customerID)])
+                if(checker(answer.decaf,correctAnswer.decaf)){
+                    delete answer.decaf
+                    delete correctAnswer.decaf
+                }
+                if(JSON.stringify(answer) ===JSON.stringify(correctAnswer)){
+                    points+=1
+                }
+                
+                console.log('correctAnswer')
+                console.log(correctAnswer)
+            }
             })
             if(points>=1){
                     res.json('win')
             }else{
                     res.json('lose')
             }
-            
+            console.log(points)
     }
 }
