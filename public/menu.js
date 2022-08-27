@@ -14,6 +14,7 @@ Definitions: Partial Drink- When adding a drink to the menu and starting with si
 
 
 
+
 const capitalAlphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","BB",'CC','DD','EE','FF','GG','HH','II','JJ','KK'];
 const alphabet = []
 capitalAlphabet.forEach((letter)=>{
@@ -1151,10 +1152,23 @@ function changeTheLinks(url){
     document.querySelector('.apiCustomers').href = url+'api/allCustomers'
 }
 
+function getAbsoluteHeight(el) {
+  // Get the DOM Node if you pass in a string
+  el = (typeof el === 'string') ? document.querySelector(el) : el; 
 
+  var styles = window.getComputedStyle(el);
+  var margin = parseFloat(styles['marginTop']) +
+               parseFloat(styles['marginBottom']) +
+               parseFloat(styles['borderBottom']) +
+               parseFloat(styles['borderTop']);
+
+  return Math.ceil(el.offsetHeight + margin);
+}
 
 changeTheLinks(window.location.href.toString())
-
-
-
-document.querySelector('.api').style.marginTop= `${document.querySelector('.customerArea').offsetHeight}px`
+let totalViableHeights = getAbsoluteHeight('header') + getAbsoluteHeight('.customerArea') + getAbsoluteHeight('.menuWrapper')
+//console.log(totalViableHeights)
+if(screen.height>= totalViableHeights){
+    document.querySelector('.api').style.marginTop= `${screen.height - totalViableHeights }px`
+}
+//document.querySelector('.api').style.marginTop= `${document.querySelector('.customerArea').offsetHeight}px`

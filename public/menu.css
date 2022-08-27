@@ -23,6 +23,7 @@ body .menuWrapper{
     padding-top: 89%; /* 16:9 Aspect Ratio */
     border-top: 10px solid black;
     border-bottom: 10px solid black;
+    margin-bottom: 20%;
 }
 
 div .menu{

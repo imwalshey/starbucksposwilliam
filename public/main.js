@@ -4,7 +4,7 @@ console.log(window.location.href.toString())
 
 function changeTheLinks(url){
     document.querySelector('.drinkVis').href = url+'coreDrinks'
-    document.querySelector('.menu').href = url+'menu'
+    document.querySelector('.menu').href = url+'pos'
     document.querySelector('.roasts').href = url+'roasts'
     document.querySelector('.apiDrinks').href = url+'api/coreDrinks'
     document.querySelector('.apiRoasts').href = url+'api/Roasts'

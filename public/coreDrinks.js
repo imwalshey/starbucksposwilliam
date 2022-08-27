@@ -34,7 +34,9 @@ async function apiRequest(){
             
             data[element].forEach((roasty)=>{
                 
-                
+                if(element === brewed){
+                    
+                }
                 if(element ==='blended'){
                     let whipped = document.createElement('div')
                     whipped.classList.add('whipped')
@@ -244,4 +246,12 @@ async function apiRequest(){
         console.log(error)
     }
 }
+
+
+
+
+
+
+
+
 apiRequest()
