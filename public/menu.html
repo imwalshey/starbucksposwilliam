@@ -5,14 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;1,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="home.css"> 
     <link rel="stylesheet" href="menu.css"> 
     <script src="https://kit.fontawesome.com/082f4a75c7.js" crossorigin="anonymous"></script>
 
-    <title>Starbucks Menu</title>
+    <title>POS Sim</title>
 </head>
 <body>
     <header>
-        <h1>Starbucks™ Point Of Sale Simulator</h1>
+        <h1>POINT OF SALE (POS) SIMULATOR</h1>
     </header>
     <div>
         
@@ -185,6 +190,14 @@
             </section>
         </section>
     </div>
+    <section class="api">
+        <ul>API Links:
+            <li><a class="apiDrinks" href="http://localhost:8000/api/coreDrinks">All Drinks</a></li>
+            <li><a class="apiCustomers" href="http://localhost:8000/api/allcustomers">All Customers</a></li>
+            <li><a class="apiRoasts" href="http://localhost:8000/api/roasts">Roasts</a></li>
+            <li><a class="apiCust" href="http://localhost:8000/api/customizations">Customizations</a></li>
+        </ul>
+    </section>
     <footer class = 'hidden'>
         <button class="local">Local</button>
         <button class="heroku">Heroku</button>

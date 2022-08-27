@@ -1,33 +1,16 @@
-@font-face {
-    font-family: SodoSans;
-    font-weight: bold;
-    src: url("../public/fonts/SoDoSans-Bold.otf") format("opentype");
-}
-@font-face {
-    font-family: SodoSans;
-    font-weight: light;
-    src: url("../public/fonts/SoDoSans-Light.otf") format("opentype");
-}
-@font-face {
-    font-family: SodoSans;
-    font-weight: narrow;
-    src: url("../public/fonts/SoDoSansNarrow-Light.otf") format("opentype");
-}
-@font-face {
-    font-family: SodoSansRegular;
-    src: url("../public/fonts/regular/SoDoSans-Regular.ttf") format("trueType")
-    ;
-}
+
+
+
 *{
     box-sizing: border-box;
     color:black;
     font-size: 1.40vw;
-    font-family: SodoSans-light;
+    font-family:'Source Sans Pro', sans-serif;
     user-select: none !important;
 }
 
 .pickedDrinks *{
-    font-family: SoDoSansregular;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 body{
     background-color:#00754a;
@@ -53,15 +36,31 @@ div .menu{
     color: white;
     
 }
-header{
+/* header{
     width:100%;
     text-align: center;
     background-color: rgb(39, 33, 27);
     color:white
+} */
+header{
+    top:0vh;
+    display:flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height:10vh;
+    border-bottom: 3px solid #405839;
+    color: #ffffff;
+    background: rgb(39, 33, 27);
+    letter-spacing: 1vw;
+    text-align: center;
+    z-index: 10000;
+    width:100%;
+    
 }
 header h1{
     font-size: 20px;
-    font-family: SodoSansBold;
+    font-family: 'Source Sans Pro', sans-serif;
     color:white;
 }
 body{

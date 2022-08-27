@@ -34,8 +34,7 @@ module.exports={
                     delete req.body.drinksArray[i].hot.ogShots
                     delete req.body.drinksArray[i].hot.ogPumps
                 }
-                console.log('answer')
-                console.log(answer)
+                
                 if(checker(answer.decaf,correctAnswer.decaf)){
                     delete answer.decaf
                     delete correctAnswer.decaf
@@ -43,7 +42,8 @@ module.exports={
                 if(JSON.stringify(answer) ===JSON.stringify(correctAnswer)){
                     points+=1
                 }
-                
+                console.log('answer')
+                console.log(answer)
                 console.log('correctAnswer')
                 console.log(correctAnswer)
             }
@@ -53,6 +53,6 @@ module.exports={
             }else{
                     res.json('lose')
             }
-            console.log(points)
+            //console.log(points)
     }
 }

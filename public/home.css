@@ -1,3 +1,6 @@
+*{
+    font-family: 'Source Sans Pro', sans-serif;
+}
 body{
     margin:0;
 }
@@ -9,8 +12,8 @@ header{
     align-items: center;
     height:10vh;
     border-bottom: 3px solid #405839;
-    color: #312020;
-    background: #93b684;
+    color: #ffffff;
+    background: rgb(39, 33, 27);
     letter-spacing: 1vw;
     text-align: center;
     z-index: 10000;
@@ -32,7 +35,7 @@ body>section{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: rgb(83, 128, 81);
+    background-color: #00754a;
 }
 
 .renders .renderimages{
@@ -68,7 +71,7 @@ body>section{
     display:flex;
     justify-content: center;
     align-items: center;
-    height:10vh;
+    height:fit-content;
     border-bottom: 3px solid #405839;
     color: #312020;
     background: #93b684;
@@ -81,15 +84,17 @@ body>section{
     color: #12160e;
 }
 .api a:hover{
-    color: #a7be9d;
+    color: #50f40a;
     text-decoration: none;
     
 }
 .api{
+    width:100%;
     border-top: 3px solid #405839;
     border-bottom: 3px solid #405839;
 }
 .api ul{
+    padding:0;
     list-style: none;
     font-size: larger;
 }

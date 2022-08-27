@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="home.css">
     <title>Coffee Trainer</title>
 </head>
 <body>
     <header>
-        <h1>The Barista Trainer</h1> 
+        <h1>COFFEE TRAINER</h1> 
     </header>
     <section class="renders">
         <section>
@@ -17,19 +20,19 @@
             <div class="renderimages"><img src="../IMG/coredrinks.png"></div>
             <div>
                 <p>The Drink Visualizer is an intuitive way to show drinks with their
-                    core ingredients. By interpreting the information sent by the sbuxAPI,
+                    core ingredients. By interpreting the information sent by the coffeetrainerAPI,
                     the visualizer can generate a picture that shows exactly what percentage
                     of the drink is sugary syrup and what part is coffee. This will help 
-                    both partners and customers get a better understanding of what is going to
+                    both baristas and customers get a better understanding of what is going to
                     cups.
                 </p>
                 <p>When making these drinks, don't forget to add the love and care by hand from the heart!</p>
             </div>
         </section>
         <section>
-            <h2><a class="menu" href="http://localhost:8000/menu">Menu</a></h2>
+            <h2><a class="menu" href="http://localhost:8000/menu">POS Simulator</a></h2>
             <div class="renderimages"><img src="../IMG/menu.png"></div>
-            <div><p>The 'Menu' is a POS simulator. Using the API, partners can effectively: learn how to take actual customer
+            <div><p>Using the app, baristas can effectively: learn how to take actual customer
                 orders, become familiar with the layout of the POS system, and become more comfortable asking questions to customers
                 so they can make the moment right with every order. This project takes in many parameters to wholly simulate
                 on-the-job scenarios, so partners feel comfortable before their first day on the floor.
@@ -48,7 +51,8 @@
 
     <section class="api">
         <ul>API Links:
-            <li><a class="apiDrinks" href="http://localhost:8000/api/coreDrinks">Drinks</a></li>
+            <li><a class="apiDrinks" href="http://localhost:8000/api/coreDrinks">All Drinks</a></li>
+            <li><a class="apiCustomers" href="http://localhost:8000/api/allcustomers">All Customers</a></li>
             <li><a class="apiRoasts" href="http://localhost:8000/api/roasts">Roasts</a></li>
             <li><a class="apiCust" href="http://localhost:8000/api/customizations">Customizations</a></li>
         </ul>

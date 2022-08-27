@@ -273,7 +273,7 @@ class Other{
     }
 }
 coreDrinks.other.push(new Other('Hot Chocolate',new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'M','%',['WC'],'HC'),null,'Hot Choc',true, false))
-coreDrinks.other.push(new Other('White Hot Chocolate',new DrinkBuild(false,'',['','','','',null],[2,3,4,5],null,'WCM','%',['WC'],'WHC'),null,'White Hot Choc',true, false))
+coreDrinks.other.push(new Other('White Hot Chocolate',new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'WCM','%',['WC'],'WHC'),null,'White Hot Choc',true, false))
 coreDrinks.other.push(new Other('Cold Milk',null, new DrinkBuild(true,'',[null,'','','',''],[null,2,3,4,6],'','%',[''],'CLDM'),'Cold Milk',false, true))
 coreDrinks.other.push(new Other('Steamed Milk',new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'','%',[''],'STMM'),null,'Steamed Milk',true, false))
 coreDrinks.other.push(new Other('Syrup Crème',new DrinkBuild(false,'',['','','','',null],[2,3,4,5,null],'','%',['WC'],'SC'),null,'Sryup Crm',true, false))

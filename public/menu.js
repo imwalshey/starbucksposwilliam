@@ -1110,6 +1110,11 @@ async function postAnswer(){
                     div.innerText=''
                 })
                 document.querySelector('.drinkType').classList.remove('hidden')
+                renderCustomsMenu('shotsMenu')
+                document.querySelectorAll('.highlight').forEach((div)=>{
+                    div.classList.remove('highlight')
+                })
+                document.querySelector('.customizations .shotsMenu').classList.add('highlight')
                 drinksArray=[]
                 drinkIsIced=[]
                 numberOfDrinksAdded=0
@@ -1122,6 +1127,11 @@ async function postAnswer(){
                 document.querySelectorAll('.customizations div div').forEach((div)=>{
                     div.innerText=''
                 })
+                renderCustomsMenu('shotsMenu')
+                document.querySelectorAll('.highlight').forEach((div)=>{
+                    div.classList.remove('highlight')
+                })
+                document.querySelector('.customizations .shotsMenu').classList.add('highlight')
                 drinksArray=[]
                 drinkIsIced=[]
                 numberOfDrinksAdded=0
@@ -1134,3 +1144,17 @@ async function postAnswer(){
     }
 }
 
+function changeTheLinks(url){
+    document.querySelector('.apiDrinks').href = url+'api/coreDrinks'
+    document.querySelector('.apiRoasts').href = url+'api/Roasts'
+    document.querySelector('.apiCust').href = url+'api/customizations'
+    document.querySelector('.apiCustomers').href = url+'api/allCustomers'
+}
+
+
+
+changeTheLinks(window.location.href.toString())
+
+
+
+document.querySelector('.api').style.marginTop= `${document.querySelector('.customerArea').offsetHeight}px`
