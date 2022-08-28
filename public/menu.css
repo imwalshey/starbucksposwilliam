@@ -156,6 +156,7 @@ body{
 }
 .errorBox p{
     display:flex;
+    justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
@@ -562,7 +563,8 @@ body{
         'ee ff gg hh . .'
         'ii jj . . . .';
 }
-
+.items.functions{
+}
 .items div {
     box-shadow: inset 0px -2px 8px 0px rgb(0 0 0 / 35%), inset 1px 6px 8px 0px rgb(255 255 255 / 35%);
     border-radius: .4em;
@@ -1135,3 +1137,22 @@ footer.hidden{
         width: 91.5%;
     }
 }
+.notVisible{
+    opacity:0;
+    display:hidden;
+    pointer-events: none;
+}
+
+#mousePointer{
+    position:absolute;
+    top:514px;
+    bottom: 0;
+    left:0px;
+    font-size: 5vw;
+
+}
+
+
+
+
+  

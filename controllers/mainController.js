@@ -34,7 +34,8 @@ module.exports={
                     delete req.body.drinksArray[i].hot.ogShots
                     delete req.body.drinksArray[i].hot.ogPumps
                 }
-                
+                console.log( answer.decaf)
+                console.log( correctAnswer.decaf)
                 if(checker(answer.decaf,correctAnswer.decaf)){
                     delete answer.decaf
                     delete correctAnswer.decaf

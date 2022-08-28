@@ -986,7 +986,7 @@ function nextDrink(){
 
 function errorMessage(message,color){
     document.querySelector('.errorMessage').classList.add('active')
-    document.querySelector('.errorMessage .errorBox p').innerText=`${message}`
+    document.querySelector('.errorMessage .errorBox p').innerHTML=`${message}`
     document.querySelector('.errorBox').style.border=`8px solid ${color}`
     document.querySelector('.clearError').addEventListener('click',()=>{
         document.querySelector('.errorMessage').classList.remove('active')
@@ -1094,6 +1094,7 @@ async function postAnswer(){
                 apiRequestCustomer(localStorage.getItem('LastClicked').split(',')[2])
             })
             localStorage.setItem('totalCorrect',(Number(localStorage.getItem('totalCorrect'))+1))
+            localStorage.setItem('streak',(Number(localStorage.getItem('streak'))+1))
             console.log(localStorage.getItem('totalCorrect'))
 
         }
@@ -1104,6 +1105,7 @@ async function postAnswer(){
             document.querySelector('.loseTry').classList.remove('hidden')
             document.querySelector('.loseSkip').classList.remove('hidden')
             document.querySelector('.drinkType').classList.add('hidden')
+
             document.querySelector('#winOrLose .loseSkip').addEventListener('click',(targ)=>{
                 document.getElementById('winOrLose').classList='hidden'
                 removeAllChildNodes(document.querySelector('.pickedDrinks'))
@@ -1137,7 +1139,8 @@ async function postAnswer(){
                 drinkIsIced=[]
                 numberOfDrinksAdded=0
             })
-
+            localStorage.setItem('totalWrong',(Number(localStorage.getItem('totalWrong'))+1))
+            localStorage.setItem('streak',0)
         }
         
     }catch(error){
@@ -1172,3 +1175,127 @@ if(screen.height>= totalViableHeights){
     document.querySelector('.api').style.marginTop= `${screen.height - totalViableHeights }px`
 }
 //document.querySelector('.api').style.marginTop= `${document.querySelector('.customerArea').offsetHeight}px`
+
+document.querySelectorAll('.sections div').forEach((elem)=>{
+    elem.addEventListener('click',(ind)=>{
+        document.querySelectorAll('.sections div div').forEach((div)=>{
+            div.classList.remove('selected')
+        })
+        if(ind.target.parentElement.nodeName === 'DIV'){
+            ind.target.parentElement.childNodes.forEach((each)=>{
+                if(each.nodeName==='DIV'){
+                    
+                    each.classList.add('selected')
+                    if(each.innerText !== ''){
+                        renderFunction(each.innerText)
+                    }
+                }
+            })
+            
+        }
+        
+    })
+    
+})
+function renderFunction(type){
+    if(type === 'Order'){
+        renderCustomsMenu('shotsMenu')
+        document.querySelectorAll('.highlight').forEach((div)=>{
+            div.classList.remove('highlight')
+        })
+        document.querySelector('.customizations .shotsMenu').classList.add('highlight')
+        document.querySelector('.categories').classList.remove('notVisible')
+        document.querySelector('.drinkType').classList.remove('notVisible')
+        document.querySelector('.customizations').classList.remove('notVisible')
+        document.querySelector('.extras').classList.remove('notVisible')
+        document.querySelector('.buttons').classList.remove('notVisible')
+        document.querySelector('.customerArea').classList.remove('notVisible')
+    }
+
+    if(type === 'Functions'){
+        document.querySelector('.categories').classList.add('notVisible')
+        document.querySelector('.drinkType').classList.add('notVisible')
+        document.querySelector('.customizations').classList.add('notVisible')
+        document.querySelector('.extras').classList.add('notVisible')
+        document.querySelector('.buttons').classList.add('notVisible')
+        document.querySelector('.customerArea').classList.add('notVisible')
+        setTimeout(()=>{
+            removeAllChildNodes(document.querySelector('.items'))
+            document.querySelector('.items').classList='items'
+            document.querySelector('.items').classList.add('functions')
+            document.querySelector('.items').innerHTML = `
+            <div class = 'selectName'>Name: ${localStorage.getItem('myName')}</div>
+            <div class = 'streak'>Streak: ${localStorage.getItem('streak')}</div>
+            <div class = 'total'>Total Correct: ${localStorage.getItem('totalCorrect')}</div>
+            <div class = 'total'>Total Incorrect: ${localStorage.getItem('totalWrong')}</div>
+            `
+            document.querySelector('.selectName').addEventListener('click',()=>{
+                dataMessage('Enter Name: <input></input>', 'green')
+            })
+            
+        },2)
+        
+        //removeAllChildNodes(document.querySelector('.items'))
+    }
+}
+if(! localStorage.getItem('streak')){
+    localStorage.setItem('streak',0)
+}
+if(! localStorage.getItem('totalWrong')){
+    localStorage.setItem('totalWrong',0)
+}
+
+if(! localStorage.getItem('myName')){
+    localStorage.setItem('myName','Jacob Harper')
+}
+document.querySelector('.namebar p').innerText=`${localStorage.getItem('myName')}`
+if(! localStorage.getItem('IsNew')){
+    //renderFunction('Functions')
+    
+    
+    console.log('isnew')
+}
+
+function dataMessage(message,color){
+    document.querySelector('.errorMessage').classList.add('active')
+    document.querySelector('.errorMessage .errorBox p').innerHTML=`${message}`
+    document.querySelector('.errorBox').style.border=`8px solid ${color}`
+    document.querySelector('.clearError').addEventListener('click',()=>{
+        if(document.querySelector('.errorBox p input').value.length >= 1){
+        localStorage.setItem('myName',document.querySelector('.errorBox p input').value)
+        document.querySelector('.namebar p').innerText=`${localStorage.getItem('myName')}`
+        document.querySelector('.selectName').innerText=`Name: ${localStorage.getItem('myName')}`
+        document.querySelector('.errorMessage').classList.remove('active')
+        }
+    })
+    document.querySelector('.cancelError').addEventListener('click',()=>{
+        document.querySelector('.errorMessage').classList.remove('active')
+    })
+    
+}
+
+
+const cursor = document.getElementById('mousePointer')
+function cursorSet(top,right,bottom,left){
+    const divHeight = document.querySelector('.items div').offsetHeight / 2
+    
+    cursor.style.top = `${top+divHeight}px`
+    cursor.style.bottom = `${bottom+divHeight}px`
+    cursor.style.right=`${right}px`
+    cursor.style.left=`${left}px`
+}
+function placeCursorOnElement(element){
+    cursor.classList.remove('notVisible')
+    var rect = document.querySelector(`.${element}`).getBoundingClientRect();
+    cursorSet(rect.top, rect.right, rect.bottom, rect.left);
+    setTimeout(()=>{
+        cursor.classList.add('notVisible')
+    },1000)
+}
+function pseudoClick(element){
+    
+    placeCursorOnElement(element)
+    document.querySelector(`.${element}`).click()
+    
+}
+
