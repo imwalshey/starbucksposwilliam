@@ -594,6 +594,9 @@ async function apiRequest(url){  //Calls the API and brings drink data to the
     }catch(error){
         console.log(error)
         statusLight.style.backgroundImage='linear-gradient(161deg,rgb(0, 0, 0),rgb(255, 0, 0))'
+        setTimeout(()=>{
+            location.reload()
+        },500)
     }
 }
 async function allcustom(){
@@ -1149,12 +1152,13 @@ async function postAnswer(){
 }
 
 function changeTheLinks(url){
-    document.querySelector('.apiDrinks').href = url+'api/coreDrinks'
-    document.querySelector('.apiRoasts').href = url+'api/Roasts'
-    document.querySelector('.apiCust').href = url+'api/customizations'
-    document.querySelector('.apiCustomers').href = url+'api/allCustomers'
+    document.querySelector('.apiDrinks').href = url+'/api/coreDrinks'
+    document.querySelector('.apiRoasts').href = url+'/api/Roasts'
+    document.querySelector('.apiCust').href = url+'/api/customizations'
+    document.querySelector('.apiCustomers').href = url+'/api/allCustomers'
 }
-
+changeTheLinks(window.location.href.toString().split('/pos')[0])
+console.log(window.location.href.toString().split('/pos')[0])
 function getAbsoluteHeight(el) {
   // Get the DOM Node if you pass in a string
   el = (typeof el === 'string') ? document.querySelector(el) : el; 
@@ -1168,7 +1172,7 @@ function getAbsoluteHeight(el) {
   return Math.ceil(el.offsetHeight + margin);
 }
 
-changeTheLinks(window.location.href.toString())
+
 let totalViableHeights = getAbsoluteHeight('header') + getAbsoluteHeight('.customerArea') + getAbsoluteHeight('.menuWrapper')
 //console.log(totalViableHeights)
 if(screen.height>= totalViableHeights){
