@@ -1,3 +1,5 @@
+
+
 /*
 
 
@@ -239,33 +241,10 @@ function addToOrder(element){
     if(document.querySelector('.pickedDrinks .selected .drinkName') && document.querySelector('.pickedDrinks .selected .drinkName').innerText === '[Drink]'){
         
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-        
-        // if(hots != null && colds != null){
-        //     drinksArray[drinkNum]={
-        //         hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size),
-        //         iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
-        //     }
-        //     drinkIsIced.push(false)
-        // }
-        // if(hots != null && colds === null){
-        //     drinksArray[drinkNum]={
-        //         hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size)
-        //     }
-        //     drinkIsIced.push(false)
-        // }
-        // if(hots === null && colds != null){
-        //     drinksArray[drinkNum]={
-        //         iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
-        //     }
-        //     drinkIsIced.push(true)
-        // }
-        
-        // changeHotAndIced(drinksArray[drinkNum],'size',sizeSelected)
         const drinkToBeAdded ={
             hot: hots,
             iced: colds
         }
-        //console.log(drinkToBeAdded)
         Object.keys(drinksArray[drinkNum]).forEach((cool)=>{
             if(drinkToBeAdded.hot === null || drinkToBeAdded.hot === undefined){
                 drinkIsIced[drinkNum] = true
@@ -280,21 +259,17 @@ function addToOrder(element){
                 }
                 if(bool==='ogPumps'){
                     drinksArray[drinkNum][`${cool}`][bool]=drinkToBeAdded[`${cool}`]['pumps']
-                    //console.log(drinksArray[drinkNum][`${cool}`][bool])
                 }
                 if(bool==='ogShots'){
                     drinksArray[drinkNum][`${cool}`][bool]=drinkToBeAdded[`${cool}`]['shots']
-                    //console.log(drinksArray[drinkNum][`${cool}`][bool])
                 }
                 if(bool==='shots'){
                     drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{
                         if(num==null){
                             drinksArray[drinkNum][`${cool}`][bool][i] = null
-                            //console.log(drinksArray[drinkNum][`${cool}`][bool][i])
                         }
                         if(num!==null && drinksArray[drinkNum][`${cool}`][bool][i]=== ''){
                             drinksArray[drinkNum][`${cool}`][bool][i] = drinkToBeAdded[`${cool}`][bool][i]
-                            //console.log(drinksArray[drinkNum][`${cool}`][bool][i])
                         }
                     })
                 }
@@ -319,7 +294,6 @@ function addToOrder(element){
                     drinkToBeAdded[`${cool}`][bool][0].forEach((num,i)=>{
                         if(num===null){
                             drinksArray[drinkNum][cool][bool][0][i]=null
-                            //console.log(drinksArray[drinkNum][cool][bool][0][i])
                         }
                         if(num!==null){
                             drinksArray[drinkNum][cool][bool][0][i]= drinkToBeAdded[`${cool}`][bool][0][i]
@@ -339,14 +313,6 @@ function addToOrder(element){
                 
                 if(bool = 'custom'){
                     drinksArray[drinkNum][`${cool}`][bool] = drinkToBeAdded[`${cool}`][bool]
-                    // drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{
-                    //     if(num==='' && drinksArray[drinkNum][`${cool}`][bool][i]!== ''){
-                    //         drinksArray[drinkNum][`${cool}`][bool][i] = null
-                    //     }
-                    //     if(num!=='' && drinksArray[drinkNum][`${cool}`][bool][i]=== ''){
-                    //         drinksArray[drinkNum][`${cool}`][bool][i] = drinkToBeAdded[`${cool}`][bool][i]
-                    //     }
-                    // })
                 }
                 
             })
@@ -1032,7 +998,9 @@ if(production=== 'live'){
     postUrl ='https://coffee-trainer.herokuapp.com/order'
 }
 
-document.querySelector('.findOrder').addEventListener('click',postAnswer)
+document.querySelectorAll('.findOrder').forEach((elem)=>{
+    elem.addEventListener('click',postAnswer)
+})
 async function apiRequestCustomer(url){
     document.querySelector('.menuWrapper').classList.add('loading')
     document.querySelector('.customerArea').classList.add('hidden')
@@ -1297,9 +1265,11 @@ function placeCursorOnElement(element){
     },1000)
 }
 function pseudoClick(element){
-    
     placeCursorOnElement(element)
-    document.querySelector(`.${element}`).click()
+    setTimeout(() => {
+        document.querySelector(`.${element}`).click()
+    }, 1000);
+    
     
 }
 

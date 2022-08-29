@@ -337,10 +337,46 @@ body{
 }
 .screen .buttons>div{
     display:flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     height:50%;
 }
-
+.prices{
+    width:35%;
+}
+.desc{
+    width:33%;
+}
+.prices  div, .desc div{
+    display:flex;
+    padding-right: 15%;
+    flex-direction: row-reverse;
+    align-items: center;
+    color:white;
+    width:100%;
+    height:15%;
+}
+.desc .last{
+    
+    border-radius: .5em;
+    font-size: 1.2em;
+    margin-top: 10%;
+    height:40%;
+    
+    color: white;
+    
+}
+.prices .findOrder{
+    border: solid 1px black;
+    border-radius: .5em;
+    font-size: 1.6em;
+    margin-top: 10%;
+    height:40%;
+    background: rgb(54 54 54);
+    color: white;
+    box-shadow: inset 0px -2px 8px 0px rgb(0 0 0 / 35%), inset 0px 4px 8px 0px rgb(255 255 255 / 35%);
+    
+}
 .buttons div+div button{
     height:40%;
     margin: 2% 1%;
@@ -348,6 +384,7 @@ body{
     padding:0;
     border:.1vw solid rgb(0, 0, 0);
     border-radius: .5em;
+    box-shadow: inset -2px 2px 8px 1px rgb(0 0 0 / 35%), inset 0px -2px 8px 0px rgb(255 255 255 / 35%);
 }
 
 .void{
