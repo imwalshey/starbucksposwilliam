@@ -338,6 +338,7 @@ function addToOrder(element){
     }    
 }
 function addSpecificSelectToNameBar(){
+    setTimeout(()=>{
     document.querySelectorAll('.selectedSpecific').forEach((elem,i)=>{
         elem.classList.remove('selectedSpecific')
     })
@@ -347,6 +348,7 @@ function addSpecificSelectToNameBar(){
     }
     
     document.querySelector('.selected .sizeIdentifier').classList.add('selectedSpecific')
+},50)
 }
 
 let sizeSelected
@@ -698,11 +700,13 @@ document.querySelectorAll('.numbers button').forEach((butt)=>{
             document.querySelector('.numbers .input').innerText= Number(currentQuantity.join(''))
         }
         if(butt.innerText==='Enter'){
-            let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-            drink = drinksArray[drinkNum]
-            changeHotAndIced(drink,'pumps',Number(currentQuantity.join('')))
-            renderHotDrinkContents(drink)
-            renderQuantities()
+            if(document.querySelector('.selectedSpecific')){
+                let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+                drink = drinksArray[drinkNum]
+                changeHotAndIced(drink,'pumps',Number(currentQuantity.join('')))
+                renderHotDrinkContents(drink)
+                renderQuantities()
+            }
         }
         if(butt.innerText==='Cancel'){
             currentQuantity=[]
@@ -838,14 +842,21 @@ function processCustom(element,value){
         console.log(currentQuantity)
         if(! drink.hot.syrup.includes(value.abbr) && currentQuantity.length === 0){
             changeHotAndIced(drink,value.type,value.abbr)
-            console.log(drinksArray[drinkNum].hot.syrup.indexOf(value.abbr))
-            console.log(drinksArray[drinkNum].hot.pumps[drinksArray[drinkNum].hot.syrup.indexOf(value.abbr)])
             createModifier(`${drinksArray[drinkNum].hot.pumps[drinksArray[drinkNum].hot.syrup.indexOf(value.abbr)][translateSize(drink.hot.size)]} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
+        }
+        if(drink.hot.syrup.includes(value.abbr) && currentQuantity.length === 0){
+            createModifier(`${drinksArray[drinkNum].hot.pumps[drinksArray[drinkNum].hot.syrup.indexOf(value.abbr)][translateSize(drink.hot.size)]} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
+        }
+        if(drink.hot.syrup.includes(value.abbr) && currentQuantity.length !== 0){
+            createModifier(`${Number(currentQuantity.join(''))} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
+            changeHotAndIced(drink,'pumps',Number(currentQuantity.join('')))
+            
         }
         if(! drink.hot.syrup.includes(value.abbr) && currentQuantity.length !== 0){
             changeHotAndIced(drink,value.type,value.abbr)
             createModifier(`${Number(currentQuantity.join(''))} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
             changeHotAndIced(drink,'pumps',Number(currentQuantity.join('')))
+            
         }
 
     }
@@ -858,6 +869,12 @@ function processCustom(element,value){
         
         changeHotAndIced(drink,value.type,value.abbr)
     }
+    document.querySelectorAll('.buttons>div').forEach((elem)=>{
+        currentQuantity = []
+        elem.classList.add('hidden')
+    })
+    document.querySelector('.buttons .shows').classList.remove('hidden')
+    document.querySelector('.buttons .submits').classList.remove('hidden')
     if(value.type!=='button'){
         renderHotDrinkContents(drink)
     }
@@ -1041,20 +1058,26 @@ function changeHotAndIced(drink,element,value){
     }
     if(element === 'pumps'){
         let abbr
-        
+        //grabs the syrup type from the classlist string
         document.querySelector('.selectedSpecific').classList.forEach((elem,i)=>{
             if(elem.includes('syrup')){
                 abbr = document.querySelector('.selectedSpecific').classList[i].split('syrup')[0]
             }
         })
         if(drink.hot){
-            console.log(abbr)
             drink.hot.pumps[drink.hot.syrup.indexOf(abbr.toUpperCase())].forEach((elem,i)=>{
                 if(elem!==null){
                     drink.hot.pumps[drink.hot.syrup.indexOf(abbr.toUpperCase())][i]= Number(currentQuantity.join(''))
                 }
             })
-            console.log(drink.hot.pumps[drink.hot.syrup.indexOf(abbr.toUpperCase())])
+            
+        }
+        if(drink.iced){
+            drink.iced.pumps[drink.iced.syrup.indexOf(abbr.toUpperCase())].forEach((elem,i)=>{
+                if(elem!==null){
+                    drink.iced.pumps[drink.iced.syrup.indexOf(abbr.toUpperCase())][i]= Number(currentQuantity.join(''))
+                }
+            })
             
         }
         const before = document.querySelector('.selectedSpecific').innerText.split(' ')
