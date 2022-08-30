@@ -25,7 +25,7 @@ modifiers.syrup={
 modifiers.milk={
     'Extra':new Syrup('Extra','button'),'Light':new Syrup('Light','button'),'Nonfat Milk':new Syrup('N','milk'),'1% Milk':new Syrup('1%','milk'),
     'with Nonfat Milk':new Syrup('w/N','milk'),'with 1% Milk':new Syrup('w/1%','milk'),'2% Milk':new Syrup('%','milk'),'Whole Milk':new Syrup('W','milk'),
-    'with 2% Milk':new Syrup('w/%','milk'),'with Whole Milk':new Syrup('w/W','milk'),'Soy Milk':new Syrup('S','milk'),'Oatmilk':new Syrup('O','milk'),
+    'with 2% Milk':new Syrup('w/2%','milk'),'with Whole Milk':new Syrup('w/W','milk'),'Soy Milk':new Syrup('S','milk'),'Oatmilk':new Syrup('O','milk'),
     'with Soy Milk':new Syrup('w/S','milk'),'with Oatmilk':new Syrup('w/O','milk'),'Coconut Milk':new Syrup('C','milk'),'Almondmilk':new Syrup('A','milk'),
     'with Coconut Milk':new Syrup('w/C','milk'),'with Almondmilk':new Syrup('w/A','milk'),'Half & Half (Breve)':new Syrup('B','milk'),'Heavy Cream':new Syrup('HC','milk'),
     'with Half & Half Cream':new Syrup('CRM','milk'),'with Heavy Cream':new Syrup('w/HC','milk'),

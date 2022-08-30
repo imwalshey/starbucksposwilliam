@@ -1188,8 +1188,37 @@ footer.hidden{
     font-size: 5vw;
 
 }
+.buttons div.hidden{
+    display:none ;
+}
+.buttons .numbers button{
+    height:32%;
+    background:rgb(255, 233, 160);
+}
+.input{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: white;
+    margin:2% 1%;
+    border: 0.1vw solid rgb(0, 0, 0);
+    border-radius: 0.5em;
+    width:64%;
+    height:31%;
+    padding:2%
+}
+.buttons .numbers .input{
+    background:rgb(249, 238, 202);
+}
 
-
-
-
+.buttons .numbers .back{
+    background:rgb(226, 226, 226);
+}
+.buttons .numbers .enter{
+    width:50%;
+    background:rgb(178, 254, 140);
+}
+.buttons .numbers .cancel{
+    background:rgb(238, 107, 107);
+}
   

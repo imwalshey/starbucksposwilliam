@@ -30,7 +30,7 @@ class DrinkBuild{
         }
         this.pumps= [Pumps]
         this.syrup=[Syrup]
-        this.milk=Milk
+        this.milk=[Milk]
         this.custom = Custom
         if(!Array.isArray(this.custom)){
             this.custom=[Custom]

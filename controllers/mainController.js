@@ -28,14 +28,16 @@ module.exports={
                         answer = req.body.drinksArray[i].iced
                         delete req.body.drinksArray[i].iced.ogPumps
                         delete req.body.drinksArray[i].iced.ogShots
+                        delete req.body.drinksArray[i].iced.ogMilk
                     }
                     if(req.body.drinkIsIced[i]===false){
                         answer = req.body.drinksArray[i].hot
                         delete req.body.drinksArray[i].hot.ogShots
                         delete req.body.drinksArray[i].hot.ogPumps
+                        delete req.body.drinksArray[i].hot.ogMilk
                     }
-                    console.log( answer.decaf)
-                    console.log( correctAnswer.decaf)
+                    // console.log( answer.decaf)
+                    // console.log( correctAnswer.decaf)
                     if(checker(answer.decaf,correctAnswer.decaf)){
                         delete answer.decaf
                         delete correctAnswer.decaf

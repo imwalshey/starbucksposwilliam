@@ -9,6 +9,7 @@ const roastsController = require('../controllers/roastsController')
 router.get('/coreDrinks', drinkController.allDrinks) 
 router.get('/customers', customerController.sendCustomer) 
 router.get('/allcustomers', customerController.sendAllCustomers) 
+router.get('/allnames', customerController.sendNames) 
 router.get('/customizations', customizeController.sendCustomizations) 
 router.get('/roasts', roastsController.sendRoasts) 
 module.exports = router
