@@ -80,6 +80,7 @@ class Drink{
         this.custom=Custom
         this.abbr=ABBR
         this.size = 'Gr'
+        this.ogSyrup=JSON.parse(JSON.stringify(Syrup))
         this.ogPumps=JSON.parse(JSON.stringify(Pumps))
         this.ogShots=JSON.parse(JSON.stringify(Shots))
         this.ogMilk = JSON.parse(JSON.stringify(Milk))
@@ -249,6 +250,7 @@ function addToOrder(element){
         }
         Object.keys(drinksArray[drinkNum]).forEach((cool)=>{
             if(drinkToBeAdded.hot === null || drinkToBeAdded.hot === undefined){
+                console.log('words')
                 drinkIsIced[drinkNum] = true
                 drinksArray[drinkNum].hot = undefined
             }
@@ -269,9 +271,17 @@ function addToOrder(element){
                     drinksArray[drinkNum][`${cool}`][bool]= JSON.parse(JSON.stringify(drinkToBeAdded[`${cool}`]['milk']))
                 }
                 if(bool==='milk'){
-                    if(drinksArray[drinkNum][`${cool}`][bool]===['']){
-                        drinksArray[drinkNum][`${cool}`][bool]= drinkToBeAdded[`${cool}`]['milk']
-                    }
+                    drinksArray[drinkNum][`${cool}`].milk.forEach((elem,i)=>{
+                        if(elem === '' && elem.length===0 && drinkToBeAdded[`${cool}`]['milk'][i]){
+                            drinksArray[drinkNum][`${cool}`][bool][i]= drinkToBeAdded[`${cool}`]['milk'][i]
+                        }
+
+                    })
+                    // console.log(drinksArray[drinkNum][`${cool}`].milk[0])
+                    // console.log(drinksArray[drinkNum][`${cool}`].milk[0]==='' && drinksArray[drinkNum][`${cool}`].milk.length===1)
+                    // if(drinksArray[drinkNum][`${cool}`].milk[0]==='' && drinksArray[drinkNum][`${cool}`].milk[0].length===0){
+                    //     drinksArray[drinkNum][`${cool}`][bool]= drinkToBeAdded[`${cool}`]['milk']
+                    // }
                 }
                 if(bool==='shots'){
                     drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{
@@ -451,6 +461,7 @@ function showDrinkContentsInDivs(bool){
 
 }
 function removeDrinkContentsFromDivs(element){
+    let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
     if(element.classList.toString().includes('coffeeType')){
         if(element.innerText.includes('Decaf')){
             simultaneouslyRemove(element.innerText.split('ecaf')[0],'decaf','hot')
@@ -499,6 +510,27 @@ function removeDrinkContentsFromDivs(element){
             })
         }
     }
+    if(element.classList.toString().includes('syrup')){
+        element.classList.forEach((elem)=>{
+            if(elem.includes('syrup')){
+                let abbr = elem.split('syrup')[0].toUpperCase()
+                let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+                let drink = drinksArray[drinkNum]
+                if(drink.hot){
+                    
+                    let index = drink.hot.syrup.indexOf(abbr)
+                    console.log(index)
+                    drink.hot.syrup.splice(index,1)
+                    drink.hot.pumps.splice(index,1)
+                }
+                if(drink.iced){
+                    let index = drink.iced.syrup.indexOf(abbr)
+                    drink.iced.syrup.splice(index,1)
+                    drink.iced.pumps.splice(index,1)
+                }
+            }
+        })
+    }
 }
 function simultaneouslyRemove(itemToRemove,itemType,bool){
     let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
@@ -508,12 +540,6 @@ function simultaneouslyRemove(itemToRemove,itemType,bool){
             if (index !== -1) {
                 drinksArray[drinkNum][bool][itemType].splice(index, 1);
             }
-        }
-    }
-    if(itemType==='syrup'){
-        var index = drinksArray[drinkNum][bool][itemType].indexOf(itemToRemove);
-        if (index !== -1) {
-            drinksArray[drinkNum][bool][itemType].splice(index, 1);
         }
     }
     
@@ -701,11 +727,12 @@ document.querySelectorAll('.numbers button').forEach((butt)=>{
         }
         if(butt.innerText==='Enter'){
             if(document.querySelector('.selectedSpecific')){
+                setTimeout(()=>{renderQuantities()},50)
                 let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
                 drink = drinksArray[drinkNum]
                 changeHotAndIced(drink,'pumps',Number(currentQuantity.join('')))
                 renderHotDrinkContents(drink)
-                renderQuantities()
+                
             }
         }
         if(butt.innerText==='Cancel'){
@@ -840,25 +867,28 @@ function processCustom(element,value){
     }
     if(value.type==='syrup'){
         console.log(currentQuantity)
-        if(! drink.hot.syrup.includes(value.abbr) && currentQuantity.length === 0){
-            changeHotAndIced(drink,value.type,value.abbr)
-            createModifier(`${drinksArray[drinkNum].hot.pumps[drinksArray[drinkNum].hot.syrup.indexOf(value.abbr)][translateSize(drink.hot.size)]} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
-        }
-        if(drink.hot.syrup.includes(value.abbr) && currentQuantity.length === 0){
-            createModifier(`${drinksArray[drinkNum].hot.pumps[drinksArray[drinkNum].hot.syrup.indexOf(value.abbr)][translateSize(drink.hot.size)]} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
-        }
-        if(drink.hot.syrup.includes(value.abbr) && currentQuantity.length !== 0){
-            createModifier(`${Number(currentQuantity.join(''))} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
-            changeHotAndIced(drink,'pumps',Number(currentQuantity.join('')))
-            
-        }
-        if(! drink.hot.syrup.includes(value.abbr) && currentQuantity.length !== 0){
-            changeHotAndIced(drink,value.type,value.abbr)
-            createModifier(`${Number(currentQuantity.join(''))} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
-            changeHotAndIced(drink,'pumps',Number(currentQuantity.join('')))
-            
-        }
-
+        Object.keys(drink).forEach((bool)=>{
+            if(drink[bool]){
+                if(! drink[bool].syrup.includes(value.abbr) && currentQuantity.length === 0){
+                    changeHotAndIced(drink,value.type,value.abbr)
+                    createModifier(`${drinksArray[drinkNum][bool].pumps[drinksArray[drinkNum][bool].syrup.indexOf(value.abbr)][translateSize(drink[bool].size)]} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
+                }
+                if(drink[bool].syrup.includes(value.abbr) && currentQuantity.length === 0){
+                    createModifier(`${drinksArray[drinkNum][bool].pumps[drinksArray[drinkNum][bool].syrup.indexOf(value.abbr)][translateSize(drink[bool].size)]} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
+                }
+                if(drink[bool].syrup.includes(value.abbr) && currentQuantity.length !== 0){
+                    createModifier(`${Number(currentQuantity.join(''))} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
+                    changeHotAndIced(drink,'pumps',Number(currentQuantity.join('')))
+                    
+                }
+                if(! drink[bool].syrup.includes(value.abbr) && currentQuantity.length !== 0){
+                    changeHotAndIced(drink,value.type,value.abbr)
+                    createModifier(`${Number(currentQuantity.join(''))} pumps`,`${element}`,`${nameShortener(value.abbr)}${value.type}`)
+                    changeHotAndIced(drink,'pumps',Number(currentQuantity.join('')))  
+                }
+            }
+        })
+    
     }
     if(value.type==='milk'){
         if(!value.abbr.includes('w/') && ! value.abbr.includes('CRM')){
@@ -877,6 +907,30 @@ function processCustom(element,value){
     document.querySelector('.buttons .submits').classList.remove('hidden')
     if(value.type!=='button'){
         renderHotDrinkContents(drink)
+        if(document.querySelector('.selected .modifier')){
+            document.querySelectorAll('.selected .modifier').forEach((elem)=>{
+                if(elem.classList.toString('').includes('syrup')){
+                    elem.classList.forEach((value)=>{
+                        if(value.includes('syrup')){
+                            let abbr = value.split('syrup')[0].toUpperCase()
+                            const before = elem.innerText.split(' ')
+                            let after
+                            if(drinkIsIced[drinkNum] === true && drink.iced) after = drink.iced.pumps[drink.iced.syrup.indexOf(abbr)][translateSize(drink.iced.size)]
+                            if(drinkIsIced[drinkNum] === false && drink.hot) after = drink.hot.pumps[drink.hot.syrup.indexOf(abbr)][translateSize(drink.hot.size)]
+                            console.log(after)
+                            before.forEach((elem,i)=>{
+                                if(i!==0){
+                                    after += ` ${elem}`
+                                }
+                            })
+                            elem.innerText=after
+                        }
+                    })
+                }
+
+            })
+        }
+        
     }
 }
 function translateSize(string){
@@ -1042,18 +1096,22 @@ function changeHotAndIced(drink,element,value){
 
     }
     if(element==='syrup'){
-        drink.hot.syrup.push(value)
-        drink.hot.pumps.push(JSON.parse(JSON.stringify(drink.hot.ogPumps[0])))
-        drink.iced.syrup.push(value)
-        drink.iced.pumps.push(JSON.parse(JSON.stringify(drink.iced.ogPumps[0])))
+        if(drink.hot){
+            drink.hot.syrup.push(value)
+            drink.hot.pumps.push(JSON.parse(JSON.stringify(drink.hot.ogPumps[0])))
+        }
+        if(drink.iced){
+            drink.iced.syrup.push(value)
+            drink.iced.pumps.push(JSON.parse(JSON.stringify(drink.iced.ogPumps[0])))
+        }
     }
     if(element==='milk'){
         if(!value.includes('w/') && ! value.includes('CRM')){
             if(drink.iced){drink.iced.milk[0]= value}
             if(drink.hot){drink.hot.milk[0]= value}
         }else{
-            if(drink.iced)drink.iced.milk.push(value)
-            if(drink.hot)drink.hot.milk.push(value)
+            if(drink.iced && ! drink.iced.milk.includes(value))drink.iced.milk.push(value)
+            if(drink.hot && ! drink.hot.milk.includes(value))drink.hot.milk.push(value)
         }
     }
     if(element === 'pumps'){
@@ -1080,12 +1138,17 @@ function changeHotAndIced(drink,element,value){
             })
             
         }
+        let samePumps = (drink.iced.pumps[drink.iced.syrup.indexOf(abbr.toUpperCase())][translateSize(drink.iced.size)] === drink.iced.ogPumps[0][translateSize(drink.iced.size)])
+
+        
+        //console.log(drink.iced.ogPumps[0])
         const before = document.querySelector('.selectedSpecific').innerText.split(' ')
         let after = Number(currentQuantity.join(''))
         before.forEach((elem,i)=>{
             if(i!==0){
                 after += ` ${elem}`
             }
+
         })
         document.querySelector('.selectedSpecific').innerText=after
 

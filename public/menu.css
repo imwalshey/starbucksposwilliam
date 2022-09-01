@@ -774,33 +774,33 @@ body{
 }
 .items.brewed{
     grid-template-areas: 
-    'a b c d .'
-    'e f g h i'
+    'a b c d e'
+    'f g h i .'
     'j k l m .'
     'n o p . .'
     '. . . . q'
     'r s t u v'
     ;
 }
-.items.brewed div,.drinkPicker .items.brewed div.pikeplaceroast{
-    background-color: #a58e81;
+.items.brewed .icedcoffee, .items.brewed .icedcoffee~div, .items.brewed div.nitrocoldbrew~div, section.items.brewed div.nitrocoldbrew{
+    background-color: #95d2e9;
 }
-.items.brewed div.pouroverdarkroast, .drinkPicker .items.brewed div.darkroast{
-    background-color: rgb(188, 154, 188);
+.items.brewed div.coldbrew, .items.brewed .coldbrew~div{
+    background: rgb(224, 250, 251);
 }
-.items.brewed div.pouroverblonderoast,.drinkPicker .items.brewed div.blonderoast{
-    background-color: #eac784;
+section.items.brewed div.cafemisto{
+    background-color: rgb(219, 178, 113);
 }
-.items.brewed div.pouroverblonderoast~div,.drinkPicker .items.brewed div.decafpikeplaceroast{
-    background: #6cb8d4;
+section.items.brewed div.pikeplaceroast, section.items.brewed div.hotcoffeerefill{
+    background-color: rgb(221, 213, 200);
 }
-.items.brewed div.icedcoffeerefill~div{
-    background: #a1d5e8;
+section.items.brewed div.darkroast{
+    background-color: rgb(208, 170, 208);
 }
-.items.brewed div.chocolatecreamcoldbrew~div{
-    background-color: #baad9d;
+section.items.brewed div.blonderoast{
+    background-color: #e0de81;
 }
-
+#ece93b
 /*###################################### */
 /* Tea Design Properties :*/
 /*###################################### */

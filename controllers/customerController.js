@@ -7,7 +7,7 @@ const customerModel = require('../models/customers')
 module.exports={
     sendCustomer :(req,res)=>{
         let randomNum = Math.floor(Math.random() * (customerModel.customer.length))
-        //randomNum = 9
+        //randomNum = 24
         res.json(customerModel.customer[randomNum])
     },
     sendAllCustomers :(req,res)=>{
