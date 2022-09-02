@@ -1132,6 +1132,7 @@ function changeHotAndIced(drink,element,value){
         }
         if(drink.iced){
             drink.iced.pumps[drink.iced.syrup.indexOf(abbr.toUpperCase())].forEach((elem,i)=>{
+                console.log(elem,i)
                 if(elem!==null){
                     drink.iced.pumps[drink.iced.syrup.indexOf(abbr.toUpperCase())][i]= Number(currentQuantity.join(''))
                 }

@@ -833,7 +833,6 @@ let sizes = [
 ]
 
 names.forEach((name,i)=>{
-    //console.log(name.split('(')[0])
     names[i]= name.split('(')[0]
 })
 shuffle(names)
@@ -869,65 +868,74 @@ function translateSize(input){
         return 'Tl'
     }
 }
+function updateNameIndex(){
+    if(nameIndex >=names.length){
+        nameIndex= nameIndex-nameIndex+1
+    }
+    
+}
+let timesToGenerate = 0
 customers.push(new CustomerMaker('0','Lucille','large black coffee'))
 customerCorrectAnswers.push(new DrinkBuild(false,'','','','','','','PPR','Vt'))
 
+let nameIndex = 1 + (Number(customers[customers.length-1].id) - (Number(customers[customers.length-1].id)*timesToGenerate))
 function customerMaker(drinkType,hotOrIced,wantToNotInclude,tagLine,modifies,methods,byAmount){
+    
     if(typeof drinkType === 'string' && typeof hotOrIced === 'string'){
         coreDrinks[drinkType].forEach((element,i)=>{
+            updateNameIndex()
+            
             elem = JSON.parse(JSON.stringify(element))
             // checks whether an element name includes the unincluded words
             let even 
-            
             if(wantToNotInclude.length>=2){
                 even = (value) => elem.name.includes(value)
             }else{
                 even = (value) => !elem.name.includes(value)
             }
-            //console.log(wantToNotInclude.some(even))
+            
+            
             if(!wantToNotInclude.some(even)){
-                
                 if(elem[hotOrIced]===true || drinkType==='blended'){
                     if(drinkType==='blended'){
-                        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]}${tagLine[0]}${tagLine[1]} ${elem.name} ${tagLine[2]}`))
+                        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]}${tagLine[0]}${tagLine[1]} ${elem.name} ${tagLine[2]}`))
                     }else{
-                        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]}${tagLine[0]} ${hotOrIced}${tagLine[1]} ${elem.name} ${tagLine[2]}`))
+                        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]}${tagLine[0]} ${hotOrIced}${tagLine[1]} ${elem.name} ${tagLine[2]}`))
                     }
-
                     //changes Drink Contents
-                    elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`].size = translateSize(sizes[i]) //Changes Drink Size
-                    if(Array.isArray(modifies) && modifies.length === methods.length && byAmount.length === methods.length){
+                    elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`].size = translateSize(sizes[i] ) //Changes Drink Size
+                    if(Array.isArray(modifies) && modifies.length === methods.length && byAmount.length === methods.length ){
                         modifies.forEach((notImportant, i)=>{
                             if(methods[i]==='push'){
-                                elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies[i]].push(byAmount[i])
+                                if(modifies[i]==='syrup' && elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies[i]].includes(byAmount[i])){
+                                    
+                                    if(modifies[i+1]==='pumps'){
+                                        methods[i+1]='change'
+                                    }
+                                }else elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies[i]].push(byAmount[i])
+                                
                             }
                             if(methods[i]==='change'){
+                                if(modifies[i-1]==='syrup' && modifies[i]==='pumps' && elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies[i-1]].includes(byAmount[i-1])&& elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies[i-1]].length ===1){
+                                    let theIndex = elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies[i-1]].indexOf(byAmount[i-1])
+                                    
+                                    elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies[i]][theIndex] =byAmount[i]
+                                }else{
                                 elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies[i]] = (byAmount[i])
+                                }
                             }
                             if(methods[i]==='changeMilk'){
                                 elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies[i]][0] = (byAmount[i])
                             }
                         })
                     }
-
-
-                    // if(method1==='push'){
-                    // elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies].push(amount1)
-                    // }
-                    // if(method1==='change'){
-                    //     elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies] = amount1
-                    // }
-                    // if(method1==='changeMilk'){
-                    //     elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`][modifies][0] = amount1
-                    // }
-
-
                     customerCorrectAnswers.push(elem[`menuBuild${capitalizeFirstLetter(hotOrIced)}`])
                     
                 }
             }
             
     })
+    
 }
 }
 
@@ -947,6 +955,7 @@ Object.keys(customizations.milk).forEach((data)=>{
                 customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
                 customerMaker('blended','iced',['Lemonade', '****'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
                 customerMaker('brewed','hot',['Misto'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
+                customerMaker('brewed','hot',['Misto'],['','',`with ${data} with 2 pumps of Vanilla`],['milk','syrup','pumps'],['changeMilk','push','push'],[milk.abbr,'V',[2,2,2,2,null]])
                 customerMaker('brewed','hot',['Misto'],['','',`with ${data} and add 3 shots`],['milk','shots'],['changeMilk','change'],[milk.abbr,[3,3,3,3,null]])
                 customerMaker('brewed','hot',['Misto'],['','',`with ${data} and add 3 blonde shots`],['milk','shots','decaf'],['changeMilk','change','push'],[milk.abbr,[3,3,3,3,null],'B'])
                 
@@ -955,205 +964,160 @@ Object.keys(customizations.milk).forEach((data)=>{
         }
     }
 })
+let arr = []
 
 
 
-coreDrinks.espresso.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} hot ${elem.name}`))
-    //console.log(i)
-    //console.log(elem)
-    elem.menuBuildHot.size = translateSize(sizes[i])
-    
-    customerCorrectAnswers.push(elem.menuBuildHot)
-    
-}
-})
-coreDrinks.espresso.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} triple hot ${elem.name}`))
-    elem.menuBuildHot.size = translateSize(sizes[i])
-    
-    elem.menuBuildHot.shots= [3,3,3,3,null]
-    customerCorrectAnswers.push(elem.menuBuildHot)
-    
-}
-})
-coreDrinks.espresso.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} triple hot blonde ${elem.name}`))
-    elem.menuBuildHot.size = translateSize(sizes[i])
-    
-    if(!elem.menuBuildHot.decaf.includes('B')){
-        elem.menuBuildHot.decaf.push('B')
+Object.keys(customizations.milk).forEach((data)=>{
+    let milk =customizations.milk[data]
+    let randomSyrupIndex = Math.floor(Math.random() * Object.keys(customizations.syrup).length)
+    let randomSyrup1Index = Math.floor(Math.random() * Object.keys(customizations.syrup).length)
+    let syrupData1 = Object.keys(customizations.syrup)[randomSyrup1Index]
+    let syrupData = Object.keys(customizations.syrup)[randomSyrupIndex]
+    let syrup = customizations.syrup[syrupData].type
+    let syrup1 = customizations.syrup[syrupData1].type
+    if(milk.type==='milk' && syrup!==syrup1){
+        if(!data.includes('1')){
+            if(milk.abbr.includes('/') || milk.abbr.includes('CRM')){
+                if(syrup.type ==='syrup'){
+                    
+                }
+            }else{
+                if(syrup.type ==='syrup' && syrup1.type==='syrup'){
+                    customerMaker('espresso','hot',['Con Panna','Espresso','Americano'],['','',`with ${data} and ${2} pumps of ${syrupData} and ${2} pumps of ${syrupData1}`],['milk','syrup','pumps','syrup','pumps'],['changeMilk','push','push','push','push'],[milk.abbr,syrup.abbr,[2,2,2,2,null],syrup1.abbr,[2,2,2,2,null]])
+                    
+                }
+                
+            }
+        }
     }
-    elem.menuBuildHot.shots= [3,3,3,3,null]
-    customerCorrectAnswers.push(elem.menuBuildHot)
-    
-}
-})
-coreDrinks.espresso.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} quad hot blonde ${elem.name}`))
-    elem.menuBuildHot.size = translateSize(sizes[i])
-    
-    if(!elem.menuBuildHot.decaf.includes('B')){
-        elem.menuBuildHot.decaf.push('B')
+    if(milk.type==='milk'){
+        if(!data.includes('1')){
+            if(milk.abbr.includes('/') || milk.abbr.includes('CRM')){
+                if(syrup.type ==='syrup'){
+                    
+                }
+            }else{
+                if(syrup.type ==='syrup'){
+                    // customerMaker('brewed','hot',['Misto'],['','',`with ${data} and 2 pumps of ${syrupData}`],['milk','syrup','pumps'],['changeMilk','push','push'],[milk.abbr,syrup.abbr,[2,2,2,2,null]])
+                    // customerMaker('espresso','hot',['Con Panna','Espresso','Americano'],['','',`with ${data} and 2 pumps of ${syrupData}`],['milk','syrup','pumps'],['changeMilk','push','push'],[milk.abbr,syrup.abbr,[2,2,2,2,null]])
+                    // customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['','',`with ${data} and 2 pumps of ${syrupData}`],['milk','syrup','pumps'],['changeMilk','push','push'],[milk.abbr,syrup.abbr,[null,2,2,2,null]])
+                    // customerMaker('espresso','hot',['Con Panna','Espresso','Americano'],['','',`with ${data} and 4 pumps of ${syrupData}`],['milk','syrup','pumps'],['changeMilk','push','push'],[milk.abbr,syrup.abbr,[4,4,4,4,null]])
+                    // customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['','',`with ${data} and 4 pumps of ${syrupData}`],['milk','syrup','pumps'],['changeMilk','push','push'],[milk.abbr,syrup.abbr,[null,4,4,4,null]])
+                }
+                
+            }
+        }
     }
-    elem.menuBuildHot.shots= [4,4,4,4,null]
-    customerCorrectAnswers.push(elem.menuBuildHot)
     
-}
-})
-coreDrinks.espresso.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} quad hot decaf ${elem.name}`))
-    elem.menuBuildHot.size = translateSize(sizes[i])
-    
-    elem.menuBuildHot.decaf.push('D')
-    elem.menuBuildHot.shots= [4,4,4,4,null]
-    customerCorrectAnswers.push(elem.menuBuildHot)
-    
-}
-})
-coreDrinks.espresso.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} hot half-decaf ${elem.name}`))
-    elem.menuBuildHot.size = translateSize(sizes[i])
-    
-    elem.menuBuildHot.decaf.push('1/2 D')
-    customerCorrectAnswers.push(elem.menuBuildHot)
-    
-}
-})
-coreDrinks.espresso.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.iced===true && elem.menuBuildIced!==undefined){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} iced ${elem.name}`))
-    elem.menuBuildIced.size = translateSize(sizes[i])
-    customerCorrectAnswers.push(elem.menuBuildIced)
-    
-    }
-})
-coreDrinks.espresso.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.iced===true && elem.menuBuildIced!==undefined){
-        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} triple iced ${elem.name}`))
-        elem.menuBuildIced.size = translateSize(sizes[i])
-        elem.menuBuildIced.shots= [null,3,3,3,null]
-        customerCorrectAnswers.push(elem.menuBuildIced)
-    }
-})
-coreDrinks.brewed.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.iced===true && elem.menuBuildIced!==undefined){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name}`))
-    elem.menuBuildIced.size = translateSize(sizes[i])
-    customerCorrectAnswers.push(elem.menuBuildIced)
-    
-    }
-})
-coreDrinks.blended.forEach((element,i)=>{
-    
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===false && elem.menuBuildIced!==undefined){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name}`))
-    elem.menuBuildIced.size = translateSize(sizes[i])
-    customerCorrectAnswers.push(elem.menuBuildIced)
-    
-    }
-})
-//make hot brewed coffee customers
-coreDrinks.brewed.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} hot ${elem.name}`))
-    elem.menuBuildHot.size = translateSize(sizes[i])
-    
-    customerCorrectAnswers.push(elem.menuBuildHot)
-}
 })
 
 
+function basicDrinkNoModifiers(){
+    coreDrinks.espresso.forEach((element,i)=>{
+        updateNameIndex()
+        elem = JSON.parse(JSON.stringify(element))
+        if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]} hot ${elem.name}`))
 
-
-
-
-
-
-
-coreDrinks.tea.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===true && ! elem.name.includes('Custom') && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} hot ${elem.name}`))
-    elem.menuBuildHot.size = translateSize(sizes[i])
-    
-    customerCorrectAnswers.push(elem.menuBuildHot)
-}
-})
-coreDrinks.tea.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.iced===true && elem.menuBuildIced!==undefined){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name}`))
-    if(elem.name.toLowerCase().includes('latte')){
-        //console.log('latte')
-        customers[Number(customers[customers.length-1].id)].phrase = `${sizes[i]} iced ${elem.name}`
-    }
-    //console.log(customers[Number(customers[customers.length-1].id)].phrase)
-    elem.menuBuildIced.size = translateSize(sizes[i])
-    customerCorrectAnswers.push(elem.menuBuildIced)
-    
-    }
-})
-coreDrinks.blended.forEach((element,i)=>{
-    
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===false && elem.menuBuildIced!==undefined && !elem.name.includes('Strawberry')){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name} with a shot`))
-    elem.menuBuildIced.size = translateSize(sizes[i])
-    elem.menuBuildIced.shots =[null,1,1,1,null]
-    customerCorrectAnswers.push(elem.menuBuildIced)
-    
-    }
-})
-
-coreDrinks.other.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
-        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} hot ${elem.name}`))
         elem.menuBuildHot.size = translateSize(sizes[i])
-
-        
         
         customerCorrectAnswers.push(elem.menuBuildHot)
         
     }
-})
-repeatThisSoManyTimes(1, ()=> coreDrinks.other.forEach((element,i)=>{
-    elem = JSON.parse(JSON.stringify(element))
-    if(elem.iced===true && elem.menuBuildIced!==undefined){
-    customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[1 + Number(customers[customers.length-1].id)]}`,`${sizes[i]} ${elem.name}`))
-    elem.menuBuildIced.size = translateSize(sizes[i])
-    if(elem.name.includes('Refresher') && !elem.name.includes('Lemonade')){
-        customers[Number(customers[customers.length-1].id)].phrase = `${sizes[i]} ${elem.name} with water`
+    })
+    coreDrinks.espresso.forEach((element,i)=>{
+        updateNameIndex()
+        elem = JSON.parse(JSON.stringify(element))
+        if(elem.iced===true && elem.menuBuildIced!==undefined){
+        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]} iced ${elem.name}`))
+        elem.menuBuildIced.size = translateSize(sizes[i])
+        customerCorrectAnswers.push(elem.menuBuildIced)
+        
+        }
+    })
+    coreDrinks.brewed.forEach((element,i)=>{
+        updateNameIndex()
+        elem = JSON.parse(JSON.stringify(element))
+        if(elem.iced===true && elem.menuBuildIced!==undefined){
+        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]} ${elem.name}`))
+        elem.menuBuildIced.size = translateSize(sizes[i])
+        customerCorrectAnswers.push(elem.menuBuildIced)
+        
+        }
+    })
+    coreDrinks.blended.forEach((element,i)=>{
+        updateNameIndex()
+        elem = JSON.parse(JSON.stringify(element))
+        if(elem.hot===false && elem.menuBuildIced!==undefined){
+        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]} ${elem.name}`))
+        elem.menuBuildIced.size = translateSize(sizes[i])
+        customerCorrectAnswers.push(elem.menuBuildIced)
+        
+        }
+    })
+    //make hot brewed coffee customers
+    coreDrinks.brewed.forEach((element,i)=>{
+        updateNameIndex()
+        elem = JSON.parse(JSON.stringify(element))
+        if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]} hot ${elem.name}`))
+        elem.menuBuildHot.size = translateSize(sizes[i])
+        
+        customerCorrectAnswers.push(elem.menuBuildHot)
     }
-    customerCorrectAnswers.push(elem.menuBuildIced)
-    
+    })
+    coreDrinks.tea.forEach((element,i)=>{
+        updateNameIndex()
+        elem = JSON.parse(JSON.stringify(element))
+        if(elem.hot===true && ! elem.name.includes('Custom') && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]} hot ${elem.name}`))
+        elem.menuBuildHot.size = translateSize(sizes[i])
+        
+        customerCorrectAnswers.push(elem.menuBuildHot)
     }
-}))
+    })
+    coreDrinks.tea.forEach((element,i)=>{
+        updateNameIndex()
+        elem = JSON.parse(JSON.stringify(element))
+        if(elem.iced===true && elem.menuBuildIced!==undefined){
+        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]} ${elem.name}`))
+        if(elem.name.toLowerCase().includes('latte')){
+            customers[Number(customers[customers.length-1].id)].phrase = `${sizes[i]} iced ${elem.name}`
+        }
+        elem.menuBuildIced.size = translateSize(sizes[i])
+        customerCorrectAnswers.push(elem.menuBuildIced)
+        
+        }
+    })
+    coreDrinks.other.forEach((element,i)=>{
+        updateNameIndex()
+        elem = JSON.parse(JSON.stringify(element))
+        if(elem.hot===true && elem.name!=='Espresso Con Panna' && elem.name!=='Espresso' && elem.name!=='Espresso Macchiatto'){
+            customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]} hot ${elem.name}`))
+            elem.menuBuildHot.size = translateSize(sizes[i])
+            customerCorrectAnswers.push(elem.menuBuildHot)
+        }
+    })
+    coreDrinks.other.forEach((element,i)=>{
+        updateNameIndex()
+        elem = JSON.parse(JSON.stringify(element))
+        if(elem.iced===true && elem.menuBuildIced!==undefined){
+        customers.push(new CustomerMaker(`${Number(customers[customers.length-1].id) +1}`,`${names[nameIndex+=1]}`,`${sizes[i]} ${elem.name}`))
+        elem.menuBuildIced.size = translateSize(sizes[i])
+        if(elem.name.includes('Refresher') && !elem.name.includes('Lemonade')){
+            customers[Number(customers[customers.length-1].id)].phrase = `${sizes[i]} ${elem.name} with water`
+        }
+        customerCorrectAnswers.push(elem.menuBuildIced)
+        
+        }
+    })
 
-
+}
 
 
 
 console.log(`There ${customers.length} customers made. ${names.length}  unique names. ${sizes.length} sizes. This ${customers.length <= names.length && customers.length<=sizes.length ? 'is' : "isn't"} generatable`)
-
 
 module.exports={
     correct: customerCorrectAnswers,

@@ -4,6 +4,18 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const customerController = require('../controllers/customerController')
 let path = (__dirname.split('/controllers')[0]+'/public')
+function translateSize(input){
+    let string = input.toLowerCase()
+    if(string === 'large'|| string === 'venti'){
+        return 'Vt'
+    }
+    if(string === 'medium'|| string === 'grande'){
+        return 'Gr'
+    }
+    if(string === 'tall'|| string === 'small'){
+        return 'Tl'
+    }
+}
 module.exports={
     index: (req,res)=>{
         res.sendFile(path+'/index.html')
@@ -38,19 +50,29 @@ module.exports={
                         delete req.body.drinksArray[i].hot.ogMilk
                         delete req.body.drinksArray[i].hot.ogSyrup
                     }
-                    // console.log( answer.decaf)
-                    // console.log( correctAnswer.decaf)
+                    let answerI = translateSize(answer.size)
+                    let cAnswerI = translateSize(correctAnswer.size)
+                    // console.log('answer')
+                    // console.log(answer)
+                    // console.log('correctAnswer')
+                    // console.log(correctAnswer)
+
                     if(checker(answer.decaf,correctAnswer.decaf)){
                         delete answer.decaf
                         delete correctAnswer.decaf
                     }
+                    if(answer.pumps[answerI] === correctAnswer.pumps[cAnswerI]){
+                        
+                        delete answer.pumps
+                        delete correctAnswer.pumps
+                    }
+                    if(answer.size === correctAnswer.size){
+
+                    }
                     if(JSON.stringify(answer) ===JSON.stringify(correctAnswer)){
                         points+=1
                     }
-                    console.log('answer')
-                    console.log(answer)
-                    console.log('correctAnswer')
-                    console.log(correctAnswer)
+                    
                 }
             })
             if(points>=1){
