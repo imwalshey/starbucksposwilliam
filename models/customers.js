@@ -950,14 +950,7 @@ Object.keys(customizations.milk).forEach((data)=>{
                 customerMaker('espresso','hot',['Americano'],['','',`with a splash of ${data.split('with ')[1]}`],['milk'],['push'],[milk.abbr])
                 customerMaker('brewed','iced',['Roast','Misto','Iced','Decaf','w/','Refill','Cream'],['','',`with a splash of ${data.split('with ')[1]}`],['milk'],['push'],[milk.abbr])
             }else{
-                customerMaker('espresso','hot',['Con Panna','Espresso','Americano'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
-                customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['',' quad',`with ${data}`],['milk','shots'],['changeMilk','change'],[milk.abbr,[null,4,4,4,null]])
-                customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
-                customerMaker('blended','iced',['Lemonade', '****'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
-                customerMaker('brewed','hot',['Misto'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
-                customerMaker('brewed','hot',['Misto'],['','',`with ${data} with 2 pumps of Vanilla`],['milk','syrup','pumps'],['changeMilk','push','push'],[milk.abbr,'V',[2,2,2,2,null]])
-                customerMaker('brewed','hot',['Misto'],['','',`with ${data} and add 3 shots`],['milk','shots'],['changeMilk','change'],[milk.abbr,[3,3,3,3,null]])
-                customerMaker('brewed','hot',['Misto'],['','',`with ${data} and add 3 blonde shots`],['milk','shots','decaf'],['changeMilk','change','push'],[milk.abbr,[3,3,3,3,null],'B'])
+                
                 
                 //customerMaker('tea','hot',['Latte'],`with ${data}`,'milk','changeMilk',milk.abbr)
             }
@@ -974,17 +967,34 @@ Object.keys(customizations.milk).forEach((data)=>{
     let randomSyrup1Index = Math.floor(Math.random() * Object.keys(customizations.syrup).length)
     let syrupData1 = Object.keys(customizations.syrup)[randomSyrup1Index]
     let syrupData = Object.keys(customizations.syrup)[randomSyrupIndex]
-    let syrup = customizations.syrup[syrupData].type
-    let syrup1 = customizations.syrup[syrupData1].type
+    let syrup = customizations.syrup[syrupData]
+    let syrup1 = customizations.syrup[syrupData1]
     if(milk.type==='milk' && syrup!==syrup1){
         if(!data.includes('1')){
             if(milk.abbr.includes('/') || milk.abbr.includes('CRM')){
                 if(syrup.type ==='syrup'){
-                    
+                    customerMaker('brewed','hot',['Coffee','Decaf','Pour Over','Misto'],['','',`with a splash of ${data.split('with ')[1]} and 3 blonde shots`],['milk','shots','decaf'],['push','change','push'],[milk.abbr,[3,3,3,3,null],'B'])
                 }
             }else{
                 if(syrup.type ==='syrup' && syrup1.type==='syrup'){
-                    customerMaker('espresso','hot',['Con Panna','Espresso','Americano'],['','',`with ${data} and ${2} pumps of ${syrupData} and ${2} pumps of ${syrupData1}`],['milk','syrup','pumps','syrup','pumps'],['changeMilk','push','push','push','push'],[milk.abbr,syrup.abbr,[2,2,2,2,null],syrup1.abbr,[2,2,2,2,null]])
+                    customerMaker('espresso','hot',['Con Panna','Espresso','Americano'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
+                    customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['',' quad',`with ${data}`],['milk','shots'],['changeMilk','change'],[milk.abbr,[null,4,4,4,null]])
+                    customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
+                    customerMaker('blended','iced',['Lemonade', '****'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
+                    customerMaker('brewed','hot',['Misto'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
+                    customerMaker('brewed','hot',['Misto'],['','',`with ${data} with 2 pumps of Vanilla`],['milk','syrup','pumps'],['changeMilk','push','push'],[milk.abbr,'V',[2,2,2,2,null]])
+                    customerMaker('brewed','hot',['Misto'],['','',`with ${data} and add 3 shots`],['milk','shots'],['changeMilk','change'],[milk.abbr,[3,3,3,3,null]])
+                    customerMaker('brewed','hot',['Misto'],['','',`with ${data} and add 3 blonde shots`],['milk','shots','decaf'],['changeMilk','change','push'],[milk.abbr,[3,3,3,3,null],'B'])
+                    for(i=1;i<=8;i++){
+                        for(e=1;e<=8;e++){
+                            customerMaker('espresso','hot',['Con Panna','Espresso','Americano'],['','',`with ${data} and ${i} pumps of ${syrupData} and ${e} pumps of ${syrupData1}`],['milk','syrup','pumps','syrup','pumps'],['changeMilk','push','push','push','push'],[milk.abbr,syrup.abbr,[i,i,i,i,null],syrup1.abbr,[e,e,e,e,null]])
+                            customerMaker('brewed','hot',['Misto'],['','',`with ${data} with ${i} pumps of Vanilla`],['milk','syrup','pumps'],['changeMilk','push','push'],[milk.abbr,'V',[i,i,i,i,null]])
+                            customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['',' quad',`with ${data}`],['milk','shots'],['changeMilk','change'],[milk.abbr,[null,4,4,4,null]])
+                            customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
+                            basicDrinkNoModifiers()
+                        }
+                    }
+                    
                     
                 }
                 
