@@ -756,6 +756,8 @@ function processCustom(element,value){
             drink = drinksArray[drinkNum]
             addSpecificSelectToNameBar()
         }
+    }else{
+        console.log(value)
     }
     if(value === 'size'){
         
