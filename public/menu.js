@@ -483,6 +483,7 @@ function removeDrinkContentsFromDivs(element){
     if(element.classList.toString().includes('milk')){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         if(element.classList.contains( 'milk')){
+            console.log('words')
             if(drinksArray[drinkNum].iced){
                 drinksArray[drinkNum].iced.milk[0]= JSON.parse(JSON.stringify(drinksArray[drinkNum].iced.ogMilk))[0]
             }
