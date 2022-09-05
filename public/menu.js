@@ -250,7 +250,6 @@ function addToOrder(element){
         }
         Object.keys(drinksArray[drinkNum]).forEach((cool)=>{
             if(drinkToBeAdded.hot === null || drinkToBeAdded.hot === undefined){
-                console.log('words')
                 drinkIsIced[drinkNum] = true
                 drinksArray[drinkNum].hot = undefined
             }
@@ -493,7 +492,12 @@ function removeDrinkContentsFromDivs(element){
         }else{
             element.classList.forEach((name)=>{
                 if(name.includes('milk')){
-                    itemToRemove= (name.split('milk')[0].split('-').join('/'))
+                    let itemToRemove= (name.split('milk')[0].split('-').join('/'))
+                    itemToRemove.split('').forEach((elem)=>{
+                        if(! isNaN(elem) && elem !== '/'){
+                            itemToRemove = itemToRemove+'%'
+                        }
+                    })
                     if(drinksArray[drinkNum].hot){
                         let indexHot = drinksArray[drinkNum].hot.milk.indexOf(itemToRemove);
                         if (indexHot !== -1) {
@@ -519,7 +523,6 @@ function removeDrinkContentsFromDivs(element){
                 if(drink.hot){
                     
                     let index = drink.hot.syrup.indexOf(abbr)
-                    console.log(index)
                     drink.hot.syrup.splice(index,1)
                     drink.hot.pumps.splice(index,1)
                 }
@@ -693,8 +696,8 @@ function renderCustomsMenu(menu){
         item.innerText=`${element}`
         item.classList.add(`${nameShortener(element)}`)
         document.querySelector('.items').appendChild(item)
-        item.addEventListener('click',()=>{
-            processCustom(element,menuData[menu][element])
+        item.addEventListener('click',(click)=>{
+            processCustom(element,menuData[menu][element],click)
         })
     })
     document.querySelector('.items').className=`items ${menu}`
@@ -714,6 +717,9 @@ function renderQuantities(){
     })
 }
 let currentQuantity = []
+let buttonActive = false
+let buttonActiveType =''
+let buttonActiveName = ''
 document.querySelectorAll('.numbers button').forEach((butt)=>{
     butt.addEventListener('click',()=>{
         if(!isNaN(Number(butt.innerText))){
@@ -742,7 +748,7 @@ document.querySelectorAll('.numbers button').forEach((butt)=>{
     })
 })
 
-function processCustom(element,value){
+function processCustom(element,value,click){
     let drink
     let drinkNum
     if(value.type!=='button'){
@@ -757,7 +763,27 @@ function processCustom(element,value){
             addSpecificSelectToNameBar()
         }
     }else{
-        console.log(value)
+        document.querySelectorAll('.items div').forEach((elem)=>{
+            
+            if(elem===click.target){
+                click.target.classList.toggle('selected')
+                
+            }
+            else{
+                elem.classList.remove('selected')
+            }
+            
+            if(click.target.classList.contains('selected')){
+                buttonActive = true
+                buttonActiveType = value.abbr
+                buttonActiveName = element
+            }else{
+                buttonActive=false
+                buttonActiveType = ''
+                buttonActiveName=''
+            }
+        })
+        
     }
     if(value === 'size'){
         
@@ -868,7 +894,6 @@ function processCustom(element,value){
         
     }
     if(value.type==='syrup'){
-        console.log(currentQuantity)
         Object.keys(drink).forEach((bool)=>{
             if(drink[bool]){
                 if(! drink[bool].syrup.includes(value.abbr) && currentQuantity.length === 0){
@@ -892,14 +917,28 @@ function processCustom(element,value){
         })
     
     }
+    
+    if(value.type==='custom'){
+        
+    }
     if(value.type==='milk'){
+        
         if(!value.abbr.includes('w/') && ! value.abbr.includes('CRM')){
+            
             createModifier(element,'',`${value.type}`)
+            changeHotAndIced(drink,value.type,value.abbr)
         }else{
+            if(buttonActive){
+                let changeAbbr = buttonActiveType + JSON.parse(JSON.stringify(value.abbr.split('/')[1]))
+                changeHotAndIced(drink,value.type,changeAbbr)
+                createModifier(`${buttonActiveName} ${element.split('with')[1]}`,'',`${value.abbr.split('/').join('-').split('%')[0]}milk`)
+            }else{
             createModifier(`${element}`,'',`${value.abbr.split('/').join('-').split('%')[0]}milk`)
+            changeHotAndIced(drink,value.type,value.abbr)
+            }
         }
         
-        changeHotAndIced(drink,value.type,value.abbr)
+        
     }
     document.querySelectorAll('.buttons>div').forEach((elem)=>{
         currentQuantity = []
@@ -919,7 +958,7 @@ function processCustom(element,value){
                             let after
                             if(drinkIsIced[drinkNum] === true && drink.iced) after = drink.iced.pumps[drink.iced.syrup.indexOf(abbr)][translateSize(drink.iced.size)]
                             if(drinkIsIced[drinkNum] === false && drink.hot) after = drink.hot.pumps[drink.hot.syrup.indexOf(abbr)][translateSize(drink.hot.size)]
-                            console.log(after)
+                            
                             before.forEach((elem,i)=>{
                                 if(i!==0){
                                     after += ` ${elem}`
@@ -987,7 +1026,6 @@ function createTemplate(modifier){
     drinkArea.appendChild(drinkName)
     checkForSelection()
     if(document.querySelector('.shows.hidden')){
-        console.log('words')
     }
 }
 
@@ -1134,7 +1172,6 @@ function changeHotAndIced(drink,element,value){
         }
         if(drink.iced){
             drink.iced.pumps[drink.iced.syrup.indexOf(abbr.toUpperCase())].forEach((elem,i)=>{
-                console.log(elem,i)
                 if(elem!==null){
                     drink.iced.pumps[drink.iced.syrup.indexOf(abbr.toUpperCase())][i]= Number(currentQuantity.join(''))
                 }

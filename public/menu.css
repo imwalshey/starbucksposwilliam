@@ -1222,3 +1222,7 @@ footer.hidden{
     background:rgb(238, 107, 107);
 }
   
+.itemSelection .drinkPicker .items .selected{
+    background-color: white;
+    color: black;
+}
