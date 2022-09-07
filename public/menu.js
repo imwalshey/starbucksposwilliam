@@ -130,7 +130,6 @@ function pageRender(click,data){
 }
 
 
-
 // adds an event listener to the "LOCK" button which functions as the "clear all button" 
 // removes all the elements from the "drinks content divs", removes the 'drinks que section', and resets values of the containing elements
 document.querySelector('.LOCK').addEventListener('click',()=>{
@@ -333,7 +332,6 @@ function addToOrder(element){
                 if(bool = 'custom'){
                     drinksArray[drinkNum][`${cool}`][bool] = drinkToBeAdded[`${cool}`][bool]
                 }
-                
             })
         }
         })
@@ -930,9 +928,18 @@ function processCustom(element,value,click){
             changeHotAndIced(drink,value.type,value.abbr)
         }else{
             if(buttonActive){
-                let changeAbbr = buttonActiveType + JSON.parse(JSON.stringify(value.abbr.split('/')[1]))
+                let changeAbbr
+                if(value.abbr !=='CRM'){
+                    changeAbbr = buttonActiveType + JSON.parse(JSON.stringify(value.abbr.split('/')[1]))
+                }else{
+                    changeAbbr = buttonActiveType + JSON.parse(JSON.stringify(value.abbr.split('/')[0]))
+                }
                 changeHotAndIced(drink,value.type,changeAbbr)
                 createModifier(`${buttonActiveName} ${element.split('with')[1]}`,'',`${value.abbr.split('/').join('-').split('%')[0]}milk`)
+                document.querySelectorAll('.items div').forEach((elem)=>{
+                    elem.classList.remove('selected')
+                                
+                })
             }else{
             createModifier(`${element}`,'',`${value.abbr.split('/').join('-').split('%')[0]}milk`)
             changeHotAndIced(drink,value.type,value.abbr)
@@ -972,6 +979,9 @@ function processCustom(element,value,click){
 
             })
         }
+        buttonActive = false
+        buttonActiveType =''
+        buttonActiveName = ''
         
     }
 }
@@ -1147,12 +1157,36 @@ function changeHotAndIced(drink,element,value){
         }
     }
     if(element==='milk'){
-        if(!value.includes('w/') && ! value.includes('CRM')){
+        if(!value.includes('w/') && ! value.includes('CRM') && ! value.includes('XTR')&& ! value.includes('LT')&& ! value.includes('NO')){
             if(drink.iced){drink.iced.milk[0]= value}
             if(drink.hot){drink.hot.milk[0]= value}
         }else{
-            if(drink.iced && ! drink.iced.milk.includes(value))drink.iced.milk.push(value)
-            if(drink.hot && ! drink.hot.milk.includes(value))drink.hot.milk.push(value)
+            if(! value.includes('CRM')){
+                
+            }
+            function processModifier(type,bool){
+                if(drink[bool]){
+                    drink[bool].milk.forEach((val,i)=>{
+                        //console.log(value.split('w/').join('').split('XTR').join(''))
+                        console.log(val.includes(value.split('w/').join('').split('XTR').join('')))
+                        if((val.includes('w/') || val.includes('XTR') || val.includes('LT') || val.includes('NO') || val.includes('SUB')) && val.includes(value.split('w/').join('').split('XTR').join('').split('LT').join('').split('SUB').join('').split('NO').join(''))){
+                            console.log('word' + bool)
+                            drink[bool].milk[i]=value
+                            
+                        }
+                            
+                        
+                    })
+                }
+                if(drink[bool] && ! drink[bool].milk.includes(value)){
+                    console.log('pushed' + bool)
+                    drink[bool].milk.push(value)
+                }
+            }
+            processModifier(buttonActiveType,'hot')
+            processModifier(buttonActiveType,'iced')
+            
+            
         }
     }
     if(element === 'pumps'){
