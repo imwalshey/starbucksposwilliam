@@ -942,6 +942,7 @@ function customerMaker(drinkType,hotOrIced,wantToNotInclude,tagLine,modifies,met
 Object.keys(customizations.milk).forEach((data)=>{
     let milk =customizations.milk[data]
     if(milk.type==='milk'){
+        basicDrinkNoModifiers()
         if(!data.includes('1')){
             if(milk.abbr.includes('/') || milk.abbr.includes('CRM')){
                 customerMaker('brewed','hot',['Coffee','Decaf','Pour Over','Misto'],['','',`with a splash of ${data.split('with ')[1]}`],['milk'],['push'],[milk.abbr])
@@ -991,7 +992,7 @@ Object.keys(customizations.milk).forEach((data)=>{
                             customerMaker('brewed','hot',['Misto'],['','',`with ${data} with ${i} pumps of Vanilla`],['milk','syrup','pumps'],['changeMilk','push','push'],[milk.abbr,'V',[i,i,i,i,null]])
                             customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['',' quad',`with ${data}`],['milk','shots'],['changeMilk','change'],[milk.abbr,[null,4,4,4,null]])
                             customerMaker('espresso','iced',['Con Panna','Espresso','Americano'],['','',`with ${data}`],['milk'],['changeMilk'],[milk.abbr])
-                            basicDrinkNoModifiers()
+                            
                         }
                     }
                     

@@ -192,106 +192,103 @@ function addToOrder(element){
         let div= document.createElement('div') // creates a new div
         div.classList.add(`drink${numberOfDrinksAdded}`) //dive the div a classlist of drinkX
         let size = document.createElement('div') //creates a div to contain the size Modifier that comes before every drink
-        size.readOnly=true
-        size.classList.add('sizeIdentifier')
-        size.classList.add('selectedSpecific')
-        let drink = document.createElement('div')
-        document.querySelector('.pickedDrinks').appendChild(div)
-        div.appendChild(size)
-        div.appendChild(drink)
+        size.readOnly=true //readOnly for size Modifier
+        size.classList.add('sizeIdentifier')//classlist for the size identifier
+        size.classList.add('selectedSpecific')//adds selected specific to the drink
+        let drink = document.createElement('div') // creates a div to hold the drink in the selected Items tab
+        document.querySelector('.pickedDrinks').appendChild(div) // adds the drink div to the itemsSelected
+        div.appendChild(size) //adds size to the drink div
+        div.appendChild(drink)//adds the name to the drink div
         
-        if(hots != null && colds != null){
+        if(hots != null && colds != null){//checks if the drink can be hot and iced
             drinksArray.push({
                 hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size),
                 iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
                 
             })
-            drinkIsIced.push(false)
+            drinkIsIced.push(false)//default pushes false to the isIced Array
             size.innerText=element.menuBuildHot.size
         }
-        if(hots != null && colds === null){
+        if(hots != null && colds === null){ //checks if the drink can be hot but not iced
             drinksArray.push({
                 hot:new Drink(hots.iced,hots.decaf,hots.shots,hots.pumps,hots.syrup,hots.milk,hots.custom,hots.abbr,hots.size)
             })
-            drinkIsIced.push(false)
+            drinkIsIced.push(false) //default pushes false to the isIcedArray
             size.innerText=element.menuBuildHot.size
         }
-        if(hots === null && colds != null){
+        if(hots === null && colds != null){ //checks if the drink can be iced but not hot
             drinksArray.push({
                 iced:new Drink(colds.iced,colds.decaf,colds.shots,colds.pumps,colds.syrup,colds.milk,colds.custom,colds.abbr,colds.size)
             })
-            drinkIsIced.push(true)
+            drinkIsIced.push(true) //default pushes the true value to the isIced Array
             size.innerText=element.menuBuildIced.size
         }
-        drink.innerHTML=element['abbr']
-        drink.classList.add('drinkName')
-        drink.addEventListener('click',()=>{
+        drink.innerHTML=element['abbr'] //Adds the abbreviated drink name to the drink div
+        drink.classList.add('drinkName') //adds the drinkName classlist to the drink div
+        drink.addEventListener('click',()=>{ //listens for a click so the name can be selected
             addSpecificSelectToNameBar()
         })
-        drink.classList.add('selectedSpecific')
-        div.addEventListener('click',(click)=>{
+        drink.classList.add('selectedSpecific') //adds the selected specific classlist so we can tell if the core of the drink has been selected or if a modifier has been selected
+        div.addEventListener('click',(click)=>{ //listens for a click so the entire drink section can have a parent classlist of selected
             selectDrink(click.target.parentElement, element)
         })
-        numberOfDrinksAdded+=1
-        removeAllSelected()
-        selectDrink(div)
-        let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-        if(drinkIsIced[drinkNum]===true) {addTheIcedWord()}
-        renderHotDrinkContents(drinksArray[drinkNum])
+        numberOfDrinksAdded+=1 //number of drinks added gets increased by one
+        removeAllSelected() //all selected drinks get the classlist selected removed
+        selectDrink(div) //selects the drink
+        let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink','')) //a useful way to find the drinkArray position
+        if(drinkIsIced[drinkNum]===true) {addTheIcedWord()} //checks if the drinks is iced and adds 'iced' in front of the drink name
+        renderHotDrinkContents(drinksArray[drinkNum])//adds contents of the drinks to the sidebar ingredients list
         
     }
+    // checks if a drink is only partial before integrating the selected modifiers into the drink contents of the array.  Partial drinks appear when only a customization has been selected and not a whole drink
     if(document.querySelector('.pickedDrinks .selected .drinkName') && document.querySelector('.pickedDrinks .selected .drinkName').innerText === '[Drink]'){
         
-        let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-        const drinkToBeAdded ={
+        let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink','')) //finds the array position
+        const drinkToBeAdded ={ //stores the hot and cold values for the drink to be added
             hot: hots,
             iced: colds
         }
-        Object.keys(drinksArray[drinkNum]).forEach((cool)=>{
-            if(drinkToBeAdded.hot === null || drinkToBeAdded.hot === undefined){
-                drinkIsIced[drinkNum] = true
-                drinksArray[drinkNum].hot = undefined
+        Object.keys(drinksArray[drinkNum]).forEach((cool)=>{ //goes through each property hot or iced of the drink
+            if(drinkToBeAdded.hot === null || drinkToBeAdded.hot === undefined){ //if drink is undefined or null
+                drinkIsIced[drinkNum] = true //Defines drink as iced
+                drinksArray[drinkNum].hot = undefined //Sets drink.hot to undefined if drink.hot doesn't exist
             }
-            if(drinkToBeAdded[`${cool}`]!==null && drinkToBeAdded[`${cool}`]!==undefined){
-            Object.keys(drinksArray[drinkNum][`${cool}`]).forEach((bool)=>{
-                if(drinksArray[drinkNum][`${cool}`][bool]=== ''){
-                    drinksArray[drinkNum][`${cool}`][bool]= drinkToBeAdded[`${cool}`][bool]
-                }
-                if(bool === 'abbr'){
+            if(drinkToBeAdded[`${cool}`]!==null && drinkToBeAdded[`${cool}`]!==undefined){ //checks if drinktobeadded.x is available
+            Object.keys(drinksArray[drinkNum][`${cool}`]).forEach((bool)=>{ // iterates through all of the properties of hot and iced objects
+                if(drinksArray[drinkNum][`${cool}`][bool]=== ''){ //if the element is blank, 
+                    drinksArray[drinkNum][`${cool}`][bool]= drinkToBeAdded[`${cool}`][bool] // add the element to the actual drink array
                 }
                 if(bool==='ogPumps'){
-                    drinksArray[drinkNum][`${cool}`][bool]=drinkToBeAdded[`${cool}`]['pumps']
+                    drinksArray[drinkNum][`${cool}`][bool]=drinkToBeAdded[`${cool}`]['pumps'] //Makes OG pumps
                 }
                 if(bool==='ogShots'){
-                    drinksArray[drinkNum][`${cool}`][bool]=drinkToBeAdded[`${cool}`]['shots']
+                    drinksArray[drinkNum][`${cool}`][bool]=drinkToBeAdded[`${cool}`]['shots'] //Makes OG shot
                 }
                 if(bool==='ogMilk'){
-                    drinksArray[drinkNum][`${cool}`][bool]= JSON.parse(JSON.stringify(drinkToBeAdded[`${cool}`]['milk']))
+                    drinksArray[drinkNum][`${cool}`][bool]= JSON.parse(JSON.stringify(drinkToBeAdded[`${cool}`]['milk'])) //adds OGMIlk
                 }
                 if(bool==='milk'){
-                    drinksArray[drinkNum][`${cool}`].milk.forEach((elem,i)=>{
-                        if(elem === '' && elem.length===0 && drinkToBeAdded[`${cool}`]['milk'][i]){
-                            drinksArray[drinkNum][`${cool}`][bool][i]= drinkToBeAdded[`${cool}`]['milk'][i]
+                    drinksArray[drinkNum][`${cool}`].milk.forEach((elem,i)=>{ //cycles through the milk array
+                        if(elem === '' && elem.length===0 && drinkToBeAdded[`${cool}`]['milk'][i]){ 
+                            drinksArray[drinkNum][`${cool}`][bool][i]= drinkToBeAdded[`${cool}`]['milk'][i] //only changes the first value of array
+                            //milks from the backend are always single value, only the first value needs to be updated
                         }
-
                     })
-                    // console.log(drinksArray[drinkNum][`${cool}`].milk[0])
-                    // console.log(drinksArray[drinkNum][`${cool}`].milk[0]==='' && drinksArray[drinkNum][`${cool}`].milk.length===1)
-                    // if(drinksArray[drinkNum][`${cool}`].milk[0]==='' && drinksArray[drinkNum][`${cool}`].milk[0].length===0){
-                    //     drinksArray[drinkNum][`${cool}`][bool]= drinkToBeAdded[`${cool}`]['milk']
-                    // }
                 }
-                if(bool==='shots'){
-                    drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{
-                        if(num==null){
+                if(bool==='shots'){ 
+                    //cycles through shots
+                    //if the element for the backend drink.shot amount is null make the current element null as well
+                    drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{ 
+                        if(num==null){ 
                             drinksArray[drinkNum][`${cool}`][bool][i] = null
                         }
+                        //if not, push the value into the array
                         if(num!==null && drinksArray[drinkNum][`${cool}`][bool][i]=== ''){
                             drinksArray[drinkNum][`${cool}`][bool][i] = drinkToBeAdded[`${cool}`][bool][i]
                         }
                     })
                 }
-                if(bool = 'decaf'){
+                if(bool = 'decaf'){ 
                     drinkToBeAdded[`${cool}`][bool].forEach((num,i)=>{
                         if(num=='' && drinksArray[drinkNum][`${cool}`][bool][i]!== ''){
                             drinksArray[drinkNum][`${cool}`][bool][i] = ''
@@ -923,7 +920,12 @@ function processCustom(element,value,click){
     if(value.type==='milk'){
         
         if(!value.abbr.includes('w/') && ! value.abbr.includes('CRM')){
-            
+            if(buttonActive){
+                errorMessage('Entry Not Available On Active Levels','red')
+                document.querySelectorAll('.items div').forEach((elem)=>{
+                    elem.classList.remove('selected')
+                })
+            }
             createModifier(element,'',`${value.type}`)
             changeHotAndIced(drink,value.type,value.abbr)
         }else{
@@ -1002,6 +1004,7 @@ function translateSize(string){
         return 4
     }
 }
+
 function createTemplate(modifier){
     const itemsArea = document.querySelector('.pickedDrinks')
     const drinkArea = document.createElement('div')

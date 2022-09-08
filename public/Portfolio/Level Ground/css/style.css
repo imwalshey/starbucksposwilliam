@@ -1,0 +1,357 @@
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
+  
+}
+
+/* Clear fix hack */
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+
+.clear {
+	clear: both;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-family: roboto, sans-serif;
+	vertical-align: baseline;
+}
+/******************************************
+/* BASE STYLES
+/*******************************************/
+header{
+  height: 75vh;
+  width:100%;
+  background-color: rgb(105,118,136);
+  color:white;
+  text-align:center;
+  padding: 2%;
+  padding-bottom: 0;
+}
+header button{
+  margin-right: 3vw;
+  float:right;
+}
+header ul{
+  text-align: center;
+  
+}
+header ul li{
+  padding-right: 2vw;
+  float:left;
+  list-style: none;
+  list-style: none;
+}
+header a{
+  color:white;
+  text-decoration: none;
+  font-size: 2vh;
+}
+header h1{
+  padding-top:15vh;
+  font-size: 8.5vh;
+  text-transform:uppercase;
+  padding-bottom: 4vh;
+}
+header p{
+  margin-top: 3%;
+  font-size: 3vh;
+  padding-left:8vw;
+  padding-right:8vw;
+  font-weight: 300;
+}
+header h1{
+  padding-left:5vw;
+  padding-right:5vw;
+}
+
+header button{
+  padding:1.5vh;
+  border:none;
+  border-radius: .5em;
+  font-weight: bold;
+  color:rgb(105,118,136);
+  background-color: white;
+  
+}
+header h3{
+
+  margin-top:1%;
+  float:left;
+}
+header div{
+  width:40%;
+  margin-left:38%;
+  margin-top: 4%;
+  
+  font-size: 3vh;
+}
+header i{
+  background-color: white;
+  color:rgb(105,118,136);
+  font-size: 4vh;
+  margin-top: .75%;
+  margin-right: 2vw;
+  float:left;
+  border:2px solid white;
+  border-radius: 50%;
+}
+/******************************************
+/* WHY
+/*******************************************/
+
+.why{
+  height:50vh;
+  width:80%;
+  text-align: center;
+  
+  margin:10%;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.why h2{
+  padding-top: 11%;
+  font-size: 6vh;
+  font-weight:700;
+}
+.why p{
+  padding-top: 3%;
+  padding-left: 12%;
+  padding-right: 12%;
+  font-size:3vh;
+  font-weight: lighter;
+}
+/******************************************
+/* split
+/*******************************************/
+.split{
+  height:100vh;
+  width:100%;
+  background-color: lightgrey;
+  text-align: center;
+}
+
+.split div{
+  
+  float:left;
+  width:30%;
+  height:80vh;
+  margin-top: 18vh;
+  margin-left:17.5%;
+  
+  
+}
+.split div+div{
+  margin-left:5%;
+}
+.split div section{
+  margin-left:5%;
+  width:90%;
+  height:30%;
+  background-color:rgb(105,118,136);
+}
+.split div h2{
+  font-size: 4vh;
+  text-transform: uppercase;
+  margin:4%;
+  
+}
+.split div p{
+  padding-top: 4%;
+  font-size:2.5vh ;
+  font-weight: 300;
+}
+.split div button{
+  margin-top: 8%;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2vh;
+  padding: 3% 10%;
+  background-color: transparent;
+  border-color: gray;
+}
+
+
+
+/******************************************
+/* volunteer
+/*******************************************/
+.volunteer{
+  height:75vh;
+  background-color: white;
+  text-align: center;
+}
+.volunteer button{
+  margin-top: 4%;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2vh;
+  padding: 1.5% 5%;
+  background-color: transparent;
+  border-color: gray;
+}
+.volunteer h2{
+  padding-top: 10%;
+  text-transform: uppercase;
+  font-size: 4vh;
+  padding-bottom: 2%;
+}
+.volunteer p{
+  margin-left: 25%;
+  width:50%;
+  font-size: 3vh;
+}
+/******************************************
+/* footer
+/*******************************************/
+footer{
+  height:35vh;
+  background-color: rgb(24,31,41);
+  color:white;
+  padding:2%;
+  width:100%
+}
+footer i{
+  padding-right: 4%;
+  padding-bottom: 4%;
+  font-size: 3vh;
+}
+footer ul li{
+  list-style: none;
+  padding-right: 7%;
+  font-size: 2vh;
+}
+footer ul li+li{
+  padding-bottom: 6%;
+}
+.sitemap li{
+  float:left;
+  
+}
+footer h4{
+  clear:both;
+  font-size: 2vh;
+  color:rgb(105,118,136);
+  padding-bottom: 2%;
+}
+.contribute li{
+  float:left;
+}
+.left{
+  float:left;
+  width:30%;
+  height:25vh
+}
+.right{
+  float: right;
+  height:25vh;
+  color:white;
+}
+.contribute ul li+li{
+  padding-bottom:0%;
+}
+
+
+.right{
+  padding-top: 3%;
+}
+
+.right *{
+  color:white;
+  
+}
+.right h4{
+  padding-bottom: 0%;
+
+}
+.right h4+h4{
+  padding-bottom:5%;
+}
+
+.right p{
+  width:60%;
+}
+footer section{
+  width:100%;
+  clear:both;
+  height:6vh;
+  border-top: 2px solid white;
+}
+
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+@media all and (max-width: 1024px){
+  *{
+    overflow-x: hidden;
+  }
+    
+  .whole h1{
+    font-size: 4vh;
+  }
+  .whole p{
+    font-size: 2.5vh;
+  }
+
+  header div *{
+    font-size: 2vh;
+  }
+  header div{
+    width:100%;
+    margin-left: 30%;
+  }
+
+  .split{
+    height:130vh;
+  }
+  .whole .split div{
+    margin-top: 0vh;
+    padding-top: 5vh;
+    margin-left:5vw;
+    float:initial;
+    width:90vw;
+    height:65vh;
+  }
+  .split div section{
+    height:20vh;
+  }
+  .volunteer p{
+    margin-left: 15%;
+    width:70%;
+    font-size: 2.6vh;
+  }
+  .right{
+    width:60%;
+  
+  }
+  
+  .right p{
+    font-size: 2vh;
+    
+  }
+  
+  
+  
+}

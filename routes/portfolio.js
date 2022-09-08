@@ -1,0 +1,10 @@
+const express = require('express')
+const router = express.Router()
+const mainController = require('../controllers/mainController')
+const portfolioController = require('../controllers/portfolioController')
+router.get('/', portfolioController.index) 
+router.get('/about', mainController.roasts) 
+router.get('/pos', mainController.menu) 
+router.get('/coredrinks', mainController.coredrinks) 
+router.post('/order', mainController.order) 
+module.exports = router
