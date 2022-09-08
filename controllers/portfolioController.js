@@ -5,6 +5,6 @@ app.use(express.urlencoded({ extended: true }))
 let path = (__dirname.split('/controllers')[0]+'/public')
 module.exports={
     index: (req,res)=>{
-        res.sendFile(path+'/portfolio/index.html')
+        res.sendFile(path+'/Portfolio/index.html')
     },
 }
