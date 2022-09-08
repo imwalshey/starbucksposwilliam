@@ -16,8 +16,10 @@ app.use(express.json())
 
 const APIRoutes = require('./routes/API')
 const mainRoutes = require('./routes/main')
+const mainRoutes = require('./routes/portfolio')
 
 app.use('/api',APIRoutes)
 app.use('/',mainRoutes)
+app.use('/portfolio',portfolioRoutes)
 
 app.listen(process.env.PORT || PORT)
