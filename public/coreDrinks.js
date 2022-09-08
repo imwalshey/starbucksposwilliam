@@ -34,7 +34,7 @@ async function apiRequest(){
             
             data[element].forEach((roasty)=>{
                 
-                if(element === brewed){
+                if(element === 'brewed'){
                     
                 }
                 if(element ==='blended'){
