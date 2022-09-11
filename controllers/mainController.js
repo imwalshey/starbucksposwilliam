@@ -29,6 +29,9 @@ module.exports={
     coredrinks: (req,res)=>{
         res.sendFile(path+'/coreDrinks.html')
     },
+    partnerHours:(req,res)=>{
+        res.sendFile(path+'/PartnerHours/index.html')
+    },
     order: (req,res)=>{
             let checker = (arr, target) => target.every(v => arr.includes(v));
             let points = 0

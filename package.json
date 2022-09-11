@@ -1,23 +1,30 @@
 {
-  "name": "api-projects",
+  "name": "starbucks-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "*The Barista Trainer:* is a collection of 3 major projects that helps in training coffee knowledge. The API is essentially a library of drinks, roasts, and customizations that are available at the popular coffee chain. #### Live Demo:https://coffee-trainer.herokuapp.com/ <img width=\"1318\" alt=\"Screen Shot 2022-07-07 at 10 21 40 AM\" src=\"https://user-images.githubusercontent.com/100736905/177803837-00b71048-3887-4e82-ae33-da109a46ecd3.png\">",
   "main": "server.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobharper259/Coffee-API.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacobharper259/Coffee-API/issues"
+  },
+  "homepage": "https://github.com/jacobharper259/Coffee-API#readme",
   "dependencies": {
-    "animejs": "^3.2.1",
+    "add-event-to-calendar": "^1.0.7",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
-    "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "inquirer": "^9.0.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.16"
+    "file-saver": "^2.0.5",
+    "mongodb": "^4.9.1",
+    "nodemon": "^2.0.19",
+    "typescript": "^4.8.3"
   }
 }
