@@ -23,6 +23,89 @@ section>p{
 }
 
 .textarea[contenteditable]:empty::before {
-  content: "Placeholder still possible";
+  content: "Copy Your Schedule Here";
   color: gray;
 }
+.weekDay{
+    border-radius: .4em;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width:300px;
+    padding:1% 2% 1% 1%;
+    margin:.5% 0% 0% 0%;
+    background: white;
+    box-shadow: 1px 3px 8px -2px black;
+    justify-content: space-between;
+}
+.dateGrouper{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.date{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border:5px solid #00754a;
+    text-align:center;
+    width:50px;
+    height:50px;
+    background-color: rgb(232, 232, 232);
+}
+.timeToWork{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width:60%;
+}
+.addOrRemove{
+    display:flex;
+    background: rgb(255, 255, 255);
+    width:50px;
+    height:50px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color:green;
+    border:3px solid green; 
+}
+.addOrRemove:hover{
+    color:rgb(255, 255, 255);
+    background: green;
+}
+.addOrRemove.cancel{
+    color:red;
+    border-color: red;
+}
+.addOrRemove.cancel:hover{
+    color:rgb(255, 255, 255);
+    background: red;
+}
+.dull{
+    background-color: grey;
+}
+.dull .dateGrouper{
+    opacity: .5;
+}
+.dull .timeToWork{
+    opacity: .5;
+}
+.hidden{
+    display:none
+}
+.download{
+    margin-top: 2%;
+    font-size: inherit;
+    border-radius: 2em;
+    background-color: white;
+    border-color: green;
+    padding:2%;
+}
+.download:hover{
+    background-color: green;
+    border-color: white;
+    color:white;
+}
+

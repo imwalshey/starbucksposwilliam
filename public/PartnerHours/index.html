@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partner Hours to Calendar</title>
+    <script src="https://kit.fontawesome.com/082f4a75c7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../home.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,13 +13,19 @@
     <header>
         <h1>Partner Hours to Calendar Events</h1>
     </header>
-    <section>
+    <section class="inputSec">
         <input type="month" id="start" class="monthSelect" name="start" min="2022-01" value="2018-05">
         <!-- <span><input class = 'rollover' type="checkbox"><span>Rolls into next month</span></span> -->
         
 
         <p><span class="textarea" role="textbox" contenteditable></span></p>
         <button class = "submit">Submit</button>
+    </section>
+    
+    <section class ='confirmations hidden'>
+    </section>
+    <section class="addButton hidden">
+        <button class='download'></button>
     </section>
     <script type="text/javascript" src="ics.js"></script>
     <script type="text/javascript" src="main.js"></script>
