@@ -5,7 +5,7 @@ const app = express()
 const PORT = 8000
 const CORS = require('cors')
 app.use(express.static('public'))
-app.use('public/PartnerHours',express.static(__dirname + '/PartnerHours'))
+app.use('/PartnerHours',express.static(__dirname + '/public/PartnerHours'))
 app.use(express.static('IMG'))
 const bodyParser= require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
