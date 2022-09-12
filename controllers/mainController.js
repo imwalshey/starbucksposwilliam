@@ -15,7 +15,7 @@ function translateSize(input){
     if(string === 'tall'|| string === 'small'){
         return 'Tl'
     }
-}
+} 
 module.exports={
     index: (req,res)=>{
         res.sendFile(path+'/index.html')
