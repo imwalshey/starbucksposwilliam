@@ -1,5 +1,5 @@
 
-
+ 
 
 
 
@@ -32,10 +32,28 @@ async function apiRequest(){
             div.innerHTML=`<div class="title"><h1>${element.toUpperCase()}</h1></div>`
             document.querySelector('.coreDrinks').appendChild(div)
             
+            
             data[element].forEach((roasty)=>{
                 
                 if(element === 'brewed'){
+                    let theDrink = document.createElement('div')
+                    theDrink.classList.add(nameShortener(roasty.name))
+                    theDrink.classList.add('drink')
+                    document.querySelector(`.${element}`).appendChild(theDrink)
+                    let cup = document.createElement('div')
+                    let container = document.createElement('div')
+                    container.classList.add('container')
+                    cup.appendChild(container)
+                    cup.classList.add('frapp')
                     
+                    theDrink.appendChild(cup)
+                    let text = document.createElement('div')
+                    text.classList.add('info')
+                    
+                    text.innerHTML=`
+                        <h2>${roasty.name.toUpperCase()}</h2>
+                    `
+                    theDrink.appendChild(text)
                 }
                 if(element ==='blended'){
                     let whipped = document.createElement('div')

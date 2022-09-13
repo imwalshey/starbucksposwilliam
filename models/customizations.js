@@ -10,6 +10,13 @@ class Syrup{
         this.abbr=ABB
     }
 }
+class Custom{
+    constructor(ABB,TYPE,MenuName){
+        this.type=TYPE
+        this.abbr=ABB
+        this.menuName = MenuName
+    }
+}
 modifiers.shotsMenu={'Iced':'iced','Blonde':'coffeeType','Decaf':'coffeeType','1/2 Decaf':'coffeeType','2/3 Decaf':'coffeeType',
                     '1/3 Decaf':'coffeeType','Single':'shotNumber','Double':'shotNumber','Triple':'shotNumber',
                     'Quad':'shotNumber','More shots':'shotNumber','Affogato Shot':'shotNumber','Frappucino Roast':'pumps','Kids':"size",'Updosed':'coffeeType',
@@ -31,15 +38,15 @@ modifiers.milk={
     'with Half & Half Cream':new Syrup('CRM','milk'),'with Heavy Cream':new Syrup('w/HC','milk'),
 }
 modifiers.custom={
-    'No':new Syrup('NO','button'),'Sub':new Syrup('SUB','button'),'Extra':new Syrup('XTR','button'),'Light':new Syrup('LT','button'),
-    'Ice':new Syrup('ICE','custom'),'Water':new Syrup('H2O','custom'),'Whipped Cream':new Syrup('WC','custom'),'Vanilla Sweet Cream':new Syrup('VSC','custom'),'Agave':new Syrup('AGV','packet'),
-    'Splenda':new Syrup('SPL','packet'),'Sugar':new Syrup('SUG','packet'),'Stevia':new Syrup('STV','packet'),'Honey':new Syrup('HN','packet'),'Raw Sugar':new Syrup('RAW','packet'),'Strawberry Puree':new Syrup('SP','custom'),
-    'Frappuccino Chips':new Syrup('FC','custom'),'Vanilla Bean Powder':new Syrup('VB','custom'),'Matcha':new Syrup('MT','custom'),'Add blueberries':new Syrup('BLB','custom'),
-    'Strawberry Inclusions':new Syrup('SRI','custom'),'Mango Dragonfruit Inclusions':new Syrup('MRI','custom'),'Pineapple Inclusions':new Syrup('PRI','custom'),
-    'Lemonade':new Syrup('LEM','custom'),'Mocha Drizzle':new Syrup('MD','custom'),'Caramel Drizzle':new Syrup('CD','custom'),'Strawberry Acai Refresher Base':new Syrup('SRB','custom'),
-    'Dragonfruit Refresher Base':new Syrup('DRB','custom'),'Pineapple Refresher Base':new Syrup('PRB','custom'),
-    'Line the Cup w/Mocha':new Syrup('Lw/M','custom'),'Line the Cup w/Caramel':new Syrup('Lw/C','custom'),'Foam':new Syrup('F','custom'),'Vanilla Sweet Cream Cold Foam':new Syrup('VSCF','custom'),
-    'Salted Cream Cold Foam':new Syrup('SCCF','custom'),'Chocolate Cream Cold Foam':new Syrup('CCCF','custom'),'With Room':new Syrup('R','custom'),'Extra Hot':'XTRHOT'
+    'No':new Custom('NO','button'),'Sub':new Custom('SUB','button'),'Extra':new Custom('XTR','button'),'Light':new Custom('LT','button'),
+    'Ice':new Custom('ICE','custom','Ice'),'Water':new Custom('H2O','custom','Water'),'Whipped Cream':new Custom('WC','custom','Whip Cream'),'Vanilla Sweet Cream':new Custom('VSC','custom','Van Swt Crm'),'Agave':new Custom('AGV','packet','Agave'),
+    'Splenda':new Custom('SPL','packet','Splenda'),'Sugar':new Custom('SUG','packet','Sugar'),'Stevia':new Custom('STV','packet','Stevia'),'Honey':new Custom('HN','packet','Honey'),'Raw Sugar':new Custom('RAW','packet','Raw Sugar'),'Strawberry Puree':new Custom('SP','custom','Strwbrry Puree'),
+    'Frappuccino Chips':new Custom('FC','custom','Frapp Chips'),'Vanilla Bean Powder':new Custom('VB','custom','Van Bean Pwder'),'Matcha':new Custom('MT','custom','Matcha'),'Add blueberries':new Custom('BLB','custom','Blueberries'),
+    'Strawberry Inclusions':new Custom('SRI','custom','Strwbrry Incl'),'Mango Dragonfruit Inclusions':new Custom('MRI','custom','Drgn Frt Incl'),'Pineapple Inclusions':new Custom('PRI','custom','Pnepple Incl'),
+    'Lemonade':new Custom('LEM','custom','Lemonade'),'Mocha Drizzle':new Custom('MD','custom','Mocha Drizzle'),'Caramel Drizzle':new Custom('CD','custom','Caramel Drizzle'),'Strawberry Acai Refresher Base':new Custom('SRB','custom','Strwbrry Base'),
+    'Dragonfruit Refresher Base':new Custom('DRB','custom','Drgn Frt Base'),'Pineapple Refresher Base':new Custom('PRB','custom','Pineapple Base'),
+    'Line the Cup w/Mocha':new Custom('Lw/M','custom','Line Cup Mocha'),'Line the Cup w/Caramel':new Custom('Lw/C','custom','Line Cup Caramel'),'Foam':new Custom('F','custom','Foam'),'Vanilla Sweet Cream Cold Foam':new Custom('VSCF','custom','Sweet Cream CF'),
+    'Salted Cream Cold Foam':new Custom('SCCF','custom','Slted Crm CF'),'Chocolate Cream Cold Foam':new Custom('CCCF','custom','Choc Crm CF'),'With Room':new Custom('R','custom','Room'),'Extra Hot':'XTRHOT'
 }
 
 

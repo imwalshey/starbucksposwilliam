@@ -915,8 +915,16 @@ function processCustom(element,value,click){
     }
     
     if(value.type==='custom'){
+        Object.keys(drink).forEach((bool)=>{
+            if(! drink[bool].custom.toString().includes(value.abbr)){
+                console.log('words')
+                changeHotAndIced(drink,value.type,value.abbr)
+            }
+        })
+        createModifier(`Add`,`${value.menuName}`,`${nameShortener(value.abbr)}${value.type}`)
         
     }
+    console.log(value.type)
     if(value.type==='milk'){
         
         if(!value.abbr.includes('w/') && ! value.abbr.includes('CRM')){
@@ -1157,6 +1165,14 @@ function changeHotAndIced(drink,element,value){
         if(drink.iced){
             drink.iced.syrup.push(value)
             drink.iced.pumps.push(JSON.parse(JSON.stringify(drink.iced.ogPumps[0])))
+        }
+    }
+    if(element === 'custom'){
+        if(drink.iced){
+            drink.iced.custom.push(value)
+        }
+        if(drink.hot){
+            drink.hot.custom.push(value)
         }
     }
     if(element==='milk'){

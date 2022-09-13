@@ -938,6 +938,7 @@ section.items.brewed div.blonderoast{
 .pickedDrinks .modifier{
     width:100%;
     padding-left: 10%;
+    overflow: hidden;
 }
 .extras{
     display:flex;
@@ -1152,9 +1153,17 @@ footer.hidden{
 .customerArea.hidden{
     opacity:0;
 }
+@media only screen and (min-width: 1600px) {
+    *{
+        font-size: 0.9vw;
+    }
+}
 @media only screen and (min-width: 1370px) {
     *{
-        font-size: 1.0vw;
+        font-size: 1vw;
+    }
+    .items.custom div {
+        font-size: 0.8vw;
     }
 }
 @media only screen and (min-width: 1470px) {
