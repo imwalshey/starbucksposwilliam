@@ -1186,6 +1186,7 @@ function changeHotAndIced(drink,element,value){
             function processModifier(type,bool){
                 if(drink[bool]){
                     drink[bool].milk.forEach((val,i)=>{
+                        
                         //console.log(value.split('w/').join('').split('XTR').join(''))
                         console.log(val.includes(value.split('w/').join('').split('XTR').join('')))
                         if((val.includes('w/') || val.includes('XTR') || val.includes('LT') || val.includes('NO') || val.includes('SUB')) && val.includes(value.split('w/').join('').split('XTR').join('').split('LT').join('').split('SUB').join('').split('NO').join(''))){
