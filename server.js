@@ -6,7 +6,7 @@ const PORT = 8000
 const CORS = require('cors')
 app.use(express.static('public'))
 app.use('/PartnerHours',express.static(__dirname + '/public/PartnerHours'))
-app.use('/pos',express.static(__dirname + '/public/menu'))
+app.use('/menu',express.static(__dirname + '/public/Menu'))
 app.use('/coreDrinks',express.static(__dirname + '/public/CoreDrinks'))
 app.use(express.static('IMG'))
 const bodyParser= require('body-parser')
