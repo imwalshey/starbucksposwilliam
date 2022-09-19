@@ -24,7 +24,7 @@ module.exports={
         res.sendFile(path+'/roasts.html')
     },
     menu: (req,res)=>{
-        res.sendFile(path+'/pos/menu.html')
+        res.sendFile(path+'/Menu/menu.html')
     },
     coredrinks: (req,res)=>{
         res.sendFile(path+'/CoreDrinks/coreDrinks.html')
