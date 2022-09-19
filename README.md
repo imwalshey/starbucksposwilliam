@@ -10,6 +10,6 @@ The project is essentially a database of drinks, customizations, and roasts that
 page for example, takes in drink contents and names from the backend and makes them editable in the front end. Creating an accurate recreation of
 POS. 
 
-## Optimizations
+## Optimizations For POS
 -Using Javascript to render the drink divs on the menu, I was able to stop hard-coding as many drinks into the front-end, and just let the front-end generate the layout of the divs.
--
+

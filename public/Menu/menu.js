@@ -327,7 +327,13 @@ function addToOrder(element){
                 }
                 
                 if(bool = 'custom'){
-                    drinksArray[drinkNum][`${cool}`][bool] = drinkToBeAdded[`${cool}`][bool]
+                    drinkToBeAdded[`${cool}`][bool].forEach((val,i)=>{
+                        if(!drinksArray[drinkNum][`${cool}`][bool].includes(val)){
+                            if(drinksArray[drinkNum][`${cool}`][bool][i]===''){
+                                drinksArray[drinkNum][`${cool}`][bool][i]=val
+                            }else drinksArray[drinkNum][`${cool}`][bool].push(val)
+                        }
+                    })
                 }
             })
         }
@@ -451,7 +457,7 @@ function showDrinkContentsInDivs(bool){
     }else{
         document.querySelector('.iceCheck div').innerText= ''
     }
-    document.querySelector('.customCheck div').innerText=bool.custom.toString().replace(',', ' ')
+    document.querySelector('.customCheck div').innerText=bool.custom.join(' ')
 
 }
 function removeDrinkContentsFromDivs(element){
@@ -965,6 +971,7 @@ function processCustom(element,value,click){
     document.querySelector('.buttons .shows').classList.remove('hidden')
     document.querySelector('.buttons .submits').classList.remove('hidden')
     if(value.type!=='button'){
+        console.log('words')
         renderHotDrinkContents(drink)
         if(document.querySelector('.selected .modifier')){
             document.querySelectorAll('.selected .modifier').forEach((elem)=>{

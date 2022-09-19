@@ -24,10 +24,10 @@ module.exports={
         res.sendFile(path+'/roasts.html')
     },
     menu: (req,res)=>{
-        res.sendFile(path+'/menu.html')
+        res.sendFile(path+'/menu/menu.html')
     },
     coredrinks: (req,res)=>{
-        res.sendFile(path+'/coreDrinks.html')
+        res.sendFile(path+'/CoreDrinks/coreDrinks.html')
     },
     partnerHours:(req,res)=>{
         res.sendFile(path+'/PartnerHours/index.html')
@@ -39,6 +39,7 @@ module.exports={
                 if(req.body.drinksArray[i]!==undefined && req.body.drinksArray[i]!==null){
                     let answer
                     let correctAnswer = JSON.parse(JSON.stringify(customerController.customerCorrectAnswers[Number(req.body.customerID)]))
+                    
                     if(req.body.drinkIsIced[i]===true){
                         answer = req.body.drinksArray[i].iced
                         delete req.body.drinksArray[i].iced.ogPumps
@@ -59,7 +60,7 @@ module.exports={
                     // console.log(answer)
                     // console.log('correctAnswer')
                     // console.log(correctAnswer)
-
+                    console.log([answer,correctAnswer])
                     if(checker(answer.decaf,correctAnswer.decaf)){
                         delete answer.decaf
                         delete correctAnswer.decaf
