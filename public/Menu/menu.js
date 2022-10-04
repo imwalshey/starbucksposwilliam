@@ -84,6 +84,7 @@ class Drink{
         this.ogPumps=JSON.parse(JSON.stringify(Pumps))
         this.ogShots=JSON.parse(JSON.stringify(Shots))
         this.ogMilk = JSON.parse(JSON.stringify(Milk))
+        this.ogCustom = JSON.parse(JSON.stringify(Custom))
     }
 }
 
@@ -373,9 +374,6 @@ function renderHotDrinkContents(value,modify){
         bool=value.iced
     }
     let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
-    // if(bool.decaf==='B'){
-
-    // }
     
 
     if(drinkIsIced[drinkNum]===true && value.iced){
@@ -534,6 +532,28 @@ function removeDrinkContentsFromDivs(element){
                     drink.iced.pumps.splice(index,1)
                 }
             }
+        })
+    }
+    if(element.classList.toString().includes('custom')){
+        let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
+        let drink = drinksArray[drinkNum]
+        let toBeRemoved
+        element.classList.forEach((elem)=>{
+            if(elem.includes('custom')){
+                toBeRemoved= elem.split('custom')[0]
+            }
+        })
+        let removeHot = drink.hot.custom.map((elem,i)=>{
+            if(elem.includes(toBeRemoved.toUpperCase())){
+                drink.hot.custom.splice(i,1)
+            }
+            
+        })
+        let removeIced = drink.iced.custom.map((elem,i)=>{
+            if(elem.includes(toBeRemoved.toUpperCase())){
+                drink.iced.custom.splice(i,1)
+            }
+            
         })
     }
 }
@@ -928,6 +948,7 @@ function processCustom(element,value,click){
             }
         })
         createModifier(`Add`,`${value.menuName}`,`${nameShortener(value.abbr)}${value.type}`)
+        renderHotDrinkContents(drink)
         
     }
     console.log(value.type)

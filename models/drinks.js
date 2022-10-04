@@ -133,7 +133,7 @@ coreDrinks.espresso.push(new Espresso('White Mocha',['steam milk','que shots','p
                                     new DrinkBuild(true,[''],[null,1,2,3,null],[null,3,4,6,null],'WM','%','WC','WCM')))
 coreDrinks.espresso.push(new Espresso('Mocha',['steam milk','que shots','pump syrup','pour milk','add whip'],{'whipped cream':'6%','foam':'11%','steamed milk':'63%','espresso':'13%','syrup':'7%'},true,true,{'whipped cream':'6%','milk':'74%','espresso':'13%','syrup':'7%'},'Mocha',
                                     new DrinkBuild(false,[''],[1,1,2,2,null],[2,3,4,5,null],'M','%',['F','WC'],'M'),
-                                    new DrinkBuild(true,[''],[null,1,2,3,null],[null,3,4,6,null],'M','%',['WC','F'],'M')))
+                                    new DrinkBuild(true,[''],[null,1,2,3,null],[null,3,4,6,null],'M','%',['WC'],'M')))
 class Frappucino{
     constructor(Name,Steps,Build,Bool,Topping,Layered,ABBR,Hot,Iced,MBI,MBH){
         this.name = Name
