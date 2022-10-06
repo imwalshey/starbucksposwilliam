@@ -476,7 +476,8 @@ body{
     width:100%;
 }
 .customizations>section{
-    height:12%;
+    min-height:12%;
+    height:fit-content;
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -527,6 +528,9 @@ body{
     width:50%;
     font-size: 1.1em;
     height:3vw
+}
+.customCheck div{
+    min-height: 3vw;
 }
 .customizations div div{
     display: flex;
@@ -1083,6 +1087,23 @@ footer.hidden{
         }
         } 
 
+
+.customizations .customCheck div{
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: center;
+    height:fit-content;
+}
+.customizations .customCheck div span{
+    padding-right:.5em;
+    width:max-content;
+    height:fit-content;
+}
+.customizations .customCheck div span.NO{
+    text-decoration: line-through;
+}
+
 @media only screen and (min-width: 900px) {
   *{
       font-size: 1.1vw;
@@ -1096,10 +1117,13 @@ footer.hidden{
   .items div{
       border-width: 1px;
   }
-  .regular div{
+  .regular div, .customCheck div span{
       height: 28px;
-      font-size: .7em;
+      font-size: .7rem;
   }
+  .customCheck div{
+    min-height: 28px;
+}
   .quantity{
       font-size: 1em;
   }

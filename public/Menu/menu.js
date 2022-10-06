@@ -455,7 +455,21 @@ function showDrinkContentsInDivs(bool){
     }else{
         document.querySelector('.iceCheck div').innerText= ''
     }
-    document.querySelector('.customCheck div').innerText=bool.custom.join(' ')
+    document.querySelector('.customCheck div').innerText=''
+    bool.custom.forEach((elem)=>{
+        if(elem !== ''){
+        let spans = document.createElement('span')
+        //document.querySelector('.customCheck div').innerText=bool.custom.join(' ')
+        spans.innerText=elem + ' '
+        if(elem.includes('NO')){
+            spans.classList.add('NO')
+            spans.innerText= (elem.split('w/').join('').split('XTR').join('').split('LT').join('').split('SUB').join('').split('NO').join(''))
+        }
+        
+        document.querySelector('.customCheck div').appendChild(spans)
+        console.log(elem)
+        }
+    })
 
 }
 function removeDrinkContentsFromDivs(element){
@@ -482,7 +496,6 @@ function removeDrinkContentsFromDivs(element){
     if(element.classList.toString().includes('milk')){
         let drinkNum = Number(document.querySelector('.pickedDrinks .selected').classList[0].replace('drink',''))
         if(element.classList.contains( 'milk')){
-            console.log('words')
             if(drinksArray[drinkNum].iced){
                 drinksArray[drinkNum].iced.milk[0]= JSON.parse(JSON.stringify(drinksArray[drinkNum].iced.ogMilk))[0]
             }
@@ -941,17 +954,32 @@ function processCustom(element,value,click){
     }
     
     if(value.type==='custom'){
-        Object.keys(drink).forEach((bool)=>{
-            if(! drink[bool].custom.toString().includes(value.abbr)){
-                console.log('words')
-                changeHotAndIced(drink,value.type,value.abbr)
+        // Object.keys(drink).forEach((bool)=>{
+            
+        //     if(! drink[bool].custom.includes(value.abbr)){
+        //         changeHotAndIced(drink,value.type,value.abbr)
+        //     }
+        // })
+        // createModifier(`Add`,`${value.menuName}`,`${nameShortener(value.abbr)}${value.type}`)
+        // renderHotDrinkContents(drink)
+        if(buttonActive){
+            let changeAbbr
+            if(value.abbr !=='CRM'){
+                changeAbbr = buttonActiveType + JSON.parse(JSON.stringify(value.abbr))
+            }else{
+                changeAbbr = buttonActiveType + JSON.parse(JSON.stringify(value.abbr))
             }
-        })
-        createModifier(`Add`,`${value.menuName}`,`${nameShortener(value.abbr)}${value.type}`)
-        renderHotDrinkContents(drink)
-        
+            changeHotAndIced(drink,value.type,changeAbbr)
+            createModifier(`${buttonActiveName} ${element}`,'',`${nameShortener(value.abbr)}custom`)
+            document.querySelectorAll('.items div').forEach((elem)=>{
+                elem.classList.remove('selected')
+                            
+            })
+        }else{
+        createModifier(`Add ${element}`,'',`${nameShortener(value.abbr)}custom`)
+        changeHotAndIced(drink,value.type,value.abbr)
+        }
     }
-    console.log(value.type)
     if(value.type==='milk'){
         
         if(!value.abbr.includes('w/') && ! value.abbr.includes('CRM')){
@@ -992,7 +1020,6 @@ function processCustom(element,value,click){
     document.querySelector('.buttons .shows').classList.remove('hidden')
     document.querySelector('.buttons .submits').classList.remove('hidden')
     if(value.type!=='button'){
-        console.log('words')
         renderHotDrinkContents(drink)
         if(document.querySelector('.selected .modifier')){
             document.querySelectorAll('.selected .modifier').forEach((elem)=>{
@@ -1196,12 +1223,27 @@ function changeHotAndIced(drink,element,value){
         }
     }
     if(element === 'custom'){
-        if(drink.iced){
-            drink.iced.custom.push(value)
+        function addCustomWithPotModifiers(bool){
+            
+            if(bool){
+                bool.custom.forEach((val,i)=>{
+                    if(val.includes(value.split('w/').join('').split('XTR').join('').split('LT').join('').split('SUB').join('').split('NO').join(''))){
+                        bool.custom.splice(i,1)
+                    }
+                })
+                if(! bool.custom.includes(value)){
+                    bool.custom.push(value)
+                    console.log(value.split('w/').join('').split('XTR').join('').split('LT').join('').split('SUB').join('').split('NO').join(''))
+                }
+            }
         }
-        if(drink.hot){
-            drink.hot.custom.push(value)
-        }
+        addCustomWithPotModifiers(drink.iced)
+        addCustomWithPotModifiers(drink.hot)
+
+        document.querySelectorAll('.items div').forEach((elem)=>{
+            elem.classList.remove('selected')
+                        
+        })
     }
     if(element==='milk'){
         if(!value.includes('w/') && ! value.includes('CRM') && ! value.includes('XTR')&& ! value.includes('LT')&& ! value.includes('NO')){
@@ -1274,7 +1316,7 @@ function changeHotAndIced(drink,element,value){
 
         })
         document.querySelector('.selectedSpecific').innerText=after
-
+        
     }
 }
 

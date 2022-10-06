@@ -44,6 +44,7 @@ module.exports={
                         answer = req.body.drinksArray[i].iced
                         delete req.body.drinksArray[i].iced.ogPumps
                         delete req.body.drinksArray[i].iced.ogShots
+                        delete req.body.drinksArray[i].iced.ogCustom
                         delete req.body.drinksArray[i].iced.ogMilk
                         delete req.body.drinksArray[i].iced.ogSyrup
                     }
@@ -53,6 +54,7 @@ module.exports={
                         delete req.body.drinksArray[i].hot.ogPumps
                         delete req.body.drinksArray[i].hot.ogMilk
                         delete req.body.drinksArray[i].hot.ogSyrup
+                        delete req.body.drinksArray[i].hot.ogCustom
                     }
                     let answerI = translateSize(answer.size)
                     let cAnswerI = translateSize(correctAnswer.size)
