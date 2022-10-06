@@ -1096,14 +1096,28 @@ footer.hidden{
     height:fit-content;
 }
 .customizations .customCheck div span{
-    padding-right:.5em;
+    margin-right:.5em;
     width:max-content;
     height:fit-content;
 }
-.customizations .customCheck div span.NO{
-    text-decoration: line-through;
-}
 
+.customizations .customCheck div span.NO {
+    position: relative;
+  }
+  .customizations .customCheck div span.NO:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 1px solid;
+    border-color: inherit;
+    -webkit-transform:rotate(-5deg);
+    -moz-transform:rotate(-5deg);
+    -ms-transform:rotate(-5deg);
+    -o-transform:rotate(-5deg);
+    transform:rotate(-5deg);
+  }
 @media only screen and (min-width: 900px) {
   *{
       font-size: 1.1vw;

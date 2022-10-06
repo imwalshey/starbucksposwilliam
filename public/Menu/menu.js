@@ -268,6 +268,9 @@ function addToOrder(element){
                 if(bool==='ogMilk'){
                     drinksArray[drinkNum][`${cool}`][bool]= JSON.parse(JSON.stringify(drinkToBeAdded[`${cool}`]['milk'])) //adds OGMIlk
                 }
+                if(bool==='ogCustom'){
+                    drinksArray[drinkNum][`${cool}`][bool]= JSON.parse(JSON.stringify(drinkToBeAdded[`${cool}`]['custom'])) //adds OGMIlk
+                }
                 if(bool==='milk'){
                     drinksArray[drinkNum][`${cool}`].milk.forEach((elem,i)=>{ //cycles through the milk array
                         if(elem === '' && elem.length===0 && drinkToBeAdded[`${cool}`]['milk'][i]){ 
@@ -556,18 +559,30 @@ function removeDrinkContentsFromDivs(element){
                 toBeRemoved= elem.split('custom')[0]
             }
         })
-        let removeHot = drink.hot.custom.map((elem,i)=>{
-            if(elem.includes(toBeRemoved.toUpperCase())){
-                drink.hot.custom.splice(i,1)
-            }
-            
-        })
-        let removeIced = drink.iced.custom.map((elem,i)=>{
-            if(elem.includes(toBeRemoved.toUpperCase())){
-                drink.iced.custom.splice(i,1)
-            }
-            
-        })
+        if(drink.hot){
+            let removeHot = drink.hot.custom.map((elem,i)=>{
+                if(elem.includes(toBeRemoved.toUpperCase())){
+                    
+                    if(drink.hot.ogCustom.includes(toBeRemoved.toUpperCase())){
+                        let indexOfCustom = drink.hot.ogCustom.indexOf(toBeRemoved.toUpperCase())
+                        drink.hot.custom.splice(i,1,drink.hot.ogCustom[indexOfCustom])
+                    }else{
+                        drink.hot.custom.splice(i,1)
+                    }
+                }
+                
+            })
+        }
+        if(drink.iced){
+            let removeIced = drink.iced.custom.map((elem,i)=>{
+                if(elem.includes(toBeRemoved.toUpperCase())){
+                    drink.iced.custom.splice(i,1)
+                }
+                
+            })
+        }
+        
+        
     }
 }
 function simultaneouslyRemove(itemToRemove,itemType,bool){
