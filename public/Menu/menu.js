@@ -977,6 +977,9 @@ function processCustom(element,value,click){
         // })
         // createModifier(`Add`,`${value.menuName}`,`${nameShortener(value.abbr)}${value.type}`)
         // renderHotDrinkContents(drink)
+        if(element.includes('With')){
+            element = element.replace('With ','')
+        }
         if(buttonActive){
             let changeAbbr
             if(value.abbr !=='CRM'){
@@ -991,6 +994,7 @@ function processCustom(element,value,click){
                             
             })
         }else{
+        
         createModifier(`Add ${element}`,'',`${nameShortener(value.abbr)}custom`)
         changeHotAndIced(drink,value.type,value.abbr)
         }
@@ -1461,6 +1465,7 @@ if(! localStorage.getItem('totalCorrect')){
     localStorage.setItem('totalCorrect',0)
 }
 async function postAnswer(){
+    document.querySelector('#winOrLose p').innerText= ''
     document.querySelector('.menuWrapper').classList.add('loading')
     document.querySelector('.customerArea').classList.add('hidden')
     let body = JSON.stringify({drinksArray,drinkIsIced,customerID})
@@ -1477,7 +1482,7 @@ async function postAnswer(){
         const data = await response.json()
         document.querySelector('.menuWrapper').classList.remove('loading')
         document.querySelector('.customerArea').classList.remove('hidden')
-        if(data==='win'){
+        if(data.result==='win'){
             document.getElementById('winOrLose').classList='win'
             document.querySelector('#winOrLose .winCont').classList.remove('hidden')
             document.querySelector('#winOrLose h1').innerText='CORRECT!'
@@ -1505,10 +1510,12 @@ async function postAnswer(){
             localStorage.setItem('streak',(Number(localStorage.getItem('streak'))+1))
 
         }
-        if(data==='lose'){
+        console.log(data.result)
+        if(data.result==='lose'){
             document.getElementById('winOrLose').classList='lose'
             document.querySelector('#winOrLose .winCont').classList.add('hidden')
             document.querySelector('#winOrLose h1').innerText='NOT QUITE!'
+            document.querySelector('#winOrLose p').innerText= data.advice
             document.querySelector('.loseTry').classList.remove('hidden')
             document.querySelector('.loseSkip').classList.remove('hidden')
             document.querySelector('.drinkType').classList.add('hidden')

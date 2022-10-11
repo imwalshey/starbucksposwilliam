@@ -37,6 +37,28 @@ body>section{
     justify-content: center;
     background-color: #00754a;
 }
+.introduction{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top:0;
+    min-height:70vh;
+    max-height: 90vh;
+    margin-top: 0;
+    background:#00754a;
+    border-bottom: 20px solid #12160e ;
+}
+.introduction p{
+    text-indent: 2em;
+    min-width:20%;
+    max-width: 60%;
+}
+.introduction p + p{
+    text-indent: 0em;
+    text-align: center;
+    font-weight: bold;
+}
 
 .renders .renderimages{
     border:2px solid rgb(0, 0, 0);

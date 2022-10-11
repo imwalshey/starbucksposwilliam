@@ -1,4 +1,5 @@
 const express =require('express')
+const { addListener } = require('nodemon')
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -35,6 +36,7 @@ module.exports={
     order: (req,res)=>{
             let checker = (arr, target) => target.every(v => arr.includes(v));
             let points = 0
+            let adviceText=''
             req.body.drinksArray.forEach((drink,i)=>{
                 if(req.body.drinksArray[i]!==undefined && req.body.drinksArray[i]!==null){
                     let answer
@@ -58,14 +60,13 @@ module.exports={
                     }
                     let answerI = translateSize(answer.size)
                     let cAnswerI = translateSize(correctAnswer.size)
-                    // console.log('answer')
-                    // console.log(answer)
-                    // console.log('correctAnswer')
-                    // console.log(correctAnswer)
-                    console.log([answer,correctAnswer])
+
+                    
                     if(checker(answer.decaf,correctAnswer.decaf)){
                         delete answer.decaf
                         delete correctAnswer.decaf
+                    }else{
+                        
                     }
                     if(answer.pumps[answerI] === correctAnswer.pumps[cAnswerI]){
                         
@@ -75,16 +76,31 @@ module.exports={
                     if(answer.size === correctAnswer.size){
 
                     }
+                    console.log(answer.milk)
+                    if(answer.milk === correctAnswer.milk){
+                        delete answer.milk
+                        delete correctAnswer.milk
+                    }else{
+                        if((answer.milk.some((val)=>{ if(val.includes('w/')){return true}})) &&  (!correctAnswer.milk.some((val)=>{ if(val.includes('w/')){return true}}))){
+                            adviceText+= "Try using the milk modifier buttons on the left.It's important to charge for more than 4oz of cream to account usage"
+                        }else{}
+                        
+                    }
+                    
                     if(JSON.stringify(answer) ===JSON.stringify(correctAnswer)){
                         points+=1
                     }
                     
                 }
             })
+            let problem = ''
             if(points>=1){
-                    res.json('win')
+                    res.json({result : 'win'})
             }else{
-                    res.json('lose')
+                    res.json({
+                        result : 'lose',
+                        advice: adviceText
+                    } )
             }
             //console.log(points)
     }
